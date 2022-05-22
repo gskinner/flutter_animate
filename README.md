@@ -108,9 +108,9 @@ and `SwapEffect`.
 CustomEffect
 ----------------------------------------
 
-`CustomEffect` lets you build complete custom animated effects. You simply
-specify a `builder` function that accepts a context, value, and child. The child
-is the target of the animation (which may already have been wrapped in other
+`CustomEffect` lets you build custom animated effects. Simply specify a
+`builder` function that accepts a `context`, `value`, and `child`. The child is
+the target of the animation (which may already have been wrapped in other
 effects).
 
 For example, this would add a background behind the text and fade it from red to

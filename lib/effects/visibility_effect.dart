@@ -6,7 +6,7 @@ import '../flutter_animate.dart';
 
 /// Effect that toggles the visibility of the target (via [Visibility]).
 /// Defaults to `begin=false, end=true`.
-/// 
+///
 /// The `maintain` parameter is assigned to the [Visibility] properties 'maintainSize`,
 /// `maintainAnimation`, `maintainState`, and `maintainSemantics`.
 @immutable

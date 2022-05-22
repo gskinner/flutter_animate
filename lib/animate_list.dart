@@ -24,7 +24,6 @@ import 'flutter_animate.dart';
 ///    )
 class AnimateList<T extends Widget> extends ListBase<Widget>
     with AnimateManager<AnimateList> {
-
   /// Specifies a default interval to use for new `AnimateList` instances.
   static Duration defaultInterval = Duration.zero;
 
