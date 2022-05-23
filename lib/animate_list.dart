@@ -6,6 +6,9 @@ import 'flutter_animate.dart';
 /// Applies animated effects to a list of widgets. It does this by wrapping each
 /// widget in [Animate], and then proxying `add` calls to all instances. It can
 /// also offset the timing of each widget's animation via `interval`.
+/// 
+/// If specified, `onInit` and `onComplete` will also be assigned to every instance
+/// to enable looping or reversing via the [AnimationController].
 ///
 /// For example, this would fade and scale every item in the Column, offsetting
 /// the start of each by 100 milliseconds:
@@ -40,22 +43,19 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
     required List<Widget> children,
     List<Effect>? effects,
     Duration? interval,
-    VoidCallback? onComplete,
+    AnimateCallback? onInit,
+    AnimateCallback? onComplete,
   }) {
     // build new list, wrapping each child in Animate
     for (int i = 0; i < children.length; i++) {
       Widget child = children[i];
       Type type = child.runtimeType;
 
-      // add onComplete to last child, stripping the controller param:
-      AnimateCallback? f = i == children.length - 1 && onComplete != null
-          ? (_) => onComplete()
-          : null;
-
       if (!ignoreTypes.contains(type)) {
         child = Animate(
           delay: (interval ?? Duration.zero) * i,
-          onComplete: f,
+          onInit: onInit,
+          onComplete: onComplete,
           child: child,
         );
         _managers.add(child as Animate);
@@ -102,12 +102,14 @@ extension AnimateListExtensions on List<Widget> {
   AnimateList animate({
     List<Effect>? effects,
     Duration? interval,
-    VoidCallback? onComplete,
+    AnimateCallback? onInit,
+    AnimateCallback? onComplete,
   }) =>
       AnimateList(
         children: this,
         effects: effects,
         interval: interval,
+        onInit: onInit,
         onComplete: onComplete,
       );
 }
