@@ -13,13 +13,13 @@ All via a simple, unified API without fussing with AnimationController and
 StatefulWidget.
 
 > **NOTE:** This library is currently in prerelease. Some aspects of the API
-> will change as it is refined. Your feedback is welcome via the Github Repo.
+> will change as it is refined. Your feedback is welcome via Github issues.
 
 Duration extensions
 ----------------------------------------
 
 This package includes extension methods for `num`, to make specifying durations
-simple. For example: `2.seconds`, `0.1.minutes`, or `300.ms`.
+easier. For example: `2.seconds`, `0.1.minutes`, or `300.ms`.
 
 
 Basics
@@ -46,14 +46,14 @@ widget in `Animate()`. Each effect also adds a chainable extension method to
 Text("Hello World!").animate().fade().scale()
 ```
 
-> The latter style is used in this README, but all functionality is available in
-> either format.
+> **NOTE:** The shortform style is used in this README, but all functionality is
+> available in either format.
 
 Delay, duration, curve
 ----------------------------------------
 
 Effects have optional `delay`, `duration`, and `curve` parameters. Effects run
-in parallel, but you can add a `delay` to run them sequentially:
+in parallel, but you can use a `delay` to run them sequentially:
 
 ``` dart
 Text("Hello").animate()
@@ -80,8 +80,8 @@ Text("Hello World!").animate()
 Animating Lists
 ----------------------------------------
 
-The `AnimateList` class offers similar functionality for list of widgets, with
-the option to offset each child's animation by a specified interval:
+The `AnimateList` class offers similar functionality for lists of widgets, with
+the option to offset each child's animation by a specified `interval`:
 
 ``` dart
 Column(children: AnimateList(
@@ -202,7 +202,7 @@ manipulate the animation (ex. repeat, reverse, etc).
 
 ``` dart
 Text("Pulsing Text")
-  .animate(onComplete: (controller) => controller.reverse())
+  .animate(onComplete: (controller) => controller.repeat(reverse: true))
   .fadeOut(delay: 300.ms, duration: 300.ms, curve: Curves.easeIn)
 ```
 
