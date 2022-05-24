@@ -4,7 +4,7 @@ Flutter Animate
 A library that makes it simple to add virtually any kind of animated effect in
 Flutter.
 
-1. Pre-built effects, like blur, fade, scale, and slide
+1. Pre-built effects, like blur, fade, scale, shine, and slide
 2. Easy custom effects
 3. Simplified animated builders
 4. Synchronized events
@@ -201,9 +201,9 @@ whole animation starts or ends. Use the provided the `AnimationController` to
 manipulate the animation (ex. repeat, reverse, etc).
 
 ``` dart
-Text("Pulsing Text")
+Text("Horrible Pulsing Text")
   .animate(onComplete: (controller) => controller.repeat(reverse: true))
-  .fadeOut(delay: 300.ms, duration: 300.ms, curve: Curves.easeIn)
+  .fadeOut(curve: Curves.easeInOut)
 ```
 
 For more nuanced callbacks, use `CallbackEffect` or `ListenEffect`.

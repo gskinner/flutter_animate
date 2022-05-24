@@ -5,6 +5,7 @@ export 'blur_effect.dart';
 export 'callback_effect.dart';
 export 'custom_effect.dart';
 export 'fade_effect.dart';
+export 'shine_effect.dart';
 export 'listen_effect.dart';
 export 'move_effect.dart';
 export 'scale_effect.dart';

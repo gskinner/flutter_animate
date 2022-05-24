@@ -48,7 +48,7 @@ class EffectEntry {
 /// runs from 300ms to 800ms with an easeOut curve, within a controller that has a
 /// total duration of 1000ms.
 ///
-/// Mostly used by [Effect] classes.
+/// Mostly used by [EffectEntry] and [Effect] classes.
 Animation<double> buildSubAnimation(
   AnimationController controller,
   Duration begin,

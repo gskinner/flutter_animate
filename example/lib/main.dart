@@ -35,6 +35,7 @@ class FlutterAnimateExample extends StatelessWidget {
     );
 
     // simple example of a custom effect + a onComplete handler:
+
     content = content
         .animate(onComplete: (controller) => controller.repeat(reverse: true))
         .custom(
@@ -42,11 +43,19 @@ class FlutterAnimateExample extends StatelessWidget {
           duration: 1000.ms,
           curve: Curves.easeInOut,
           builder: (_, value, child) => Container(
-            color: Color.lerp(Colors.white, Colors.lightBlue, value),
+            color: Color.lerp(
+              Color(0xFF111111),
+              Color(0xFF333322),
+              value,
+            ),
             child: Center(child: child),
           ),
         )
         .scale(begin: 1, end: 1.5);
+
+    content = content
+        .animate(onInit: (controller) => controller.repeat())
+        .shine(delay: 3000.ms, duration: 1000.ms, curve: Curves.easeIn);
 
     return Scaffold(
       appBar: AppBar(
@@ -54,9 +63,9 @@ class FlutterAnimateExample extends StatelessWidget {
       ),
       body: DefaultTextStyle(
         style: const TextStyle(
-          color: Colors.black,
+          color: Colors.grey,
           fontSize: 36,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w900,
           height: 2,
         ),
         child: content,
