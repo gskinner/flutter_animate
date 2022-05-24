@@ -77,6 +77,18 @@ Text("Hello World!").animate()
   .blur(end: 8.0) // inherits the delay & duration from move
 ```
 
+`Animate` also has a `delay` parameter, which happens before the animation runs.
+Unlike the delay on an `Effect`, it is only applied once if the animation
+repeats.
+
+``` dart
+Text("Hello").animate(
+    delay: 1000.ms, // this delay only happens once at the very start
+    onInit: (controller) => controller.repeat(), // loop
+  ).fadeIn(delay: 500.ms) // this delay happens at the start of each loop
+  
+```
+
 Animating Lists
 ----------------------------------------
 
@@ -202,7 +214,7 @@ manipulate the animation (ex. repeat, reverse, etc).
 
 ``` dart
 Text("Horrible Pulsing Text")
-  .animate(onComplete: (controller) => controller.repeat(reverse: true))
+  .animate(onInit: (controller) => controller.repeat(reverse: true))
   .fadeOut(curve: Curves.easeInOut)
 ```
 

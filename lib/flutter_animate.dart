@@ -17,22 +17,28 @@ export 'num_duration_extensions.dart';
 class EffectEntry {
   const EffectEntry({
     required this.effect,
-    required this.begin,
-    required this.end,
+    required this.delay,
+    required this.duration,
     required this.curve,
   });
 
-  /// The begin time for this entry.
-  final Duration begin;
+  /// The delay for this entry.
+  final Duration delay;
 
-  /// The end time for this entry.
-  final Duration end;
+  /// The duration for this entry.
+  final Duration duration;
 
   /// The curve used by this entry.
   final Curve curve;
 
   /// The effect associated with this entry.
   final Effect effect;
+
+  /// The begin time for this entry.
+  Duration get begin => delay;
+
+  /// The end time for this entry.
+  Duration get end => delay + duration;
 
   /// Builds a sub-animation based on the properties of this entry.
   Animation<double> buildAnimation(

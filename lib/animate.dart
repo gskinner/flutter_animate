@@ -103,7 +103,9 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// The widget to apply effects to.
   final Widget child;
 
-  /// A duration to delay before running the applied effects.
+  /// A duration to delay before starting the animation. Unlike [Effect.delay],
+  /// this is not a part of the overall animation, and only runs once if the
+  /// animation is looped.
   final Duration delay;
 
   /// Called when all effects complete. Provides an opportunity to
@@ -128,17 +130,12 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// to an [Animate] instance.
   @override
   Animate addEffect(Effect effect) {
-    Effect? lastEffect = _lastEntry?.effect;
-    Duration begin =
-        delay + (effect.delay ?? lastEffect?.delay ?? Duration.zero);
-    Duration end = begin +
-        (effect.duration ?? lastEffect?.duration ?? Animate.defaultDuration);
-
+    EffectEntry? prior = _lastEntry;
     EffectEntry entry = EffectEntry(
       effect: effect,
-      begin: begin,
-      end: end,
-      curve: effect.curve ?? _lastEntry?.curve ?? Animate.defaultCurve,
+      delay: effect.delay ?? prior?.delay ?? Duration.zero,
+      duration: effect.duration ?? prior?.duration ?? Animate.defaultDuration,
+      curve: effect.curve ?? prior?.curve ?? Animate.defaultCurve,
     );
 
     _entries.add(entry);
@@ -156,8 +153,6 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller.addStatusListener(_handleAnimationStatus);
-    _controller.forward(); // TODO: Maybe add widget.autoPlay?
-    widget.onInit?.call(_controller);
   }
 
   @override
@@ -172,12 +167,18 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
     if (oldWidget._duration != widget._duration) {
       _controller.duration = widget._duration;
     }
+    Future.delayed(widget.delay, () => _play());
   }
 
   void _handleAnimationStatus(status) {
     if (status == AnimationStatus.completed) {
       widget.onComplete?.call(_controller);
     }
+  }
+
+  void _play() {
+    _controller.forward(from: 0); // TODO: Maybe add widget.autoPlay?
+    widget.onInit?.call(_controller);
   }
 
   @override
