@@ -11,8 +11,8 @@ class ShineEffect extends Effect<double> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    this.color = const Color(0x66FFFFFF),
-    this.size = 1,
+    this.color = const Color(0x33FFFFFF),
+    this.size = 2,
     this.angle = pi / 3,
   }) : super(
           delay: delay,
@@ -89,8 +89,8 @@ extension ShineEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    Color color = const Color(0x66FFFFFF),
-    double size = 1,
+    Color color = const Color(0x33FFFFFF),
+    double size = 2,
     double angle = pi / 6,
   }) =>
       addEffect(ShineEffect(
