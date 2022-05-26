@@ -9,9 +9,15 @@ import '../flutter_animate.dart';
 /// 
 /// By default it animates a simple 50% white gradient clipped by the child content.
 /// However it provides a large amount of customization, including changing the 
-/// gradient angle, the gradient colors / stops, and disabling clipping.
+/// gradient angle, the gradient colors / stops, and specifying the blend mode.
 /// 
-/// This allows effects like text filled by an animated color gradient.
+/// `blendMode` lets you adjust how the gradient fill is composited. It defaults to 
+/// [BlendMode.srcATop], which layers the fill over the child, using the child's
+/// alpha (ie. the child acts as a mask). Other interesting options include:
+/// 
+/// * [BlendMode.srcIn] which uses the child as a mask
+/// * [BlendMode.srcOver] layers the gradient fill over the child (no masking)
+/// * [BlendMode.dstOver] layers the gradient fill under the child (no masking)
 @immutable
 class ShimmerEffect extends Effect<double> {
   const ShimmerEffect({
@@ -23,7 +29,7 @@ class ShimmerEffect extends Effect<double> {
     this.stops,
     this.size,
     this.angle,
-    this.clip,
+    this.blendMode,
   }) : super(
           delay: delay,
           duration: duration,
@@ -37,7 +43,7 @@ class ShimmerEffect extends Effect<double> {
   final List<double>? stops;
   final double? size;
   final double? angle;
-  final bool? clip;
+  final BlendMode? blendMode;
 
   @override
   Widget build(
@@ -53,7 +59,7 @@ class ShimmerEffect extends Effect<double> {
       builder: (_, child) {
         LinearGradient gradient = _buildGradient(animation.value);
         return ShaderMask(
-          blendMode: (clip ?? true) ? BlendMode.srcATop : BlendMode.srcOver,
+          blendMode: blendMode ?? BlendMode.srcATop,
           shaderCallback: (bounds) => gradient.createShader(bounds),
           child: child,
         );
@@ -89,7 +95,7 @@ extension ShimmerEffectExtensions<T> on AnimateManager<T> {
     List<double>? stops,
     double? size,
     double? angle,
-    bool? clip,
+    BlendMode? blendMode,
   }) =>
       addEffect(ShimmerEffect(
         delay: delay,
@@ -100,7 +106,7 @@ extension ShimmerEffectExtensions<T> on AnimateManager<T> {
         stops: stops,
         size: size,
         angle: angle,
-        clip: clip,
+        blendMode: blendMode,
       ));
 }
 
