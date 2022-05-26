@@ -18,13 +18,15 @@ import 'flutter_animate.dart';
 /// Like [Animate], it can also be used declaratively. The following is
 /// equivalent to the above example.
 ///
-///    Column(
-///      children: AnimateList(
-///        effects: [FadeEffect(), ScaleEffect()],
-///        interval: 100.ms,
-///        children: [foo, bar, baz],
-///      )
-///    )
+/// ```
+/// Column(
+///   children: AnimateList(
+///     effects: [FadeEffect(), ScaleEffect()],
+///     interval: 100.ms,
+///     children: [foo, bar, baz],
+///   )
+/// )
+/// ```
 class AnimateList<T extends Widget> extends ListBase<Widget>
     with AnimateManager<AnimateList> {
   /// Specifies a default interval to use for new `AnimateList` instances.
@@ -33,8 +35,10 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
   /// Widget types to ignore in a list. By default, includes [Spacer].
   /// You can modify this list as appropriate. For example, to ignore a
   /// hypothetical "Gap" widget type:
-  ///
-  ///     AnimateList.ignoreTypes.add(Gap);
+  /// 
+  /// ```
+  /// AnimateList.ignoreTypes.add(Gap);
+  /// ```
   static Set<Type> ignoreTypes = {Spacer};
 
   /// Creates an AnimateList instance that will wrap all children in an [Animate]

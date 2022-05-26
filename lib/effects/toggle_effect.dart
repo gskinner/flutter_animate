@@ -2,18 +2,23 @@ import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
 
-/// Effect that allows you to toggle the behavior of a builder function based on whether
-/// the time is before (`true`) or after (`false`) the effect's `delay`.
+/// Effect that allows you to toggle the behavior of a builder function at a certain
+/// point in time.
 ///
-///     Animate().toggle(delay: 500.ms, builder: (_, value, __) =>
-///       Text('${value ? "Before Delay" : "After Delay"}'));
+/// ```
+/// Animate().toggle(duration: 500.ms, builder: (_, value, __) =>
+///   Text('${value ? "Before Delay" : "After Delay"}'))
+/// ```
 ///
 /// This is also useful for triggering animation in "Animated" widgets.
 ///
-///     foo.animate().toggle(delay: 500.ms, builder: (_, value, child) =>
-///       AnimatedOpacity(opacity: value ? 0 : 1, child: child));
+/// ```
+/// foo.animate().toggle(duration: 500.ms, builder: (_, value, child) =>
+///   AnimatedOpacity(opacity: value ? 0 : 1, child: child))
+/// ```
 ///
-/// The child of `Animate` is passed through to the builder in the `child` param.
+/// The child of `Animate` is passed through to the builder in the `child` param
+/// (possibly already wrapped by prior effects).
 @immutable
 class ToggleEffect extends Effect<void> {
   const ToggleEffect({

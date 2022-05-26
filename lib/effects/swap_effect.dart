@@ -2,17 +2,21 @@ import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
 
-/// Effect that swaps out the incoming child for a new child at a particular point in time. This includes all preceeding
-/// effects. For example, this would fade out `foo`, swap it for `Bar()` (including discarding the `fadeOut` effect) and
-/// fade it in.
+/// Effect that swaps out the incoming child for a new child at a particular
+/// point in time. This includes all preceeding effects. For example, this would
+/// fade out `foo`, swap it for `Bar()` (including discarding the `fadeOut` effect)
+/// and apply a fade in effect.
 ///
-///     foo.animate()
-///       .fadeOut(duration: 500.ms)
-///       .swap( // inherits duration from fadeOut
-///         builder: () => Bar().fadeIn(),
-///       )
+/// ```
+/// foo.animate()
+///   .fadeOut(duration: 500.ms)
+///   .swap( // inherits duration from fadeOut
+///     builder: () => Bar().fadeIn(),
+///   )
+/// ```
 ///
-/// It uses a builder so that the effect can be reused, but note that the builder is only called once.
+/// It uses a builder so that the effect can be reused, but note that the
+/// builder is only called once when the effect builds initially.
 @immutable
 class SwapEffect extends Effect<void> {
   const SwapEffect({

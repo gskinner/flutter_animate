@@ -7,10 +7,12 @@ import 'flutter_animate.dart';
 /// simple. It supports both a declarative and chained API. The latter is exposed
 /// via the `Widget.animate` extension, which simply wraps the widget in `Animate`.
 ///
-///    // declarative:
-///    Animate(child: foo, effects: [FadeEffect(), ScaleEffect()])
-///    // equivalent chained API:
-///    foo.animate().fade().scale() // equivalent to above
+/// ```
+/// // declarative:
+/// Animate(child: foo, effects: [FadeEffect(), ScaleEffect()])
+/// // equivalent chained API:
+/// foo.animate().fade().scale() // equivalent to above
+/// ```
 ///
 /// Effects are always run in parallel (ie. the fade and scale effects in the
 /// example above would be run simultaneously), but you can apply delays to
@@ -20,14 +22,16 @@ import 'flutter_animate.dart';
 /// instances, which lets you create libraries of effects to reuse throughout
 /// your app.
 ///
-///     List<Effect> transitionIn = [
-///       FadeEffect(duration: 100.ms, curve: Curves.easeOut),
-///       ScaleEffect(begin: 0.8, curve: Curves.easeIn)
-///     ];
-///     // then:
-///     Animate(child: foo, effects: transitionIn)
-///     // or:
-///     foo.animate(effects: transitionIn)
+/// ```
+/// List<Effect> transitionIn = [
+///   FadeEffect(duration: 100.ms, curve: Curves.easeOut),
+///   ScaleEffect(begin: 0.8, curve: Curves.easeIn)
+/// ];
+/// // then:
+/// Animate(child: foo, effects: transitionIn)
+/// // or:
+/// foo.animate(effects: transitionIn)
+/// ```
 ///
 /// Effects inherit some of their properties (delay, duration, curve) from the
 /// previous effect if unspecified. So in the examples above, the scale will use
@@ -38,7 +42,9 @@ import 'flutter_animate.dart';
 /// the following would not fade in myWidget, because the fadeOut effect would still be
 /// applying an opacity of 0:
 ///
-///     myWidget.animate().fadeOut(duration: 200.ms).fadeIn(delay: 200.ms)
+/// ```
+/// myWidget.animate().fadeOut(duration: 200.ms).fadeIn(delay: 200.ms)
+/// ```
 ///
 /// See [SwapEffect] for one approach to work around this.
 
@@ -58,10 +64,12 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// handlers as appropriate. Example, this would add support for a hypothetical
   /// "AlignPositioned" widget, that has an `alignment` property.
   ///
-  ///     Animate.reparentTypes[AlignPositioned] = (parent, child) {
-  ///       AlignPositioned o = parent as AlignPositioned;
-  ///       return AlignPositioned(alignment: o.alignment, child: child);
-  ///     }
+  /// ```
+  /// Animate.reparentTypes[AlignPositioned] = (parent, child) {
+  ///   AlignPositioned o = parent as AlignPositioned;
+  ///   return AlignPositioned(alignment: o.alignment, child: child);
+  /// }
+  /// ```
   static Map reparentTypes = <Type, ReparentChildBuilder>{
     Flexible: (parent, child) {
       Flexible o = parent as Flexible;

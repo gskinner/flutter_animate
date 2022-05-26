@@ -5,8 +5,10 @@ import '../flutter_animate.dart';
 /// Provide an easy way to add custom effects via a build method. For example, this
 /// would animate custom padding on the target from 0 to 40.
 ///
-///     foo.animate().custom(duration: 1000.ms, end: 40, builder: (_, value, child) =>
-///         Padding(padding: EdgeInsets.all(value), child: child))
+/// ```
+/// foo.animate().custom(duration: 1000.ms, end: 40, builder: (_, value, child) =>
+///   Padding(padding: EdgeInsets.all(value), child: child))
+/// ```
 ///
 /// Note that the above could also be accomplished by creating a custom effect class
 /// that extends [Effect] and utilizes [AnimatedPadding].

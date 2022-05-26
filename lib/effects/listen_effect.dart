@@ -6,7 +6,7 @@ import '../flutter_animate.dart';
 ///
 /// By default, the callback will only be called while this effect is "active"
 /// (ie. after delay, and before duration) and will return a value between 0-1
-/// (unless the curve transforms it beyond this range). If clamp is set to false,
+/// (unless the curve transforms it beyond this range). If `clamp` is set to `false`,
 /// the callback will be called on every tick while the enclosing [Animate] is
 /// running, and may return values outside the 0-1 range (ex. it will return a
 /// negative value before delay).
