@@ -34,6 +34,13 @@ class FlutterAnimateExample extends StatelessWidget {
       ].animate(interval: 250.ms).fadeIn(curve: Curves.easeOut).slide(),
     );
 
+    // add a looping shimmer effect:
+    content = content.animate(onInit: (c) => c.repeat(reverse: true)).shimmer(
+      delay: 500.ms,
+      duration: 1000.ms,
+      colors: [Colors.yellow, Colors.blue, Colors.black, Colors.yellow],
+    );
+
     // simple example of a custom effect + a onComplete handler:
     content = content
         .animate(onComplete: (controller) => controller.repeat(reverse: true))
@@ -53,23 +60,22 @@ class FlutterAnimateExample extends StatelessWidget {
         .scale(begin: 1, end: 1.5)
         .blur(end: 32);
 
-    // add a looping shine effect:
-    content = content
-        .animate(onInit: (controller) => controller.repeat())
-        .shine(delay: 3000.ms, duration: 1000.ms, curve: Curves.easeIn);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Flutter Animate Example"),
       ),
       body: DefaultTextStyle(
         style: const TextStyle(
-          color: Colors.grey,
+          color: Color(0xFF222222),
           fontSize: 36,
           fontWeight: FontWeight.w900,
           height: 2,
         ),
-        child: content,
+        child: Container(
+          color: Colors.black,
+          alignment: Alignment.center,
+          child: content,
+        ),
       ),
     );
   }
