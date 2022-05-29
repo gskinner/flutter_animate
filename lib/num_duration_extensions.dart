@@ -1,5 +1,5 @@
 /// Adds extensions to num (ie. int & double) to make creating durations simple:
-/// 
+///
 /// ```
 /// 200.ms // equivalent to Duration(milliseconds: 200)
 /// 3.seconds // equivalent to Duration(milliseconds: 3000)

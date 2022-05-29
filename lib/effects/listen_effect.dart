@@ -10,7 +10,7 @@ import '../flutter_animate.dart';
 /// the callback will be called on every tick while the enclosing [Animate] is
 /// running, and may return values outside the 0-1 range (ex. it will return a
 /// negative value before delay).
-/// 
+///
 /// ```
 /// Text("Hello").animate().fadeIn(curve: Curves.easeOutExpo)
 ///  .listen(callback: (value) => print('current opacity: $value'))

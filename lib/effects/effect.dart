@@ -3,7 +3,7 @@ import '../flutter_animate.dart';
 
 /// Class that defines the required interface and helper methods for
 /// all effect classes.
-/// 
+///
 /// It can be instantiated and added to Animate, but has no visual effect.
 @immutable
 class Effect<T> {

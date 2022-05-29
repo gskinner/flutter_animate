@@ -39,13 +39,19 @@ class FlutterAnimateExample extends StatelessWidget {
             interval: 1.seconds, // offset each item's start time
             onInit: (controller) => controller.repeat(), // loop
           )
-          .shimmer( // the gradient effect on the text.
+          .shimmer(
+            // the gradient effect on the text.
             delay: 900.ms,
             duration: 2.seconds,
             blendMode: BlendMode.srcIn, // use the child (ie. text) as a mask
             colors: [Colors.blue, Colors.yellow, Colors.transparent],
           )
-          .scale(begin: 0.6, duration: 3.seconds, alignment: Alignment.bottomCenter) // inherits delay from previous
+          .scale(
+            // inherits delay from previous
+            begin: 0.6,
+            duration: 3.seconds,
+            alignment: Alignment.bottomCenter,
+          )
           .then() // set default delay to when the previous effect completes
           .fadeOut(duration: 1200.ms, curve: Curves.easeInQuad)
           .blur(begin: 0, end: 64)

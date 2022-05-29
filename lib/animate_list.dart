@@ -9,11 +9,11 @@ import 'flutter_animate.dart';
 ///
 /// For example, this would fade and scale every item in the Column, offsetting
 /// the start of each by 100 milliseconds:
-/// 
+///
 /// ```
 /// Column(children: [foo, bar, baz].animate(interval: 100.ms).fade().scale())
 /// ```
-/// 
+///
 /// If specified, `onInit` and `onComplete` will also be assigned to every instance
 /// to enable looping or reversing via the [AnimationController].
 ///
@@ -37,7 +37,7 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
   /// Widget types to ignore in a list. By default, includes [Spacer].
   /// You can modify this list as appropriate. For example, to ignore a
   /// hypothetical "Gap" widget type:
-  /// 
+  ///
   /// ```
   /// AnimateList.ignoreTypes.add(Gap);
   /// ```
