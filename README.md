@@ -12,10 +12,14 @@ effect in Flutter.
 All via a simple, unified API without fussing with AnimationController and
 StatefulWidget.
 
-![Example Image](https://raw.githubusercontent.com/gskinner/flutter_animate/assets/readme_example.gif)
-
 > **NOTE:** This library is currently in prerelease. Some aspects of the API
 > will change as it is refined. Your feedback is welcome via Github issues.
+
+![Example Image](https://raw.githubusercontent.com/gskinner/flutter_animate/assets/readme_example.gif)
+
+_Above: An example showing some features of Flutter Animate in
+[~15 simple lines of code](https://github.com/gskinner/flutter_animate/blob/922e9af5ac23e2df6574fa46c255ba270d9a9af3/example/lib/main.dart#L28)._
+
 
 Duration extensions
 ----------------------------------------

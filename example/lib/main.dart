@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+// TODO: Add additional examples, especially a proper UI example.
+
 void main() {
   runApp(const MyApp());
 }
