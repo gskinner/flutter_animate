@@ -1,10 +1,12 @@
 import 'package:flutter/widgets.dart';
 import '../flutter_animate.dart';
 
-/// Abstract class that defines the required interface and helper methods for
+/// Class that defines the required interface and helper methods for
 /// all effect classes.
+/// 
+/// It can be instantiated and added to Animate, but has no visual effect.
 @immutable
-abstract class Effect<T> {
+class Effect<T> {
   /// The specified delay for the effect. If null, will use the delay from the
   /// previous effect, or [Duration.zero] if this is the first effect.
   final Duration? delay;
@@ -35,7 +37,7 @@ abstract class Effect<T> {
     AnimationController controller,
     EffectEntry entry,
   ) {
-    throw UnimplementedError();
+    return child;
   }
 
   /// Helper method to build an animation based on the controller, entry, and
