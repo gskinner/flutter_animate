@@ -11,5 +11,6 @@ export 'scale_effect.dart';
 export 'shimmer_effect.dart';
 export 'slide_effect.dart';
 export 'swap_effect.dart';
+export 'then_effect.dart';
 export 'toggle_effect.dart';
 export 'visibility_effect.dart';

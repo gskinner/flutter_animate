@@ -139,9 +139,16 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   @override
   Animate addEffect(Effect effect) {
     EffectEntry? prior = _lastEntry;
+
+    Duration delay = (effect is ThenEffect)
+        ? (effect.delay ?? Duration.zero) +
+            (prior?.delay ?? Duration.zero) +
+            (prior?.duration ?? Duration.zero)
+        : effect.delay ?? prior?.delay ?? Duration.zero;
+
     EffectEntry entry = EffectEntry(
       effect: effect,
-      delay: effect.delay ?? prior?.delay ?? Duration.zero,
+      delay: delay,
       duration: effect.duration ?? prior?.duration ?? Animate.defaultDuration,
       curve: effect.curve ?? prior?.curve ?? Animate.defaultCurve,
     );
