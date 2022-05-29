@@ -16,8 +16,8 @@ import '../flutter_animate.dart';
 ///   .scale(begin: 1, end: 2) // inherits the 1700ms delay
 /// ```
 /// 
-/// This makes it easy to change the delay or duration of fade, without
-/// having to update the delay on scale to match.
+/// This makes it easy to change the delay or duration of the `fadeIn`, without
+/// having to update the delay on `scale` to match.
 /// 
 /// Note that this simply calculates a new `delay` that will be inherited by the
 /// subsequent effect. In the example above, it is functionally equivalent to

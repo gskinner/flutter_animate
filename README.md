@@ -1,16 +1,18 @@
 Flutter Animate
 ================================================================================
 
-A library that makes it simple to add virtually any kind of animated effect in
-Flutter.
+A performant library that makes it simple to add almost any kind of animated 
+effect in Flutter.
 
-1. Pre-built effects, like blur, fade, scale, shine, and slide
+1. Pre-built effects, like fade, scale, slide, blur, and shimmer
 2. Easy custom effects
 3. Simplified animated builders
 4. Synchronized events
 
 All via a simple, unified API without fussing with AnimationController and
 StatefulWidget.
+
+![Example Image](https://raw.githubusercontent.com/gskinner/flutter_animate/assets/readme_example.gif)
 
 > **NOTE:** This library is currently in prerelease. Some aspects of the API
 > will change as it is refined. Your feedback is welcome via Github issues.
@@ -107,6 +109,23 @@ Column(
   children: [Text("Hello"), Text("World"),  Text("Goodbye")]
     .animate(interval: 400.ms).fade(duration: 300.ms),
 )
+```
+
+Shared effects
+----------------------------------------
+
+Because `Effect` instances are immutable, they can be reused. This makes it easy
+to create a global collection of effects that are used throughout your app and
+updated in one place. This is also useful for design systems.
+
+``` dart
+MyGlobalEffects.transitionIn = <Effect>[
+  FadeEffect(duration: 100.ms, curve: Curves.easeOut),
+  ScaleEffect(begin: 0.8, curve: Curves.easeIn)
+]
+
+// then:
+Text('Hello').animate(effects: MyGlobalEffects.transitionIn)
 ```
 
 
@@ -251,3 +270,9 @@ Text("Hello").animate().fadeIn(curve: Curves.easeOutExpo)
 
 The above example works, because the listen effect inherits duration and curve
 from the fade, and both use `begin=0, end=1` by default.
+
+
+Installation
+================================================================================
+
+Grab it from [pub.dev](https://pub.dev/packages/flutter_animate/install).

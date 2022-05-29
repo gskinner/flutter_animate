@@ -1,7 +1,10 @@
-// Adds duration extensions to num, so they are available on double and int.
-//    200.ms // equivalent to Duration(milliseconds: 200)
-//    3.25.seconds // equivalent to Duration(milliseconds: 3250)
-//    1.5.days // equivalent to Duration(hours: 36)
+/// Adds extensions to num (ie. int & double) to make creating durations simple:
+/// 
+/// ```
+/// 200.ms // equivalent to Duration(milliseconds: 200)
+/// 3.seconds // equivalent to Duration(milliseconds: 3000)
+/// 1.5.days // equivalent to Duration(hours: 36)
+/// ```
 extension NumDurationExtensions on num {
   Duration get microseconds => Duration(microseconds: round());
   Duration get milliseconds => Duration(microseconds: (this * 1000).round());

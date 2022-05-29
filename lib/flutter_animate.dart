@@ -12,7 +12,7 @@ export 'num_duration_extensions.dart';
 /// Because [Effect] classes are immutable and may be reused between multiple
 /// [Animate] (or [AnimateList]) instances, an `EffectEntry` is created to store
 /// values that may be different between instances. For example, due to
-/// `interval` offsets, or from inheriting values from prior effects in the chain.
+/// `AnimateList interval`, or from inheriting values from prior effects in the chain.
 @immutable
 class EffectEntry {
   const EffectEntry({

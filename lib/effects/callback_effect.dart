@@ -2,8 +2,13 @@ import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
 
-/// Effect that calls a callback function at a particular point in the animation
-/// (specified via `delay`).
+/// Effect that calls a callback function at a particular point in the animation.
+/// For example:
+/// 
+/// ```
+/// Text("Hello").animate().fadeIn(duration: 600.ms)
+///  .callback(duration: 300.ms, callback: () => print('halfway'))
+/// ```
 @immutable
 class CallbackEffect extends Effect<void> {
   const CallbackEffect({
