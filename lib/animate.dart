@@ -1,9 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/widgets.dart';
 import 'flutter_animate.dart';
 
-// TODO: do a full pass on widget lifecycle support (didChangeDependencies, didUpdateWidget)
+// TODO: do a full pass on widget lifecycle support: specifically, how to support didUpdateWidget
 
 /// The Flutter Animate library makes adding beautiful animated effects to your widgets
 /// simple. It supports both a declarative and chained API. The latter is exposed
@@ -165,35 +163,19 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
 class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(vsync: this)
     ..duration = widget._duration;
-    
-  Timer? _delayTimer;
 
   @override
   void initState() {
     super.initState();
     _controller.addStatusListener(_handleAnimationStatus);
-    _delay();
+    // TODO: bypass if delay=0?
+    Future.delayed(widget.delay, () => _play());
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(covariant Animate oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget._duration != widget._duration) {
-      _controller.duration = widget._duration;
-    }
-    _delay();
-  }
-
-  void _delay() {
-    // TODO: should this bypass the timer if delay == 0?
-    _delayTimer?.cancel();
-    _delayTimer = Timer(widget.delay, () => _play());
   }
 
   void _handleAnimationStatus(status) {
