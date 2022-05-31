@@ -137,7 +137,7 @@ Custom effects & builders
 ================================================================================
 
 It is easy to write new resuable effects by extending `Effect`, but you can also
-create one-off custom effects easily by using `CustomEffect`, `ToggleEffect`,
+easily create one-off custom effects by using `CustomEffect`, `ToggleEffect`,
 and `SwapEffect`.
 
 CustomEffect
@@ -162,12 +162,12 @@ Text("Hello World").animate().custom(
 )
 ```
 
-By default `value` provides a value from `0-1` (though some curves can generate
+By default it provides a `value` from `0-1` (though some curves can generate
 values outside this range), based on the current time, duration, and curve. You
 can also specify `begin` and `end` values as demonstrated in the example below.
 
 `Animate` can be created without a child, so you use `CustomEffect` as a
-simplified builder. For example, this would display text counting down from 10,
+simplified builder. For example, this would build text counting down from 10,
 and fading out:
 
 ``` dart
@@ -184,8 +184,8 @@ ToggleEffect
 ----------------------------------------
 
 `ToggleEffect` also provides builder functionality, but instead of a `double`,
-it provides a boolean value equal to `true` before the end of the effect (ie.
-after its duration) and `false` after.
+it provides a boolean value equal to `true` before the end of the effect and
+`false` after (ie. after its duration).
 
 ``` dart
 Animate().toggle(
@@ -210,7 +210,7 @@ Animate().toggle(
 SwapEffect
 ----------------------------------------
 
-`SwapEffect` lets you swap out the target widget at a specified time:
+`SwapEffect` lets you swap out the whole target widget at a specified time:
 
 ``` dart
 Text("Before").animate().swap(duration: 900.ms, builder: (_) => Text("After"))
@@ -232,7 +232,7 @@ Events & callbacks
 ================================================================================
 
 There are `onInit` and `onComplete` callbacks on `Animate` that trigger when the
-whole animation starts or ends. Use the provided the `AnimationController` to
+whole animation starts or ends. Use the provided `AnimationController` to
 manipulate the animation (ex. repeat, reverse, etc).
 
 ``` dart
@@ -265,7 +265,7 @@ ListenEffect
 ----------------------------------------
 
 `ListenEffect` lets you register a callback to receive the animation value (as a
-`double`) for a given delay, duration, and curve.
+`double`) for a given delay, duration, curve, begin, and end.
 
 ``` dart
 Text("Hello").animate().fadeIn(curve: Curves.easeOutExpo)
