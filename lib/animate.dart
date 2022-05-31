@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'flutter_animate.dart';
 
@@ -163,11 +165,14 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
 class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(vsync: this)
     ..duration = widget._duration;
+    
+  Timer? _delayTimer;
 
   @override
   void initState() {
     super.initState();
     _controller.addStatusListener(_handleAnimationStatus);
+    _delay();
   }
 
   @override
@@ -182,7 +187,13 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
     if (oldWidget._duration != widget._duration) {
       _controller.duration = widget._duration;
     }
-    Future.delayed(widget.delay, () => _play());
+    _delay();
+  }
+
+  void _delay() {
+    // TODO: should this bypass the timer if delay == 0?
+    _delayTimer?.cancel();
+    _delayTimer = Timer(widget.delay, () => _play());
   }
 
   void _handleAnimationStatus(status) {
