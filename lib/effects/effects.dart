@@ -8,6 +8,7 @@ export 'fade_effect.dart';
 export 'listen_effect.dart';
 export 'move_effect.dart';
 export 'scale_effect.dart';
+export 'shake_effect.dart';
 export 'shimmer_effect.dart';
 export 'slide_effect.dart';
 export 'swap_effect.dart';
