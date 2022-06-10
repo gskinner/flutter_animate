@@ -83,8 +83,8 @@ Text("Hello World!").animate()
   .blur(end: 8.0) // inherits the delay & duration from move
 ```
 
-`Animate` also has a `delay` parameter, which happens before the animation runs.
-Unlike the delay on an `Effect`, it is only applied once if the animation
+`Animate` also has its own `delay` parameter, which happens before the animation
+runs. Unlike the delay on an `Effect`, it is only applied once if the animation
 repeats.
 
 ``` dart
@@ -92,10 +92,30 @@ Text("Hello").animate(
     delay: 1000.ms, // this delay only happens once at the very start
     onInit: (controller) => controller.repeat(), // loop
   ).fadeIn(delay: 500.ms) // this delay happens at the start of each loop
-  
 ```
 
-Animating Lists
+Sequencing with ThenEffect
+----------------------------------------
+`ThenEffect` is a special "convenience" effect that simply sets its own
+inheritable delay to the sum of the delay and duration of the previous effect,
+and its own (optional) delay. This makes it easier to sequence effects.
+
+In the following example, the slide would run immediately after the fade ended,
+then the blur would run 200ms after the slide ended.
+
+``` dart
+Text("Hello").animate()
+  .fadeIn(delay: 300.ms, duration: 500.ms)
+  .then() // sets own delay to 800ms (300+500)
+  .slide(duration: 400.ms) // inherits the 800ms delay
+  .then(delay: 200.ms) // sets delay to 1400ms (800+400+200)
+  .blur() // inherits the 1400ms delay
+  // Explicitly setting delay overrides the inherited value.
+  // This move effect will run BEFORE the initial fade:
+  .move(delay: 0.ms)
+```
+
+Animating lists
 ----------------------------------------
 
 The `AnimateList` class offers similar functionality for lists of widgets, with

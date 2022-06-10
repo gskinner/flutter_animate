@@ -11,9 +11,14 @@ import '../flutter_animate.dart';
 ///
 /// ```
 /// Text("Hello").animate()
-///   .fadeIn(delay: 500.ms, duration: 900.ms)
-///   .then(delay: 300.ms) // calculate delay: 500 + 900 + 300 = 1700ms
-///   .scale(begin: 1, end: 2) // inherits the 1700ms delay
+///   .fadeIn(delay: 300.ms, duration: 500.ms)
+///   .then() // sets own delay to 800ms (300+500)
+///   .slide(duration: 400.ms) // inherits the 800ms delay
+///   .then(delay: 200.ms) // sets delay to 1400ms (800+400+200)
+///   .blur() // inherits the 1400ms delay
+///   // Explicitly setting delay overrides the inherited value.
+///   // This move effect will run BEFORE the initial fade:
+///   .move(delay: 0.ms)
 /// ```
 ///
 /// This makes it easy to change the delay or duration of the `fadeIn`, without
