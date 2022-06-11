@@ -33,7 +33,7 @@ class FlutterAnimateExample extends StatelessWidget {
         Text("Super"),
         Text("Easy"),
         Text("Animated"),
-        Text("Efffects"),
+        Text("Effects"),
       ]
           .animate(
             interval: 1.seconds, // offset each item's start time
