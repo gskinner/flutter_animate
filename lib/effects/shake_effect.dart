@@ -8,15 +8,15 @@ import '../flutter_animate.dart';
 /// The `count` parameter indicates how many times to repeat the shake within
 /// the duration. Defaults to a 5 degree (`pi / 36`) shake, repeated 3 times —
 /// equivalent to:
-/// 
+///
 /// ```
 /// Text("Hello").animate()
 ///   .shake(count: 3, rotation: pi / 36)
 /// ```
-/// 
+///
 /// There are also shortcut extensions for applying horizontal / vertical shake.
 /// For example, this would shake 10 pixels horizontally (default is 6):
-/// 
+///
 /// ```
 /// Text("Hello").animate().shakeX(amount: 10)
 /// ```
