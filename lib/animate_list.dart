@@ -51,6 +51,7 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
     Duration? interval,
     AnimateCallback? onInit,
     AnimateCallback? onComplete,
+    Adapter? adapter,
   }) {
     // build new list, wrapping each child in Animate
     for (int i = 0; i < children.length; i++) {
@@ -62,6 +63,7 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
           delay: (interval ?? Duration.zero) * i,
           onInit: onInit,
           onComplete: onComplete,
+          adapter: adapter,
           child: child,
         );
         _managers.add(child as Animate);

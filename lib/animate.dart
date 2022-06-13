@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'flutter_animate.dart';
 
 // TODO: do a full pass on widget lifecycle support: specifically, how to support didUpdateWidget
+// TODO: autoplay param?
 
 /// The Flutter Animate library makes adding beautiful animated effects to your widgets
 /// simple. It supports both a declarative and chained API. The latter is exposed
@@ -103,6 +104,8 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     this.onComplete,
     this.onInit,
     this.delay = Duration.zero,
+    this.controller,
+    this.adapter,
   }) : super(key: key) {
     _entries = [];
     if (effects != null) addEffects(effects);
@@ -123,6 +126,20 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// Called when the instance's state initializes. Provides an opportunity to
   /// manipulate the [AnimationController] (ex. to loop, reverse, etc).
   final AnimateCallback? onInit;
+
+  /// An external [AnimationController] can optionally be specified. By default
+  /// Animate creates its own controller internally.
+  final AnimationController? controller;
+
+  /// An [Adapter] can drive the animation from an external source (ex. a [ScrollController],
+  /// [ValueNotifier], or arbitrary `0-1` value). For more information see [Adapter]
+  /// or an adapter class ([ChangeNotifierAdapter], [ScrollAdapter], [ValueAdapter],
+  /// [ValueNotifierAdapter]).
+  /// 
+  /// If an adapter is provided, then [delay] is ignored, and you should not
+  /// make changes to the [AnimationController] directly (ex. via [onInit])
+  /// because it can cause unexpected results.
+  final Adapter? adapter;
 
   late final List<EffectEntry> _entries;
   Duration _duration = Duration.zero;
@@ -161,20 +178,51 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
 }
 
 class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(vsync: this)
-    ..duration = widget._duration;
+  late AnimationController _controller;
+  bool _isInternalController = false;
+  bool _hasAdapter = false;
 
   @override
   void initState() {
     super.initState();
-    _controller.addStatusListener(_handleAnimationStatus);
+    _initController();
     // TODO: bypass if delay=0?
-    Future.delayed(widget.delay, () => _play());
+    if (!_hasAdapter) Future.delayed(widget.delay, () => _play());
+  }
+
+  @override
+  void didUpdateWidget(Animate oldWidget) {
+    if (oldWidget.controller != widget.controller ||
+        oldWidget.adapter != widget.adapter) _initController();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void _initController() {
+    final Adapter? adapter = widget.adapter;
+    _hasAdapter = adapter != null;
+
+    if (widget.controller != null) {
+      // externally provided AnimationController.
+      _controller = widget.controller!;
+    } else if (!_isInternalController) {
+      // create an internal AnimationController.
+      _controller = AnimationController(vsync: this);
+      _isInternalController = true;
+    }
+    _controller.duration ??= widget._duration;
+    _controller.addStatusListener(_handleAnimationStatus);
+
+    adapter?.init(_controller);
+  }
+
+  void _disposeController() {
+    if (_isInternalController) _controller.dispose();
+    _isInternalController = false;
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _disposeController();
     super.dispose();
   }
 
@@ -185,7 +233,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   }
 
   void _play() {
-    _controller.forward(from: 0); // TODO: Maybe add widget.autoPlay?
+    if (!_hasAdapter) _controller.forward(from: 0);
     widget.onInit?.call(_controller);
   }
 
@@ -210,6 +258,8 @@ extension AnimateWidgetExtensions on Widget {
     AnimateCallback? onComplete,
     AnimateCallback? onInit,
     Duration delay = Duration.zero,
+    AnimationController? controller,
+    Adapter? adapter,
   }) =>
       Animate(
         key: key,
@@ -217,6 +267,8 @@ extension AnimateWidgetExtensions on Widget {
         onComplete: onComplete,
         onInit: onInit,
         delay: delay,
+        controller: controller,
+        adapter: adapter,
         child: this,
       );
 }

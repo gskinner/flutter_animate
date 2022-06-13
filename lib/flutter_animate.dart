@@ -6,6 +6,7 @@ import 'animate_list.dart';
 
 export 'animate.dart';
 export 'animate_list.dart';
+export 'adapters/adapters.dart';
 export 'effects/effects.dart';
 export 'num_duration_extensions.dart';
 
