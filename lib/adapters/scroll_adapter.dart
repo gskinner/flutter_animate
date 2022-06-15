@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
@@ -10,8 +8,8 @@ import '../flutter_animate.dart';
 /// allow you to specify a pixel range for the scroll to update the animation
 /// within. They default to `minScrollExtent` and `maxScrollExtent` respectively.
 /// 
-/// For example, this starts fading in the text once the list scrolls to 100px,
-/// and finish the fade when it reaches the end of the scroll:
+/// For example, this starts fading/sliding in the text once the list scrolls to
+/// 100px, and finishes when it reaches the end of the scroll:
 /// 
 /// ```
 /// ListView(
@@ -20,7 +18,7 @@ import '../flutter_animate.dart';
 /// );
 /// Text("Hello").animate(
 ///   adapter: ScrollAdapter(scrollController, begin: 100)
-/// ).fadeIn();
+/// ).fadeIn().slide();
 /// ```
 @immutable
 class ScrollAdapter extends ChangeNotifierAdapter {

@@ -5,7 +5,7 @@ import '../flutter_animate.dart';
 
 /// Drives an [Animate] animation directly from a value in the range `0-1`
 /// 
-/// For example, this would fade in text based on the value of a `Slider`:
+/// For example, this would fade/slide in text based on the value of a `Slider`:
 /// 
 /// ```
 /// // note: Slider range defaults to 0-1
@@ -13,7 +13,8 @@ import '../flutter_animate.dart';
 ///   value: _sliderVal
 ///   onChanged: (val) => setState(() => _sliderVal = val)),
 /// );
-/// Text("Hello").animate(adapter: ValueAdapter(_sliderVal)).fadeIn();
+/// Text("Hello").animate(adapter: ValueAdapter(_sliderVal))
+///   .fadeIn().slide();
 /// ```
 @immutable
 class ValueAdapter extends ValueNotifierAdapter {
