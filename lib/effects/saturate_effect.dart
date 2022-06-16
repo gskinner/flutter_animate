@@ -51,9 +51,9 @@ class SaturateEffect extends Effect<double> {
   }
 
   List<double> _getColorMatrix(double saturation) {
-    double r0 = 0.3086 * (1 - saturation), r1 = 1 * saturation + r0;
-    double g0 = 0.6094 * (1 - saturation), g1 = 1 * saturation + g0;
-    double b0 = 0.0820 * (1 - saturation), b1 = 1 * saturation + b0;
+    double r0 = 0.33 * (1 - saturation), r1 = saturation + r0;
+    double g0 = 0.59 * (1 - saturation), g1 = saturation + g0;
+    double b0 = 0.11 * (1 - saturation), b1 = saturation + b0;
 
     return <double>[
       r1, g0, b0, 0, 0, // r
