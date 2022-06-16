@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+
+import 'examples/adapter_view.dart';
+import 'examples/info_view.dart';
+import 'examples/visual_view.dart';
 
 // TODO: Add additional examples, especially a proper UI example.
 
@@ -21,58 +24,76 @@ class MyApp extends StatelessWidget {
 }
 
 // this is a very quick and dirty example.
-class FlutterAnimateExample extends StatelessWidget {
+class FlutterAnimateExample extends StatefulWidget {
   const FlutterAnimateExample({Key? key}) : super(key: key);
+
+  static final List<TabInfo> tabs = [
+    TabInfo(Icons.info_outline, (_) => InfoView(key: UniqueKey()), 'Info',
+        'Simple example of Widget & List animations.'),
+    TabInfo(Icons.palette_outlined, (_) => VisualView(key: UniqueKey()),
+        'Visual Effects', 'Color effects (saturation & tint), blur, shake.'),
+    //TabInfo(Icons.auto_awesome_mosaic_outlined, (_) => InfoView(), 'UI',
+    //    'User interface example. Shimmer, fade, slide.'), // TODO.
+    TabInfo(Icons.format_list_bulleted, (_) => AdapterView(), 'Adapters',
+        'Using adapters to drive animations from scrolling or user input.'),
+    //TabInfo(Icons.auto_awesome_outlined, (_) => InfoView(), 'Fun',
+    //    'Fun silliness.'), // TODO.
+  ];
+
+  @override
+  State<FlutterAnimateExample> createState() => _FlutterAnimateExampleState();
+}
+
+class _FlutterAnimateExampleState extends State<FlutterAnimateExample> {
+  double _sliderValue = 0;
+
+  int _viewIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    // a bit of a kitchen sink animated list example:
-    Widget content = Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Text("Super"),
-        Text("Easy"),
-        Text("Animated"),
-        Text("Effects"),
-      ]
-          .animate(
-            interval: 1.seconds, // offset each item's start time
-            onInit: (controller) => controller.repeat(), // loop
-          )
-          .shimmer(
-            // the gradient effect on the text.
-            delay: 900.ms,
-            duration: 2.seconds,
-            blendMode: BlendMode.srcIn, // use the child (ie. text) as a mask
-            colors: [Colors.blue, Colors.yellow, Colors.transparent],
-          )
-          .scale(
-            // inherits delay from previous
-            begin: 0.6,
-            duration: 3.seconds,
-            alignment: Alignment.bottomCenter,
-          )
-          .then() // set default delay to when the previous effect completes
-          .fadeOut(duration: 1200.ms, curve: Curves.easeInQuad)
-          .blur(begin: 0, end: 64)
-          .slide(begin: Offset.zero, end: const Offset(0, -3))
-          .scale(begin: 1, end: 4),
-    );
+    List<BottomNavigationBarItem> barItems = [];
+    FlutterAnimateExample.tabs.forEach((o) => barItems.add(
+          BottomNavigationBarItem(
+            icon: Icon(o.icon),
+            label: o.label,
+          ),
+        ));
+
+    Widget content = FlutterAnimateExample.tabs[_viewIndex].builder(context);
 
     return Scaffold(
+      backgroundColor: const Color(0xFF222326),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _viewIndex,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
+        selectedItemColor: const Color(0xFF80DDFF),
+        unselectedItemColor: const Color(0x998898A0),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: const Color(0xFF2A2B2F),
+        elevation: 0,
+        onTap: (index) => setState(() => _viewIndex = index),
+        items: barItems,
+      ),
       body: DefaultTextStyle(
         style: const TextStyle(
-          color: Color(0xFFFF2222),
-          fontSize: 36,
-          fontWeight: FontWeight.w900,
+          color: Color(0xFFCCCDCF),
+          fontSize: 14,
           height: 1.5,
         ),
-        child: Container(
-          color: Colors.black,
-          alignment: Alignment.center,
-          child: content,
-        ),
+        child: content,
       ),
     );
   }
+}
+
+class TabInfo {
+  TabInfo(this.icon, this.builder, this.label, this.description);
+
+  final IconData icon;
+  final WidgetBuilder builder;
+  final String label;
+  final String description;
 }
