@@ -135,7 +135,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// [ValueNotifier], or arbitrary `0-1` value). For more information see [Adapter]
   /// or an adapter class ([ChangeNotifierAdapter], [ScrollAdapter], [ValueAdapter],
   /// [ValueNotifierAdapter]).
-  /// 
+  ///
   /// If an adapter is provided, then [delay] is ignored, and you should not
   /// make changes to the [AnimationController] directly (ex. via [onInit])
   /// because it can cause unexpected results.
@@ -181,13 +181,14 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   bool _isInternalController = false;
   bool _hasAdapter = false;
+  Future<void>? _delayed;
 
   @override
   void initState() {
     super.initState();
     _initController();
     // TODO: bypass if delay=0?
-    if (!_hasAdapter) Future.delayed(widget.delay, () => _play());
+    if (!_hasAdapter) _delayed = Future.delayed(widget.delay, () => _play());
   }
 
   @override
@@ -222,6 +223,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 
   @override
   void dispose() {
+    _delayed?.ignore();
     _disposeController();
     super.dispose();
   }
