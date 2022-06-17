@@ -46,19 +46,20 @@ class FlutterAnimateExample extends StatefulWidget {
 }
 
 class _FlutterAnimateExampleState extends State<FlutterAnimateExample> {
-  double _sliderValue = 0;
-
   int _viewIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     List<BottomNavigationBarItem> barItems = [];
-    FlutterAnimateExample.tabs.forEach((o) => barItems.add(
-          BottomNavigationBarItem(
-            icon: Icon(o.icon),
-            label: o.label,
-          ),
-        ));
+    for (int i = 0; i < FlutterAnimateExample.tabs.length; i++) {
+      final TabInfo info = FlutterAnimateExample.tabs[i];
+      barItems.add(
+        BottomNavigationBarItem(
+          icon: Icon(info.icon),
+          label: info.label,
+        ),
+      );
+    }
 
     Widget content = FlutterAnimateExample.tabs[_viewIndex].builder(context);
 

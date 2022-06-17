@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'flutter_animate.dart';
 
-// TODO: do a full pass on widget lifecycle support: specifically, how to support didUpdateWidget
+// TODO: do a full pass on widget lifecycle support. Possibly params to reset on change?
 // TODO: autoplay param?
 
 /// The Flutter Animate library makes adding beautiful animated effects to your widgets
