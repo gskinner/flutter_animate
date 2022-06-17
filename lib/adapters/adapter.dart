@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 /// Adapters provide a mechanism to drive an animation from an arbitrary source.
 /// For example, synchronizing an animation with a scroll, controlling
-/// an animation with a slider control, or progressing an animation based on
+/// an animation with a slider input, or progressing an animation based on
 /// the time of day.
 ///
 /// Adapters must expose an `init` method which accepts the

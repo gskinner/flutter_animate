@@ -5,10 +5,11 @@ A performant library that makes it simple to add almost any kind of animated
 effect in Flutter.
 
 1. Pre-built effects, like fade, scale, slide, blur, shake, shimmer, and color
-   effects (saturation and tint).
+   effects (saturation and tint)
 2. Easy custom effects
 3. Simplified animated builders
 4. Synchronized events
+5. Synchronize animations to scroll, notifiers, or anything
 
 All via a simple, unified API without fussing with AnimationController and
 StatefulWidget.
@@ -295,6 +296,25 @@ Text("Hello").animate().fadeIn(curve: Curves.easeOutExpo)
 
 The above example works, because the listen effect inherits duration and curve
 from the fade, and both use `begin=0, end=1` by default.
+
+
+Adapters and Controllers
+================================================================================
+
+By default, all animations are driven by an internal `AnimationController`, and
+update based on elapsed time. For more control, you can specify your own
+external `controller`, or use an `adapter`.
+
+Adapters synchronize the `AnimationController` to an external source. For
+example, the `ScrollAdapter` updates an animation based on a `ScrollController`
+so you can run complex animations based on scroll interactions.
+
+You still define animations using durations, but the external source must
+provide a `0-1` value.
+
+Flutter Animate ships with a collection of useful adapters. Check them out for
+more information.
+
 
 
 Installation

@@ -19,9 +19,8 @@ class VisualView extends StatelessWidget {
     );
 
     // add a rainbow gradient:
-    // I'm lazy so I'll just apply a ShimmerEffect
-    // use a ValueAdapter to pause it half way
-    // and let it worry about the details
+    // I'm lazy so I'll just apply a ShimmerEffect, use a ValueAdapter to
+    // pause it half way, and let it worry about the details
     title = title.animate(adapter: ValueAdapter(0.5)).shimmer(
       duration: 2.seconds,
       colors: [
