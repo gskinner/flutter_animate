@@ -54,8 +54,7 @@ class ShakeEffect extends Effect<double> {
     Animation<double> animation = buildAnimation(controller, entry);
     return AnimatedBuilder(
       animation: animation,
-      child: child,
-      builder: (_, child) {
+      builder: (_, __) {
         double a = sin(animation.value);
         if (shouldRotate) {
           child = Transform.rotate(angle: rotation * a, child: child);
@@ -63,7 +62,7 @@ class ShakeEffect extends Effect<double> {
         if (shouldTranslate) {
           child = Transform.translate(offset: offset * a, child: child);
         }
-        return child!;
+        return child;
       },
     );
   }

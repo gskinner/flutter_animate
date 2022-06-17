@@ -28,8 +28,8 @@ class BlurEffect extends Effect<double> {
     AnimationController controller,
     EffectEntry entry,
   ) {
-    Animation animation = buildAnimation(controller, entry);
-    return AnimatedBuilder(
+    Animation<double> animation = buildAnimation(controller, entry);
+    return getAnimatedBuilder<double>(
       animation: animation,
       builder: (_, __) => ImageFiltered(
         imageFilter: ImageFilter.blur(

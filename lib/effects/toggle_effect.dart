@@ -41,6 +41,7 @@ class ToggleEffect extends Effect<void> {
   ) {
     double ratio = getEndRatio(controller, entry);
 
+    // TODO: this should be optimized so it only builds when the toggle flips. Possibly use ValueListenable.
     return AnimatedBuilder(
       animation: controller,
       builder: (ctx, _) => builder(ctx, controller.value < ratio, child),

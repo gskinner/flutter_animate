@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import '../flutter_animate.dart';
 
@@ -70,5 +71,24 @@ class Effect<T> {
     AnimationStatus status = animation.status;
     return status == AnimationStatus.forward ||
         status == AnimationStatus.reverse;
+  }
+
+  /// Helper method that returns an optimized [AnimatedBuilder] that doesn't run
+  /// build if the value hasn't changed.
+  AnimatedBuilder getAnimatedBuilder<U>({
+    required ValueListenable<U> animation,
+    required TransitionBuilder builder,
+    Widget? child,
+  }) {
+    U? value;
+    Widget? widget;
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (ctx, _) {
+        if (animation.value != value) widget = null;
+        value = animation.value;
+        return widget = widget ?? builder(ctx, child);
+      },
+    );
   }
 }

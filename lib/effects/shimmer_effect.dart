@@ -53,10 +53,9 @@ class ShimmerEffect extends Effect<double> {
     EffectEntry entry,
   ) {
     Animation<double> animation = buildAnimation(controller, entry);
-    return AnimatedBuilder(
+    return getAnimatedBuilder<double>(
       animation: animation,
-      child: child,
-      builder: (_, child) {
+      builder: (_, __) {
         LinearGradient gradient = _buildGradient(animation.value);
         return ShaderMask(
           blendMode: blendMode ?? BlendMode.srcATop,
