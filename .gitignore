@@ -3,3 +3,5 @@
 /pubspec.lock
 /.packages
 /example
+/__extras
+/doc
