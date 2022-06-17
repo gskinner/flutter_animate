@@ -6,6 +6,7 @@ class VisualView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // create our stylish text:
     Widget title = const Text(
       'SOME\nVISUAL\nEFFECTS\n\n  on\n\nRAINBOW\nTEXT',
       style: TextStyle(
@@ -13,16 +14,16 @@ class VisualView extends StatelessWidget {
         fontSize: 64,
         color: Color(0xFF666870),
         height: 0.9,
-        letterSpacing: -4,
+        letterSpacing: -5,
       ),
     );
 
     // add a rainbow gradient:
     // I'm lazy so I'll just apply a ShimmerEffect
-    // and use a ValueAdapter to pause it at 0.4
-    title = title.animate(adapter: ValueAdapter(0.4)).shimmer(
+    // use a ValueAdapter to pause it half way
+    // and let it worry about the details
+    title = title.animate(adapter: ValueAdapter(0.5)).shimmer(
       duration: 2.seconds,
-      size: 0.5,
       colors: [
         const Color(0xFFFFFF00),
         const Color(0xFF00FF00),
@@ -44,6 +45,6 @@ class VisualView extends StatelessWidget {
         .blur(end: 24)
         .fadeOut();
 
-    return Padding(padding: const EdgeInsets.all(16), child: title);
+    return Padding(padding: const EdgeInsets.all(24), child: title);
   }
 }

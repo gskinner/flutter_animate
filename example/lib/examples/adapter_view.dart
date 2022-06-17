@@ -57,10 +57,10 @@ class AdapterView extends StatelessWidget {
       )
     ];
     for (int i = 0; i < 100; i++) {
-      items.add(Text('item $i'));
+      items.add(Text('item $i', style: const TextStyle(height: 2.5)));
     }
     // layer the indicators under the list, and assign the ScrollController to
-    // the list, and both animations (via ScrollAdapter)
+    // the list, and both animations (via ScrollAdapter):
     Widget list = Stack(
       children: [
         Container(
@@ -74,6 +74,8 @@ class AdapterView extends StatelessWidget {
         )
             .animate(adapter: ScrollAdapter(scrollController, end: 500)) //
             .fadeIn(),
+
+        // bottom indicator:
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
@@ -89,8 +91,10 @@ class AdapterView extends StatelessWidget {
               .animate(adapter: ScrollAdapter(scrollController, begin: -500))
               .fadeOut(),
         ),
+        
+        // the list (with the scrollController assigned):
         ListView(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(24.0),
           controller: scrollController,
           children: items,
         ),

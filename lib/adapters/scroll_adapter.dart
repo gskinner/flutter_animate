@@ -4,12 +4,14 @@ import '../flutter_animate.dart';
 // TODO: catch issues with things like unbounded scrolling
 // TODO: simplify setting a begin/end based on position of items in scroll?
 
-/// Drives an [Animate] animation from a [ScrollController]. [begin] and [end]
-/// allow you to specify a pixel range for the scroll to update the animation
-/// within. They default to `minScrollExtent` and `maxScrollExtent` respectively.
+/// Drives an [Animate] animation from a [ScrollController].
+///
+/// [begin] and [end] adjust the pixel range for the scroll to update the animation
+/// within. Values `<0` are calculated relative to the end of the scroll.
+/// They default to `minScrollExtent` and `maxScrollExtent` respectively.
 ///
 /// For example, this starts fading/sliding in the text once the list scrolls to
-/// 100px, and finishes when it reaches the end of the scroll:
+/// 100px, and finishes 200px before the end of the scroll:
 ///
 /// ```
 /// ListView(
@@ -17,7 +19,11 @@ import '../flutter_animate.dart';
 ///   children: items,
 /// );
 /// Text("Hello").animate(
-///   adapter: ScrollAdapter(scrollController, begin: 100)
+///   adapter: ScrollAdapter(
+///     scrollController,
+///     begin: 100, // relative to start of scroll
+///     end: -200,  // relative to end
+///   )
 /// ).fadeIn().slide();
 /// ```
 @immutable
@@ -35,8 +41,7 @@ class ScrollAdapter extends ChangeNotifierAdapter {
   final double? end;
 }
 
-double _getPx(double? val, double min, double max, double deflt) {
-  if (val == null) return deflt;
-  if (val <= 0) return max + val;
-  return min + val;
+double _getPx(double? val, double min, double max, double def) {
+  if (val == null) return def;
+  return val + (val <= 0 ? max : min);
 }

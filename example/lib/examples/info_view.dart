@@ -58,14 +58,14 @@ class InfoView extends StatelessWidget {
         .move(begin: const Offset(-16, 0), curve: Curves.easeOutQuad);
 
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(24),
       children: [
         title,
         hr,
-        const Text(
-            'This simple app demonstrates a few features of the flutter_animate library.\n'),
-        const Text(
-            'Switch between examples via the bottom nav bar. Tap again to reset.'),
+        const Text('''
+This simple app demonstrates a few features of the flutter_animate library. More examples coming as time permits.
+
+Switch between examples via the bottom nav bar. Tap again to restart that animation.'''),
         hr,
         ...tabInfoItems,
         hr,
@@ -79,5 +79,5 @@ class InfoView extends StatelessWidget {
         height: 2,
         color: const Color(0x8080DDFF),
         margin: const EdgeInsets.symmetric(vertical: 16),
-      ).animate().scale(duration: 600.ms);
+      ).animate().scale(duration: 600.ms, alignment: Alignment.centerLeft);
 }

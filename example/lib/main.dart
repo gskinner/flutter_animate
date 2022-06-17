@@ -5,6 +5,7 @@ import 'examples/info_view.dart';
 import 'examples/visual_view.dart';
 
 // TODO: Add additional examples, especially a proper UI example.
+// TODO: and a builder example. Maybe a countdown of some kind? Thermometer with counter?
 
 void main() {
   runApp(const MyApp());
@@ -31,10 +32,10 @@ class FlutterAnimateExample extends StatefulWidget {
     TabInfo(Icons.info_outline, (_) => InfoView(key: UniqueKey()), 'Info',
         'Simple example of Widget & List animations.'),
     TabInfo(Icons.palette_outlined, (_) => VisualView(key: UniqueKey()),
-        'Visual Effects', 'Color effects (saturation & tint), blur, shake.'),
+        'Visual Effects', 'Visual effects like saturation, tint, & blur.'),
     //TabInfo(Icons.auto_awesome_mosaic_outlined, (_) => InfoView(), 'UI',
     //    'User interface example. Shimmer, fade, slide.'), // TODO.
-    TabInfo(Icons.format_list_bulleted, (_) => AdapterView(), 'Adapters',
+    TabInfo(Icons.format_list_bulleted, (_) => const AdapterView(), 'Adapters',
         'Using adapters to drive animations from scrolling or user input.'),
     //TabInfo(Icons.auto_awesome_outlined, (_) => InfoView(), 'Fun',
     //    'Fun silliness.'), // TODO.
