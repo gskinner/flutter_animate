@@ -91,7 +91,7 @@ class AdapterView extends StatelessWidget {
               .animate(adapter: ScrollAdapter(scrollController, begin: -500))
               .fadeOut(),
         ),
-        
+
         // the list (with the scrollController assigned):
         ListView(
           padding: const EdgeInsets.all(24.0),

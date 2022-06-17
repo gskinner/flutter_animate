@@ -2,11 +2,10 @@ import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
 
-
 /// Drives an [Animate] animation directly from a value in the range `0-1`
-/// 
+///
 /// For example, this would fade/slide in text based on the value of a `Slider`:
-/// 
+///
 /// ```
 /// // note: Slider range defaults to 0-1
 /// Slider(

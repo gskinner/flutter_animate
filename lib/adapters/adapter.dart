@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 /// [AnimationController] used by an [Animate] instance, and adds the logic
 /// to drive it from an external source by updating its `value` (0-1). See the
 /// included adapters for implementation examples.
-/// 
+///
 /// Adapters should be immutable, so that they can be shared between animations.
 @immutable
 class Adapter {
