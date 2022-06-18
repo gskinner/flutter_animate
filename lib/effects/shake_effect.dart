@@ -52,7 +52,7 @@ class ShakeEffect extends Effect<double> {
     if (!shouldRotate && !shouldTranslate) return child;
 
     Animation<double> animation = buildAnimation(controller, entry);
-    return AnimatedBuilder(
+    return getOptimizedBuilder<double>(
       animation: animation,
       builder: (_, __) {
         double a = sin(animation.value);

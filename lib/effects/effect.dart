@@ -3,7 +3,9 @@ import 'package:flutter/widgets.dart';
 import '../flutter_animate.dart';
 
 /// Class that defines the required interface and helper methods for
-/// all effect classes.
+/// all effect classes. Look at the various effects for examples of how
+/// to build new reusable effects. One-off effects can be implemented with
+/// [CustomEffect].
 ///
 /// It can be instantiated and added to Animate, but has no visual effect.
 @immutable
@@ -41,8 +43,7 @@ class Effect<T> {
     return child;
   }
 
-  /// Helper method to build an animation based on the controller, entry, and
-  /// begin / end values.
+  /// Returns an animation based on the controller, entry, and begin/end values.
   Animation<T> buildAnimation(
     AnimationController controller,
     EffectEntry entry,
@@ -52,33 +53,31 @@ class Effect<T> {
         .drive(Tween<T>(begin: begin, end: end));
   }
 
-  /// Helper method that returns a ratio corresponding to the beginning of the
-  /// specified entry.
+  /// Returns a ratio corresponding to the beginning of the specified entry.
   double getBeginRatio(AnimationController controller, EffectEntry entry) {
     int ms = controller.duration?.inMilliseconds ?? 0;
     return ms == 0 ? 0 : entry.begin.inMilliseconds / ms;
   }
 
-  /// Helper method that returns a ratio corresponding to the end of the
-  /// specified entry.
+  /// Returns a ratio corresponding to the end of the specified entry.
   double getEndRatio(AnimationController controller, EffectEntry entry) {
     int ms = controller.duration?.inMilliseconds ?? 0;
     return ms == 0 ? 0 : entry.end.inMilliseconds / ms;
   }
 
-  /// Helper method to check if the animation is currently running / active.
+  /// Check if the animation is currently running / active.
   bool isAnimationActive(Animation animation) {
     AnimationStatus status = animation.status;
     return status == AnimationStatus.forward ||
         status == AnimationStatus.reverse;
   }
 
-  /// Helper method that returns an optimized [AnimatedBuilder] that doesn't run
-  /// build if the value hasn't changed.
-  AnimatedBuilder getAnimatedBuilder<U>({
+  /// Returns an optimized [AnimatedBuilder] that doesn't
+  /// rebuild if the value hasn't changed.
+  AnimatedBuilder getOptimizedBuilder<U>({
     required ValueListenable<U> animation,
-    required TransitionBuilder builder,
     Widget? child,
+    required TransitionBuilder builder,
   }) {
     U? value;
     Widget? widget;
@@ -89,6 +88,22 @@ class Effect<T> {
         value = animation.value;
         return widget = widget ?? builder(ctx, child);
       },
+    );
+  }
+
+  /// Returns an [AnimatedBuilder] that rebuilds when the
+  /// boolean value returned by the `toggle` function changes.
+  AnimatedBuilder getToggleBuilder({
+    required ValueListenable<double> animation,
+    required Widget child,
+    required bool Function() toggle,
+    required ToggleEffectBuilder builder,
+  }) {
+    ValueNotifier<bool> notifier = ValueNotifier<bool>(true);
+    animation.addListener(() => notifier.value = toggle());
+    return AnimatedBuilder(
+      animation: notifier,
+      builder: (ctx, _) => builder(ctx, notifier.value, child),
     );
   }
 }

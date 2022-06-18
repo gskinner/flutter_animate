@@ -27,15 +27,14 @@ class VisibilityEffect extends Effect<bool> {
 
   @override
   Widget build(BuildContext context, Widget child,
-      AnimationController controller, EffectEntry entry) {
-    // instead of setting up an animation, we can optimize a bit to calculate the callback time once:
+    AnimationController controller, EffectEntry entry) {
     double ratio = getEndRatio(controller, entry);
-
-    // TODO: maybe optimize so it only builds when the toggle flips?
-    return AnimatedBuilder(
+    return getToggleBuilder(
       animation: controller,
-      builder: (_, __) => Visibility(
-        visible: begin! == (controller.value < ratio),
+      child: child,
+      toggle: () => begin! == (controller.value < ratio),
+      builder: (_, b, __) => Visibility(
+        visible: b,
         maintainSize: maintain,
         maintainAnimation: maintain,
         maintainState: maintain,

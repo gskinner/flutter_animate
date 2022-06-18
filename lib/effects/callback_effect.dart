@@ -2,6 +2,8 @@ import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
 
+// TODO: this should be updated to work with reverse & repeat.
+
 /// Effect that calls a callback function at a particular point in the animation.
 /// For example:
 ///

@@ -39,7 +39,7 @@ class CustomEffect extends Effect<double> {
     EffectEntry entry,
   ) {
     Animation<double> animation = buildAnimation(controller, entry);
-    return getAnimatedBuilder<double>(
+    return getOptimizedBuilder<double>(
       animation: animation,
       builder: (ctx, __) => builder(ctx, animation.value, child),
     );

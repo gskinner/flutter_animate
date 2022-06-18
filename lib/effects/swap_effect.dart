@@ -41,6 +41,7 @@ class SwapEffect extends Effect<void> {
     double ratio = getEndRatio(controller, entry);
     Widget endChild = builder(context);
 
+    // this could use toggleBuilder, but everything is pre-built, so this is simpler:
     return AnimatedBuilder(
       animation: controller,
       builder: (_, __) => (controller.value < ratio) ? child : endChild,

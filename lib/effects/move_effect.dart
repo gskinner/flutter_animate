@@ -30,7 +30,7 @@ class MoveEffect extends Effect<Offset> {
     EffectEntry entry,
   ) {
     Animation<Offset> animation = buildAnimation(controller, entry);
-    return getAnimatedBuilder<Offset>(
+    return getOptimizedBuilder<Offset>(
       animation: animation,
       builder: (_, __) {
         return Transform.translate(offset: animation.value, child: child);
