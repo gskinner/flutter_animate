@@ -6,10 +6,9 @@ effect in Flutter.
 
 1. Pre-built effects, like fade, scale, slide, blur, shake, shimmer, and color
    effects (saturation and tint)
-2. Easy custom effects
-3. Simplified animated builders
-4. Synchronized events
-5. Synchronize animations to scroll, notifiers, or anything
+2. Easy custom effects and simplified animated builders
+3. Synchronize animations to scroll, notifiers, or anything
+4. Integrated events
 
 All via a simple, unified API without fussing with AnimationController and
 StatefulWidget.

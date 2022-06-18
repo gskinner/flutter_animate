@@ -15,6 +15,15 @@ import '../flutter_animate.dart';
 /// Text("Hello").animate().fadeIn(curve: Curves.easeOutExpo)
 ///  .listen(callback: (value) => print('current opacity: $value'))
 /// ```
+/// 
+/// This can easily be used to drive a [ValueNotifier]:
+/// 
+/// ```
+/// ValueNotifier<double> notifier = ValueNotifier<double>(0);
+/// Text("Hello").animate()
+///   .fadeIn(delay: 400.ms, duration: 900.ms)
+///   .listen(callback: (value) => notifier.value)
+/// ```
 ///
 /// See also: [CustomEffect] and [CallbackEffect].
 @immutable
@@ -35,7 +44,7 @@ class ListenEffect extends Effect<double> {
           end: end ?? 1.0,
         );
 
-  final Function(double) callback;
+  final ValueChanged<double> callback;
   final bool clamp;
 
   @override
@@ -70,7 +79,7 @@ extension ListenEffectExtensions<T> on AnimateManager<T> {
     Curve? curve,
     double? begin,
     double? end,
-    required Function(double) callback,
+    required ValueChanged<double> callback,
     bool clamp = true,
   }) =>
       addEffect(ListenEffect(

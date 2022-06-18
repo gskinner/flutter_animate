@@ -280,5 +280,5 @@ extension AnimateWidgetExtensions on Widget {
 /// the provided parent widget with the new child.
 typedef ReparentChildBuilder = Widget Function(Widget parent, Widget child);
 
-/// Function signature for `Animate` callbacks.
+/// Function signature for [Animate] callbacks.
 typedef AnimateCallback = void Function(AnimationController controller);

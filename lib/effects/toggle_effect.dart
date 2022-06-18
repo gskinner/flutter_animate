@@ -64,4 +64,7 @@ extension ToggleEffectExtensions<T> on AnimateManager<T> {
 }
 
 typedef ToggleEffectBuilder = Widget Function(
-    BuildContext context, bool value, Widget child);
+  BuildContext context,
+  bool value,
+  Widget child,
+);
