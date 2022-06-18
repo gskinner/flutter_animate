@@ -26,7 +26,7 @@ import '../flutter_animate.dart';
 ///
 /// Note that this simply calculates a new `delay` that will be inherited by the
 /// subsequent effect. In the example above, it is functionally equivalent to
-/// setting `delay: 1700.ms` on the scale effect.
+/// setting `delay: 1400.ms` on the blur effect.
 @immutable
 class ThenEffect extends Effect<double> {
   // NOTE: this is just an empty effect, the logic happens in Animate

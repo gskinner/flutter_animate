@@ -26,15 +26,17 @@ class ShakeEffect extends Effect<double> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    int count = 3,
-    this.offset = Offset.zero,
-    this.rotation = pi / 36,
-  }) : super(
+    int? count,
+    Offset? offset,
+    double? rotation,
+  })  : rotation = rotation ?? pi / 36,
+        offset = offset ?? Offset.zero,
+        super(
           delay: delay,
           duration: duration,
           curve: curve,
           begin: 0,
-          end: count * pi * 2,
+          end: (count ?? 3) * pi * 2,
         );
 
   final Offset offset;
@@ -74,9 +76,9 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    int count = 3,
-    Offset offset = Offset.zero,
-    double rotation = pi / 36,
+    int? count,
+    Offset? offset,
+    double? rotation,
   }) =>
       addEffect(ShakeEffect(
         delay: delay,
@@ -88,12 +90,13 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
       ));
 
   /// Adds a `.shakeX()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// This sets `rotation=0` and `offset=Offset(amount, 0)`.
   T shakeX({
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    int count = 3,
-    double amount = 6,
+    int? count,
+    double amount = defaultAmount,
   }) =>
       addEffect(ShakeEffect(
         delay: delay,
@@ -105,12 +108,13 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
       ));
 
   /// Adds a `.shakeY()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// This sets `rotation=0` and `offset=Offset(0, amount)`.
   T shakeY({
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    int count = 3,
-    double amount = 6,
+    int? count,
+    double amount = defaultAmount,
   }) =>
       addEffect(ShakeEffect(
         delay: delay,
@@ -121,3 +125,5 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
         rotation: 0,
       ));
 }
+
+const double defaultAmount = 6;

@@ -21,8 +21,9 @@ class TintEffect extends Effect<double> {
     Curve? curve,
     double? begin,
     double? end,
-    this.color = defaultColor,
-  }) : super(
+    Color? color,
+  })  : color = color ?? const Color(0xFFFF0000),
+        super(
           delay: delay,
           duration: duration,
           curve: curve,
@@ -81,7 +82,7 @@ extension TintEffectExtensions<T> on AnimateManager<T> {
         curve: curve,
         begin: begin,
         end: end,
-        color: color ?? defaultColor,
+        color: color,
       ));
 
   /// Adds a `.untint()` extension to [AnimateManager] ([Animate] and [AnimateList]).
@@ -100,8 +101,6 @@ extension TintEffectExtensions<T> on AnimateManager<T> {
         curve: curve,
         begin: begin ?? 1.0,
         end: end ?? 0.0,
-        color: color ?? defaultColor,
+        color: color,
       ));
 }
-
-const Color defaultColor = Color(0xFFFF0000);

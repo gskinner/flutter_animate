@@ -5,7 +5,7 @@ import '../flutter_animate.dart';
 // TODO: possibly add other properties of visibility as params?
 
 /// Effect that toggles the visibility of the target (via [Visibility]).
-/// Defaults to `begin=false, end=true`.
+/// Defaults to `end=true`.
 ///
 /// The `maintain` parameter is assigned to the [Visibility] properties `maintainSize`,
 /// `maintainAnimation`, `maintainState`, and `maintainSemantics`.
@@ -14,20 +14,21 @@ class VisibilityEffect extends Effect<bool> {
   const VisibilityEffect({
     Duration? delay,
     Duration? duration,
-    bool end = true,
-    this.maintain = true,
-  }) : super(
+    bool? end,
+    bool? maintain,
+  })  : maintain = maintain ?? true,
+        super(
           delay: delay,
           duration: duration,
-          begin: !end,
-          end: end,
+          begin: !(end ?? true),
+          end: end ?? true,
         );
 
   final bool maintain;
 
   @override
   Widget build(BuildContext context, Widget child,
-    AnimationController controller, EffectEntry entry) {
+      AnimationController controller, EffectEntry entry) {
     double ratio = getEndRatio(controller, entry);
     return getToggleBuilder(
       animation: controller,
@@ -50,8 +51,8 @@ extension VisibilityEffectExtensions<T> on AnimateManager<T> {
   T visibility({
     Duration? delay,
     Duration? duration,
-    bool maintain = true,
-    bool end = false,
+    bool? end,
+    bool? maintain,
   }) =>
       addEffect(VisibilityEffect(
         delay: delay,
@@ -65,7 +66,7 @@ extension VisibilityEffectExtensions<T> on AnimateManager<T> {
   T show({
     Duration? delay,
     Duration? duration,
-    bool maintain = true,
+    bool? maintain,
   }) =>
       addEffect(VisibilityEffect(
         delay: delay,
@@ -79,7 +80,7 @@ extension VisibilityEffectExtensions<T> on AnimateManager<T> {
   T hide({
     Duration? delay,
     Duration? duration,
-    bool maintain = true,
+    bool? maintain,
   }) =>
       addEffect(VisibilityEffect(
         delay: delay,
