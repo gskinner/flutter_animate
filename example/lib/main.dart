@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'examples/adapter_view.dart';
 import 'examples/info_view.dart';
+import 'examples/test_view.dart';
 import 'examples/visual_view.dart';
 
 // TODO: Add additional examples, especially a proper UI example.
@@ -37,8 +38,8 @@ class FlutterAnimateExample extends StatefulWidget {
     //    'User interface example. Shimmer, fade, slide.'), // TODO.
     TabInfo(Icons.format_list_bulleted, (_) => const AdapterView(), 'Adapters',
         'Using adapters to drive animations from scrolling or user input.'),
-    //TabInfo(Icons.auto_awesome_outlined, (_) => InfoView(), 'Fun',
-    //    'Fun silliness.'), // TODO.
+    TabInfo(Icons.science_outlined, (_) => TestView(key: UniqueKey()),
+        'Sandbox', 'A (mostly) blank canvas to experiment on.'),
   ];
 
   @override
