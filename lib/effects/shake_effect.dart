@@ -5,13 +5,13 @@ import 'package:flutter/widgets.dart';
 import '../flutter_animate.dart';
 
 /// Effect that shakes the target, using translation, rotation, or both.
-/// The `count` parameter indicates how many times to repeat the shake within
-/// the duration. Defaults to a 5 degree (`pi / 36`) shake, repeated 3 times —
+/// The `hz` parameter indicates approximately how many times to repeat the shake
+/// per second. Defaults to a 5 degree (`pi / 36`) shake, 12 times per second —
 /// equivalent to:
 ///
 /// ```
 /// Text("Hello").animate()
-///   .shake(count: 3, rotation: pi / 36)
+///   .shake(hz: 12, rotation: pi / 36)
 /// ```
 ///
 /// There are also shortcut extensions for applying horizontal / vertical shake.
@@ -26,21 +26,23 @@ class ShakeEffect extends Effect<double> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    int? count,
+    int? hz,
     Offset? offset,
     double? rotation,
   })  : rotation = rotation ?? pi / 36,
+        hz = hz ?? 10,
         offset = offset ?? Offset.zero,
         super(
           delay: delay,
           duration: duration,
           curve: curve,
           begin: 0,
-          end: (count ?? 3) * pi * 2,
+          end: 1,
         );
 
   final Offset offset;
   final double rotation;
+  final int hz;
 
   @override
   Widget build(
@@ -49,14 +51,17 @@ class ShakeEffect extends Effect<double> {
     AnimationController controller,
     EffectEntry entry,
   ) {
-    bool shouldRotate = rotation != 0;
-    bool shouldTranslate = offset != Offset.zero;
+    final bool shouldRotate = rotation != 0;
+    final bool shouldTranslate = offset != Offset.zero;
     if (!shouldRotate && !shouldTranslate) return child;
-    Animation<double> animation = buildAnimation(controller, entry);
+
+    final Animation<double> animation = buildAnimation(controller, entry);
+    final int count = (entry.duration.inSeconds * hz).floor();
+
     return getOptimizedBuilder<double>(
       animation: animation,
       builder: (_, __) {
-        double value = sin(animation.value);
+        double value = sin(animation.value * count * pi * 2);
         Widget widget = child;
         if (shouldRotate) {
           widget = Transform.rotate(angle: rotation * value, child: widget);
@@ -76,7 +81,7 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    int? count,
+    int? hz,
     Offset? offset,
     double? rotation,
   }) =>
@@ -84,7 +89,7 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
-        count: count,
+        hz: hz,
         offset: offset,
         rotation: rotation,
       ));
@@ -95,14 +100,14 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    int? count,
+    int? hz,
     double amount = defaultAmount,
   }) =>
       addEffect(ShakeEffect(
         delay: delay,
         duration: duration,
         curve: curve,
-        count: count,
+        hz: hz,
         offset: Offset(amount, 0),
         rotation: 0,
       ));
@@ -113,14 +118,14 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    int? count,
+    int? hz,
     double amount = defaultAmount,
   }) =>
       addEffect(ShakeEffect(
         delay: delay,
         duration: duration,
         curve: curve,
-        count: count,
+        hz: hz,
         offset: Offset(0, amount),
         rotation: 0,
       ));
