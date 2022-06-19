@@ -107,3 +107,21 @@ class Effect<T> {
     );
   }
 }
+
+extension EffectExtensions<T> on AnimateManager<T> {
+  /// Adds an `.effect()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  T effect({
+    Duration? delay,
+    Duration? duration,
+    Curve? curve,
+    double? begin,
+    double? end,
+  }) =>
+      addEffect(Effect(
+        delay: delay,
+        duration: duration,
+        curve: curve,
+        begin: begin,
+        end: end,
+      ));
+}
