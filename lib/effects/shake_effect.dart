@@ -52,19 +52,19 @@ class ShakeEffect extends Effect<double> {
     bool shouldRotate = rotation != 0;
     bool shouldTranslate = offset != Offset.zero;
     if (!shouldRotate && !shouldTranslate) return child;
-
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
       builder: (_, __) {
-        double a = sin(animation.value);
+        double value = sin(animation.value);
+        Widget widget = child;
         if (shouldRotate) {
-          child = Transform.rotate(angle: rotation * a, child: child);
+          widget = Transform.rotate(angle: rotation * value, child: widget);
         }
         if (shouldTranslate) {
-          child = Transform.translate(offset: offset * a, child: child);
+          widget = Transform.translate(offset: offset * value, child: widget);
         }
-        return child;
+        return widget;
       },
     );
   }
