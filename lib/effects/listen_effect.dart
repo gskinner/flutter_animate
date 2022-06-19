@@ -15,9 +15,9 @@ import '../flutter_animate.dart';
 /// Text("Hello").animate().fadeIn(curve: Curves.easeOutExpo)
 ///  .listen(callback: (value) => print('current opacity: $value'))
 /// ```
-/// 
+///
 /// This can easily be used to drive a [ValueNotifier]:
-/// 
+///
 /// ```
 /// ValueNotifier<double> notifier = ValueNotifier<double>(0);
 /// Text("Hello").animate()
