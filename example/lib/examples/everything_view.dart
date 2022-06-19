@@ -13,6 +13,9 @@ class EverythingView extends StatelessWidget {
         crossAxisCount: (box.maxWidth / 128).floor(),
         childAspectRatio: 0.8,
         children: [
+          // these are in alphabetic order according to their classes
+          // ex. BlurEffect defines both blur and unblur.
+
           tile("blur", a.blur()),
           tile("unblur", a.unblur()),
 
@@ -69,7 +72,7 @@ class EverythingView extends StatelessWidget {
   }
 
   // this returns a ready to use Animate instance targeting a `box` (see below)
-  // it uses empty effects to set default delay/duration values (750 & 1500ms) 
+  // it uses empty effects to set default delay/duration values (750 & 1500ms)
   // and a total duration (3000ms), so there is a 750ms pause at the end.
   Animate get a => box
       .animate(onInit: (controller) => controller.repeat())
