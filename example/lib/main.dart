@@ -1,3 +1,4 @@
+import 'package:example/examples/everything_view.dart';
 import 'package:flutter/material.dart';
 
 import 'examples/adapter_view.dart';
@@ -33,13 +34,15 @@ class FlutterAnimateExample extends StatefulWidget {
     TabInfo(Icons.info_outline, (_) => InfoView(key: UniqueKey()), 'Info',
         'Simple example of Widget & List animations.'),
     TabInfo(Icons.palette_outlined, (_) => VisualView(key: UniqueKey()),
-        'Visual Effects', 'Visual effects like saturation, tint, & blur.'),
+        'Visual', 'Visual effects like saturation, tint, & blur.'),
     //TabInfo(Icons.auto_awesome_mosaic_outlined, (_) => InfoView(), 'UI',
     //    'User interface example. Shimmer, fade, slide.'), // TODO.
     TabInfo(Icons.format_list_bulleted, (_) => const AdapterView(), 'Adapters',
-        'Using adapters to drive animations from scrolling or user input.'),
+        'Animations driven by scrolling & user input.'),
+    TabInfo(Icons.grid_on_outlined, (_) => const EverythingView(),
+        'Kitchen Sink', 'Grid view of effects with default settings.'),
     TabInfo(Icons.science_outlined, (_) => TestView(key: UniqueKey()),
-        'Sandbox', 'A (mostly) blank canvas to experiment on.'),
+        'Sandbox', 'A blank canvas for experimenting.'),
   ];
 
   @override
