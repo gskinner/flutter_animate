@@ -193,26 +193,37 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 
   @override
   void didUpdateWidget(Animate oldWidget) {
-    if (oldWidget.controller != widget.controller ||
-        oldWidget.adapter != widget.adapter) _initController();
+    if (oldWidget.controller != widget.controller) { _initController(); }
+    else if (oldWidget.adapter != widget.adapter) { _initAdapter(); }
     super.didUpdateWidget(oldWidget);
   }
 
   void _initController() {
-    final Adapter? adapter = widget.adapter;
-    _hasAdapter = adapter != null;
+    AnimationController? controller;
 
     if (widget.controller != null) {
       // externally provided AnimationController.
-      _controller = widget.controller!;
+      controller = widget.controller!;
+      _isInternalController = false;
     } else if (!_isInternalController) {
-      // create an internal AnimationController.
-      _controller = AnimationController(vsync: this);
+      // create a new internal AnimationController.
+      controller = AnimationController(vsync: this);
       _isInternalController = true;
+    } else {
+      // pre-existing controller
+      return;
     }
-    _controller.duration ??= widget._duration;
-    _controller.addStatusListener(_handleAnimationStatus);
 
+    // new controller.
+    controller.duration ??= widget._duration;
+    controller.addStatusListener(_handleAnimationStatus);
+    _controller = controller;
+    _initAdapter();
+  }
+
+  void _initAdapter() {
+    final Adapter? adapter = widget.adapter;
+    _hasAdapter = adapter != null;
     adapter?.init(_controller);
   }
 
