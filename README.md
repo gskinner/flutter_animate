@@ -273,14 +273,14 @@ animations. For example, adding a callback halfway through a fade:
 
 ``` dart
 Text("Hello").animate().fadeIn(duration: 600.ms)
-  .callback(duration: 300.ms, callback: () => print('halfway'))
+  .callback(duration: 300.ms, callback: (_) => print('halfway'))
 ```
 
 As with other effects, it will inherit the delay and duration of prior effects:
 
 ``` dart
 Text("Hello").animate().scale(delay: 200.ms, duration: 400.ms)
-  .callback(callback: () => print('scale is done'))
+  .callback(callback: (_) => print('scale is done'))
 ```
 
 ListenEffect

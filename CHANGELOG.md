@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Minor cleanup
 - `ShakeEffect` now uses `hz` instead of `count`
 - `TintEffect` now uses opaque black for default color
+- Made `CallbackEffect` more robust
 
 ## [0.2.0] - 2022-06-17
 ### Added
