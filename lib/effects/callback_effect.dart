@@ -22,7 +22,7 @@ import '../flutter_animate.dart';
 ///     callback: (rev) => print('halfway (reverse: $rev)')
 ///   )
 /// ```
-/// 
+///
 /// **NOTE:** This should be reliable for time-based animations, but callbacks on
 /// an animation that is driven by an [Adapter] (or manipulated via its controller)
 /// may behave unexpectedly in certain circumstances.

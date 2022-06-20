@@ -193,8 +193,11 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 
   @override
   void didUpdateWidget(Animate oldWidget) {
-    if (oldWidget.controller != widget.controller) { _initController(); }
-    else if (oldWidget.adapter != widget.adapter) { _initAdapter(); }
+    if (oldWidget.controller != widget.controller) {
+      _initController();
+    } else if (oldWidget.adapter != widget.adapter) {
+      _initAdapter();
+    }
     super.didUpdateWidget(oldWidget);
   }
 
