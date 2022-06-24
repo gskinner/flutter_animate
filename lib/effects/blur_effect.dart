@@ -18,7 +18,7 @@ class BlurEffect extends Effect<double> {
           duration: duration,
           curve: curve,
           begin: begin ?? 0.0,
-          end: end ?? defaultBlur,
+          end: end ?? _defaultBlur,
         );
 
   @override
@@ -66,7 +66,7 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    double? begin = defaultBlur,
+    double? begin = _defaultBlur,
     double? end = 0,
   }) =>
       addEffect(BlurEffect(
@@ -78,4 +78,4 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
       ));
 }
 
-const double defaultBlur = 4;
+const double _defaultBlur = 4;

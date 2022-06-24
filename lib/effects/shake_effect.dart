@@ -101,7 +101,7 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
     Duration? duration,
     Curve? curve,
     int? hz,
-    double amount = defaultAmount,
+    double amount = _defaultAmount,
   }) =>
       addEffect(ShakeEffect(
         delay: delay,
@@ -119,7 +119,7 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
     Duration? duration,
     Curve? curve,
     int? hz,
-    double amount = defaultAmount,
+    double amount = _defaultAmount,
   }) =>
       addEffect(ShakeEffect(
         delay: delay,
@@ -131,4 +131,4 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
       ));
 }
 
-const double defaultAmount = 6;
+const double _defaultAmount = 6;
