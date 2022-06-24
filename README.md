@@ -246,7 +246,7 @@ Widget text = Text("Hello World!");
 
 // then:
 text.animate().fadeOut(300.ms) // fade out & then...
-  .swap(builder: (_) => text.fadeIn()) // swap in original widget & fade back in
+  .swap(builder: (_) => text.animate().fadeIn()) // swap in original widget & fade back in
 ```
 
 
