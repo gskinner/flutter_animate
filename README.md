@@ -235,18 +235,17 @@ SwapEffect
 `SwapEffect` lets you swap out the whole target widget at a specified time:
 
 ``` dart
-Text("Before").animate().swap(duration: 900.ms, builder: (_) => Text("After"))
+Text("Before").animate()
+  .swap(duration: 900.ms, builder: (_, __) => Text("After"))
 ```
 
 This can also be useful for creating sequential effects, by swapping the target
 widget back in, effectively wiping all previous effects:
 
 ``` dart
-Widget text = Text("Hello World!");
-
-// then:
 text.animate().fadeOut(300.ms) // fade out & then...
-  .swap(builder: (_) => text.animate().fadeIn()) // swap in original widget & fade back in
+  // swap in original widget & fade back in via a new Animate:
+  .swap(builder: (_, child) => child.animate().fadeIn())
 ```
 
 

@@ -51,7 +51,10 @@ class EverythingView extends StatelessWidget {
 
           tile("slide", a.slide()),
 
-          tile("swap", a.swap(builder: (_) => const Text("HELLO!"))),
+          tile("swap", a.swap(builder: (_, __) => const Text("HELLO!"))),
+          tile("swap (child)", a.swap(builder: (_, child) {
+            return Opacity(opacity: 0.5, child: child!);
+          })),
 
           // then?
 

@@ -21,6 +21,7 @@ class EffectEntry {
     required this.delay,
     required this.duration,
     required this.curve,
+    required this.owner,
   });
 
   /// The delay for this entry.
@@ -34,6 +35,11 @@ class EffectEntry {
 
   /// The effect associated with this entry.
   final Effect effect;
+
+  /// The [Animate] instance that created this entry. This can be used by effects
+  /// to read information about the animation. Effects _should not_ modify
+  /// the animation (ex. by calling [Animate.addEffect]).
+  final Animate owner;
 
   /// The begin time for this entry.
   Duration get begin => delay;

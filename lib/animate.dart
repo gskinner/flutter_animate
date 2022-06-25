@@ -168,6 +168,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
       delay: delay,
       duration: effect.duration ?? prior?.duration ?? Animate.defaultDuration,
       curve: effect.curve ?? prior?.curve ?? Animate.defaultCurve,
+      owner: this,
     );
 
     _entries.add(entry);
