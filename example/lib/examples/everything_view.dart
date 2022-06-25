@@ -36,6 +36,8 @@ class EverythingView extends StatelessWidget {
 
           tile("move", a.move()),
 
+          tile("rotate", a.rotate()),
+
           tile("saturate", a.saturate()),
           tile("desaturate", a.desaturate()),
 

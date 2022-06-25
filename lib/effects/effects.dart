@@ -7,6 +7,7 @@ export 'custom_effect.dart';
 export 'fade_effect.dart';
 export 'listen_effect.dart';
 export 'move_effect.dart';
+export 'rotate_effect.dart';
 export 'saturate_effect.dart';
 export 'scale_effect.dart';
 export 'shake_effect.dart';
