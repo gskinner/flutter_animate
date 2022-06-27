@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'flutter_animate.dart';
 
 // TODO: do a full pass on widget lifecycle support. Possibly params to reset on change?
-// TODO: autoplay param?
 
 /// The Flutter Animate library makes adding beautiful animated effects to your widgets
 /// simple. It supports both a declarative and chained API. The latter is exposed
@@ -114,18 +113,33 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// The widget to apply effects to.
   final Widget child;
 
-  /// A duration to delay before starting the animation. Unlike [Effect.delay],
-  /// this is not a part of the overall animation, and only runs once if the
-  /// animation is looped.
-  final Duration delay;
-
   /// Called when all effects complete. Provides an opportunity to
   /// manipulate the [AnimationController] (ex. to loop, reverse, etc).
   final AnimateCallback? onComplete;
 
-  /// Called when the instance's state initializes. Provides an opportunity to
-  /// manipulate the [AnimationController] (ex. to loop, reverse, etc).
+  /// Called when the animation begins playing (ie. after [Animate.delay],
+  /// immediately after [AnimationController.forward] is called).
+  /// Provides an opportunity to manipulate the [AnimationController]
+  /// (ex. to loop, reverse, stop, etc).
+  /// 
+  /// For example, this would pause the animation at its start:
+  /// ```
+  /// foo.animate(
+  ///   onInit: (controller) => controller.stop()
+  /// ).fadeIn()
+  /// ```
+  /// This would loop the animation, reversing it on each loop:
+  /// ```
+  /// foo.animate(
+  ///   onInit: (controller) => controller.repeat(reverse: true)
+  /// ).fadeIn()
+  /// ```
   final AnimateCallback? onInit;
+
+  /// A duration to delay before the animation is started. Unlike [Effect.delay],
+  /// this is not a part of the overall animation, and only runs once if the
+  /// animation is looped. [onInit] is called after this delay.
+  final Duration delay;
 
   /// An external [AnimationController] can optionally be specified. By default
   /// Animate creates its own controller internally.
@@ -188,7 +202,6 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _initController();
-    // TODO: bypass if delay=0?
     if (!_hasAdapter) _delayed = Future.delayed(widget.delay, () => _play());
   }
 
