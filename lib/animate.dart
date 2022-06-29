@@ -100,8 +100,9 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     Key? key,
     this.child = const SizedBox.shrink(),
     List<Effect>? effects,
-    this.onComplete,
     this.onInit,
+    this.onPlay,
+    this.onComplete,
     this.delay = Duration.zero,
     this.controller,
     this.adapter,
@@ -113,21 +114,17 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// The widget to apply effects to.
   final Widget child;
 
-  /// Called when all effects complete. Provides an opportunity to
-  /// manipulate the [AnimationController] (ex. to loop, reverse, etc).
-  final AnimateCallback? onComplete;
-
-  /// Called when the animation begins playing (ie. after [Animate.delay],
-  /// immediately after [AnimationController.forward] is called).
-  /// Provides an opportunity to manipulate the [AnimationController]
-  /// (ex. to loop, reverse, stop, etc).
+  /// Called when the [AnimationController] for this instance is initialized,
+  /// but before it starts playing.
   /// 
-  /// For example, this would pause the animation at its start:
-  /// ```
-  /// foo.animate(
-  ///   onInit: (controller) => controller.stop()
-  /// ).fadeIn()
-  /// ```
+  /// This typically occurs once when the widget [State] is created, but can
+  /// also happen if the widget is updated with a new [controller].
+  /// 
+  /// Can be used to (for example) loop or reverse
+  /// the animation, but cannot be used to adjust its starting postion or 
+  /// pause it because `AnimationController.forward(from: 0)` is called after
+  /// `onInit` – use [onPlay] instead.
+  /// 
   /// This would loop the animation, reversing it on each loop:
   /// ```
   /// foo.animate(
@@ -135,6 +132,24 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// ).fadeIn()
   /// ```
   final AnimateCallback? onInit;
+
+  /// Called when the animation begins playing (ie. immediately after
+  /// [AnimationController.forward] is called after [delay]).
+  /// Provides an opportunity to manipulate the [AnimationController]
+  /// (ex. to loop, reverse, stop, change starting position, etc).
+  /// 
+  /// For example, this would pause the animation at its start:
+  /// ```
+  /// foo.animate(
+  ///   onPlay: (controller) => controller.stop()
+  /// ).fadeIn()
+  /// ```
+  final AnimateCallback? onPlay;
+
+  /// Called when all effects complete (ie. the [AnimationController] status
+  /// is [AnimationStatus.completed]). A looping animation will never call 
+  /// `onComplete`.
+  final AnimateCallback? onComplete;
 
   /// A duration to delay before the animation is started. Unlike [Effect.delay],
   /// this is not a part of the overall animation, and only runs once if the
@@ -236,6 +251,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
     controller.addStatusListener(_handleAnimationStatus);
     _controller = controller;
     _initAdapter();
+    widget.onInit?.call(_controller);
   }
 
   void _initAdapter() {
@@ -264,7 +280,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 
   void _play() {
     if (!_hasAdapter) _controller.forward(from: 0);
-    widget.onInit?.call(_controller);
+    widget.onPlay?.call(_controller);
   }
 
   @override
