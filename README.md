@@ -252,8 +252,13 @@ text.animate().fadeOut(300.ms) // fade out & then...
 Events & callbacks
 ================================================================================
 
-There are `onInit` and `onComplete` callbacks on `Animate` that trigger when the
-whole animation starts or ends. Use the provided `AnimationController` to
+The following callbacks are available on `Animate`:
+
+- `onInit`: animation initialized and the `AnimationController` is available
+- `onPlay`: the animation has started playing after any `Animate.delay`
+- `onComplete`: the animation has finished
+
+These callbacks return the `AnimationController`, which can be used to
 manipulate the animation (ex. repeat, reverse, etc).
 
 ``` dart
