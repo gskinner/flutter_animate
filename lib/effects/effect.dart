@@ -99,7 +99,7 @@ class Effect<T> {
     required bool Function() toggle,
     required ToggleEffectBuilder builder,
   }) {
-    ValueNotifier<bool> notifier = ValueNotifier<bool>(true);
+    ValueNotifier<bool> notifier = ValueNotifier<bool>(toggle());
     animation.addListener(() => notifier.value = toggle());
     return AnimatedBuilder(
       animation: notifier,
