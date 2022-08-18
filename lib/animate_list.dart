@@ -14,7 +14,7 @@ import 'flutter_animate.dart';
 /// Column(children: [foo, bar, baz].animate(interval: 100.ms).fade().scale())
 /// ```
 ///
-/// If specified, `onInit` and `onComplete` will also be assigned to every instance
+/// If specified, `onPlay` and `onComplete` will also be assigned to every instance
 /// to enable looping or reversing via the [AnimationController].
 ///
 /// Like [Animate], it can also be used declaratively. The following is
@@ -49,7 +49,7 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
     required List<Widget> children,
     List<Effect>? effects,
     Duration? interval,
-    AnimateCallback? onInit,
+    AnimateCallback? onPlay,
     AnimateCallback? onComplete,
     Adapter? adapter,
   }) {
@@ -61,7 +61,7 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
       if (!ignoreTypes.contains(type)) {
         child = Animate(
           delay: (interval ?? Duration.zero) * i,
-          onInit: onInit,
+          onPlay: onPlay,
           onComplete: onComplete,
           adapter: adapter,
           child: child,
@@ -110,14 +110,14 @@ extension AnimateListExtensions on List<Widget> {
   AnimateList animate({
     List<Effect>? effects,
     Duration? interval,
-    AnimateCallback? onInit,
+    AnimateCallback? onPlay,
     AnimateCallback? onComplete,
   }) =>
       AnimateList(
         children: this,
         effects: effects,
         interval: interval,
-        onInit: onInit,
+        onPlay: onPlay,
         onComplete: onComplete,
       );
 }

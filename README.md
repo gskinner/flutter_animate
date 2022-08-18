@@ -92,7 +92,7 @@ repeats.
 ``` dart
 Text("Hello").animate(
     delay: 1000.ms, // this delay only happens once at the very start
-    onInit: (controller) => controller.repeat(), // loop
+    onPlay: (controller) => controller.repeat(), // loop
   ).fadeIn(delay: 500.ms) // this delay happens at the start of each loop
 ```
 
@@ -252,9 +252,8 @@ text.animate().fadeOut(300.ms) // fade out & then...
 Events & callbacks
 ================================================================================
 
-The following callbacks are available on `Animate`:
+`Animate` includes the following callbacks:
 
-- `onInit`: animation initialized and the `AnimationController` is available
 - `onPlay`: the animation has started playing after any `Animate.delay`
 - `onComplete`: the animation has finished
 
@@ -263,7 +262,7 @@ manipulate the animation (ex. repeat, reverse, etc).
 
 ``` dart
 Text("Horrible Pulsing Text")
-  .animate(onInit: (controller) => controller.repeat(reverse: true))
+  .animate(onPlay: (controller) => controller.repeat(reverse: true))
   .fadeOut(curve: Curves.easeInOut)
 ```
 

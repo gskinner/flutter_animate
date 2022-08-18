@@ -80,9 +80,9 @@ class EverythingView extends StatelessWidget {
   // it uses empty effects to set default delay/duration values (750 & 1500ms)
   // and a total duration (3000ms), so there is a 750ms pause at the end.
   Animate get a => box
-      .animate(onInit: (controller) => controller.repeat())
-      .effect(duration: 3000.ms)
-      .effect(delay: 750.ms, duration: 1500.ms);
+      .animate(onPlay: (controller) => controller.repeat())
+      .effect(duration: 3000.ms) // this "pads out" the total duration
+      .effect(delay: 750.ms, duration: 1500.ms); // set defaults
 
   // simple square box with a gradient to use as the target for animations.
   Widget get box => Container(

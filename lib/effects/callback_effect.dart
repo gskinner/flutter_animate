@@ -15,7 +15,7 @@ import '../flutter_animate.dart';
 ///
 /// ```
 /// Text("Hello")
-///   .animate(onInit: (controller) => controller.repeat(reverse: true))
+///   .animate(onPlay: (controller) => controller.repeat(reverse: true))
 ///   .fadeIn(duration: 600.ms)
 ///   .callback(
 ///     duration: 300.ms,

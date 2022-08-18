@@ -89,7 +89,7 @@ class _FlutterAnimateExampleState extends State<FlutterAnimateExample> {
           fontSize: 14,
           height: 1.5,
         ),
-        child: content,
+        child: SafeArea(bottom: false, child: content),
       ),
     );
   }

@@ -22,7 +22,7 @@ class InfoView extends StatelessWidget {
     // here's an interesting little trick, we can nest Animate to have
     // effects that repeat and ones that only run once on the same item:
     title = title
-        .animate(onInit: (controller) => controller.repeat())
+        .animate(onPlay: (controller) => controller.repeat())
         .shimmer(duration: 1200.ms, color: const Color(0xFF80DDFF))
         .animate() // this wraps the previous Animate in another Animate
         .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)

@@ -36,7 +36,7 @@ class VisualView extends StatelessWidget {
 
     // sequence some visual effects
     title = title
-        .animate(onInit: (controller) => controller.repeat(reverse: true))
+        .animate(onPlay: (controller) => controller.repeat(reverse: true))
         .saturate(delay: 1.seconds, duration: 2.seconds)
         .then() // set delay to when the previous effect ends.
         .tint(color: const Color(0xFF80DDFF))
