@@ -53,7 +53,7 @@ class InfoView extends StatelessWidget {
     // Animate all of the info items in the list:
     tabInfoItems = tabInfoItems
         .animate(interval: 600.ms)
-        .fadeIn(duration: 900.ms, delay: 1200.ms)
+        .fadeIn(duration: 900.ms, delay: 300.ms)
         .shimmer(blendMode: BlendMode.srcOver, color: Colors.white12)
         .move(begin: const Offset(-16, 0), curve: Curves.easeOutQuad);
 

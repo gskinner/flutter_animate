@@ -1,3 +1,5 @@
+// This is a sandbox file to make it easy to play around with Flutter Animate.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 

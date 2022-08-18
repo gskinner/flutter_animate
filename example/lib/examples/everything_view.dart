@@ -1,3 +1,5 @@
+// Kitchen sink view of all Effects
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';

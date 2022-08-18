@@ -35,8 +35,6 @@ class FlutterAnimateExample extends StatefulWidget {
         'Simple example of Widget & List animations.'),
     TabInfo(Icons.palette_outlined, (_) => VisualView(key: UniqueKey()),
         'Visual', 'Visual effects like saturation, tint, & blur.'),
-    //TabInfo(Icons.auto_awesome_mosaic_outlined, (_) => InfoView(), 'UI',
-    //    'User interface example. Shimmer, fade, slide.'), // TODO.
     TabInfo(Icons.format_list_bulleted, (_) => const AdapterView(), 'Adapters',
         'Animations driven by scrolling & user input.'),
     TabInfo(Icons.grid_on_outlined, (_) => const EverythingView(),

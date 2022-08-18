@@ -6,7 +6,7 @@ import '../flutter_animate.dart';
 /// point in time. This includes all preceeding effects. It uses a builder so
 /// that the effect can be reused, but note that the builder is only called once
 /// when the effect initially builds.
-/// 
+///
 /// For example, this would fade out `foo`, swap it for `Bar()` (including
 /// discarding the `fadeOut` effect) and apply a fade in effect.
 ///
@@ -20,10 +20,10 @@ import '../flutter_animate.dart';
 ///
 /// It also includes the original child of the animation as a parameter of the
 /// builder. For example, normally fading out and then back in will not work
-/// as expected because both effects are active (ie. the 0 opacity from 
+/// as expected because both effects are active (ie. the 0 opacity from
 /// fading out is still applied), but you can work around this by beginning a
 /// new animation with the original child:
-/// 
+///
 /// ```
 /// foo.animate()
 ///   .fadeOut(duration: 500.ms)
@@ -31,7 +31,7 @@ import '../flutter_animate.dart';
 ///     builder: (_, originalChild) => originalChild.animate().fadeIn(),
 ///   )
 /// ```
-/// 
+///
 /// Note that the builder is returning a new [Animate] instance with its own
 /// [AnimationController]. So, for example, repeating the first animation (the
 /// fade out) via its controller will not affect the second animation (fade in).

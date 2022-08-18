@@ -5,7 +5,7 @@ import '../flutter_animate.dart';
 /// Effect that rotates the target (via [RotationTransition]) between the specified begin and end.
 /// Values are specified in "turns", so a `begin=0.25, end=2.25` would start with the child
 /// rotated 90 degrees clockwise (ie. `0.25 * 360`), and rotate two full turns (ie. 720 degrees).
-/// 
+///
 /// [alignment] lets you set the origin of the rotation (ie. the point around which the rotation
 /// will occur). For example an alingment of [Alignment.topLeft] would rotate around the top left
 /// corner of the child.
