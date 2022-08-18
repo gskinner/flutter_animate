@@ -121,7 +121,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// immediately after [AnimationController.forward] is called).
   /// Provides an opportunity to manipulate the [AnimationController]
   /// (ex. to loop, reverse, stop, etc).
-  /// 
+  ///
   /// For example, this would pause the animation at its start:
   /// ```
   /// foo.animate(
@@ -207,8 +207,10 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 
   @override
   void didUpdateWidget(Animate oldWidget) {
-    if (oldWidget.controller != widget.controller) {
+    if (oldWidget.controller != widget.controller ||
+        oldWidget._duration != widget._duration) {
       _initController();
+      _play();
     } else if (oldWidget.adapter != widget.adapter) {
       _initAdapter();
     }
@@ -227,14 +229,16 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
       controller = AnimationController(vsync: this);
       _isInternalController = true;
     } else {
-      // pre-existing controller
-      return;
+      // pre-existing controller.
     }
 
-    // new controller.
-    controller.duration ??= widget._duration;
-    controller.addStatusListener(_handleAnimationStatus);
-    _controller = controller;
+    if (controller != null) {
+      // new controller.
+      _controller = controller;
+      _controller.addStatusListener(_handleAnimationStatus);
+    }
+
+    _controller.duration = widget._duration;
     _initAdapter();
   }
 
@@ -263,6 +267,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   }
 
   void _play() {
+    _delayed?.ignore(); // for poorly timed hot reloads.
     if (!_hasAdapter) _controller.forward(from: 0);
     widget.onPlay?.call(_controller);
   }
