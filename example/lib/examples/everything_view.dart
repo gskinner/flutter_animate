@@ -44,6 +44,8 @@ class EverythingView extends StatelessWidget {
           tile("desaturate", a.desaturate()),
 
           tile("scale", a.scale()),
+          tile("scaleXY (x)", a.scaleXY(end: const Offset(0.0, 1.0))),
+          tile("scaleXY (y)", a.scaleXY(end: const Offset(1.0, 0.0))),
 
           tile("shake", a.shake()),
           tile("shakeX", a.shakeX()),
