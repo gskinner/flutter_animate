@@ -16,8 +16,8 @@ class ScaleEffectXY extends Effect<Offset> {
     delay: delay,
     duration: duration,
     curve: curve,
-    begin: begin ?? const Offset(1.0, 1.0),
-    end: end ?? Offset.zero,
+    begin: begin ?? Offset.zero,
+    end: end ?? const Offset(1.0, 1.0),
   );
 
   final Alignment? alignment;
