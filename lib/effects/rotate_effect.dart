@@ -7,7 +7,7 @@ import '../flutter_animate.dart';
 /// rotated 90 degrees clockwise (ie. `0.25 * 360`), and rotate two full turns (ie. 720 degrees).
 ///
 /// [alignment] lets you set the origin of the rotation (ie. the point around which the rotation
-/// will occur). For example an alingment of [Alignment.topLeft] would rotate around the top left
+/// will occur). For example an alignment of [Alignment.topLeft] would rotate around the top left
 /// corner of the child.
 @immutable
 class RotateEffect extends Effect<double> {
