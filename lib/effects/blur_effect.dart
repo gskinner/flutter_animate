@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
@@ -32,7 +31,7 @@ class BlurEffect extends Effect<double> {
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) => (animation.value < 0.001)
+      builder: (_, __) => (animation.value < _minBlur)
           ? child
           : ImageFiltered(
               imageFilter: ImageFilter.blur(
@@ -82,3 +81,4 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
 }
 
 const double _defaultBlur = 4;
+const double _minBlur = 0.01;
