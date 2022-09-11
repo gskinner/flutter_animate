@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
@@ -31,14 +32,16 @@ class BlurEffect extends Effect<double> {
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) => ImageFiltered(
-        imageFilter: ImageFilter.blur(
-          sigmaX: animation.value,
-          sigmaY: animation.value,
-          tileMode: TileMode.decal,
-        ),
-        child: child,
-      ),
+      builder: (_, __) => (animation.value < 0.001)
+          ? child
+          : ImageFiltered(
+              imageFilter: ImageFilter.blur(
+                sigmaX: animation.value,
+                sigmaY: animation.value,
+                tileMode: TileMode.decal,
+              ),
+              child: child,
+            ),
     );
   }
 }
