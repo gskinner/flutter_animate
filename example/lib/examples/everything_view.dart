@@ -18,12 +18,12 @@ class EverythingView extends StatelessWidget {
           // these are in alphabetic order according to their classes
           // ex. BlurEffect defines both blur and unblur.
 
-          tile("blur", a.blur()),
-          tile("unblur", a.unblur()),
+          tile('blur', a.blur()),
+          tile('unblur', a.unblur()),
 
           // callback?
 
-          tile("custom", a.custom(builder: (_, val, child) {
+          tile('custom', a.custom(builder: (_, val, child) {
             val = val * pi * 2 - pi / 2;
             return Transform.translate(
               offset: Offset(cos(val) * 24, sin(val) * 24),
@@ -31,41 +31,45 @@ class EverythingView extends StatelessWidget {
             );
           })),
 
-          tile("fadeIn", a.fadeIn()),
-          tile("fadeOut", a.fadeOut()),
+          tile('fadeIn', a.fadeIn()),
+          tile('fadeOut', a.fadeOut()),
+
+          tile('flipH', a.flipH()),
+          tile('flipV', a.flipV()),
 
           // listen?
 
-          tile("move", a.move()),
+          tile('move', a.move()),
 
-          tile("rotate", a.rotate()),
+          tile('rotate', a.rotate()),
 
-          tile("saturate", a.saturate()),
-          tile("desaturate", a.desaturate()),
+          tile('saturate', a.saturate()),
+          tile('desaturate', a.desaturate()),
 
-          tile("scale", a.scale()),
-          tile("scaleXY (x)", a.scaleXY(begin: const Offset(0.0, 1.0))),
-          tile("scaleXY (y)", a.scaleXY(begin: const Offset(1.0, 0.0))),
+          tile('scale', a.scale()),
+          tile('scaleX', a.scaleX()),
+          tile('scaleY', a.scaleY()),
+          tile('scaleXY', a.scaleXY()),
 
-          tile("shake", a.shake()),
-          tile("shakeX", a.shakeX()),
-          tile("shakeY", a.shakeY()),
+          tile('shake', a.shake()),
+          tile('shakeX', a.shakeX()),
+          tile('shakeY', a.shakeY()),
 
-          tile("shimmer", a.shimmer()),
+          tile('shimmer', a.shimmer()),
 
-          tile("slide", a.slide()),
+          tile('slide', a.slide()),
 
-          tile("swap", a.swap(builder: (_, __) => const Text("HELLO!"))),
-          tile("swap (child)", a.swap(builder: (_, child) {
+          tile('swap', a.swap(builder: (_, __) => const Text('HELLO!'))),
+          tile('swap (child)', a.swap(builder: (_, child) {
             return Opacity(opacity: 0.5, child: child!);
           })),
 
           // then?
 
-          tile("tint", a.tint()),
-          tile("untint", a.untint()),
+          tile('tint', a.tint()),
+          tile('untint', a.untint()),
 
-          tile("toggle", a.toggle(builder: (_, b, child) {
+          tile('toggle', a.toggle(builder: (_, b, child) {
             return Container(
               color: b ? Colors.purple : Colors.yellow,
               padding: const EdgeInsets.all(8),
@@ -73,8 +77,8 @@ class EverythingView extends StatelessWidget {
             );
           })),
 
-          tile("hide", a.hide()),
-          tile("show", a.show()),
+          tile('hide', a.hide()),
+          tile('show', a.show()),
         ],
       ),
     );
