@@ -19,6 +19,9 @@ class EverythingView extends StatelessWidget {
           // ex. BlurEffect defines both blur and unblur.
 
           tile('blur', a.blur()),
+          tile('blurX', a.blurX()),
+          tile('blurY', a.blurY()),
+          tile('blurXY', a.blurXY()),
           tile('unblur', a.unblur()),
 
           // callback?

@@ -27,7 +27,7 @@ class AdapterView extends StatelessWidget {
           textAlign: TextAlign.center,
         )
             .animate(adapter: ValueNotifierAdapter(notifier))
-            .blur(end: 16)
+            .blurXY(end: 16)
             .scaleXY(begin: 1, end: 2)
             .tint(color: const Color(0xFF80DDFF))
             .fadeOut(curve: Curves.easeInExpo),

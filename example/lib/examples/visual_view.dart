@@ -40,7 +40,7 @@ class VisualView extends StatelessWidget {
         .then() // set delay to when the previous effect ends.
         .tint(color: const Color(0xFF80DDFF))
         .then()
-        .blur(end: 24)
+        .blurXY(end: 24)
         .fadeOut();
 
     return Padding(padding: const EdgeInsets.all(24), child: title);
