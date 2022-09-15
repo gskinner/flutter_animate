@@ -100,7 +100,7 @@ extension FlipEffectExtensions<T> on AnimateManager<T> {
       ));
 
   /// Adds a [flipH] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This is identical to the `.flip()` extension, except it always uses `direction = Axis.horizontal`.
+  /// This is identical to the [flip] extension, except it always uses `direction = Axis.horizontal`.
   T flipH({
     Duration? delay,
     Duration? duration,
@@ -122,7 +122,7 @@ extension FlipEffectExtensions<T> on AnimateManager<T> {
       ));
 
   /// Adds a [flipV] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This is identical to the `.flip()` extension, except it always uses `direction = Axis.vertical`.
+  /// This is identical to the [flip] extension, except it always uses `direction = Axis.vertical`.
   T flipV({
     Duration? delay,
     Duration? duration,
