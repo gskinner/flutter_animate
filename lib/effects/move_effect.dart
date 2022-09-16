@@ -6,6 +6,8 @@ import '../flutter_animate.dart';
 
 /// Effect that moves the target (via [Transform.translate]) between the specified begin and end offsets.
 /// Defaults to `begin=Offset(0, -16), end=Offset.zero`.
+/// 
+/// To specify offsets relative to the target's size, use [SlideEffect].
 @immutable
 class MoveEffect extends Effect<Offset> {
   const MoveEffect({
