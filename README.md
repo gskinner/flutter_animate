@@ -223,7 +223,7 @@ by toggling their values with a minimal delay:
 Animate().toggle(
   duration: 1.ms,
   builder: (_, value, __) => AnimatedContainer(
-    duration: 1.second,
+    duration: 1.seconds,
     color: value ? Colors.red : Colors.green,
   ),
 )
