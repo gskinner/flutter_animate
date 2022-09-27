@@ -26,7 +26,7 @@ class AdapterView extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         )
-            .animate(adapter: ValueNotifierAdapter(notifier))
+            .animate(adapter: ValueNotifierAdapter(notifier, duration: 0.ms))
             .blurXY(end: 16)
             .scaleXY(begin: 1, end: 2)
             .tint(color: const Color(0xFF80DDFF))
@@ -87,9 +87,7 @@ class AdapterView extends StatelessWidget {
                 colors: [Color(0x8080DDFF), Colors.transparent],
               ),
             ),
-          )
-              .animate(adapter: ScrollAdapter(scrollController, begin: -500))
-              .fadeOut(),
+          ).animate(adapter: ScrollAdapter(scrollController, begin: -500)).fadeOut(),
         ),
 
         // the list (with the scrollController assigned):
