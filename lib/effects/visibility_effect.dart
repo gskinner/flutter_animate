@@ -2,8 +2,6 @@ import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
 
-// TODO: possibly add other properties of visibility as params?
-
 /// Effect that toggles the visibility of the target (via [Visibility]).
 /// Defaults to `end=true`.
 ///

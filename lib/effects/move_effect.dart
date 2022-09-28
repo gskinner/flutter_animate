@@ -2,8 +2,6 @@ import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
 
-// TODO: possibly add transformHitTest as a param?
-
 /// Effect that moves the target (via [Transform.translate]) between the specified begin and end offsets.
 /// Defaults to `begin=Offset(0, -16), end=Offset.zero`.
 /// 

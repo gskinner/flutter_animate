@@ -1,8 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
-// TODO: catch issues with things like unbounded scrolling
-// TODO: simplify setting a begin/end based on position of items in scroll?
 
 /// Drives an [Animate] animation from a [ScrollController].
 ///
