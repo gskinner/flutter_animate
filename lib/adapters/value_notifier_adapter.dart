@@ -2,19 +2,22 @@ import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
 
-// TODO: maybe add a `transformer` (TBD) function as an optional (named?) param to modify the value.
+// TODO: maybe add a `transformer` (TBD) function as an optional named param to modify the value.
 
 /// Drives an [Animate] animation from a [ValueNotifier]. The value from the
 /// notifier should be in the range `0-1`.
-/// The [Duration] parameter allows to enable or disable the animation, or update the Animation Duration:
-/// - set a `null` [Duration] (or leave it empty) to animate and preserve Animation parameters (default behavior) ;
-/// - set a zero [Duration] (short with `0.ms`) to disable the Animation ;
-/// - set a new [Duration] to update the Animation duration.
 @immutable
 class ValueNotifierAdapter extends Adapter {
   ValueNotifierAdapter(this.notifier, {this.duration});
 
   final ValueNotifier<double> notifier;
+
+  // currently duplicated here and in ChangeNotifierAdapter:
+  /// Controls how the adapter animates to a new value:
+  ///
+  /// - `null` (default) will calculate the duration automatically based on the value change and the total animation duration
+  /// - [Duration.zero] (or `0.ms`) will skip animation, jumping directly to the new value
+  /// - set a animation duration that will be used for all changes
   final Duration? duration;
 
   @override
