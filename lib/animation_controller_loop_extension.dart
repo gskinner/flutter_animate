@@ -1,32 +1,25 @@
 import 'package:flutter/widgets.dart';
 
-/// Adds a [loop] extension on an AnimationController to allow looping the animation a defined number of times.
-/// This extension mirrors the [repeat] method on AnimationController, and stops the animation when
-/// the number of loops set by `count` parameter is reached.
-/// If no `count` is provided, the animation loops infinitely (as [repeat]).
-/// If a `count` is provided, it should be >= 0
+/// Adds a [loop] extension on [AnimationController] identical to [repeat] but
+/// adding a `count` parameter specifying how many times to repeat before stopping:
 ///
-/// More details on the `count` behavior (when `count` is not null and greater than zero):
-///   - the total duration of the animation will respect: `count` * `period` (or `count` * `duration` if no `period` was provided)
-///   - if the `reverse` parameter is turned off (`reverse` == `false`), the animation will end at the end of the animation, on the `max` bound
-///   - if the `reverse` parameter is turned on (`reverse` == `true`), then:
-///     - if `count` is odd: animation will stop at the end of the animation, on the `max` bound
-///     - if `count` is even: animation will stop at the begin of the animation, on the `min` bound
+///   - `count = null`: the animation loops infinitely
+///   - `count = 0`: the animation won't play
+///   - `count > 0`: the animation will play `count` times
 ///
-/// Let's see the following example:
+/// The total time will always be `count * duration` (or `count * period` if specified).
+/// Therefore, if `reverse` is true, one "count" is still considered animating in a single direction.
+///
+/// For example, the following would play forward (fade in) and back (fade out) once, then stop:
+///
 /// ```
-///   const Text('Hello World')
-///         .animate(
-///           onPlay: (controller) => controller.loop(
-///             reverse: true,
-///             count: 2,
-///           ),
-///         )
-///         .fadeIn();
+/// Text('Hello World').animate(
+///   onPlay: (controller) => controller.loop(
+///     reverse: true,
+///     count: 2,
+///   ),
+/// ).fadeIn();
 /// ```
-/// Here `reverse` is set to `true`, and `count` is `2`. So the text will fadeIn and then fadeOut (= reverse effect).
-///
-///
 extension AnimationControllerLoopExtension on AnimationController {
   TickerFuture loop({
     int? count,
@@ -36,10 +29,13 @@ extension AnimationControllerLoopExtension on AnimationController {
     Duration? period,
   }) {
     assert(count == null || count >= 0);
+    assert(period != null || duration != null);
 
     min ??= lowerBound;
     max ??= upperBound;
     period ??= duration;
+
+    if (count == 0) return animateTo(min, duration: Duration.zero);
 
     final tickerFuture = repeat(
       min: min,
@@ -48,11 +44,11 @@ extension AnimationControllerLoopExtension on AnimationController {
       period: period,
     );
 
-    // if a `count` parameter is provided, stop the animation after the animation loops this `count` times.
-    // else, loop infinitely
     if (count != null) {
-      tickerFuture.timeout(period! * count, onTimeout: () async {
-        (reverse && count.isEven) ? animateTo(min!) : animateTo(max!);
+      // timeout ~1 tick before it should complete (@120hz):
+      int t = period!.inMilliseconds * count - 8;
+      tickerFuture.timeout(Duration(milliseconds: t), onTimeout: () async {
+        animateTo(reverse && count.isEven ? min! : max!);
       });
     }
 

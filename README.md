@@ -30,6 +30,13 @@ This package includes extension methods for `num`, to make specifying durations
 easier. For example: `2.seconds`, `0.1.minutes`, or `300.ms`.
 
 
+AnimatedController extensions
+----------------------------------------
+
+It also adds a `loop` extension for `AnimatedController` which is identical to
+`repeat`, but adds a `count` parameter to specifiy how many times to play.
+
+
 Basics
 ================================================================================
 
