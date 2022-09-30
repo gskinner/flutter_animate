@@ -27,14 +27,14 @@ import '../flutter_animate.dart';
 @immutable
 class ScrollAdapter extends ChangeNotifierAdapter {
   ScrollAdapter(ScrollController scrollController,
-      {this.begin, this.end, Duration? duration})
+      {this.begin, this.end, bool? animated})
       : super(scrollController, () {
           ScrollPosition pos = scrollController.position;
           double min = pos.minScrollExtent, max = pos.maxScrollExtent;
           double minPx = _getPx(begin, min, max, min);
           double maxPx = _getPx(end, min, max, max);
           return (pos.pixels - minPx) / (maxPx - minPx);
-        }, duration: duration);
+        }, animated: animated);
 
   final double? begin;
   final double? end;
