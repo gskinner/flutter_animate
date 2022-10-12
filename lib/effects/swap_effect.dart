@@ -28,7 +28,7 @@ import '../flutter_animate.dart';
 /// foo.animate()
 ///   .fadeOut(duration: 500.ms)
 ///   .swap( // inherits duration from fadeOut
-///     builder: (_, originalChild) => originalChild.animate().fadeIn(),
+///     builder: (_, originalChild) => originalChild!.animate().fadeIn(),
 ///   )
 /// ```
 ///
