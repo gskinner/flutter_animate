@@ -5,16 +5,15 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../tester_extensions.dart';
 
 void main() {
-  testWidgets('swap Logo for a ColoredBox', (tester) async {
+  testWidgets('swap Logo for a Placeholder', (tester) async {
     final anim = const FlutterLogo().animate().fadeOut(duration: 500.ms).swap(
-          // inherits duration from fadeOut
-          builder: (_, __) => const ColoredBox(color: Colors.red).animate().fadeIn(),
+          builder: (_, __) => const Placeholder().animate().fadeIn(),
         );
     await tester.pumpAnimation(anim);
     expect(find.byType(FlutterLogo), findsOneWidget);
     await tester.pump(500.ms);
     await tester.pump(0.ms); // clear out the callback
-    expect(find.byType(ColoredBox), findsOneWidget);
+    expect(find.byType(Placeholder), findsOneWidget);
   });
 
   testWidgets('Fade a logo out and back in using swap()', (tester) async {
