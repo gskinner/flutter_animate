@@ -11,7 +11,7 @@ void main() {
     final animation = const FlutterLogo()
         .animate()
         .fadeIn(duration: 1.seconds)
-        // Register a callback halfway, that will look for FadeTransition @ .5
+        // Register a callback halfway,
         .callback(duration: .5.seconds, callback: (_) => callbackCount++)
         // Register another callback at the end
         .callback(duration: 1.seconds, callback: (_) => callbackCount++);

@@ -12,9 +12,7 @@ void main() {
     // Check halfway,
     expect(
       tester.widget(find.byType(ImageFiltered).last),
-      isA<ImageFiltered>().having((ft) {
-        return (ft.imageFilter as dynamic).sigmaX;
-      }, 'sigmaX', blurAmt / 2),
+      isA<ImageFiltered>().having((ft) => (ft.imageFilter as dynamic).sigmaX, 'sigmaX', blurAmt / 2),
     );
     expect(
       tester.widget(find.byType(ImageFiltered).last),
