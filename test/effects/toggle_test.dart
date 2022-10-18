@@ -13,9 +13,9 @@ void main() {
         });
     // After 500ms opacity should still be 0
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    tester.expectWidgetValue<Opacity>((w) => w.opacity, 0, 'opacity');
+    tester.expectWidgetWithDouble<Opacity>((w) => w.opacity, 0, 'opacity');
     // After another 500ms opacity should be 1
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    tester.expectWidgetValue<Opacity>((w) => w.opacity, 1, 'opacity');
+    tester.expectWidgetWithDouble<Opacity>((w) => w.opacity, 1, 'opacity');
   });
 }

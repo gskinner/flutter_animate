@@ -9,6 +9,6 @@ void main() {
     final animation = const FlutterLogo().animate().scale(duration: 1.seconds);
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     // Check halfway,
-    tester.expectWidgetValue<ScaleTransition>((w) => w.scale.value, .5, 'scale');
+    tester.expectWidgetWithDouble<ScaleTransition>((w) => w.scale.value, .5, 'scale');
   });
 }

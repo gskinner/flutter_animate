@@ -13,10 +13,19 @@ extension TesterExtensions on WidgetTester {
     }
   }
 
-  /// Wraps the built-in `expect(..., ...)` call to make tests more terse.
-  void expectWidgetValue<T>(double Function(T w) getValue, double expectedValue, String debugTitle) {
+  /// Wraps the built-in `expect(..., ...)` call to make tests more
+  expectWidgetWithDouble<T>(double Function(T w) getValue, double expectedValue, String debugTitle,
+      {bool findFirst = false}) {
     expect(
-      widget(find.byType(T).last),
+      widget(findFirst ? find.byType(T).first : find.byType(T).last),
+      isA<T>().having((t) => getValue(t), debugTitle, expectedValue),
+    );
+  }
+
+  expectWidgetWithBool<T>(bool Function(T w) getValue, bool expectedValue, String debugTitle,
+      {bool findFirst = false}) {
+    expect(
+      widget(findFirst ? find.byType(T).first : find.byType(T).last),
       isA<T>().having((t) => getValue(t), debugTitle, expectedValue),
     );
   }

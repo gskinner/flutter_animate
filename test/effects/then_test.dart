@@ -9,11 +9,11 @@ void main() {
     final animation = const FlutterLogo().animate().fadeIn(duration: 1.seconds).then().scale();
     // Wait 500ms, check that opacity has started, but scale has not
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    tester.expectWidgetValue<FadeTransition>((w) => w.opacity.value, .5, 'opacity');
-    tester.expectWidgetValue<ScaleTransition>((w) => w.scale.value, 0, 'scale');
+    tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, .5, 'opacity');
+    tester.expectWidgetWithDouble<ScaleTransition>((w) => w.scale.value, 0, 'scale');
 
     // Wait another 1s and check that scale is now halfway
     await tester.pumpAnimation(animation, initialDelay: 1.seconds);
-    tester.expectWidgetValue<ScaleTransition>((w) => w.scale.value, .5, 'scale');
+    tester.expectWidgetWithDouble<ScaleTransition>((w) => w.scale.value, .5, 'scale');
   });
 }

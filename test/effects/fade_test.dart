@@ -9,7 +9,7 @@ void main() {
     final animation = const FlutterLogo().animate().fade(duration: 1.seconds);
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     // check halfway
-    tester.expectWidgetValue<FadeTransition>((ft) {
+    tester.expectWidgetWithDouble<FadeTransition>((ft) {
       return ft.opacity.value;
     }, .5, 'opacity');
   });

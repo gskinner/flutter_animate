@@ -13,7 +13,7 @@ void main() {
         );
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     // check halfway
-    tester.expectWidgetValue<Transform>((w) => w.transform.getTranslation().x, 50, 'x translation');
-    tester.expectWidgetValue<Transform>((w) => w.transform.getTranslation().y, 25, 'y translation');
+    tester.expectWidgetWithDouble<Transform>((w) => w.transform.getTranslation().x, 50, 'x translation');
+    tester.expectWidgetWithDouble<Transform>((w) => w.transform.getTranslation().y, 25, 'y translation');
   });
 }
