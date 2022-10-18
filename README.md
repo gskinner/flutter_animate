@@ -92,9 +92,9 @@ Text("Hello World!").animate()
   .blur(end: 8.0) // inherits the delay & duration from move
 ```
 
-`Animate` also has its own `delay` parameter, which happens before the animation
-runs. Unlike the delay on an `Effect`, it is only applied once if the animation
-repeats.
+`Animate` has its own `delay` parameter, which defines a delay before the
+animation begins playing. Unlike the delay on an `Effect`, it is only applied
+once if the animation repeats.
 
 ``` dart
 Text("Hello").animate(

@@ -134,7 +134,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// ```
   final AnimateCallback? onPlay;
 
-  /// A duration to delay before the animation is started. Unlike [Effect.delay],
+  /// Defines a delay before the animation is started. Unlike [Effect.delay],
   /// this is not a part of the overall animation, and only runs once if the
   /// animation is looped. [onPlay] is called after this delay.
   final Duration delay;
