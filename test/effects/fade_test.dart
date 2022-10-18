@@ -7,8 +7,8 @@ import '../tester_extensions.dart';
 void main() {
   testWidgets('basic fade', (tester) async {
     final animation = const FlutterLogo().animate().fade(duration: 1.seconds);
-    await tester.pumpAnimation(animation, initialDelay: 500.ms);
     // check halfway
+    await tester.pumpAnimation(animation, initialDelay: 500.ms);
     tester.expectWidgetWithDouble<FadeTransition>((ft) {
       return ft.opacity.value;
     }, .5, 'opacity');

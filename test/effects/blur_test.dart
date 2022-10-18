@@ -8,8 +8,8 @@ void main() {
   testWidgets('basic blur', (tester) async {
     const double blurAmt = 10;
     final animation = const FlutterLogo().animate().blur(begin: 0, end: blurAmt, duration: 1.seconds);
-    await tester.pumpAnimation(animation, initialDelay: 500.ms);
     // Check halfway,
+    await tester.pumpAnimation(animation, initialDelay: 500.ms);
     expect(
       tester.widget(find.byType(ImageFiltered).last),
       isA<ImageFiltered>().having((ft) => (ft.imageFilter as dynamic).sigmaX, 'sigmaX', blurAmt / 2),

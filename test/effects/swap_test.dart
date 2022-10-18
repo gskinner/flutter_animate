@@ -10,27 +10,28 @@ void main() {
           builder: (_, __) => const Placeholder().animate().fadeIn(),
         );
     await tester.pumpAnimation(anim);
-    // Expect one FlutterLogo, no Placeholder
+    // Initially, expect one FlutterLogo, no Placeholder
     expect(find.byType(FlutterLogo), findsOneWidget);
     expect(find.byType(Placeholder), findsNothing);
+    // At the end, expect one Placeholder, no FlutterLogo
     await tester.pump(500.ms);
     await tester.pump(0.ms); // clear out the callback
-    // Expect one Placeholder, no FlutterLogo
     expect(find.byType(Placeholder), findsOneWidget);
     expect(find.byType(FlutterLogo), findsNothing);
   });
 
   testWidgets('Fade a logo out and back in using swap()', (tester) async {
     final anim = const FlutterLogo().animate().fadeOut(duration: 500.ms).swap(
-          builder: (_, originalChild) => originalChild!.animate().fadeIn(),
+          builder: (_, originalChild) => originalChild!.animate().fadeIn(duration: 500.ms),
         );
     await tester.pumpAnimation(anim);
-    // Fade out
+    // Initially, faded in
     tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, 1, 'opacity');
+    // halfway, check fadeOut
     await tester.pump(500.ms);
     await tester.pump(0.ms);
     tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, 0, 'opacity');
-    // Fade back in
+    // end, check fadeIn
     await tester.pump(500.ms);
     await tester.pump(0.ms);
     tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, 1, 'opacity');

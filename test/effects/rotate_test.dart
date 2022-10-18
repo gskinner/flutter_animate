@@ -10,8 +10,8 @@ void main() {
           duration: 1.seconds,
           end: 2,
         );
-    await tester.pumpAnimation(animation, initialDelay: 500.ms);
     // check halfway
+    await tester.pumpAnimation(animation, initialDelay: 500.ms);
     tester.expectWidgetWithDouble<RotationTransition>((w) => w.turns.value, 1, 'turns');
   });
 }

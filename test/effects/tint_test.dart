@@ -12,6 +12,7 @@ void main() {
           begin: 0,
           end: 1,
         );
+    // Check halfway
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     // create a colorFilter and compare to the one in the widget tree, they should equal
     var filter = ColorFilter.matrix(TintEffect.getTintMatrix(.5, Colors.blue));

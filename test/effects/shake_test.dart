@@ -9,6 +9,7 @@ import '../tester_extensions.dart';
 void main() {
   // SB: Not sure how much sense it makes to test these more specific "stylized" tween variations.
   // Seems like they quickly become harder to test than the core ones, and will break more frequently as small style tweaks are made.
+  // This is not an exhaustive test, it only tests a single position in the effect.
   testWidgets('basic shake', (tester) async {
     final animation = const FlutterLogo().animate().shake(
           duration: 1.seconds,
@@ -16,6 +17,7 @@ void main() {
           rotation: pi / 36,
           offset: const Offset(10, 10),
         );
+    // check 1/8 of the way
     await tester.pumpAnimation(animation, initialDelay: (1 / 8).seconds);
     // check translation
     var matrix = Transform.translate(offset: const Offset(10, 10)).transform;
