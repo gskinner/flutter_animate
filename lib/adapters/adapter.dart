@@ -17,7 +17,7 @@ class Adapter {
 
   void init(AnimationController controller) {}
 
-  /// Indicates whether the adapter should animate to a new value. If `false`, it
+  /// Indicates whether the adapter should animate to new values. If `false`, it
   /// will jump to the new value, if `true` it will animate to the value using a
   /// duration calculated from the animation's total duration and the value change.
   /// Defaults to `false`.

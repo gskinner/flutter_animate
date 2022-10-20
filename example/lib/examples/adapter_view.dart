@@ -53,7 +53,7 @@ class AdapterView extends StatelessWidget {
     List<Widget> items = [
       const Text(
         'Scroll driven animation',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
       )
     ];
     for (int i = 0; i < 100; i++) {

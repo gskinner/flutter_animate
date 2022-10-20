@@ -22,7 +22,6 @@ class EverythingView extends StatelessWidget {
           tile('blurX', a.blurX()),
           tile('blurY', a.blurY()),
           tile('blurXY', a.blurXY()),
-          tile('unblur', a.unblur()),
 
           // callback?
 
