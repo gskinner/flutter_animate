@@ -19,7 +19,8 @@ class SlideEffect extends Effect<Offset> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? const Offset(0, -_defaultSlide),
+          begin: begin ??
+              (end == null ? const Offset(0, -_defaultSlide) : Offset.zero),
           end: end ?? Offset.zero,
         );
 
@@ -38,7 +39,7 @@ class SlideEffect extends Effect<Offset> {
 }
 
 extension SlideEffectExtensions<T> on AnimateManager<T> {
-  /// Adds a `.slide()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [slide] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T slide({
     Duration? delay,
     Duration? duration,
@@ -54,7 +55,7 @@ extension SlideEffectExtensions<T> on AnimateManager<T> {
         end: end,
       ));
 
-  /// Adds a `.slideX()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [slideX] extension to [AnimateManager] ([Animate] and [AnimateList]).
   /// This slides only on the x-axis according to the `double` begin/end values.
   T slideX({
     Duration? delay,
@@ -67,11 +68,11 @@ extension SlideEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
-        begin: Offset(begin ?? -_defaultSlide, 0),
+        begin: Offset(begin ?? (end == null ? -_defaultSlide : 0), 0),
         end: Offset(end ?? 0, 0),
       ));
 
-  /// Adds a `.slideY()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [slideY] extension to [AnimateManager] ([Animate] and [AnimateList]).
   /// This slides only on the y-axis according to the `double` begin/end values.
   T slideY({
     Duration? delay,
@@ -84,7 +85,7 @@ extension SlideEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
-        begin: Offset(0, begin ?? -_defaultSlide),
+        begin: Offset(0, begin ?? (end == null ? -_defaultSlide : 0)),
         end: Offset(0, end ?? 0),
       ));
 

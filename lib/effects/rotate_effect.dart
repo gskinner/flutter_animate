@@ -23,7 +23,7 @@ class RotateEffect extends Effect<double> {
           duration: duration,
           curve: curve,
           begin: begin ?? 0,
-          end: end ?? 1,
+          end: end ?? (begin == null ? 1 : 0),
         );
 
   final Alignment? alignment;
@@ -45,7 +45,7 @@ class RotateEffect extends Effect<double> {
 }
 
 extension RotateEffectExtensions<T> on AnimateManager<T> {
-  /// Adds a `.rotate()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [rotate] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T rotate({
     Duration? delay,
     Duration? duration,

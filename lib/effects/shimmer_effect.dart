@@ -84,7 +84,7 @@ class ShimmerEffect extends Effect<double> {
 }
 
 extension ShimmerEffectExtensions<T> on AnimateManager<T> {
-  /// Adds a `.shimmer()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [shimmer] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T shimmer({
     Duration? delay,
     Duration? duration,

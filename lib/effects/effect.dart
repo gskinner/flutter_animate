@@ -109,7 +109,7 @@ class Effect<T> {
 }
 
 extension EffectExtensions<T> on AnimateManager<T> {
-  /// Adds an `.effect()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds an [effect] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T effect({
     Duration? delay,
     Duration? duration,

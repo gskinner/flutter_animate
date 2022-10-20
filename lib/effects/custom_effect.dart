@@ -25,7 +25,7 @@ class CustomEffect extends Effect<double> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? 0.0,
+          begin: begin ?? 0.0, // Should this use "smart" defaults?
           end: end ?? 1.0,
         );
 
@@ -47,7 +47,7 @@ class CustomEffect extends Effect<double> {
 }
 
 extension CustomEffectExtensions<T> on AnimateManager<T> {
-  /// Adds a `.custom()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [custom] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T custom({
     required CustomEffectBuilder builder,
     Duration? delay,

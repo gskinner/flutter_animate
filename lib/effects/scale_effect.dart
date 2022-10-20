@@ -17,7 +17,7 @@ class ScaleEffect extends Effect<Offset> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? Offset.zero,
+          begin: begin ?? (end == null ? Offset.zero : const Offset(1.0, 1.0)),
           end: end ?? const Offset(1.0, 1.0),
         );
 
@@ -69,16 +69,16 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    double begin = 0,
-    double end = 1,
+    double? begin,
+    double? end,
     Alignment? alignment,
   }) =>
       addEffect(ScaleEffect(
         delay: delay,
         duration: duration,
         curve: curve,
-        begin: Offset(begin, 1),
-        end: Offset(end, 1),
+        begin: Offset(begin ?? (end == null ? 0 : 1), 1),
+        end: Offset(end ?? 1, 1),
         alignment: alignment,
       ));
 
@@ -88,16 +88,16 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    double begin = 0,
-    double end = 1,
+    double? begin,
+    double? end,
     Alignment? alignment,
   }) =>
       addEffect(ScaleEffect(
         delay: delay,
         duration: duration,
         curve: curve,
-        begin: Offset(1, begin),
-        end: Offset(1, end),
+        begin: Offset(1, begin ?? (end == null ? 0 : 1)),
+        end: Offset(1, end ?? 1),
         alignment: alignment,
       ));
 
@@ -107,16 +107,19 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    double begin = 0,
-    double end = 1,
+    double? begin,
+    double? end,
     Alignment? alignment,
-  }) =>
-      addEffect(ScaleEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: Offset(begin, begin),
-        end: Offset(end, end),
-        alignment: alignment,
-      ));
+  }) {
+    begin ??= (end == null ? 0 : 1);
+    end ??= 1;
+    return addEffect(ScaleEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: Offset(begin, begin),
+      end: Offset(end, end),
+      alignment: alignment,
+    ));
+  }
 }

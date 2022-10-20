@@ -18,7 +18,8 @@ class MoveEffect extends Effect<Offset> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? const Offset(0, -_defaultMove),
+          begin: begin ??
+              (end == null ? const Offset(0, -_defaultMove) : Offset.zero),
           end: end ?? Offset.zero,
         );
 
@@ -40,7 +41,7 @@ class MoveEffect extends Effect<Offset> {
 }
 
 extension MoveEffectExtensions<T> on AnimateManager<T> {
-  /// Adds a `.move()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [move] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T move({
     Duration? delay,
     Duration? duration,
@@ -56,7 +57,7 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
         end: end,
       ));
 
-  /// Adds a `.moveX()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [moveX] extension to [AnimateManager] ([Animate] and [AnimateList]).
   /// This moves only on the x-axis according to the `double` begin/end values.
   T moveX({
     Duration? delay,
@@ -69,11 +70,11 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
-        begin: Offset(begin ?? -_defaultMove, 0),
+        begin: Offset(begin ?? (end == null ? -_defaultMove : 0), 0),
         end: Offset(end ?? 0, 0),
       ));
 
-  /// Adds a `.moveY()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [moveY] extension to [AnimateManager] ([Animate] and [AnimateList]).
   /// This moves only on the y-axis according to the `double` begin/end values.
   T moveY({
     Duration? delay,
@@ -86,7 +87,7 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
-        begin: Offset(0, begin ?? -_defaultMove),
+        begin: Offset(0, begin ?? (end == null ? -_defaultMove : 0)),
         end: Offset(0, end ?? 0),
       ));
 

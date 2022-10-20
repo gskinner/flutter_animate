@@ -5,19 +5,22 @@ import 'package:flutter/widgets.dart';
 import '../flutter_animate.dart';
 
 /// Effect that creates a 2.5D card flip rotation effect (via a matrix [Transform]).
-/// The effect can be horizontal or vertical. The begin/end values represent the
-/// number of "flips" (ie. half turns, 180deg or Pi radians) from nominal. For example,
-/// `0.5` would be a 90 degree rotation (half a "flip").
+/// The effect can be horizontal or vertical.
+/// 
+/// The [begin] / [end] values represent the number of "flips" (ie. half turns, 
+/// 180deg or Pi radians) from nominal. For example, `0.5` would be a 90 degree 
+/// rotation (half a "flip").
 ///
 /// [alignment] lets you set the origin of the rotation (ie. the point around which the rotation
 /// will occur). For example an alignment of [Alignment.topCenter] would rotate around the top
-/// of the child on a vertical flip.
+/// of the child on a vertical flip. Default is [Alignment.center].
 ///
 /// [perspective] lets you adjust the focal length for the 2.5D effect. A higher number
-/// increases perspective transform (ie. reduces focal length).
+/// increases perspective transform (ie. reduces focal length). Default is `1`.
 ///
 /// [direction] indicates the direction of the flip. For example [Axis.horizontal]
 /// would cause it to rotate around the Y axis — flipping horizontally.
+/// Default is [Axis.vertical].
 @immutable
 class FlipEffect extends Effect<double> {
   const FlipEffect({
@@ -36,8 +39,8 @@ class FlipEffect extends Effect<double> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? 0.5,
-          end: end ?? 0,
+          begin: begin ?? (end == null ? 0.5 : 0.0),
+          end: end ?? 0.0,
         );
 
   final Alignment alignment;

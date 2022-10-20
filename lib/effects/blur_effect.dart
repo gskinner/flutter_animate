@@ -18,7 +18,10 @@ class BlurEffect extends Effect<Offset> {
           duration: duration,
           curve: curve,
           begin: begin ?? Offset.zero,
-          end: end ?? const Offset(_defaultBlur, _defaultBlur),
+          end: end ??
+              (begin == null
+                  ? const Offset(_defaultBlur, _defaultBlur)
+                  : Offset.zero),
         );
 
   @override
@@ -34,8 +37,8 @@ class BlurEffect extends Effect<Offset> {
       builder: (_, __) {
         double sigmaX = _normalizeSigma(animation.value.dx);
         double sigmaY = _normalizeSigma(animation.value.dy);
-        if (sigmaX == 0 && sigmaY == 0) return child;
         return ImageFiltered(
+          enabled: sigmaX != 0 || sigmaY != 0,
           imageFilter: ImageFilter.blur(
             sigmaX: sigmaX,
             sigmaY: sigmaY,
@@ -75,15 +78,15 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    double begin = 0,
-    double end = _defaultBlur,
+    double? begin,
+    double? end,
   }) =>
       addEffect(BlurEffect(
         delay: delay,
         duration: duration,
         curve: curve,
-        begin: Offset(begin, 0),
-        end: Offset(end, 0),
+        begin: Offset(begin ?? 0, 0),
+        end: Offset(end ?? (begin == null ? _defaultBlur : 0), 0),
       ));
 
   /// Adds a [blurY] extension to [AnimateManager] ([Animate] and [AnimateList]).
@@ -92,15 +95,15 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    double begin = 0,
-    double end = _defaultBlur,
+    double? begin,
+    double? end,
   }) =>
       addEffect(BlurEffect(
         delay: delay,
         duration: duration,
         curve: curve,
-        begin: Offset(0, begin),
-        end: Offset(0, end),
+        begin: Offset(0, begin ?? 0),
+        end: Offset(0, end ?? (begin == null ? _defaultBlur : 0)),
       ));
 
   /// Adds a [blurXY] extension to [AnimateManager] ([Animate] and [AnimateList]).
@@ -109,33 +112,20 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    double begin = 0,
-    double end = _defaultBlur,
-  }) =>
-      addEffect(BlurEffect(
+    double? begin,
+    double? end,
+  }) {
+      end ??= (begin == null ? _defaultBlur : 0);
+      begin ??= 0; 
+      return addEffect(BlurEffect(
         delay: delay,
         duration: duration,
         curve: curve,
         begin: Offset(begin, begin),
         end: Offset(end, end),
       ));
+  }
 
-  /// Adds an [unblur] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This is identical to the [blurXY] extension, except it defaults to `begin=4, end=0`.
-  T unblur({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
-    double begin = _defaultBlur,
-    double end = 0,
-  }) =>
-      addEffect(BlurEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: Offset(begin, begin),
-        end: Offset(end, end),
-      ));
 }
 
 const double _defaultBlur = 4;

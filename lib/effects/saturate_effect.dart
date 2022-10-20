@@ -24,7 +24,7 @@ class SaturateEffect extends Effect<double> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? 0,
+          begin: begin ?? (end == null ? 0 : 1),
           end: end ?? 1,
         );
 
@@ -64,7 +64,7 @@ class SaturateEffect extends Effect<double> {
 }
 
 extension SaturateEffectExtensions<T> on AnimateManager<T> {
-  /// Adds a `.saturate()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [saturate] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T saturate({
     Duration? delay,
     Duration? duration,
@@ -80,8 +80,8 @@ extension SaturateEffectExtensions<T> on AnimateManager<T> {
         end: end,
       ));
 
-  /// Adds a `.desaturate()` extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This is identical to the `.saturate()` extension, except it defaults to `begin=1, end=0`.
+  /// Adds a [desaturate] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// This is identical to the [saturate] extension, except it defaults to `begin=1, end=0`.
   T desaturate({
     Duration? delay,
     Duration? duration,
@@ -93,7 +93,7 @@ extension SaturateEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
-        begin: begin ?? 1.0,
-        end: end ?? 0.0,
+        begin: begin ?? 1,
+        end: end ?? 0,
       ));
 }
