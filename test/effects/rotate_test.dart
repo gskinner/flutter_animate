@@ -5,6 +5,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../tester_extensions.dart';
 
 void main() {
+  // TODO: Test alignment
+
   testWidgets('basic rotation', (tester) async {
     final animation = const FlutterLogo().animate().rotate(
           duration: 1.seconds,

@@ -7,23 +7,25 @@ import 'tester_extensions.dart';
 void main() {
   testWidgets('curved tween w/ 1000s duration', (tester) async {
     const curve = Curves.easeOut;
-    final animation = const FlutterLogo().animate().fade(duration: 1000.ms, curve: curve);
+    final animation = const FlutterLogo().animate().fade(begin: .25, end: .75, duration: 1000.ms, curve: curve);
     // wait 500ms and check middle pos
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, curve.transform(.5), 'opacity');
+    double expectedValue = .25 + curve.transform(.5) * .5;
+    tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, expectedValue, 'opacity');
     // wait another 50ms and check end pos
     await tester.pump(500.ms);
-    tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, curve.transform(1), 'opacity');
+    expectedValue = .25 + curve.transform(1) * .5;
+    tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, expectedValue, 'opacity');
   });
 
   testWidgets('linear tween w/ 500ms duration', (tester) async {
-    final animation = const FlutterLogo().animate().fade(duration: 500.ms);
+    final animation = const FlutterLogo().animate().fade(begin: .25, end: .75, duration: 500.ms);
     await tester.pumpAnimation(animation, initialDelay: 250.ms);
     // check halfway
     tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, .5, 'opacity');
     // check end
     await tester.pump(250.ms);
-    tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, 1, 'opacity');
+    tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, .75, 'opacity');
   });
 
   testWidgets('delayed tween', (tester) async {
