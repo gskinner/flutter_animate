@@ -17,7 +17,8 @@ import '../flutter_animate.dart';
 /// ```
 @immutable
 class ValueAdapter extends ValueNotifierAdapter {
-  ValueAdapter([double value = 0]) : super(ValueNotifier<double>(value));
+  ValueAdapter(double value, {bool? animated})
+      : super(ValueNotifier<double>(value), animated: animated);
 
   set value(double value) => notifier.value = value;
 }

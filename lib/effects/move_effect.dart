@@ -2,10 +2,10 @@ import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
 
-// TODO: possibly add transformHitTest as a param?
-
 /// Effect that moves the target (via [Transform.translate]) between the specified begin and end offsets.
 /// Defaults to `begin=Offset(0, -16), end=Offset.zero`.
+///
+/// To specify offsets relative to the target's size, use [SlideEffect].
 @immutable
 class MoveEffect extends Effect<Offset> {
   const MoveEffect({
@@ -18,7 +18,8 @@ class MoveEffect extends Effect<Offset> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? const Offset(0, -16),
+          begin: begin ??
+              (end == null ? const Offset(0, -_defaultMove) : Offset.zero),
           end: end ?? Offset.zero,
         );
 
@@ -40,7 +41,7 @@ class MoveEffect extends Effect<Offset> {
 }
 
 extension MoveEffectExtensions<T> on AnimateManager<T> {
-  /// Adds a `.move()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [move] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T move({
     Duration? delay,
     Duration? duration,
@@ -55,4 +56,42 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
         begin: begin,
         end: end,
       ));
+
+  /// Adds a [moveX] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// This moves only on the x-axis according to the `double` begin/end values.
+  T moveX({
+    Duration? delay,
+    Duration? duration,
+    Curve? curve,
+    double? begin,
+    double? end,
+  }) =>
+      addEffect(MoveEffect(
+        delay: delay,
+        duration: duration,
+        curve: curve,
+        begin: Offset(begin ?? (end == null ? -_defaultMove : 0), 0),
+        end: Offset(end ?? 0, 0),
+      ));
+
+  /// Adds a [moveY] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// This moves only on the y-axis according to the `double` begin/end values.
+  T moveY({
+    Duration? delay,
+    Duration? duration,
+    Curve? curve,
+    double? begin,
+    double? end,
+  }) =>
+      addEffect(MoveEffect(
+        delay: delay,
+        duration: duration,
+        curve: curve,
+        begin: Offset(0, begin ?? (end == null ? -_defaultMove : 0)),
+        end: Offset(0, end ?? 0),
+      ));
+
+  // Note: there is no moveXY because diagonal movement isn't a significant use case.
 }
+
+const double _defaultMove = 16;

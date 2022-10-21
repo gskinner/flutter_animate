@@ -41,7 +41,7 @@ class ThenEffect extends Effect<double> {
 }
 
 extension ThenEffectExtensions<T> on AnimateManager<T> {
-  /// Adds a `.then()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [then] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T then({Duration? delay, Duration? duration, Curve? curve}) =>
       addEffect(ThenEffect(delay: delay, duration: duration, curve: curve));
 }

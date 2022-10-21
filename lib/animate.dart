@@ -1,8 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'flutter_animate.dart';
 
-// TODO: do a full pass on widget lifecycle support. Possibly params to reset on change?
-
 /// The Flutter Animate library makes adding beautiful animated effects to your widgets
 /// simple. It supports both a declarative and chained API. The latter is exposed
 /// via the `Widget.animate` extension, which simply wraps the widget in `Animate`.
@@ -136,7 +134,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// ```
   final AnimateCallback? onPlay;
 
-  /// A duration to delay before the animation is started. Unlike [Effect.delay],
+  /// Defines a delay before the animation is started. Unlike [Effect.delay],
   /// this is not a part of the overall animation, and only runs once if the
   /// animation is looped. [onPlay] is called after this delay.
   final Duration delay;

@@ -40,7 +40,7 @@ class ListenEffect extends Effect<double> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? 0.0,
+          begin: begin ?? 0.0, // Should this use "smart" defaults?
           end: end ?? 1.0,
         );
 
@@ -72,7 +72,7 @@ class ListenEffect extends Effect<double> {
 }
 
 extension ListenEffectExtensions<T> on AnimateManager<T> {
-  /// Adds a `.listen()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [listen] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T listen({
     Duration? delay,
     Duration? duration,

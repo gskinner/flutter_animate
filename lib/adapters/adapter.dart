@@ -13,5 +13,13 @@ import 'package:flutter/widgets.dart';
 /// Adapters should be immutable, so that they can be shared between animations.
 @immutable
 class Adapter {
+  const Adapter({bool? animated}) : animated = animated ?? false;
+
   void init(AnimationController controller) {}
+
+  /// Indicates whether the adapter should animate to new values. If `false`, it
+  /// will jump to the new value, if `true` it will animate to the value using a
+  /// duration calculated from the animation's total duration and the value change.
+  /// Defaults to `false`.
+  final bool animated;
 }

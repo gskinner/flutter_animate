@@ -1,8 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
-// TODO: catch issues with things like unbounded scrolling
-// TODO: simplify setting a begin/end based on position of items in scroll?
 
 /// Drives an [Animate] animation from a [ScrollController].
 ///
@@ -28,14 +26,15 @@ import '../flutter_animate.dart';
 /// ```
 @immutable
 class ScrollAdapter extends ChangeNotifierAdapter {
-  ScrollAdapter(ScrollController scrollController, {this.begin, this.end})
+  ScrollAdapter(ScrollController scrollController,
+      {this.begin, this.end, bool? animated})
       : super(scrollController, () {
           ScrollPosition pos = scrollController.position;
           double min = pos.minScrollExtent, max = pos.maxScrollExtent;
           double minPx = _getPx(begin, min, max, min);
           double maxPx = _getPx(end, min, max, max);
           return (pos.pixels - minPx) / (maxPx - minPx);
-        });
+        }, animated: animated);
 
   final double? begin;
   final double? end;

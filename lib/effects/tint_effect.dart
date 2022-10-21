@@ -29,7 +29,7 @@ class TintEffect extends Effect<double> {
           duration: duration,
           curve: curve,
           begin: begin ?? 0,
-          end: end ?? 1,
+          end: end ?? (begin == null ? 1 : 0),
         );
 
   final Color color;
@@ -68,7 +68,7 @@ class TintEffect extends Effect<double> {
 }
 
 extension TintEffectExtensions<T> on AnimateManager<T> {
-  /// Adds a `.tint()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [tint] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T tint({
     Duration? delay,
     Duration? duration,
@@ -86,8 +86,8 @@ extension TintEffectExtensions<T> on AnimateManager<T> {
         color: color,
       ));
 
-  /// Adds a `.untint()` extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This is identical to the `.tint()` extension, except it defaults to `begin=1, end=0`.
+  /// Adds a [untint] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// This is identical to the [tint] extension, except it defaults to `begin=1, end=0`.
   T untint({
     Duration? delay,
     Duration? duration,

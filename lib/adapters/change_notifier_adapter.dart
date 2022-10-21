@@ -6,7 +6,8 @@ import '../flutter_animate.dart';
 /// should provide a value in the range `0-1` when a change occurs.
 @immutable
 class ChangeNotifierAdapter extends Adapter {
-  ChangeNotifierAdapter(this.notifier, this.valueGetter);
+  const ChangeNotifierAdapter(this.notifier, this.valueGetter, {bool? animated})
+      : super(animated: animated);
 
   final ChangeNotifier notifier;
   final ValueGetter<double> valueGetter;
@@ -14,7 +15,10 @@ class ChangeNotifierAdapter extends Adapter {
   @override
   void init(AnimationController controller) {
     notifier.addListener(() {
-      controller.value = valueGetter();
+      controller.animateTo(
+        valueGetter(),
+        duration: animated ? null : Duration.zero,
+      );
     });
   }
 }

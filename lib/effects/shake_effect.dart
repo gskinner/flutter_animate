@@ -6,8 +6,9 @@ import '../flutter_animate.dart';
 
 /// Effect that shakes the target, using translation, rotation, or both.
 /// The `hz` parameter indicates approximately how many times to repeat the shake
-/// per second. Defaults to a 5 degree (`pi / 36`) shake, 12 times per second —
-/// equivalent to:
+/// per second.
+/// 
+/// Defaults to a 5 degree (`pi / 36`) shake, 12 times per second — equivalent to:
 ///
 /// ```
 /// Text("Hello").animate()
@@ -76,7 +77,7 @@ class ShakeEffect extends Effect<double> {
 }
 
 extension ShakeEffectExtensions<T> on AnimateManager<T> {
-  /// Adds a `.shake()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [shake] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T shake({
     Duration? delay,
     Duration? duration,
@@ -94,14 +95,14 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
         rotation: rotation,
       ));
 
-  /// Adds a `.shakeX()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [shakeX] extension to [AnimateManager] ([Animate] and [AnimateList]).
   /// This sets `rotation=0` and `offset=Offset(amount, 0)`.
   T shakeX({
     Duration? delay,
     Duration? duration,
     Curve? curve,
     int? hz,
-    double amount = _defaultAmount,
+    double amount = _defaultXY,
   }) =>
       addEffect(ShakeEffect(
         delay: delay,
@@ -112,14 +113,14 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
         rotation: 0,
       ));
 
-  /// Adds a `.shakeY()` extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [shakeY] extension to [AnimateManager] ([Animate] and [AnimateList]).
   /// This sets `rotation=0` and `offset=Offset(0, amount)`.
   T shakeY({
     Duration? delay,
     Duration? duration,
     Curve? curve,
     int? hz,
-    double amount = _defaultAmount,
+    double amount = _defaultXY,
   }) =>
       addEffect(ShakeEffect(
         delay: delay,
@@ -131,4 +132,4 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
       ));
 }
 
-const double _defaultAmount = 6;
+const double _defaultXY = 6;

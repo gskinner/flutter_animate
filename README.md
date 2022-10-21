@@ -6,7 +6,7 @@ Flutter Animate
 A performant library that makes it simple to add almost any kind of animated 
 effect in Flutter.
 
-1. Pre-built effects, like fade, scale, slide, blur, shake, shimmer, and color
+1. Pre-built effects, like fade, scale, slide, flip, blur, shake, shimmer, and color
    effects (saturation and tint)
 2. Easy custom effects and simplified animated builders
 3. Synchronize animations to scroll, notifiers, or anything
@@ -28,8 +28,15 @@ _Above: The included example app._
 Duration extensions
 ----------------------------------------
 
-This package includes extension methods for `num`, to make specifying durations
-easier. For example: `2.seconds`, `0.1.minutes`, or `300.ms`.
+Extension methods for `num`, to make specifying durations easier. For example:
+`2.seconds`, `0.1.minutes`, or `300.ms`.
+
+
+AnimatedController extensions
+----------------------------------------
+
+A `loop` extension method for `AnimatedController` which is identical to
+`repeat`, but adds a `count` parameter to specifiy how many times to play.
 
 
 Basics
@@ -84,18 +91,38 @@ Text("Hello World!").animate()
   .fadeIn() // uses `Animate.defaultDuration`
   .scale() // inherits duration from fadeIn
   .move(delay: 300.ms, duration: 600.ms) // runs after the above w/new duration
-  .blur(end: 8.0) // inherits the delay & duration from move
+  .blurXY() // inherits the delay & duration from move
 ```
 
-`Animate` also has its own `delay` parameter, which happens before the animation
-runs. Unlike the delay on an `Effect`, it is only applied once if the animation
-repeats.
+`Animate` has its own `delay` parameter, which defines a delay before the
+animation begins playing. Unlike the delay on an `Effect`, it is only applied
+once if the animation repeats.
 
 ``` dart
 Text("Hello").animate(
     delay: 1000.ms, // this delay only happens once at the very start
     onPlay: (controller) => controller.repeat(), // loop
   ).fadeIn(delay: 500.ms) // this delay happens at the start of each loop
+```
+
+Other Parameters
+----------------------------------------
+Most effects include `begin` and `end` parameters, which specify the start/end
+values. These are usually "smart" in the sense that if only one is specified
+then the other will default to a "neutral" value (ie. has no visual effect). If
+both are unspecified the effect should use visually pleasing defaults.
+
+``` dart
+Text("Hello").animate().fade() // begin=0, end=1
+Text("Hello").animate().fade(begin: 0.5) // end=1
+Text("Hello").animate().fade(end: 0.5) // begin=1
+```
+
+Many effects have additional parameters that influence their behavior. These
+should also use pleasant defaults if unspecified.
+
+``` dart
+Text('Hello').animate().tint(color: Colors.purple)
 ```
 
 Sequencing with ThenEffect
@@ -225,7 +252,7 @@ by toggling their values with a minimal delay:
 Animate().toggle(
   duration: 1.ms,
   builder: (_, value, __) => AnimatedContainer(
-    duration: 1.second,
+    duration: 1.seconds,
     color: value ? Colors.red : Colors.green,
   ),
 )

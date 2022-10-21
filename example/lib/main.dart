@@ -6,9 +6,6 @@ import 'examples/info_view.dart';
 import 'examples/test_view.dart';
 import 'examples/visual_view.dart';
 
-// TODO: Add additional examples, especially a proper UI example.
-// TODO: and a builder example. Maybe a countdown of some kind? Thermometer with counter?
-
 void main() {
   runApp(const MyApp());
 }

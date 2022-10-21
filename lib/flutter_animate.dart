@@ -9,6 +9,7 @@ export 'animate_list.dart';
 export 'adapters/adapters.dart';
 export 'effects/effects.dart';
 export 'num_duration_extensions.dart';
+export 'animation_controller_loop_extension.dart';
 
 /// Because [Effect] classes are immutable and may be reused between multiple
 /// [Animate] (or [AnimateList]) instances, an `EffectEntry` is created to store
