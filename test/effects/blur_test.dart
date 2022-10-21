@@ -7,7 +7,9 @@ import '../tester_extensions.dart';
 void main() {
   testWidgets('basic blur', (tester) async {
     const double blurAmt = 10;
-    final animation = const FlutterLogo().animate().blur(begin: 0, end: blurAmt, duration: 1.seconds);
+    final animation = const FlutterLogo()
+        .animate()
+        .blur(begin: Offset.zero, end: const Offset(blurAmt, blurAmt), duration: 1.seconds);
     // Check halfway,
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     expect(

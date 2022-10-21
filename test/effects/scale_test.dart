@@ -6,9 +6,14 @@ import '../tester_extensions.dart';
 
 void main() {
   testWidgets('basic scale', (tester) async {
-    final animation = const FlutterLogo().animate().scale(duration: 1.seconds);
+    final animation = const FlutterLogo().animate().scale(
+          duration: 1.seconds,
+          begin: Offset.zero,
+          end: const Offset(.5, 2),
+        );
     // Check halfway,
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    tester.expectWidgetWithDouble<ScaleTransition>((w) => w.scale.value, .5, 'scale');
+    tester.expectWidgetWithDouble<Transform>((w) => w.transform.getColumn(0)[0], .25, 'scaleX');
+    tester.expectWidgetWithDouble<Transform>((w) => w.transform.getColumn(1)[1], 1, 'scaleY');
   });
 }
