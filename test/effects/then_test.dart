@@ -10,9 +10,12 @@ void main() {
     // Wait 500ms, check that opacity has started, but scale has not
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, .5, 'opacity');
-    tester.expectWidgetWithDouble<Transform>((w) => w.transform.getColumn(0)[0], 0, 'scaleX');
+    Matrix4 expectedMatrix = Transform.scale(scale: 0).transform;
+    tester.expectWidgetWithBool<Transform>((w) => w.transform == expectedMatrix, true, 'scaleX');
+
     // Wait another 1s and check that scale is now halfway
     await tester.pumpAnimation(animation, initialDelay: 1.seconds);
-    tester.expectWidgetWithDouble<Transform>((w) => w.transform.getColumn(0)[0], .5, 'scaleX');
+    expectedMatrix = Transform.scale(scale: .5).transform;
+    tester.expectWidgetWithBool<Transform>((w) => w.transform == expectedMatrix, true, 'scaleX');
   });
 }

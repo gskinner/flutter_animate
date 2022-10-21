@@ -13,7 +13,7 @@ void main() {
         );
     // Check halfway,
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    tester.expectWidgetWithDouble<Transform>((w) => w.transform.getColumn(0)[0], .25, 'scaleX');
-    tester.expectWidgetWithDouble<Transform>((w) => w.transform.getColumn(1)[1], 1, 'scaleY');
+    Matrix4 expectedMatrix = Transform.scale(scaleX: .25, scaleY: 1).transform;
+    tester.expectWidgetWithBool<Transform>((w) => w.transform == expectedMatrix, true, 'scale');
   });
 }
