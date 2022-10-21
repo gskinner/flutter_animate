@@ -8,7 +8,7 @@ import '../flutter_animate.dart';
 /// Defaults to `end=true`.
 ///
 /// The `maintain` parameter is assigned to the [Visibility] properties `maintainSize`,
-/// `maintainAnimation`, `maintainState`, and `maintainSemantics`.
+/// `maintainAnimation`, `maintainState`, `maintainInteractivity` and `maintainSemantics`.
 @immutable
 class VisibilityEffect extends Effect<bool> {
   const VisibilityEffect({
