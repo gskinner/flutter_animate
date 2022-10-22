@@ -115,17 +115,16 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
     double? begin,
     double? end,
   }) {
-      end ??= (begin == null ? _defaultBlur : 0);
-      begin ??= 0; 
-      return addEffect(BlurEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: Offset(begin, begin),
-        end: Offset(end, end),
-      ));
+    end ??= (begin == null ? _defaultBlur : 0);
+    begin ??= 0;
+    return addEffect(BlurEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: Offset(begin, begin),
+      end: Offset(end, end),
+    ));
   }
-
 }
 
 const double _defaultBlur = 4;

@@ -14,6 +14,7 @@ void main() {
     // Check halfway,
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     Matrix4 expectedMatrix = Transform.scale(scaleX: .25, scaleY: 1).transform;
-    tester.expectWidgetWithBool<Transform>((w) => w.transform == expectedMatrix, true, 'scale');
+    tester.expectWidgetWithBool<Transform>(
+        (w) => w.transform == expectedMatrix, true, 'scale');
   });
 }

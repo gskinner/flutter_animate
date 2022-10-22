@@ -21,10 +21,13 @@ void main() {
     await tester.pumpAnimation(animation, initialDelay: (1 / 8).seconds);
     // check translation
     var matrix = Transform.translate(offset: const Offset(10, 10)).transform;
-    tester.expectWidgetWithBool<Transform>((ft) => ft.transform == matrix, true, 'translation', findFirst: true);
+    tester.expectWidgetWithBool<Transform>(
+        (ft) => ft.transform == matrix, true, 'translation',
+        findFirst: true);
 
     // check rotation
     matrix = Transform.rotate(angle: pi / 36).transform;
-    tester.expectWidgetWithBool<Transform>((ft) => ft.transform == matrix, true, 'rotation');
+    tester.expectWidgetWithBool<Transform>(
+        (ft) => ft.transform == matrix, true, 'rotation');
   });
 }

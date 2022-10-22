@@ -13,7 +13,9 @@ void main() {
         );
     // check halfway
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    tester.expectWidgetWithDouble<SlideTransition>((ft) => ft.position.value.dx, .5, 'slideX');
-    tester.expectWidgetWithDouble<SlideTransition>((ft) => ft.position.value.dy, 1, 'slideY');
+    tester.expectWidgetWithDouble<SlideTransition>(
+        (ft) => ft.position.value.dx, .5, 'slideX');
+    tester.expectWidgetWithDouble<SlideTransition>(
+        (ft) => ft.position.value.dy, 1, 'slideY');
   });
 }

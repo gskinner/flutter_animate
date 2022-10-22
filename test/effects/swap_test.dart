@@ -22,18 +22,22 @@ void main() {
 
   testWidgets('Fade a logo out and back in using swap()', (tester) async {
     final anim = const FlutterLogo().animate().fadeOut(duration: 500.ms).swap(
-          builder: (_, originalChild) => originalChild!.animate().fadeIn(duration: 500.ms),
+          builder: (_, originalChild) =>
+              originalChild!.animate().fadeIn(duration: 500.ms),
         );
     await tester.pumpAnimation(anim);
     // Initially, faded in
-    tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, 1, 'opacity');
+    tester.expectWidgetWithDouble<FadeTransition>(
+        (w) => w.opacity.value, 1, 'opacity');
     // halfway, check fadeOut
     await tester.pump(500.ms);
     await tester.pump(0.ms);
-    tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, 0, 'opacity');
+    tester.expectWidgetWithDouble<FadeTransition>(
+        (w) => w.opacity.value, 0, 'opacity');
     // end, check fadeIn
     await tester.pump(500.ms);
     await tester.pump(0.ms);
-    tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, 1, 'opacity');
+    tester.expectWidgetWithDouble<FadeTransition>(
+        (w) => w.opacity.value, 1, 'opacity');
   });
 }
