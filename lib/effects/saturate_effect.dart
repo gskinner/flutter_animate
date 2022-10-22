@@ -42,14 +42,14 @@ class SaturateEffect extends Effect<double> {
         double value = animation.value;
         if (value == 1) return child;
         return ColorFiltered(
-          colorFilter: ColorFilter.matrix(_getColorMatrix(animation.value)),
+          colorFilter: ColorFilter.matrix(getColorMatrix(animation.value)),
           child: child,
         );
       },
     );
   }
 
-  List<double> _getColorMatrix(double saturation) {
+  static List<double> getColorMatrix(double saturation) {
     double r0 = 0.33 * (1 - saturation), r1 = saturation + r0;
     double g0 = 0.59 * (1 - saturation), g1 = saturation + g0;
     double b0 = 0.11 * (1 - saturation), b1 = saturation + b0;

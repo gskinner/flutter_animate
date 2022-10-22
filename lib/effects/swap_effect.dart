@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import '../flutter_animate.dart';
 
 /// Effect that swaps out the incoming child for a new child at a particular
-/// point in time. This includes all preceeding effects. It uses a builder so
+/// point in time. This includes all preceding effects. It uses a builder so
 /// that the effect can be reused, but note that the builder is only called once
 /// when the effect initially builds.
 ///
@@ -28,7 +28,7 @@ import '../flutter_animate.dart';
 /// foo.animate()
 ///   .fadeOut(duration: 500.ms)
 ///   .swap( // inherits duration from fadeOut
-///     builder: (_, originalChild) => originalChild.animate().fadeIn(),
+///     builder: (_, originalChild) => originalChild!.animate().fadeIn(),
 ///   )
 /// ```
 ///

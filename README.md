@@ -1,3 +1,5 @@
+![flutter tests](https://github.com/gskinner/flutter_animate/actions/workflows/tests.yml/badge.svg)
+
 Flutter Animate
 ================================================================================
 

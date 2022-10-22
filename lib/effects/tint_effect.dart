@@ -48,14 +48,14 @@ class TintEffect extends Effect<double> {
         double value = animation.value;
         if (value == 0) return child;
         return ColorFiltered(
-          colorFilter: ColorFilter.matrix(_getTintMatrix(value)),
+          colorFilter: ColorFilter.matrix(getTintMatrix(value, color)),
           child: child,
         );
       },
     );
   }
 
-  List<double> _getTintMatrix(double strength) {
+  static List<double> getTintMatrix(double strength, Color color) {
     double v = 1 - strength * color.alpha / 255;
 
     return <double>[
