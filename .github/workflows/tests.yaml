@@ -1,4 +1,4 @@
-name: run-tests
+name: tests
 on: [push, workflow_dispatch]
 jobs:
   drive:

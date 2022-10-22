@@ -1,4 +1,4 @@
-![flutter tests](https://github.com/gskinner/flutter_animate/actions/workflows/tests.yml/badge.svg)
+[![tests](https://github.com/gskinner/flutter_animate/actions/workflows/tests.yaml/badge.svg)](https://github.com/gskinner/flutter_animate/actions/workflows/tests.yaml)
 
 Flutter Animate
 ================================================================================
@@ -14,9 +14,6 @@ effect in Flutter.
 
 All via a simple, unified API without fussing with AnimationController and
 StatefulWidget.
-
-> **NOTE:** This library is currently in prerelease. Some aspects of the API
-> will change as it is refined. Your feedback is welcome via Github issues.
 
 ![Basic Animations](https://raw.githubusercontent.com/gskinner/flutter_animate/assets/infoView.gif)
 ![Visual Effects](https://raw.githubusercontent.com/gskinner/flutter_animate/assets/visualView.gif)
