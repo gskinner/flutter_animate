@@ -28,7 +28,7 @@ import '../flutter_animate.dart';
 /// foo.animate()
 ///   .fadeOut(duration: 500.ms)
 ///   .swap( // inherits duration from fadeOut
-///     builder: (_, originalChild) => originalChild!.animate().fadeIn(),
+///     builder: (_, originalChild) => originalChild.animate().fadeIn(),
 ///   )
 /// ```
 ///
@@ -46,7 +46,7 @@ class SwapEffect extends Effect<void> {
           duration: duration,
         );
 
-  final TransitionBuilder builder;
+  final Widget Function(BuildContext, Widget) builder;
 
   @override
   Widget build(
