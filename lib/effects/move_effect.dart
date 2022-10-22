@@ -4,6 +4,7 @@ import '../flutter_animate.dart';
 
 /// Effect that moves the target (via [Transform.translate]) between the specified begin and end offsets.
 /// Defaults to `begin=Offset(0, -16), end=Offset.zero`.
+/// [transformHitTests] is simply passed on to [Transform.translate].
 ///
 /// To specify offsets relative to the target's size, use [SlideEffect].
 @immutable
@@ -14,7 +15,9 @@ class MoveEffect extends Effect<Offset> {
     Curve? curve,
     Offset? begin,
     Offset? end,
-  }) : super(
+    bool? transformHitTests,
+  })  : transformHitTests = transformHitTests ?? true,
+        super(
           delay: delay,
           duration: duration,
           curve: curve,
@@ -22,6 +25,8 @@ class MoveEffect extends Effect<Offset> {
               (end == null ? const Offset(0, -_defaultMove) : Offset.zero),
           end: end ?? Offset.zero,
         );
+
+  final bool transformHitTests;
 
   @override
   Widget build(
@@ -34,7 +39,11 @@ class MoveEffect extends Effect<Offset> {
     return getOptimizedBuilder<Offset>(
       animation: animation,
       builder: (_, __) {
-        return Transform.translate(offset: animation.value, child: child);
+        return Transform.translate(
+          offset: animation.value,
+          transformHitTests: transformHitTests,
+          child: child,
+        );
       },
     );
   }
@@ -48,6 +57,7 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
     Curve? curve,
     Offset? begin,
     Offset? end,
+    bool? transformHitTests,
   }) =>
       addEffect(MoveEffect(
         delay: delay,
@@ -55,6 +65,7 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
         curve: curve,
         begin: begin,
         end: end,
+        transformHitTests: transformHitTests,
       ));
 
   /// Adds a [moveX] extension to [AnimateManager] ([Animate] and [AnimateList]).
@@ -65,6 +76,7 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
     Curve? curve,
     double? begin,
     double? end,
+    bool? transformHitTests,
   }) =>
       addEffect(MoveEffect(
         delay: delay,
@@ -72,6 +84,7 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
         curve: curve,
         begin: Offset(begin ?? (end == null ? -_defaultMove : 0), 0),
         end: Offset(end ?? 0, 0),
+        transformHitTests: transformHitTests,
       ));
 
   /// Adds a [moveY] extension to [AnimateManager] ([Animate] and [AnimateList]).
@@ -82,6 +95,7 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
     Curve? curve,
     double? begin,
     double? end,
+    bool? transformHitTests,
   }) =>
       addEffect(MoveEffect(
         delay: delay,
@@ -89,6 +103,7 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
         curve: curve,
         begin: Offset(0, begin ?? (end == null ? -_defaultMove : 0)),
         end: Offset(0, end ?? 0),
+        transformHitTests: transformHitTests,
       ));
 
   // Note: there is no moveXY because diagonal movement isn't a significant use case.
