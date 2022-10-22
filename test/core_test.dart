@@ -12,7 +12,7 @@ void main() {
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     double expectedValue = .25 + curve.transform(.5) * .5;
     tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, expectedValue, 'opacity');
-    // wait another 50ms and check end pos
+    // wait another 500ms and check end pos
     await tester.pump(500.ms);
     expectedValue = .25 + curve.transform(1) * .5;
     tester.expectWidgetWithDouble<FadeTransition>((w) => w.opacity.value, expectedValue, 'opacity');
