@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2022-10-23
+### Added
+- `FlipEffect` (2.5d card flip)
+- `loop` extension to `AnimationController`
+- support for non-uniform blurs in `BlurEffect`
+- `animated` property for all adapters
+- `transformHitTest` param on `MoveEffect`
+- first set of automated tests
+
+### Changed
+- all effects now use "smart" parameters. See "Other Parameters" in the README for more info.
+- changes to some effect extension methods (ex. `move`) to be more consistent
+- fix for `BlurEffect` on the web with low sigma values
+- exposed some effects' utility methods as static methods
+- changed `SwapEffect.builder` method signature to have a non-nullable child
+- minor documentation improvements and small fixes
+
+### Removed
+- `unblur` extension method. Use `blurXY` with a `begin` value instead.
+
 ## [1.0.0] - 2022-08-18
 ### Added
 - `RotateEffect`

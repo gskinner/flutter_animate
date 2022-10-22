@@ -106,10 +106,11 @@ Other Parameters
 ----------------------------------------
 Most effects include `begin` and `end` parameters, which specify the start/end
 values. These are usually "smart" in the sense that if only one is specified
-then the other will default to a "neutral" value (ie. has no visual effect). If
+then the other will default to a "neutral" value (ie. no visual effect). If
 both are unspecified the effect should use visually pleasing defaults.
 
 ``` dart
+// an opacity of 1 is "neutral"
 Text("Hello").animate().fade() // begin=0, end=1
 Text("Hello").animate().fade(begin: 0.5) // end=1
 Text("Hello").animate().fade(end: 0.5) // begin=1
