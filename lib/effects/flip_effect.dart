@@ -39,7 +39,7 @@ class FlipEffect extends Effect<double> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? (end == null ? 0.5 : 0.0),
+          begin: begin ?? (end == null ? -0.5 : 0.0),
           end: end ?? 0.0,
         );
 
