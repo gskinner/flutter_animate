@@ -18,12 +18,12 @@ class EverythingView extends StatelessWidget {
           // these are in alphabetic order according to their classes
           // ex. BlurEffect defines both blur and blurX.
 
-          tile('blur', a.blur()),
+          //tile('blur', a.blur()),
           tile('blurX', a.blurX()),
           tile('blurY', a.blurY()),
           tile('blurXY', a.blurXY()),
 
-          // callback?
+          // callback
 
           tile('custom', a.custom(builder: (_, val, child) {
             val = val * pi * 2 - pi / 2;
@@ -33,22 +33,27 @@ class EverythingView extends StatelessWidget {
             );
           })),
 
+          // effect
+
+          //tile('fade', a.fade()),
           tile('fadeIn', a.fadeIn()),
           tile('fadeOut', a.fadeOut()),
 
           tile('flipH', a.flipH()),
           tile('flipV', a.flipV()),
 
-          // listen?
+          // listen
 
-          tile('move', a.move()),
+          //tile('move', a.move()),
+          tile('moveX', a.moveX()),
+          tile('moveY', a.moveY()),
 
           tile('rotate', a.rotate()),
 
           tile('saturate', a.saturate()),
           tile('desaturate', a.desaturate()),
 
-          tile('scale', a.scale()),
+          //tile('scale', a.scale()),
           tile('scaleX', a.scaleX()),
           tile('scaleY', a.scaleY()),
           tile('scaleXY', a.scaleXY()),
@@ -59,14 +64,16 @@ class EverythingView extends StatelessWidget {
 
           tile('shimmer', a.shimmer()),
 
-          tile('slide', a.slide()),
+          //tile('slide', a.slide()),
+          tile('slideX', a.slideX()),
+          tile('slideY', a.slideY()),
 
           tile('swap', a.swap(builder: (_, __) => const Text('HELLO!'))),
           tile('swap (child)', a.swap(builder: (_, child) {
             return Opacity(opacity: 0.5, child: child!);
           })),
 
-          // then?
+          // then
 
           tile('tint', a.tint()),
           tile('untint', a.untint()),
@@ -79,12 +86,19 @@ class EverythingView extends StatelessWidget {
             );
           })),
 
+          //tile('visibility', a.visibility()),
           tile('hide', a.hide()),
           tile('show', a.show()),
 
-          // a few fun combos:
-          tile('shimmer+flip', a.shimmer(angle: pi / 2, size: 3).flip()),
+          // fun simple combos:
+          tile('shimmer+flip', a.shimmer(angle: -pi / 2, size: 3).flip()),
           tile('slide+shake', a.slide(curve: Curves.easeInOut).shake(hz: 3)),
+          tile(
+            'moveX+moveY',
+            a
+                .moveX(curve: Curves.easeOut, begin: -30, end: 30)
+                .moveY(curve: Curves.bounceOut, begin: -30, end: 30),
+          )
         ],
       ),
     );

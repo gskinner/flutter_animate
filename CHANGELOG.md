@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - minor documentation improvements and small fixes
 
 ### Removed
-- `unblur` extension method. Use `blurXY` with a `begin` value instead.
+- `unblur` extension method. Use `blurXY` with a `begin` value instead
 
 ## [1.0.0] - 2022-08-18
 ### Added
