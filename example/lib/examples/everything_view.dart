@@ -59,8 +59,6 @@ class EverythingView extends StatelessWidget {
 
           tile('shimmer', a.shimmer()),
 
-          tile('shimmer+flip', a.shimmer(angle: pi / 2, size: 3).flip()),
-
           tile('slide', a.slide()),
 
           tile('swap', a.swap(builder: (_, __) => const Text('HELLO!'))),
@@ -83,6 +81,10 @@ class EverythingView extends StatelessWidget {
 
           tile('hide', a.hide()),
           tile('show', a.show()),
+
+          // a few fun combos:
+          tile('shimmer+flip', a.shimmer(angle: pi / 2, size: 3).flip()),
+          tile('slide+shake', a.slide(curve: Curves.easeInOut).shake(hz: 3)),
         ],
       ),
     );
