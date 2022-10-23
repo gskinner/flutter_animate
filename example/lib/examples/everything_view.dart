@@ -16,7 +16,7 @@ class EverythingView extends StatelessWidget {
         childAspectRatio: 0.8,
         children: [
           // these are in alphabetic order according to their classes
-          // ex. BlurEffect defines both blur and unblur.
+          // ex. BlurEffect defines both blur and blurX.
 
           tile('blur', a.blur()),
           tile('blurX', a.blurX()),
@@ -58,6 +58,8 @@ class EverythingView extends StatelessWidget {
           tile('shakeY', a.shakeY()),
 
           tile('shimmer', a.shimmer()),
+
+          tile('shimmer+flip', a.shimmer(angle: pi / 2, size: 3).flip()),
 
           tile('slide', a.slide()),
 
