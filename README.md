@@ -102,7 +102,7 @@ Text("Hello").animate(
   ).fadeIn(delay: 500.ms) // this delay happens at the start of each loop
 ```
 
-Other Parameters
+Other Effect Parameters
 ----------------------------------------
 Most effects include `begin` and `end` parameters, which specify the start/end
 values. These are usually "smart" in the sense that if only one is specified

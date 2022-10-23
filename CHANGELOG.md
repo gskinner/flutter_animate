@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0] - 2022-10-23
 ### Added
+- effects now use "smart" parameters. See README: Other Effect Parameters
+- effects now expose default param values as static fields
 - `FlipEffect` (2.5d card flip)
 - `loop` extension to `AnimationController`
 - support for non-uniform blurs in `BlurEffect`
@@ -14,7 +16,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - first set of automated tests
 
 ### Changed
-- all effects now use "smart" parameters. See "Other Parameters" in the README for more info.
 - changes to some effect extension methods (ex. `move`) to be more consistent
 - fix for `BlurEffect` on the web with low sigma values
 - exposed some effects' utility methods as static methods
