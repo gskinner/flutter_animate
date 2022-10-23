@@ -20,7 +20,7 @@ import 'package:flutter/widgets.dart';
 ///   ),
 /// ).fadeIn();
 /// ```
-extension AnimationControllerLoopExtension on AnimationController {
+extension AnimationControllerLoopExtensions on AnimationController {
   TickerFuture loop({
     int? count,
     bool reverse = false,
