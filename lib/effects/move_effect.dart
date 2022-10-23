@@ -9,6 +9,13 @@ import '../flutter_animate.dart';
 /// To specify offsets relative to the target's size, use [SlideEffect].
 @immutable
 class MoveEffect extends Effect<Offset> {
+  static const Offset neutralValue = Offset(neutralMove, neutralMove);
+  static const Offset defaultValue = Offset(neutralMove, defaultMove);
+
+  static const double neutralMove = 0.0;
+  static const double defaultMove = -16.0;
+  static const bool defaultTransformHitTests = true;
+
   const MoveEffect({
     Duration? delay,
     Duration? duration,
@@ -16,14 +23,13 @@ class MoveEffect extends Effect<Offset> {
     Offset? begin,
     Offset? end,
     bool? transformHitTests,
-  })  : transformHitTests = transformHitTests ?? true,
+  })  : transformHitTests = transformHitTests ?? defaultTransformHitTests,
         super(
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ??
-              (end == null ? const Offset(0, -_defaultMove) : Offset.zero),
-          end: end ?? Offset.zero,
+          begin: begin ?? (end == null ? defaultValue : neutralValue),
+          end: end ?? neutralValue,
         );
 
   final bool transformHitTests;
@@ -77,15 +83,18 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
     double? begin,
     double? end,
     bool? transformHitTests,
-  }) =>
-      addEffect(MoveEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: Offset(begin ?? (end == null ? -_defaultMove : 0), 0),
-        end: Offset(end ?? 0, 0),
-        transformHitTests: transformHitTests,
-      ));
+  }) {
+    begin ??= end == null ? MoveEffect.defaultMove : MoveEffect.neutralMove;
+    end ??= MoveEffect.neutralMove;
+    return addEffect(MoveEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: MoveEffect.neutralValue.copyWith(dx: begin),
+      end: MoveEffect.neutralValue.copyWith(dx: end),
+      transformHitTests: transformHitTests,
+    ));
+  }
 
   /// Adds a [moveY] extension to [AnimateManager] ([Animate] and [AnimateList]).
   /// This moves only on the y-axis according to the `double` begin/end values.
@@ -96,17 +105,18 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
     double? begin,
     double? end,
     bool? transformHitTests,
-  }) =>
-      addEffect(MoveEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: Offset(0, begin ?? (end == null ? -_defaultMove : 0)),
-        end: Offset(0, end ?? 0),
-        transformHitTests: transformHitTests,
-      ));
+  }) {
+    begin ??= end == null ? MoveEffect.defaultMove : MoveEffect.neutralMove;
+    end ??= MoveEffect.neutralMove;
+    return addEffect(MoveEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: MoveEffect.neutralValue.copyWith(dy: begin),
+      end: MoveEffect.neutralValue.copyWith(dy: end),
+      transformHitTests: transformHitTests,
+    ));
+  }
 
   // Note: there is no moveXY because diagonal movement isn't a significant use case.
 }
-
-const double _defaultMove = 16;

@@ -9,17 +9,21 @@ import '../flutter_animate.dart';
 /// `maintainAnimation`, `maintainState`, `maintainInteractivity` and `maintainSemantics`.
 @immutable
 class VisibilityEffect extends Effect<bool> {
+  static const bool neutralValue = true;
+
+  static const bool defaultMaintain = true;
+
   const VisibilityEffect({
     Duration? delay,
     Duration? duration,
     bool? end,
     bool? maintain,
-  })  : maintain = maintain ?? true,
+  })  : maintain = maintain ?? defaultMaintain,
         super(
           delay: delay,
           duration: duration,
-          begin: !(end ?? true),
-          end: end ?? true,
+          begin: !(end ?? neutralValue),
+          end: end ?? neutralValue,
         );
 
   final bool maintain;

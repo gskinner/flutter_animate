@@ -6,6 +6,12 @@ import '../flutter_animate.dart';
 /// Defaults to `begin=0, end=1`.
 @immutable
 class ScaleEffect extends Effect<Offset> {
+  static const Offset neutralValue = Offset(neutralScale, neutralScale);
+  static const Offset defaultValue = Offset(defaultScale, defaultScale);
+
+  static const double neutralScale = 1.0;
+  static const double defaultScale = 0.0;
+
   const ScaleEffect({
     Duration? delay,
     Duration? duration,
@@ -17,8 +23,8 @@ class ScaleEffect extends Effect<Offset> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? (end == null ? Offset.zero : const Offset(1.0, 1.0)),
-          end: end ?? const Offset(1.0, 1.0),
+          begin: begin ?? (end == null ? defaultValue : neutralValue),
+          end: end ?? neutralValue,
         );
 
   final Alignment? alignment;
@@ -72,15 +78,19 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
     double? begin,
     double? end,
     Alignment? alignment,
-  }) =>
-      addEffect(ScaleEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: Offset(begin ?? (end == null ? 0 : 1), 1),
-        end: Offset(end ?? 1, 1),
-        alignment: alignment,
-      ));
+  }) {
+    begin ??=
+        (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
+    end ??= ScaleEffect.neutralScale;
+    return addEffect(ScaleEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: ScaleEffect.neutralValue.copyWith(dx: begin),
+      end: ScaleEffect.neutralValue.copyWith(dx: end),
+      alignment: alignment,
+    ));
+  }
 
   /// Adds a [scaleY] extension to [AnimateManager] ([Animate] and [AnimateList]).
   /// This scales only on the y-axis according to the `double` begin/end values.
@@ -91,15 +101,19 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
     double? begin,
     double? end,
     Alignment? alignment,
-  }) =>
-      addEffect(ScaleEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: Offset(1, begin ?? (end == null ? 0 : 1)),
-        end: Offset(1, end ?? 1),
-        alignment: alignment,
-      ));
+  }) {
+    begin ??=
+        (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
+    end ??= ScaleEffect.neutralScale;
+    return addEffect(ScaleEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: ScaleEffect.neutralValue.copyWith(dy: begin),
+      end: ScaleEffect.neutralValue.copyWith(dy: end),
+      alignment: alignment,
+    ));
+  }
 
   /// Adds a [scaleXY] extension to [AnimateManager] ([Animate] and [AnimateList]).
   /// This scales uniformly according to the `double` begin/end values.
@@ -111,8 +125,9 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
     double? end,
     Alignment? alignment,
   }) {
-    begin ??= (end == null ? 0 : 1);
-    end ??= 1;
+    begin ??=
+        (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
+    end ??= ScaleEffect.neutralScale;
     return addEffect(ScaleEffect(
       delay: delay,
       duration: duration,

@@ -16,6 +16,9 @@ import '../flutter_animate.dart';
 /// ```
 @immutable
 class TintEffect extends Effect<double> {
+  static const double neutralValue = 0.0;
+  static const double defaultValue = 1.0;
+
   const TintEffect({
     Duration? delay,
     Duration? duration,
@@ -28,8 +31,8 @@ class TintEffect extends Effect<double> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? 0,
-          end: end ?? (begin == null ? 1 : 0),
+          begin: begin ?? neutralValue,
+          end: end ?? (begin == null ? defaultValue : neutralValue),
         );
 
   final Color color;
@@ -101,7 +104,7 @@ extension TintEffectExtensions<T> on AnimateManager<T> {
         duration: duration,
         curve: curve,
         begin: begin ?? 1.0,
-        end: end ?? 0.0,
+        end: end ?? TintEffect.neutralValue,
         color: color,
       ));
 }

@@ -11,6 +11,9 @@ import '../flutter_animate.dart';
 /// However it provides a large amount of customization, including changing the
 /// gradient angle, the gradient colors / stops, and specifying the blend mode.
 ///
+/// If `colors` is not specified then it will use `color` to build one:
+/// `[transparent, color, transparent]`.
+///
 /// `blendMode` lets you adjust how the gradient fill is composited. It defaults to
 /// [BlendMode.srcATop], which layers the fill over the child, using the child's
 /// alpha (ie. the child acts as a mask). Other interesting options include:
@@ -20,6 +23,11 @@ import '../flutter_animate.dart';
 /// * [BlendMode.dstOver] layers the gradient fill under the child (no masking)
 @immutable
 class ShimmerEffect extends Effect<double> {
+  static const Color defaultColor = Color(0x80FFFFFF);
+  static const double defaultSize = 1;
+  static const double defaultAngle = pi / 12;
+  static const BlendMode defaultBlendMode = BlendMode.srcATop;
+
   const ShimmerEffect({
     Duration? delay,
     Duration? duration,
@@ -58,7 +66,7 @@ class ShimmerEffect extends Effect<double> {
       builder: (_, __) {
         LinearGradient gradient = _buildGradient(animation.value);
         return ShaderMask(
-          blendMode: blendMode ?? BlendMode.srcATop,
+          blendMode: blendMode ?? defaultBlendMode,
           shaderCallback: (bounds) => gradient.createShader(bounds),
           child: child,
         );
@@ -67,8 +75,7 @@ class ShimmerEffect extends Effect<double> {
   }
 
   LinearGradient _buildGradient(double value) {
-    final Color col = color ?? const Color(0x80FFFFFF);
-    final Color transparent = col.withOpacity(0);
+    final Color col = color ?? defaultColor, transparent = col.withOpacity(0);
     final List<Color> cols = colors ?? [transparent, col, transparent];
 
     return LinearGradient(
@@ -76,8 +83,8 @@ class ShimmerEffect extends Effect<double> {
       stops: stops,
       transform: _SweepingGradientTransform(
         ratio: value,
-        angle: angle ?? pi / 12,
-        scale: size ?? 1,
+        angle: angle ?? defaultAngle,
+        scale: size ?? defaultSize,
       ),
     );
   }

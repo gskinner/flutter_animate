@@ -9,6 +9,12 @@ import '../flutter_animate.dart';
 /// To use pixel offsets instead, use [MoveEffect].
 @immutable
 class SlideEffect extends Effect<Offset> {
+  static const Offset neutralValue = Offset(neutralSlide, neutralSlide);
+  static const Offset defaultValue = Offset(neutralSlide, defaultSlide);
+
+  static const double neutralSlide = 0.0;
+  static const double defaultSlide = -0.5;
+
   const SlideEffect({
     Duration? delay,
     Duration? duration,
@@ -19,9 +25,8 @@ class SlideEffect extends Effect<Offset> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ??
-              (end == null ? const Offset(0, -_defaultSlide) : Offset.zero),
-          end: end ?? Offset.zero,
+          begin: begin ?? (end == null ? defaultValue : neutralValue),
+          end: end ?? neutralValue,
         );
 
   @override
@@ -63,14 +68,17 @@ extension SlideEffectExtensions<T> on AnimateManager<T> {
     Curve? curve,
     double? begin,
     double? end,
-  }) =>
-      addEffect(SlideEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: Offset(begin ?? (end == null ? -_defaultSlide : 0), 0),
-        end: Offset(end ?? 0, 0),
-      ));
+  }) {
+    begin ??= end == null ? SlideEffect.defaultSlide : SlideEffect.neutralSlide;
+    end ??= SlideEffect.neutralSlide;
+    return addEffect(SlideEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: SlideEffect.neutralValue.copyWith(dx: begin),
+      end: SlideEffect.neutralValue.copyWith(dx: end),
+    ));
+  }
 
   /// Adds a [slideY] extension to [AnimateManager] ([Animate] and [AnimateList]).
   /// This slides only on the y-axis according to the `double` begin/end values.
@@ -80,16 +88,17 @@ extension SlideEffectExtensions<T> on AnimateManager<T> {
     Curve? curve,
     double? begin,
     double? end,
-  }) =>
-      addEffect(SlideEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: Offset(0, begin ?? (end == null ? -_defaultSlide : 0)),
-        end: Offset(0, end ?? 0),
-      ));
+  }) {
+    begin ??= end == null ? SlideEffect.defaultSlide : SlideEffect.neutralSlide;
+    end ??= SlideEffect.neutralSlide;
+    return addEffect(SlideEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: SlideEffect.neutralValue.copyWith(dy: begin),
+      end: SlideEffect.neutralValue.copyWith(dy: end),
+    ));
+  }
 
   // Note: there is no slideXY because diagonal movement isn't a significant use case.
 }
-
-const double _defaultSlide = 0.5;

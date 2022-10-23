@@ -7,6 +7,13 @@ import '../flutter_animate.dart';
 /// between the specified begin and end blur radius values. Defaults to a blur radius of `begin=0, end=4`.
 @immutable
 class BlurEffect extends Effect<Offset> {
+  static const Offset neutralValue = Offset(neutralBlur, neutralBlur);
+  static const Offset defaultValue = Offset(defaultBlur, defaultBlur);
+
+  static const double neutralBlur = 0.0;
+  static const double defaultBlur = 4.0;
+  static const double minBlur = 0.01; // below this blur is set to 0
+
   const BlurEffect({
     Duration? delay,
     Duration? duration,
@@ -17,11 +24,8 @@ class BlurEffect extends Effect<Offset> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? Offset.zero,
-          end: end ??
-              (begin == null
-                  ? const Offset(_defaultBlur, _defaultBlur)
-                  : Offset.zero),
+          begin: begin ?? neutralValue,
+          end: end ?? (begin == null ? defaultValue : neutralValue),
         );
 
   @override
@@ -35,8 +39,8 @@ class BlurEffect extends Effect<Offset> {
     return getOptimizedBuilder<Offset>(
       animation: animation,
       builder: (_, __) {
-        double sigmaX = _normalizeSigma(animation.value.dx);
-        double sigmaY = _normalizeSigma(animation.value.dy);
+        final double sigmaX = _normalizeSigma(animation.value.dx);
+        final double sigmaY = _normalizeSigma(animation.value.dy);
         return ImageFiltered(
           enabled: sigmaX != 0 || sigmaY != 0,
           imageFilter: ImageFilter.blur(
@@ -51,7 +55,7 @@ class BlurEffect extends Effect<Offset> {
   }
 
   double _normalizeSigma(double sigma) {
-    return sigma < _minBlur ? 0 : sigma;
+    return sigma < minBlur ? 0 : sigma;
   }
 }
 
@@ -80,14 +84,17 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
     Curve? curve,
     double? begin,
     double? end,
-  }) =>
-      addEffect(BlurEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: Offset(begin ?? 0, 0),
-        end: Offset(end ?? (begin == null ? _defaultBlur : 0), 0),
-      ));
+  }) {
+    end ??= (begin == null ? BlurEffect.defaultBlur : BlurEffect.neutralBlur);
+    begin ??= BlurEffect.neutralBlur;
+    return addEffect(BlurEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: BlurEffect.neutralValue.copyWith(dx: begin),
+      end: BlurEffect.neutralValue.copyWith(dx: end),
+    ));
+  }
 
   /// Adds a [blurY] extension to [AnimateManager] ([Animate] and [AnimateList]).
   /// This blurs only on the y-axis according to the `double` begin/end values.
@@ -97,14 +104,17 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
     Curve? curve,
     double? begin,
     double? end,
-  }) =>
-      addEffect(BlurEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: Offset(0, begin ?? 0),
-        end: Offset(0, end ?? (begin == null ? _defaultBlur : 0)),
-      ));
+  }) {
+    end ??= (begin == null ? BlurEffect.defaultBlur : BlurEffect.neutralBlur);
+    begin ??= BlurEffect.neutralBlur;
+    return addEffect(BlurEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: BlurEffect.neutralValue.copyWith(dy: begin),
+      end: BlurEffect.neutralValue.copyWith(dy: end),
+    ));
+  }
 
   /// Adds a [blurXY] extension to [AnimateManager] ([Animate] and [AnimateList]).
   /// This blurs uniformly according to the `double` begin/end values.
@@ -115,8 +125,8 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
     double? begin,
     double? end,
   }) {
-    end ??= (begin == null ? _defaultBlur : 0);
-    begin ??= 0;
+    end ??= (begin == null ? BlurEffect.defaultBlur : BlurEffect.neutralBlur);
+    begin ??= BlurEffect.neutralBlur;
     return addEffect(BlurEffect(
       delay: delay,
       duration: duration,
@@ -126,6 +136,3 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
     ));
   }
 }
-
-const double _defaultBlur = 4;
-const double _minBlur = 0.01;

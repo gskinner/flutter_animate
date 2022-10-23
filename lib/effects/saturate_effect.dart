@@ -14,6 +14,9 @@ import '../flutter_animate.dart';
 /// ```
 @immutable
 class SaturateEffect extends Effect<double> {
+  static const double neutralValue = 1.0;
+  static const double defaultValue = 0.0;
+
   const SaturateEffect({
     Duration? delay,
     Duration? duration,
@@ -24,8 +27,8 @@ class SaturateEffect extends Effect<double> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? (end == null ? 0 : 1),
-          end: end ?? 1,
+          begin: begin ?? (end == null ? defaultValue : neutralValue),
+          end: end ?? neutralValue,
         );
 
   @override
@@ -93,7 +96,7 @@ extension SaturateEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
-        begin: begin ?? 1,
-        end: end ?? 0,
+        begin: begin ?? SaturateEffect.neutralValue,
+        end: end ?? SaturateEffect.defaultValue,
       ));
 }

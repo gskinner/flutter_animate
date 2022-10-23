@@ -6,6 +6,9 @@ import '../flutter_animate.dart';
 /// It defaults to `begin=0, end=1`.
 @immutable
 class FadeEffect extends Effect<double> {
+  static const double neutralValue = 1.0;
+  static const double defaultValue = 0.0;
+
   const FadeEffect({
     Duration? delay,
     Duration? duration,
@@ -16,8 +19,8 @@ class FadeEffect extends Effect<double> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? (end == null ? 0.0 : 1.0),
-          end: end ?? 1.0,
+          begin: begin ?? (end == null ? defaultValue : neutralValue),
+          end: end ?? neutralValue,
         );
 
   @override
@@ -63,7 +66,7 @@ extension FadeEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
-        begin: begin ?? 0.0,
+        begin: begin ?? FadeEffect.defaultValue,
         end: 1.0,
       ));
 
@@ -79,7 +82,7 @@ extension FadeEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
-        begin: begin,
+        begin: begin ?? FadeEffect.neutralValue,
         end: 0.0,
       ));
 }

@@ -11,6 +11,9 @@ import '../flutter_animate.dart';
 /// corner of the child.
 @immutable
 class RotateEffect extends Effect<double> {
+  static const double neutralValue = 0.0;
+  static const double defaultValue = -1.0;
+
   const RotateEffect({
     Duration? delay,
     Duration? duration,
@@ -22,8 +25,8 @@ class RotateEffect extends Effect<double> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? 0,
-          end: end ?? (begin == null ? 1 : 0),
+          begin: begin ?? (end == null ? defaultValue : neutralValue),
+          end: end ?? neutralValue,
         );
 
   final Alignment? alignment;

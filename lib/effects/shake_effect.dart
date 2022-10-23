@@ -23,6 +23,10 @@ import '../flutter_animate.dart';
 /// ```
 @immutable
 class ShakeEffect extends Effect<double> {
+  static const int defaultHz = 10;
+  static const double defaultRotation = pi / 36;
+  static const double defaultMove = 6;
+
   const ShakeEffect({
     Duration? delay,
     Duration? duration,
@@ -30,8 +34,8 @@ class ShakeEffect extends Effect<double> {
     int? hz,
     Offset? offset,
     double? rotation,
-  })  : rotation = rotation ?? pi / 36,
-        hz = hz ?? 10,
+  })  : rotation = rotation ?? defaultRotation,
+        hz = hz ?? defaultHz,
         offset = offset ?? Offset.zero,
         super(
           delay: delay,
@@ -102,14 +106,14 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
     Duration? duration,
     Curve? curve,
     int? hz,
-    double amount = _defaultXY,
+    double? amount,
   }) =>
       addEffect(ShakeEffect(
         delay: delay,
         duration: duration,
         curve: curve,
         hz: hz,
-        offset: Offset(amount, 0),
+        offset: Offset(amount ?? ShakeEffect.defaultMove, 0),
         rotation: 0,
       ));
 
@@ -120,16 +124,14 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
     Duration? duration,
     Curve? curve,
     int? hz,
-    double amount = _defaultXY,
+    double? amount,
   }) =>
       addEffect(ShakeEffect(
         delay: delay,
         duration: duration,
         curve: curve,
         hz: hz,
-        offset: Offset(0, amount),
+        offset: Offset(0, amount ?? ShakeEffect.defaultMove),
         rotation: 0,
       ));
 }
-
-const double _defaultXY = 6;

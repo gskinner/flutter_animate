@@ -23,6 +23,12 @@ import '../flutter_animate.dart';
 /// Default is [Axis.vertical].
 @immutable
 class FlipEffect extends Effect<double> {
+  static const double neutralValue = 0.0;
+  static const double defaultValue = -0.5;
+
+  static const Axis defaultAxis = Axis.vertical;
+  static const double defaultPerspective = 1.0;
+
   const FlipEffect({
     Duration? delay,
     Duration? duration,
@@ -33,14 +39,14 @@ class FlipEffect extends Effect<double> {
     perspective,
     direction,
   })  : alignment = alignment ?? Alignment.center,
-        perspective = perspective ?? 1.0,
-        direction = direction ?? Axis.vertical,
+        perspective = perspective ?? defaultPerspective,
+        direction = direction ?? defaultAxis,
         super(
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? (end == null ? -0.5 : 0.0),
-          end: end ?? 0.0,
+          begin: begin ?? (end == null ? defaultValue : neutralValue),
+          end: end ?? neutralValue,
         );
 
   final Alignment alignment;
