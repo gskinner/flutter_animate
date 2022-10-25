@@ -7,13 +7,10 @@
 /// ```
 extension NumDurationExtensions on num {
   Duration get microseconds => Duration(microseconds: round());
-  Duration get milliseconds => Duration(microseconds: (this * 1000).round());
-  Duration get seconds => Duration(microseconds: (this * 1000 * 1000).round());
-  Duration get minutes =>
-      Duration(microseconds: (this * 1000 * 1000 * 60).round());
-  Duration get hours =>
-      Duration(microseconds: (this * 1000 * 1000 * 60 * 60).round());
-  Duration get days =>
-      Duration(microseconds: (this * 1000 * 1000 * 60 * 60 * 24).round());
+  Duration get milliseconds => (this * 1000).microseconds;
+  Duration get seconds => (this * 1000).milliseconds;
+  Duration get minutes => (this * 60).seconds;
+  Duration get hours => (this * 60).minutes;
+  Duration get days => (this * 24).hours;
   Duration get ms => milliseconds;
 }
