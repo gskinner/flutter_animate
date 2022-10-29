@@ -22,7 +22,7 @@ extension TesterExtensions on WidgetTester {
   }) {
     expect(
       widget(findFirst ? find.byType(T).first : find.byType(T).last),
-      isA<T>().having((t) => getValue(t), debugTitle, expectedValue),
+      isA<T>().having((t) => (getValue(t) - expectedValue).abs() < .00000001, debugTitle, true),
     );
   }
 

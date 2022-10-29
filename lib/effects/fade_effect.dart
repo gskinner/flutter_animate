@@ -53,36 +53,4 @@ extension FadeEffectExtensions<T> on AnimateManager<T> {
         begin: begin,
         end: end,
       ));
-
-  /// Adds a [fadeIn] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This is identical to the [fade] extension, except it always uses `end=1.0`.
-  T fadeIn({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
-    double? begin,
-  }) =>
-      addEffect(FadeEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin ?? FadeEffect.defaultValue,
-        end: 1.0,
-      ));
-
-  /// Adds a [fadeOut] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This is identical to the [fade] extension, except it always uses `end=0.0`.
-  T fadeOut({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
-    double? begin,
-  }) =>
-      addEffect(FadeEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin ?? FadeEffect.neutralValue,
-        end: 0.0,
-      ));
 }

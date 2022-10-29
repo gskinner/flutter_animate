@@ -19,3 +19,7 @@ export 'then_effect.dart';
 export 'tint_effect.dart';
 export 'toggle_effect.dart';
 export 'visibility_effect.dart';
+export 'variations/fade_in.dart';
+export 'variations/fade_out.dart';
+export 'variations/slide_in.dart';
+export 'variations/slide_out.dart';
