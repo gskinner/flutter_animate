@@ -8,24 +8,24 @@ import '../flutter_animate.dart';
 /// The `hz` parameter indicates approximately how many times to repeat the shake
 /// per second.
 ///
-/// Defaults to a 5 degree (`pi / 36`) shake, 12 times per second — equivalent to:
+/// Defaults to a 5 degree (`pi / 36`) shake, 8 times per second — equivalent to:
 ///
 /// ```
 /// Text("Hello").animate()
-///   .shake(hz: 12, rotation: pi / 36)
+///   .shake(hz: 8, rotation: pi / 36)
 /// ```
 ///
 /// There are also shortcut extensions for applying horizontal / vertical shake.
-/// For example, this would shake 10 pixels horizontally (default is 6):
+/// For example, this would shake 10 pixels horizontally (default is 5):
 ///
 /// ```
 /// Text("Hello").animate().shakeX(amount: 10)
 /// ```
 @immutable
 class ShakeEffect extends Effect<double> {
-  static const int defaultHz = 10;
+  static const int defaultHz = 8;
   static const double defaultRotation = pi / 36;
-  static const double defaultMove = 6;
+  static const double defaultMove = 5;
 
   const ShakeEffect({
     Duration? delay,
@@ -61,7 +61,7 @@ class ShakeEffect extends Effect<double> {
     if (!shouldRotate && !shouldTranslate) return child;
 
     final Animation<double> animation = buildAnimation(controller, entry);
-    final int count = (entry.duration.inSeconds * hz).floor();
+    final int count = (entry.duration.inMilliseconds / 1000 * hz).round();
 
     return getOptimizedBuilder<double>(
       animation: animation,
