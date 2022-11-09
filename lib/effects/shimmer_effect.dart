@@ -22,7 +22,7 @@ import '../flutter_animate.dart';
 /// * [BlendMode.srcOver] layers the gradient fill over the child (no masking)
 /// * [BlendMode.dstOver] layers the gradient fill under the child (no masking)
 @immutable
-class ShimmerEffect extends Effect<double> {
+class ShimmerEffect extends BeginEndEffect<double> {
   static const Color defaultColor = Color(0x80FFFFFF);
   static const double defaultSize = 1;
   static const double defaultAngle = pi / 12;

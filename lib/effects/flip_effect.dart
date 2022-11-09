@@ -22,7 +22,7 @@ import '../flutter_animate.dart';
 /// would cause it to rotate around the Y axis — flipping horizontally.
 /// Default is [Axis.vertical].
 @immutable
-class FlipEffect extends Effect<double> {
+class FlipEffect extends BeginEndEffect<double> {
   static const double neutralValue = 0.0;
   static const double defaultValue = -0.5;
 

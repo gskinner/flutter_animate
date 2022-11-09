@@ -10,7 +10,7 @@ import '../flutter_animate.dart';
 /// will occur). For example an alignment of [Alignment.topLeft] would rotate around the top left
 /// corner of the child.
 @immutable
-class RotateEffect extends Effect<double> {
+class RotateEffect extends BeginEndEffect<double> {
   static const double neutralValue = 0.0;
   static const double defaultValue = -1.0;
 

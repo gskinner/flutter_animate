@@ -8,7 +8,7 @@ import '../flutter_animate.dart';
 ///
 /// To use pixel offsets instead, use [MoveEffect].
 @immutable
-class SlideEffect extends Effect<Offset> {
+class SlideEffect extends BeginEndEffect<Offset> {
   static const Offset neutralValue = Offset(neutralSlide, neutralSlide);
   static const Offset defaultValue = Offset(neutralSlide, defaultSlide);
 

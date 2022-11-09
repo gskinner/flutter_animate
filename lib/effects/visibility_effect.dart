@@ -8,7 +8,7 @@ import '../flutter_animate.dart';
 /// The `maintain` parameter is assigned to the [Visibility] properties `maintainSize`,
 /// `maintainAnimation`, `maintainState`, `maintainInteractivity` and `maintainSemantics`.
 @immutable
-class VisibilityEffect extends Effect<bool> {
+class VisibilityEffect extends BeginEndEffect<bool> {
   static const bool neutralValue = true;
 
   static const bool defaultMaintain = true;
@@ -29,8 +29,7 @@ class VisibilityEffect extends Effect<bool> {
   final bool maintain;
 
   @override
-  Widget build(BuildContext context, Widget child,
-      AnimationController controller, EffectEntry entry) {
+  Widget build(BuildContext context, Widget child, AnimationController controller, EffectEntry entry) {
     double ratio = getEndRatio(controller, entry);
     return getToggleBuilder(
       animation: controller,

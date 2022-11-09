@@ -15,6 +15,35 @@ abstract class CompositeEffect extends Effect {
       composeEffects(effects, context, child, controller, entry);
 }
 
+mixin CompositeEffectMixin on Effect {
+  List<Effect> get effects;
+
+  @override
+  Widget build(BuildContext context, Widget child, AnimationController controller, EffectEntry entry) =>
+      composeEffects(effects, context, child, controller, entry);
+}
+
+/// Adds a begin/end fields and a convenience method for passing them to entry.buildAnimation()
+class BeginEndEffect<T> extends Effect {
+  const BeginEndEffect({super.delay, super.duration, super.curve, this.begin, this.end});
+
+  /// The begin value for the effect. If null, effects should use a reasonable
+  /// default value when appropriate.
+  final T? begin;
+
+  /// The end value for the effect. If null, effects should use a reasonable
+  /// default value when appropriate.
+  final T? end;
+
+  /// Returns an animation based on the controller, entry, and begin/end values.
+  Animation<T> buildAnimation(
+    AnimationController controller,
+    EffectEntry entry,
+  ) {
+    return entry.buildAnimation(controller).drive(Tween<T>(begin: begin, end: end));
+  }
+}
+
 /// Class that defines the required interface and helper methods for
 /// all effect classes. Look at the various effects for examples of how
 /// to build new reusable effects. One-off effects can be implemented with
@@ -22,8 +51,8 @@ abstract class CompositeEffect extends Effect {
 ///
 /// It can be instantiated and added to Animate, but has no visual effect.
 @immutable
-class Effect<T> {
-  const Effect({this.delay, this.duration, this.curve, this.begin, this.end});
+abstract class Effect<T> {
+  const Effect({this.delay, this.duration, this.curve});
 
   /// The specified delay for the effect. If null, will use the delay from the
   /// previous effect, or [Duration.zero] if this is the first effect.
@@ -37,14 +66,6 @@ class Effect<T> {
   /// previous effect, or [Animate.defaultCurve] if this is the first effect.
   final Curve? curve;
 
-  /// The begin value for the effect. If null, effects should use a reasonable
-  /// default value when appropriate.
-  final T? begin;
-
-  /// The end value for the effect. If null, effects should use a reasonable
-  /// default value when appropriate.
-  final T? end;
-
   /// Builds the widgets necessary to implement the effect, based on the
   /// provided [AnimationController] and [EffectEntry].
   Widget build(
@@ -56,18 +77,15 @@ class Effect<T> {
     return child;
   }
 
-  /// Returns an animation based on the controller, entry, and begin/end values.
-  Animation<T> buildAnimation(
-    AnimationController controller,
-    EffectEntry entry,
-  ) {
-    return entry.buildAnimation(controller).drive(Tween<T>(begin: begin, end: end));
-  }
-
   /// Calls build on one or more effects, composing them together and returning the resulting widget tree
   @protected
   Widget composeEffects(
-      List<Effect> effects, BuildContext context, Widget child, AnimationController controller, EffectEntry entry) {
+    List<Effect> effects,
+    BuildContext context,
+    Widget child,
+    AnimationController controller,
+    EffectEntry entry,
+  ) {
     for (var f in effects) {
       child = f.build(context, child, controller, entry);
     }
@@ -137,7 +155,7 @@ extension EffectExtensions<T> on AnimateManager<T> {
     double? begin,
     double? end,
   }) =>
-      addEffect(Effect(
+      addEffect(BeginEndEffect(
         delay: delay,
         duration: duration,
         curve: curve,

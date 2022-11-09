@@ -4,15 +4,15 @@ import 'package:flutter_animate/effects/variations/slide_in.dart';
 import '../../flutter_animate.dart';
 
 @immutable
-class FadeInEffect extends CompositeEffect {
+class FadeInEffect extends Effect with CompositeEffectMixin {
   const FadeInEffect({super.delay, super.duration, super.curve});
 
   @override
-  List<Effect> get effects => const [FadeEffect(begin: 0, end: 1)];
+  List<BeginEndEffect> get effects => const [FadeEffect(begin: 0, end: 1)];
 }
 
 @immutable
-class FadeInUpEffect extends CompositeEffect {
+class FadeInUpEffect extends Effect with CompositeEffectMixin {
   const FadeInUpEffect({this.beginY, super.delay, super.duration, super.curve});
 
   final double? beginY;

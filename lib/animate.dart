@@ -134,7 +134,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// ```
   final AnimateCallback? onPlay;
 
-  /// Defines a delay before the animation is started. Unlike [Effect.delay],
+  /// Defines a delay before the animation is started. Unlike [BeginEndEffect.delay],
   /// this is not a part of the overall animation, and only runs once if the
   /// animation is looped. [onPlay] is called after this delay.
   final Duration delay;
@@ -163,16 +163,14 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   @override
   State<Animate> createState() => _AnimateState();
 
-  /// Adds an effect. This is mostly used by [Effect] extension methods to append effects
+  /// Adds an effect. This is mostly used by [BeginEndEffect] extension methods to append effects
   /// to an [Animate] instance.
   @override
   Animate addEffect(Effect effect) {
     EffectEntry? prior = _lastEntry;
 
     Duration delay = (effect is ThenEffect)
-        ? (effect.delay ?? Duration.zero) +
-            (prior?.delay ?? Duration.zero) +
-            (prior?.duration ?? Duration.zero)
+        ? (effect.delay ?? Duration.zero) + (prior?.delay ?? Duration.zero) + (prior?.duration ?? Duration.zero)
         : effect.delay ?? prior?.delay ?? Duration.zero;
 
     EffectEntry entry = EffectEntry(
@@ -205,8 +203,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 
   @override
   void didUpdateWidget(Animate oldWidget) {
-    if (oldWidget.controller != widget.controller ||
-        oldWidget._duration != widget._duration) {
+    if (oldWidget.controller != widget.controller || oldWidget._duration != widget._duration) {
       _initController();
       _play();
     } else if (oldWidget.adapter != widget.adapter) {
@@ -287,7 +284,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 extension AnimateWidgetExtensions on Widget {
   Animate animate({
     Key? key,
-    List<Effect>? effects,
+    List<BeginEndEffect>? effects,
     AnimateCallback? onComplete,
     AnimateCallback? onPlay,
     Duration delay = Duration.zero,

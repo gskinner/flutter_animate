@@ -7,7 +7,7 @@ class FadeOutEffect extends CompositeEffect {
   const FadeOutEffect({super.delay, super.duration, super.curve});
 
   @override
-  List<Effect> get effects => const [FadeEffect(begin: 1, end: 0)];
+  List<BeginEndEffect> get effects => const [FadeEffect(begin: 1, end: 0)];
 }
 
 @immutable

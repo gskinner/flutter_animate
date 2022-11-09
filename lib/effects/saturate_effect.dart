@@ -13,7 +13,7 @@ import '../flutter_animate.dart';
 ///   .saturate(duration: 2.seconds)
 /// ```
 @immutable
-class SaturateEffect extends Effect<double> {
+class SaturateEffect extends BeginEndEffect<double> {
   static const double neutralValue = 1.0;
   static const double defaultValue = 0.0;
 

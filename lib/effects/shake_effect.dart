@@ -22,7 +22,7 @@ import '../flutter_animate.dart';
 /// Text("Hello").animate().shakeX(amount: 10)
 /// ```
 @immutable
-class ShakeEffect extends Effect<double> {
+class ShakeEffect extends BeginEndEffect<double> {
   static const int defaultHz = 10;
   static const double defaultRotation = pi / 36;
   static const double defaultMove = 6;

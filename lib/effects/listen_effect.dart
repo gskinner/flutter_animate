@@ -27,7 +27,7 @@ import '../flutter_animate.dart';
 ///
 /// See also: [CustomEffect] and [CallbackEffect].
 @immutable
-class ListenEffect extends Effect<double> {
+class ListenEffect extends BeginEndEffect<double> {
   const ListenEffect({
     Duration? delay,
     Duration? duration,

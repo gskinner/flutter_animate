@@ -11,7 +11,7 @@ export 'effects/effects.dart';
 
 export 'extensions/extensions.dart';
 
-/// Because [Effect] classes are immutable and may be reused between multiple
+/// Because [BeginEndEffect] classes are immutable and may be reused between multiple
 /// [Animate] (or [AnimateList]) instances, an `EffectEntry` is created to store
 /// values that may be different between instances. For example, due to
 /// `AnimateList interval`, or from inheriting values from prior effects in the chain.
@@ -62,7 +62,7 @@ class EffectEntry {
 /// runs from 300ms to 800ms with an easeOut curve, within a controller that has a
 /// total duration of 1000ms.
 ///
-/// Mostly used by [EffectEntry] and [Effect] classes.
+/// Mostly used by [EffectEntry] and [BeginEndEffect] classes.
 Animation<double> buildSubAnimation(
   AnimationController controller,
   Duration begin,
@@ -77,7 +77,7 @@ Animation<double> buildSubAnimation(
   );
 }
 
-/// Provides a common interface for [Animate] and [AnimateList] to attach [Effect] extensions.
+/// Provides a common interface for [Animate] and [AnimateList] to attach [BeginEndEffect] extensions.
 mixin AnimateManager<T> {
   T addEffect(Effect effect) => throw (UnimplementedError());
   T addEffects(List<Effect> effects) {

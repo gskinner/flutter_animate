@@ -8,7 +8,7 @@ import '../flutter_animate.dart';
 ///
 /// To specify offsets relative to the target's size, use [SlideEffect].
 @immutable
-class MoveEffect extends Effect<Offset> {
+class MoveEffect extends BeginEndEffect<Offset> {
   static const Offset neutralValue = Offset(neutralMove, neutralMove);
   static const Offset defaultValue = Offset(neutralMove, defaultMove);
 

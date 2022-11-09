@@ -5,7 +5,7 @@ import '../flutter_animate.dart';
 /// Effect that scales the target (via [ScaleTransition]) between the specified begin and end values.
 /// Defaults to `begin=0, end=1`.
 @immutable
-class ScaleEffect extends Effect<Offset> {
+class ScaleEffect extends BeginEndEffect<Offset> {
   static const Offset neutralValue = Offset(neutralScale, neutralScale);
   static const Offset defaultValue = Offset(defaultScale, defaultScale);
 
@@ -79,8 +79,7 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
     double? end,
     Alignment? alignment,
   }) {
-    begin ??=
-        (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
+    begin ??= (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
     end ??= ScaleEffect.neutralScale;
     return addEffect(ScaleEffect(
       delay: delay,
@@ -102,8 +101,7 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
     double? end,
     Alignment? alignment,
   }) {
-    begin ??=
-        (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
+    begin ??= (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
     end ??= ScaleEffect.neutralScale;
     return addEffect(ScaleEffect(
       delay: delay,
@@ -125,8 +123,7 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
     double? end,
     Alignment? alignment,
   }) {
-    begin ??=
-        (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
+    begin ??= (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
     end ??= ScaleEffect.neutralScale;
     return addEffect(ScaleEffect(
       delay: delay,

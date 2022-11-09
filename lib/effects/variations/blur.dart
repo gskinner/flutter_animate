@@ -4,19 +4,12 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-//TODO: Impplement this without needing to override begin/end
 @immutable
-class BlurXEffect extends CompositeEffect {
-  const BlurXEffect({this.begin, this.end, super.delay, super.duration, super.curve});
+class BlurXEffect extends BeginEndEffect<double> with CompositeEffectMixin {
+  const BlurXEffect({super.begin, super.end, super.delay, super.duration, super.curve});
 
   @override
-  final double? begin;
-
-  @override
-  final double? end;
-
-  @override
-  List<Effect> get effects => [
+  List<BeginEndEffect> get effects => [
         BlurEffect(
           begin: Offset(begin ?? BlurEffect.neutralBlur, 0),
           end: Offset(end ?? (begin == null ? BlurEffect.defaultBlur : BlurEffect.neutralBlur), 0),
@@ -37,6 +30,5 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
 
 
 /// TODO:
-/// FadeInDown
-/// FadeInLeft
-/// FadeInRight
+/// BlurY
+/// BlurXY

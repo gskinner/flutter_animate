@@ -9,7 +9,7 @@ class SlideOutUpEffect extends CompositeEffect {
   final double? endY;
 
   @override
-  List<Effect> get effects => [
+  List<BeginEndEffect> get effects => [
         SlideEffect(begin: Offset.zero, end: Offset(0, endY ?? defaultEndY)),
       ];
 }

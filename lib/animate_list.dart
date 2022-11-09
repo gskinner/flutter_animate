@@ -29,8 +29,7 @@ import 'flutter_animate.dart';
 ///   )
 /// )
 /// ```
-class AnimateList<T extends Widget> extends ListBase<Widget>
-    with AnimateManager<AnimateList> {
+class AnimateList<T extends Widget> extends ListBase<Widget> with AnimateManager<AnimateList> {
   /// Specifies a default interval to use for new `AnimateList` instances.
   static Duration defaultInterval = Duration.zero;
 
@@ -47,7 +46,7 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
   /// instance, and proxy any added effects to each of them.
   AnimateList({
     required List<Widget> children,
-    List<Effect>? effects,
+    List<BeginEndEffect>? effects,
     Duration? interval,
     AnimateCallback? onPlay,
     AnimateCallback? onComplete,
@@ -76,7 +75,7 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
   final List<Widget> _widgets = [];
   final List<Animate> _managers = [];
 
-  /// Adds an effect. This is mostly used by [Effect] extension methods to
+  /// Adds an effect. This is mostly used by [BeginEndEffect] extension methods to
   /// append effects to an [AnimateList] instance.
   @override
   AnimateList addEffect(Effect effect) {
@@ -108,7 +107,7 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
 /// Ex. `[foo, bar].animate()` is equivalent to `AnimateList(children: [foo, bar])`.
 extension AnimateListExtensions on List<Widget> {
   AnimateList animate({
-    List<Effect>? effects,
+    List<BeginEndEffect>? effects,
     Duration? interval,
     AnimateCallback? onPlay,
     AnimateCallback? onComplete,
