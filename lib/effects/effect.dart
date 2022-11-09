@@ -2,19 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import '../flutter_animate.dart';
 
-/// An Effect that is composed of or more other existing Effects. Provides
-/// syntactic sugar for calling the `composeEffects` method.
-abstract class CompositeEffect extends Effect {
-  const CompositeEffect({super.delay, super.duration, super.curve});
-
-  @protected
-  List<Effect> get effects;
-
-  @override
-  Widget build(BuildContext context, Widget child, AnimationController controller, EffectEntry entry) =>
-      composeEffects(effects, context, child, controller, entry);
-}
-
+/// Used to easily create effects that are composed of one or more existing Effects. Provides
+/// syntactic sugar for overrideing build and calling the `composeEffects` method
+/// with a list of effects.
 mixin CompositeEffectMixin on Effect {
   List<Effect> get effects;
 
@@ -51,7 +41,7 @@ class BeginEndEffect<T> extends Effect {
 ///
 /// It can be instantiated and added to Animate, but has no visual effect.
 @immutable
-abstract class Effect<T> {
+class Effect<T> {
   const Effect({this.delay, this.duration, this.curve});
 
   /// The specified delay for the effect. If null, will use the delay from the
@@ -77,7 +67,7 @@ abstract class Effect<T> {
     return child;
   }
 
-  /// Calls build on one or more effects, composing them together and returning the resulting widget tree
+  /// Calls build on one or more effects, composing them together and returning the resulting widget tree.
   @protected
   Widget composeEffects(
     List<Effect> effects,

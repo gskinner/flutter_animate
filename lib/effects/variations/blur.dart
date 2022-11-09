@@ -9,7 +9,7 @@ class BlurXEffect extends BeginEndEffect<double> with CompositeEffectMixin {
   const BlurXEffect({super.begin, super.end, super.delay, super.duration, super.curve});
 
   @override
-  List<BeginEndEffect> get effects => [
+  List<Effect> get effects => [
         BlurEffect(
           begin: Offset(begin ?? BlurEffect.neutralBlur, 0),
           end: Offset(end ?? (begin == null ? BlurEffect.defaultBlur : BlurEffect.neutralBlur), 0),
