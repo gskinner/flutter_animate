@@ -41,7 +41,7 @@ class MoveEffect extends BeginEndEffect<Offset> {
     AnimationController controller,
     EffectEntry entry,
   ) {
-    Animation<Offset> animation = buildAnimation(controller, entry);
+    Animation<Offset> animation = buildTweenedAnimation(controller, entry);
     return getOptimizedBuilder<Offset>(
       animation: animation,
       builder: (_, __) {

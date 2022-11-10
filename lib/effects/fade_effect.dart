@@ -31,7 +31,7 @@ class FadeEffect extends BeginEndEffect<double> {
     EffectEntry entry,
   ) {
     return FadeTransition(
-      opacity: buildAnimation(controller, entry),
+      opacity: buildBeginEndAnimation(controller, entry),
       child: child,
     );
   }

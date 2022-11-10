@@ -25,13 +25,9 @@ class BeginEndEffect<T> extends Effect {
   /// default value when appropriate.
   final T? end;
 
-  /// Returns an animation based on the controller, entry, and begin/end values.
-  Animation<T> buildAnimation(
-    AnimationController controller,
-    EffectEntry entry,
-  ) {
-    return entry.buildAnimation(controller).drive(Tween<T>(begin: begin, end: end));
-  }
+  /// Helper method for concrete effects to easily create an Animation<T> from the current begin/end values.
+  Animation<T> buildBeginEndAnimation(AnimationController controller, EffectEntry entry) =>
+      entry.buildTweenedAnimation(controller, Tween(begin: begin, end: end));
 }
 
 /// Class that defines the required interface and helper methods for
@@ -41,7 +37,7 @@ class BeginEndEffect<T> extends Effect {
 ///
 /// It can be instantiated and added to Animate, but has no visual effect.
 @immutable
-class Effect<T> {
+class Effect {
   const Effect({this.delay, this.duration, this.curve});
 
   /// The specified delay for the effect. If null, will use the delay from the

@@ -37,7 +37,7 @@ class SlideEffect extends BeginEndEffect<Offset> {
     EffectEntry entry,
   ) {
     return SlideTransition(
-      position: buildAnimation(controller, entry),
+      position: buildTweenedAnimation(controller, entry),
       child: child,
     );
   }

@@ -1,10 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import 'effects/effects.dart';
-import 'animate.dart';
-import 'animate_list.dart';
-
 export 'animate.dart';
 export 'animate_list.dart';
 export 'adapters/adapters.dart';
