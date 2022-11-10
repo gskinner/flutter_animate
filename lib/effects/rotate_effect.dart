@@ -38,7 +38,7 @@ class RotateEffect extends BeginEndEffect<double> {
     AnimationController controller,
     EffectEntry entry,
   ) {
-    Animation<double> animation = buildTweenedAnimation(controller, entry);
+    Animation<double> animation = buildBeginEndAnimation(controller, entry);
     return RotationTransition(
       turns: animation,
       alignment: alignment ?? Alignment.center,

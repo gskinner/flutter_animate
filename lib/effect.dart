@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import '../flutter_animate.dart';
+import 'flutter_animate.dart';
 
 /// Used to easily create effects that are composed of one or more existing Effects. Provides
 /// syntactic sugar for overrideing build and calling the `composeEffects` method

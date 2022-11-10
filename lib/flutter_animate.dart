@@ -1,14 +1,14 @@
 import 'package:flutter/widgets.dart';
 
-import 'effects/effects.dart';
-import 'animate.dart';
-import 'animate_list.dart';
+import 'effect.dart';
 
 export 'animate.dart';
 export 'animate_list.dart';
 export 'adapters/adapters.dart';
 export 'effects/effects.dart';
 export 'effect_entry.dart';
+export 'effect.dart';
+export 'effects/effects.dart';
 export 'extensions/extensions.dart';
 
 /// Builds a sub-animation to the provided controller that runs from start to

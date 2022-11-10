@@ -36,7 +36,7 @@ class ScaleEffect extends BeginEndEffect<Offset> {
     AnimationController controller,
     EffectEntry entry,
   ) {
-    Animation<Offset> animation = buildTweenedAnimation(controller, entry);
+    Animation<Offset> animation = buildBeginEndAnimation(controller, entry);
     return getOptimizedBuilder<Offset>(
       animation: animation,
       builder: (_, __) {

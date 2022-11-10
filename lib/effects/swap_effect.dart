@@ -36,7 +36,7 @@ import '../flutter_animate.dart';
 /// [AnimationController]. So, for example, repeating the first animation (the
 /// fade out) via its controller will not affect the second animation (fade in).
 @immutable
-class SwapEffect extends BeginEndEffect<void> {
+class SwapEffect extends Effect {
   const SwapEffect({
     Duration? delay,
     Duration? duration,

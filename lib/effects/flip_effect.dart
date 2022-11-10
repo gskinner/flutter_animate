@@ -60,7 +60,7 @@ class FlipEffect extends BeginEndEffect<double> {
     AnimationController controller,
     EffectEntry entry,
   ) {
-    Animation<double> animation = buildAnimation(controller, entry);
+    Animation<double> animation = buildBeginEndAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
       builder: (_, __) {

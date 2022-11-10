@@ -60,7 +60,7 @@ class ShimmerEffect extends BeginEndEffect<double> {
     AnimationController controller,
     EffectEntry entry,
   ) {
-    Animation<double> animation = buildTweenedAnimation(controller, entry);
+    Animation<double> animation = buildBeginEndAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
       builder: (_, __) {

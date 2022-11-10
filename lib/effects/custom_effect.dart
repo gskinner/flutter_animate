@@ -38,7 +38,7 @@ class CustomEffect extends BeginEndEffect<double> {
     AnimationController controller,
     EffectEntry entry,
   ) {
-    Animation<double> animation = buildTweenedAnimation(controller, entry);
+    Animation<double> animation = buildBeginEndAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
       builder: (ctx, __) => builder(ctx, animation.value, child),
