@@ -2,8 +2,15 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
+/* 
+TODO: 
+FadeOutDown
+FadeOutLeft
+FadeOutRight
+*/
+
 @immutable
-class FadeOutEffect extends CompositeEffect {
+class FadeOutEffect extends Effect with CompositeEffectMixin {
   const FadeOutEffect({super.delay, super.duration, super.curve});
 
   @override
@@ -11,24 +18,14 @@ class FadeOutEffect extends CompositeEffect {
 }
 
 @immutable
-class FadeOutUpEffect extends CompositeEffect {
+class FadeOutUpEffect extends Effect with CompositeEffectMixin {
   const FadeOutUpEffect({this.endY, super.delay, super.duration, super.curve});
 
   final double? endY;
 
   @override
-  List<Effect> get effects => [
-        const FadeOutEffect(),
-        SlideOutUpEffect(endY: endY),
-      ];
+  List<Effect> get effects => [const FadeOutEffect(), SlideOutUpEffect(endY: endY)];
 }
-
-/* 
-TODO: 
-FadeOutDown
-FadeOutLeft
-FadeOutRight
-*/
 
 extension FadeOutEffectExtensions<T> on AnimateManager<T> {
   T fadeOut({Duration? delay, Duration? duration, Curve? curve}) =>

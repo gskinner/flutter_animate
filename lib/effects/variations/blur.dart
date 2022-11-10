@@ -4,6 +4,11 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
+/* 
+TODO:
+ BlurY
+ BlurXY
+*/
 @immutable
 class BlurXEffect extends BeginEndEffect<double> with CompositeEffectMixin {
   const BlurXEffect({super.begin, super.end, super.delay, super.duration, super.curve});
@@ -27,8 +32,3 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
   }) =>
       addEffect(BlurXEffect(delay: delay, duration: duration, curve: curve));
 }
-
-
-/// TODO:
-/// BlurY
-/// BlurXY
