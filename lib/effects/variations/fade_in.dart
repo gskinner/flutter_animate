@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_animate/effects/variations/slide_in.dart';
 
 import '../../flutter_animate.dart';
 

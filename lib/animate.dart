@@ -134,7 +134,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// ```
   final AnimateCallback? onPlay;
 
-  /// Defines a delay before the animation is started. Unlike [BeginEndEffect.delay],
+  /// Defines a delay before the animation is started. Unlike [Effect.delay],
   /// this is not a part of the overall animation, and only runs once if the
   /// animation is looped. [onPlay] is called after this delay.
   final Duration delay;
@@ -163,7 +163,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   @override
   State<Animate> createState() => _AnimateState();
 
-  /// Adds an effect. This is mostly used by [BeginEndEffect] extension methods to append effects
+  /// Adds an effect. This is mostly used by [Effect] extension methods to append effects
   /// to an [Animate] instance.
   @override
   Animate addEffect(Effect effect) {
@@ -284,7 +284,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 extension AnimateWidgetExtensions on Widget {
   Animate animate({
     Key? key,
-    List<BeginEndEffect>? effects,
+    List<Effect>? effects,
     AnimateCallback? onComplete,
     AnimateCallback? onPlay,
     Duration delay = Duration.zero,

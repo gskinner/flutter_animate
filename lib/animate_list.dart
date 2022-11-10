@@ -46,7 +46,7 @@ class AnimateList<T extends Widget> extends ListBase<Widget> with AnimateManager
   /// instance, and proxy any added effects to each of them.
   AnimateList({
     required List<Widget> children,
-    List<BeginEndEffect>? effects,
+    List<Effect>? effects,
     Duration? interval,
     AnimateCallback? onPlay,
     AnimateCallback? onComplete,
@@ -75,7 +75,7 @@ class AnimateList<T extends Widget> extends ListBase<Widget> with AnimateManager
   final List<Widget> _widgets = [];
   final List<Animate> _managers = [];
 
-  /// Adds an effect. This is mostly used by [BeginEndEffect] extension methods to
+  /// Adds an effect. This is mostly used by [Effect] extension methods to
   /// append effects to an [AnimateList] instance.
   @override
   AnimateList addEffect(Effect effect) {
@@ -107,7 +107,7 @@ class AnimateList<T extends Widget> extends ListBase<Widget> with AnimateManager
 /// Ex. `[foo, bar].animate()` is equivalent to `AnimateList(children: [foo, bar])`.
 extension AnimateListExtensions on List<Widget> {
   AnimateList animate({
-    List<BeginEndEffect>? effects,
+    List<Effect>? effects,
     Duration? interval,
     AnimateCallback? onPlay,
     AnimateCallback? onComplete,
