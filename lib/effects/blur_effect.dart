@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 import '../flutter_animate.dart';
@@ -42,7 +43,7 @@ class BlurEffect extends Effect<Offset> {
         final double sigmaX = _normalizeSigma(animation.value.dx);
         final double sigmaY = _normalizeSigma(animation.value.dy);
         return ImageFiltered(
-          enabled: sigmaX != 0 || sigmaY != 0,
+          enabled: sigmaX > minBlur || sigmaY > minBlur,
           imageFilter: ImageFilter.blur(
             sigmaX: sigmaX,
             sigmaY: sigmaY,
@@ -55,7 +56,10 @@ class BlurEffect extends Effect<Offset> {
   }
 
   double _normalizeSigma(double sigma) {
-    return sigma < minBlur ? 0 : sigma;
+    // Addresses a Flutter issue where near-zero blurs throw an error.
+    // TODO: fix is in master, remove this when it hits stable.
+    // https://github.com/flutter/engine/pull/36575 
+    return kIsWeb && sigma < minBlur ? minBlur : sigma;
   }
 }
 
