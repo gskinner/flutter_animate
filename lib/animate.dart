@@ -8,7 +8,8 @@ import 'flutter_animate.dart';
 /// ```
 /// // declarative:
 /// Animate(child: foo, effects: [FadeEffect(), ScaleEffect()])
-/// // equivalent chained API:
+/// 
+/// // chained API:
 /// foo.animate().fade().scale() // equivalent to above
 /// ```
 ///
@@ -103,6 +104,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     this.delay = Duration.zero,
     this.controller,
     this.adapter,
+    this.target,
   }) : super(key: key) {
     _entries = [];
     if (effects != null) addEffects(effects);
@@ -153,6 +155,16 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// because it can cause unexpected results.
   final Adapter? adapter;
 
+  /// Sets a target position for the animation between 0 (start) and 1 (end).
+  /// When [target] is changed, it will animate to the new position.
+  /// 
+  /// Ex. fade and scale a button when an `_over` state changes:
+  /// ```
+  /// MyButton().animate(target: _over ? 1 : 0)
+  ///   .fade(end: 0.8).scaleXY(end: 1.1)
+  /// ```
+  final double? target;
+
   late final List<EffectEntry> _entries;
   Duration _duration = Duration.zero;
   EffectEntry? _lastEntry;
@@ -200,7 +212,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _initController();
-    if (!_hasAdapter) _delayed = Future.delayed(widget.delay, () => _play());
+    _delayed = Future.delayed(widget.delay, () => _play());
   }
 
   @override
@@ -211,6 +223,8 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
       _play();
     } else if (oldWidget.adapter != widget.adapter) {
       _initAdapter();
+    } else if (widget.target != oldWidget.target && widget.target != null) {
+      _play();
     }
     super.didUpdateWidget(oldWidget);
   }
@@ -266,8 +280,13 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 
   void _play() {
     _delayed?.ignore(); // for poorly timed hot reloads.
-    if (!_hasAdapter) _controller.forward(from: 0);
-    widget.onPlay?.call(_controller);
+    double? pos = widget.target;
+    if (pos != null) {
+      _controller.animateTo(pos);
+    } else if (!_hasAdapter) {
+      _controller.forward(from: 0);
+      widget.onPlay?.call(_controller);
+    }
   }
 
   @override
@@ -293,6 +312,7 @@ extension AnimateWidgetExtensions on Widget {
     Duration delay = Duration.zero,
     AnimationController? controller,
     Adapter? adapter,
+    double? target,
   }) =>
       Animate(
         key: key,
@@ -302,6 +322,7 @@ extension AnimateWidgetExtensions on Widget {
         delay: delay,
         controller: controller,
         adapter: adapter,
+        target: target,
         child: this,
       );
 }

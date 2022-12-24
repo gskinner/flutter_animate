@@ -346,6 +346,21 @@ Flutter Animate ships with a collection of useful adapters. Check them out for
 more information.
 
 
+Reactive Animations
+================================================================================
+`Animate` can react to state changes similar to "Animated" widgets (ex.
+`AnimatedOpacity`). Simply set up your animation normally, but set a `target`
+value. When the value of `target` changes, it will automatically animate to the 
+new target position (where `0` is the beginning and `1` is the end).
+
+For example, combined with logic that toggles `_over` via `setState`, this will
+fade and scale the button on roll over:
+
+``` dart
+MyButton().animate(target: _over ? 1 : 0)
+  .fade(end: 0.8).scaleXY(end: 1.1)
+```
+
 
 Installation
 ================================================================================
