@@ -41,14 +41,10 @@ class SaturateEffect extends Effect<double> {
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) {
-        double value = animation.value;
-        if (value == 1) return child;
-        return ColorFiltered(
-          colorFilter: ColorFilter.matrix(getColorMatrix(animation.value)),
-          child: child,
-        );
-      },
+      builder: (_, __) => ColorFiltered(
+        colorFilter: ColorFilter.matrix(getColorMatrix(animation.value)),
+        child: child,
+      ),
     );
   }
 

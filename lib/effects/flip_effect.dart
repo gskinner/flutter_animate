@@ -65,7 +65,6 @@ class FlipEffect extends Effect<double> {
       animation: animation,
       builder: (_, __) {
         double value = animation.value * pi;
-        if (value == 0) return child;
 
         final Matrix4 mtx = Matrix4(
           1.0, 0.0, 0.0, 0.0, //
@@ -73,10 +72,12 @@ class FlipEffect extends Effect<double> {
           0.0, 0.0, 1.0, 0.002 * perspective, //
           0.0, 0.0, 0.0, 1.0,
         );
-        if (direction == Axis.vertical) {
-          mtx.rotateX(value);
-        } else {
-          mtx.rotateY(value);
+        if (value != 0) {
+          if (direction == Axis.vertical) {
+            mtx.rotateX(value);
+          } else {
+            mtx.rotateY(value);
+          }
         }
 
         return Transform(alignment: alignment, transform: mtx, child: child);

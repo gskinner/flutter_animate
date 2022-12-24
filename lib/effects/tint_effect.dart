@@ -47,14 +47,10 @@ class TintEffect extends Effect<double> {
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) {
-        double value = animation.value;
-        if (value == 0) return child;
-        return ColorFiltered(
-          colorFilter: ColorFilter.matrix(getTintMatrix(value, color)),
-          child: child,
-        );
-      },
+      builder: (_, __) => ColorFiltered(
+        colorFilter: ColorFilter.matrix(getTintMatrix(animation.value, color)),
+        child: child,
+      ),
     );
   }
 
