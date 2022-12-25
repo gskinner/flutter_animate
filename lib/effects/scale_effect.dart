@@ -43,6 +43,7 @@ class ScaleEffect extends Effect<Offset> {
         return Transform.scale(
           scaleX: animation.value.dx,
           scaleY: animation.value.dy,
+          alignment: alignment ?? Alignment.center,
           child: child,
         );
       },
