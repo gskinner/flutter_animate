@@ -63,7 +63,7 @@ class _FlutterAnimateExampleState extends State<FlutterAnimateExample> {
     Widget content = FlutterAnimateExample.tabs[_viewIndex].builder(context);
 
     return Scaffold(
-      backgroundColor: const Color(0xFF222326),
+      backgroundColor: const Color(0xFF404349),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _viewIndex,
         selectedFontSize: 12,

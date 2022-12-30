@@ -12,8 +12,8 @@ class EverythingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (_, box) => GridView.count(
-        crossAxisCount: (box.maxWidth / 128).floor(),
-        childAspectRatio: 0.8,
+        crossAxisCount: (box.maxWidth / 176).floor(),
+        childAspectRatio: 0.85,
         children: [
           // these are in alphabetic order according to their classes
           // ex. BlurEffect defines both blur and blurX.
@@ -22,6 +22,8 @@ class EverythingView extends StatelessWidget {
           tile('blurX', a.blurX()),
           tile('blurY', a.blurY()),
           tile('blurXY', a.blurXY()),
+
+          tile('boxShadow', a.boxShadow()),
 
           // callback
 
@@ -34,6 +36,8 @@ class EverythingView extends StatelessWidget {
           })),
 
           // effect
+
+          tile('elevation', a.elevation()),
 
           //tile('fade', a.fade()),
           tile('fadeIn', a.fadeIn()),
@@ -121,15 +125,14 @@ class EverythingView extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        width: 64,
-        height: 64,
+        width: 96,
+        height: 96,
       );
 
   // grid tile. Naming should be `buildTile`, but going for brevity.
   Widget tile(String label, Widget demo) => Container(
         margin: const EdgeInsets.all(4),
         color: Colors.black12,
-        height: 160,
         child: Column(
           children: [
             Flexible(child: Center(child: demo)),
