@@ -58,7 +58,7 @@ class BlurEffect extends Effect<Offset> {
   double _normalizeSigma(double sigma) {
     // Addresses a Flutter issue where near-zero blurs throw an error.
     // TODO: fix is in master, remove this when it hits stable.
-    // https://github.com/flutter/engine/pull/36575 
+    // https://github.com/flutter/engine/pull/36575
     return kIsWeb && sigma < minBlur ? minBlur : sigma;
   }
 }

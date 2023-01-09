@@ -8,7 +8,7 @@ import 'flutter_animate.dart';
 /// ```
 /// // declarative:
 /// Animate(child: foo, effects: [FadeEffect(), ScaleEffect()])
-/// 
+///
 /// // chained API:
 /// foo.animate().fade().scale() // equivalent to above
 /// ```
@@ -57,10 +57,10 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
 
   /// If true, then animations will automatically restart whenever a hot reload
   /// occurs. This is useful for testing animations quickly during development.
-  /// 
+  ///
   /// You can get similar results for an individual animation by passing it a
   /// [UniqueKey], which will cause it to restart each time it is rebuilt.
-  /// 
+  ///
   /// ```
   /// myWidget.animate(key: UniqueKey()).fade()
   /// ```
@@ -168,7 +168,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
 
   /// Sets a target position for the animation between 0 (start) and 1 (end).
   /// When [target] is changed, it will animate to the new position.
-  /// 
+  ///
   /// Ex. fade and scale a button when an `_over` state changes:
   /// ```
   /// MyButton().animate(target: _over ? 1 : 0)

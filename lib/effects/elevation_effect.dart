@@ -5,7 +5,7 @@ import '../flutter_animate.dart';
 /// An effect that applies an animated elevation shadow (via [PhysicalModel])
 /// You can also specify a [color] and [borderRadius] to add rounded corners.
 /// See [PhysicalModel] for more information.
-/// 
+///
 /// See also: [BoxShadowEffect] for more control over animated shadows.
 @immutable
 class ElevationEffect extends Effect<double> {
