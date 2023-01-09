@@ -129,7 +129,8 @@ class _SweepingGradientTransform extends GradientTransform {
 
   @override
   Matrix4? transform(Rect bounds, {TextDirection? textDirection}) {
-    double w = bounds.width, h = bounds.height;
+    // minimum width / height to avoid infinity errors:
+    double w = max(0.01, bounds.width), h = max(0.01, bounds.height);
 
     // calculate the radius of the rect:
     double r = (cos(angle) * w).abs() + (sin(angle) * h).abs();
