@@ -6,8 +6,8 @@ Flutter Animate
 A performant library that makes it simple to add almost any kind of animated 
 effect in Flutter.
 
-1. Pre-built effects, like fade, scale, slide, flip, blur, shake, shimmer, and color
-   effects (saturation and tint)
+1. Pre-built effects, like fade, scale, slide, flip, blur, shake, shimmer, 
+   shadows, and color effects (saturation and tint)
 2. Easy custom effects and simplified animated builders
 3. Synchronize animations to scroll, notifiers, or anything
 4. Integrated events
@@ -346,7 +346,7 @@ Flutter Animate ships with a collection of useful adapters. Check them out for
 more information.
 
 
-Reactive Animations
+Reacting to State Changes
 ================================================================================
 `Animate` can react to state changes similar to "Animated" widgets (ex.
 `AnimatedOpacity`). Simply set up your animation normally, but set a `target`
@@ -360,6 +360,13 @@ fade and scale the button on roll over:
 MyButton().animate(target: _over ? 1 : 0)
   .fade(end: 0.8).scaleXY(end: 1.1)
 ```
+
+
+Testing Animations
+================================================================================
+When testing animations, you can set `Animate.restartOnHotReload=true` which
+will cause all animations to automatically restart every time you hot reload
+your app.
 
 
 Installation
