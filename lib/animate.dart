@@ -55,6 +55,17 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// Default curve for effects.
   static Curve defaultCurve = Curves.linear;
 
+  /// If true, then animations will automatically restart whenever a hot reload
+  /// occurs. This is useful for testing animations quickly during development.
+  /// 
+  /// You can get similar results for an individual animation by passing it a
+  /// [UniqueKey], which will cause it to restart each time it is rebuilt.
+  /// 
+  /// ```
+  /// myWidget.animate(key: UniqueKey()).fade()
+  /// ```
+  static bool restartOnHotReload = false;
+
   /// Widget types to reparent, mapped to a method that handles that type. This is used
   /// to make it easy to work with widgets that require specific parents. For example,
   /// the [Positioned] widget, which needs its immediate parent to be a [Stack].
@@ -211,8 +222,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _initController();
-    _delayed = Future.delayed(widget.delay, () => _play());
+    _restart();
   }
 
   @override
@@ -227,6 +237,18 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
       _play();
     }
     super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    if (Animate.restartOnHotReload) _restart();
+  }
+
+  void _restart() {
+    _delayed?.ignore();
+    _initController();
+    _delayed = Future.delayed(widget.delay, () => _play());
   }
 
   void _initController() {
