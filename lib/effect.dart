@@ -1,6 +1,34 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import '../flutter_animate.dart';
+import 'flutter_animate.dart';
+
+/// Used to easily create effects that are composed of one or more existing Effects. Provides
+/// syntactic sugar for overrideing build and calling the `composeEffects` method
+/// with a list of effects.
+mixin CompositeEffectMixin on Effect {
+  List<Effect> get effects;
+
+  @override
+  Widget build(BuildContext context, Widget child, AnimationController controller, EffectEntry entry) =>
+      composeEffects(effects, context, child, controller, entry);
+}
+
+/// Adds a begin/end fields and a convenience method for passing them to entry.buildAnimation()
+class BeginEndEffect<T> extends Effect {
+  const BeginEndEffect({super.delay, super.duration, super.curve, this.begin, this.end});
+
+  /// The begin value for the effect. If null, effects should use a reasonable
+  /// default value when appropriate.
+  final T? begin;
+
+  /// The end value for the effect. If null, effects should use a reasonable
+  /// default value when appropriate.
+  final T? end;
+
+  /// Helper method for concrete effects to easily create an Animation<T> from the current begin/end values.
+  Animation<T> buildBeginEndAnimation(AnimationController controller, EffectEntry entry) =>
+      entry.buildTweenedAnimation(controller, Tween(begin: begin, end: end));
+}
 
 /// Class that defines the required interface and helper methods for
 /// all effect classes. Look at the various effects for examples of how
@@ -9,7 +37,9 @@ import '../flutter_animate.dart';
 ///
 /// It can be instantiated and added to Animate, but has no visual effect.
 @immutable
-class Effect<T> {
+class Effect {
+  const Effect({this.delay, this.duration, this.curve});
+
   /// The specified delay for the effect. If null, will use the delay from the
   /// previous effect, or [Duration.zero] if this is the first effect.
   final Duration? delay;
@@ -22,16 +52,6 @@ class Effect<T> {
   /// previous effect, or [Animate.defaultCurve] if this is the first effect.
   final Curve? curve;
 
-  /// The begin value for the effect. If null, effects should use a reasonable
-  /// default value when appropriate.
-  final T? begin;
-
-  /// The end value for the effect. If null, effects should use a reasonable
-  /// default value when appropriate.
-  final T? end;
-
-  const Effect({this.delay, this.duration, this.curve, this.begin, this.end});
-
   /// Builds the widgets necessary to implement the effect, based on the
   /// provided [AnimationController] and [EffectEntry].
   Widget build(
@@ -43,14 +63,19 @@ class Effect<T> {
     return child;
   }
 
-  /// Returns an animation based on the controller, entry, and begin/end values.
-  Animation<T> buildAnimation(
+  /// Calls build on one or more effects, composing them together and returning the resulting widget tree.
+  @protected
+  Widget composeEffects(
+    List<Effect> effects,
+    BuildContext context,
+    Widget child,
     AnimationController controller,
     EffectEntry entry,
   ) {
-    return entry
-        .buildAnimation(controller)
-        .drive(Tween<T>(begin: begin, end: end));
+    for (var f in effects) {
+      child = f.build(context, child, controller, entry);
+    }
+    return child;
   }
 
   /// Returns a ratio corresponding to the beginning of the specified entry.
@@ -68,8 +93,7 @@ class Effect<T> {
   /// Check if the animation is currently running / active.
   bool isAnimationActive(Animation animation) {
     AnimationStatus status = animation.status;
-    return status == AnimationStatus.forward ||
-        status == AnimationStatus.reverse;
+    return status == AnimationStatus.forward || status == AnimationStatus.reverse;
   }
 
   /// Returns an optimized [AnimatedBuilder] that doesn't
@@ -117,7 +141,7 @@ extension EffectExtensions<T> on AnimateManager<T> {
     double? begin,
     double? end,
   }) =>
-      addEffect(Effect(
+      addEffect(BeginEndEffect(
         delay: delay,
         duration: duration,
         curve: curve,

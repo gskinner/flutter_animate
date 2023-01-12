@@ -193,9 +193,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     EffectEntry? prior = _lastEntry;
 
     Duration delay = (effect is ThenEffect)
-        ? (effect.delay ?? Duration.zero) +
-            (prior?.delay ?? Duration.zero) +
-            (prior?.duration ?? Duration.zero)
+        ? (effect.delay ?? Duration.zero) + (prior?.delay ?? Duration.zero) + (prior?.duration ?? Duration.zero)
         : effect.delay ?? prior?.delay ?? Duration.zero;
 
     EffectEntry entry = EffectEntry(
@@ -227,8 +225,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 
   @override
   void didUpdateWidget(Animate oldWidget) {
-    if (oldWidget.controller != widget.controller ||
-        oldWidget._duration != widget._duration) {
+    if (oldWidget.controller != widget.controller || oldWidget._duration != widget._duration) {
       _initController();
       _play();
     } else if (oldWidget.adapter != widget.adapter) {

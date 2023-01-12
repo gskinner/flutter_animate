@@ -20,7 +20,7 @@ import '../flutter_animate.dart';
 /// The child of `Animate` is passed through to the builder in the `child` param
 /// (possibly already wrapped by prior effects).
 @immutable
-class ToggleEffect extends Effect<void> {
+class ToggleEffect extends Effect {
   const ToggleEffect({
     Duration? delay,
     Duration? duration,

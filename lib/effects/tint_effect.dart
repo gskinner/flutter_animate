@@ -15,7 +15,7 @@ import '../flutter_animate.dart';
 ///   .tint(color: Colors.blue, end: 0.5, duration: 2.seconds)
 /// ```
 @immutable
-class TintEffect extends Effect<double> {
+class TintEffect extends BeginEndEffect<double> {
   static const double neutralValue = 0.0;
   static const double defaultValue = 1.0;
 
@@ -44,7 +44,7 @@ class TintEffect extends Effect<double> {
     AnimationController controller,
     EffectEntry entry,
   ) {
-    Animation<double> animation = buildAnimation(controller, entry);
+    Animation<double> animation = buildBeginEndAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
       builder: (_, __) => ColorFiltered(

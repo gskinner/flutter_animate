@@ -28,16 +28,14 @@ import '../flutter_animate.dart';
 /// subsequent effect. In the example above, it is functionally equivalent to
 /// setting `delay: 1400.ms` on the blur effect.
 @immutable
-class ThenEffect extends Effect<double> {
+class ThenEffect extends Effect {
   // NOTE: this is just an empty effect, the logic happens in Animate
   // when it recognizes the type.
   const ThenEffect({Duration? delay, Duration? duration, Curve? curve})
       : super(delay: delay, duration: duration, curve: curve);
 
   @override
-  Widget build(BuildContext context, Widget child,
-          AnimationController controller, EffectEntry entry) =>
-      child;
+  Widget build(BuildContext context, Widget child, AnimationController controller, EffectEntry entry) => child;
 }
 
 extension ThenEffectExtensions<T> on AnimateManager<T> {

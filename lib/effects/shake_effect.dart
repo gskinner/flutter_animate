@@ -22,7 +22,7 @@ import '../flutter_animate.dart';
 /// Text("Hello").animate().shakeX(amount: 10)
 /// ```
 @immutable
-class ShakeEffect extends Effect<double> {
+class ShakeEffect extends BeginEndEffect<double> {
   static const int defaultHz = 8;
   static const double defaultRotation = pi / 36;
   static const double defaultMove = 5;
@@ -60,7 +60,7 @@ class ShakeEffect extends Effect<double> {
     final bool shouldTranslate = offset != Offset.zero;
     if (!shouldRotate && !shouldTranslate) return child;
 
-    final Animation<double> animation = buildAnimation(controller, entry);
+    final Animation<double> animation = buildBeginEndAnimation(controller, entry);
     final int count = (entry.duration.inMilliseconds / 1000 * hz).round();
 
     return getOptimizedBuilder<double>(

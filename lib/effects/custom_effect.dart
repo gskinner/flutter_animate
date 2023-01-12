@@ -11,9 +11,9 @@ import '../flutter_animate.dart';
 /// ```
 ///
 /// Note that the above could also be accomplished by creating a custom effect class
-/// that extends [Effect] and utilizes [AnimatedPadding].
+/// that extends [BeginEndEffect] and utilizes [AnimatedPadding].
 @immutable
-class CustomEffect extends Effect<double> {
+class CustomEffect extends BeginEndEffect<double> {
   const CustomEffect({
     required this.builder,
     Duration? delay,
@@ -38,7 +38,7 @@ class CustomEffect extends Effect<double> {
     AnimationController controller,
     EffectEntry entry,
   ) {
-    Animation<double> animation = buildAnimation(controller, entry);
+    Animation<double> animation = buildBeginEndAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
       builder: (ctx, __) => builder(ctx, animation.value, child),

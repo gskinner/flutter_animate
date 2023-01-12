@@ -13,7 +13,7 @@ import '../flutter_animate.dart';
 ///   .saturate(duration: 2.seconds)
 /// ```
 @immutable
-class SaturateEffect extends Effect<double> {
+class SaturateEffect extends BeginEndEffect<double> {
   static const double neutralValue = 1.0;
   static const double defaultValue = 0.0;
 
@@ -38,7 +38,7 @@ class SaturateEffect extends Effect<double> {
     AnimationController controller,
     EffectEntry entry,
   ) {
-    Animation<double> animation = buildAnimation(controller, entry);
+    Animation<double> animation = buildBeginEndAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
       builder: (_, __) => ColorFiltered(

@@ -27,7 +27,7 @@ import '../flutter_animate.dart';
 /// an animation that is driven by an [Adapter] (or manipulated via its controller)
 /// may behave unexpectedly in certain circumstances.
 @immutable
-class CallbackEffect extends Effect<void> {
+class CallbackEffect extends Effect {
   const CallbackEffect({
     Duration? delay,
     Duration? duration,
