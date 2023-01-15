@@ -21,6 +21,9 @@ import '../flutter_animate.dart';
 /// * [BlendMode.srcIn] which uses the child as a mask
 /// * [BlendMode.srcOver] layers the gradient fill over the child (no masking)
 /// * [BlendMode.dstOver] layers the gradient fill under the child (no masking)
+/// 
+/// Note that most blend modes in Flutter do not respect the alpha channel
+/// correctly.
 @immutable
 class ShimmerEffect extends Effect<double> {
   static const Color defaultColor = Color(0x80FFFFFF);

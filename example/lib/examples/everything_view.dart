@@ -25,6 +25,8 @@ class EverythingView extends StatelessWidget {
 
           tile('boxShadow', a.boxShadow()),
 
+          tile('color', a.color()),
+
           // callback
 
           tile('custom', a.custom(builder: (_, val, child) {

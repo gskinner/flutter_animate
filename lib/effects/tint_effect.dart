@@ -3,12 +3,16 @@ import 'package:flutter/widgets.dart';
 import '../flutter_animate.dart';
 
 /// An effect that applies an animated color tint to the target. The [begin] and
-/// [end] values indicate the strength of the tint (0 - no tint, 1 - 100% tint).
+/// [end] values indicate the strength of the tint (0 - 0% tint, 1 - 100% tint).
 /// The default [color] is opaque black (`Color(0xFF000000)`).
 /// If [color] has an opacity less than one, that opacity is multiplied against
-/// the strength. Ex. `Colors.black54` at strength `0.5` would apply a 27% tint.
+/// the strength. Ex. `Colors.black54` at strength `0.5` would apply a 27%
+/// black tint.
+/// 
+/// See also: [ColorEffect], which animates between two different colors, and 
+/// supports blend modes.
 ///
-/// For example, this would animate in a 50% blue tint:
+/// For example, this would animate in a 50% blue tint over 2 seconds:
 ///
 /// ```
 /// Image.asset('assets/rainbow.jpg').animate()
