@@ -9,7 +9,7 @@ import '../flutter_animate.dart';
 /// See also: [ElevationEffect] for simpler animated shadows based on elevation.
 @immutable
 class BoxShadowEffect extends Effect<BoxShadow> {
-  static const BoxShadow neutralValue = BoxShadow(color: Color(0x00000000));
+  static const BoxShadow? neutralValue = null;
   static const BoxShadow defaultValue = BoxShadow(
     color: Color(0x80000000),
     blurRadius: 8.0,
@@ -40,36 +40,18 @@ class BoxShadowEffect extends Effect<BoxShadow> {
     AnimationController controller,
     EffectEntry entry,
   ) {
-    Animation<BoxShadow> animation = _buildAnimation(controller, entry);
-    return getOptimizedBuilder<BoxShadow>(
+    Animation<double> animation = entry.buildAnimation(controller);
+    return getOptimizedBuilder<double>(
       animation: animation,
       builder: (_, __) => DecoratedBox(
         decoration: BoxDecoration(
-          boxShadow: [animation.value],
+          boxShadow: [BoxShadow.lerp(begin, end, animation.value)!],
           borderRadius: borderRadius,
         ),
         child: child,
       ),
     );
   }
-
-  Animation<BoxShadow> _buildAnimation(
-    AnimationController controller,
-    EffectEntry entry,
-  ) {
-    return entry
-        .buildAnimation(controller)
-        .drive(_BoxShadowTween(begin: begin, end: end));
-  }
-}
-
-class _BoxShadowTween extends Tween<BoxShadow> {
-  /// Creates a box shadow tween.
-  _BoxShadowTween({begin, end}) : super(begin: begin, end: end);
-
-  /// Returns the value this variable has at the given animation clock value.
-  @override
-  BoxShadow lerp(double t) => BoxShadow.lerp(begin, end, t)!;
 }
 
 extension BoxShadowEffectExtensions<T> on AnimateManager<T> {
