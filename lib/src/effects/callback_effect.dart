@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 // Note: this whole thing is pretty messy / complex because AnimationController
 // wasn't really designed to support this. For example, it doesn't provide any

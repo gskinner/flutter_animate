@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// Drives an [Animate] animation from a [ScrollController].
 ///

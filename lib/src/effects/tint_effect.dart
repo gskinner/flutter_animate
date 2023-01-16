@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// An effect that applies an animated color tint to the target. The [begin] and
 /// [end] values indicate the strength of the tint (0 - 0% tint, 1 - 100% tint).

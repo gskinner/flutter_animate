@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// Drives an [Animate] animation from a [ChangeNotifier]. The [valueGetter]
 /// should provide a value in the range `0-1` when a change occurs.

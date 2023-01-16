@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// Effect that scales the target (via [ScaleTransition]) between the specified begin and end values.
 /// Defaults to `begin=0, end=1`.

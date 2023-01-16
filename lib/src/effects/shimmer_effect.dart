@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// An effect that enables gradient effects, such as the shimmer loading effect
 /// [popularized by facebook](https://facebook.github.io/shimmer-android/).

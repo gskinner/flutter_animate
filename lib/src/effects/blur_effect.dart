@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// Effect that animates a blur on the target (via [ImageFiltered])
 /// between the specified begin and end blur radius values. Defaults to a blur radius of `begin=0, end=4`.

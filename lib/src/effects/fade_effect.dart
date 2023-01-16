@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// Effect that animates the opacity of the target (via [FadeTransition]) between the specified begin and end values.
 /// It defaults to `begin=0, end=1`.

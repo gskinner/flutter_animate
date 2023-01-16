@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// Effect that moves the target based on a fraction of its size (via [SlideTransition])
 /// based on the specified begin and end offsets. Defaults to `begin=Offset(0, -0.5),

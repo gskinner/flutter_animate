@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// Effect that shakes the target, using translation, rotation, or both.
 /// The `hz` parameter indicates approximately how many times to repeat the shake

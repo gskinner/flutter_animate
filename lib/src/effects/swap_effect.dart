@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// Effect that swaps out the incoming child for a new child at a particular
 /// point in time. This includes all preceding effects. It uses a builder so

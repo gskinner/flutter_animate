@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// An effect to apply an animated rectangular drop shadow (via [DecoratedBox]).
 /// The [begin] and [end] parameters accept [BoxShadow] instances to animate between.

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// An effect that animates the color saturation of the target. The `begin` and
 /// `end` values indicate the saturation level, where 0 is fully desaturated

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// Effect that toggles the visibility of the target (via [Visibility]).
 /// Defaults to `end=true`.

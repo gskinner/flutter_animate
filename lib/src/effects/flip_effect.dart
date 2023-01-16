@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// Effect that creates a 2.5D card flip rotation effect (via a matrix [Transform]).
 /// The effect can be horizontal or vertical.

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// Provide an easy way to add custom effects via a build method. For example, this
 /// would animate custom padding on the target from 0 to 40.

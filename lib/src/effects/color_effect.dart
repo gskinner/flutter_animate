@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// An effect that animates between two colors, composited with the target with
 /// the specified [BlendMode].

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// A special convenience "effect" that makes it easier to sequence effects after
 /// one another. It does this by calculating a new inheritable delay by adding the

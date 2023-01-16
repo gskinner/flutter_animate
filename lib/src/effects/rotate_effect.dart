@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../flutter_animate.dart';
+import '../../flutter_animate.dart';
 
 /// Effect that rotates the target (via [RotationTransition]) between the specified begin and end.
 /// Values are specified in "turns", so a `begin=0.25, end=2.25` would start with the child
