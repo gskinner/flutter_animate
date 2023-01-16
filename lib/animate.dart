@@ -233,7 +233,8 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
       _play();
     } else if (oldWidget.adapter != widget.adapter) {
       _initAdapter();
-    } else if (widget.target != oldWidget.target && widget.target != null) {
+    } else if (widget.target != oldWidget.target ||
+        widget.onPlay != oldWidget.onPlay) {
       _play();
     }
     super.didUpdateWidget(oldWidget);
