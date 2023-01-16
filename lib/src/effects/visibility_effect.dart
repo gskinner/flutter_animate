@@ -2,11 +2,12 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// Effect that toggles the visibility of the target (via [Visibility]).
+/// An effect that toggles the visibility of the target (via [Visibility]).
 /// Defaults to `end=true`.
 ///
-/// The `maintain` parameter is assigned to the [Visibility] properties `maintainSize`,
+/// [maintain] is assigned to the [Visibility] properties `maintainSize`,
 /// `maintainAnimation`, `maintainState`, `maintainInteractivity` and `maintainSemantics`.
+/// It defaults to `null`.
 @immutable
 class VisibilityEffect extends Effect<bool> {
   static const bool neutralValue = true;

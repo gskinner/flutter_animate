@@ -4,10 +4,9 @@ import '../../flutter_animate.dart';
 
 /// A special convenience "effect" that makes it easier to sequence effects after
 /// one another. It does this by calculating a new inheritable delay by adding the
-/// previous effect's `delay`, `duration` and its own optional `delay`.
+/// previous effect's `delay`, `duration` and its own optional [delay].
 ///
-/// For example, this would cause the scale to run 300 milliseconds after the fade
-/// completes:
+/// This example shows [ThenEffect] in use:
 ///
 /// ```
 /// Text("Hello").animate()
@@ -21,12 +20,8 @@ import '../../flutter_animate.dart';
 ///   .move(delay: 0.ms)
 /// ```
 ///
-/// This makes it easy to change the delay or duration of the `fadeIn`, without
-/// having to update the delay on `scale` to match.
-///
 /// Note that this simply calculates a new `delay` that will be inherited by the
-/// subsequent effect. In the example above, it is functionally equivalent to
-/// setting `delay: 1400.ms` on the blur effect.
+/// subsequent effect. That delay can be overridden by subsequent effects.
 @immutable
 class ThenEffect extends Effect<double> {
   // NOTE: this is just an empty effect, the logic happens in Animate
@@ -35,8 +30,12 @@ class ThenEffect extends Effect<double> {
       : super(delay: delay, duration: duration, curve: curve);
 
   @override
-  Widget build(BuildContext context, Widget child,
-          AnimationController controller, EffectEntry entry) =>
+  Widget build(
+    BuildContext context,
+    Widget child,
+    AnimationController controller,
+    EffectEntry entry,
+  ) =>
       child;
 }
 

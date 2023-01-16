@@ -4,17 +4,17 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// An effect that enables gradient effects, such as the shimmer loading effect
+/// An effect that enables gradient overlay effects (via [ShaderMask]), such as the shimmer loading effect
 /// [popularized by facebook](https://facebook.github.io/shimmer-android/).
 ///
 /// By default it animates a simple 50% white gradient clipped by the child content.
 /// However it provides a large amount of customization, including changing the
-/// gradient angle, the gradient colors / stops, and specifying the blend mode.
+/// gradient [angle], [colors] / [stops], and a [blendMode].
 ///
-/// If `colors` is not specified then it will use `color` to build one:
+/// If [colors] is not specified then it will use [color] to build one similar to
 /// `[transparent, color, transparent]`.
 ///
-/// `blendMode` lets you adjust how the gradient fill is composited. It defaults to
+/// [blendMode] specifies how the gradient fill is composited. It defaults to
 /// [BlendMode.srcATop], which layers the fill over the child, using the child's
 /// alpha (ie. the child acts as a mask). Other interesting options include:
 ///

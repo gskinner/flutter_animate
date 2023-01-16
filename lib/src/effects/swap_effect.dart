@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// Effect that swaps out the incoming child for a new child at a particular
-/// point in time. This includes all preceding effects. It uses a builder so
+/// An effect that swaps out the incoming child for a new child at a particular
+/// point in time. This includes all preceding effects. It uses a [builder] so
 /// that the effect can be reused, but note that the builder is only called once
 /// when the effect initially builds.
 ///

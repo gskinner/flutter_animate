@@ -13,7 +13,7 @@ import '../../flutter_animate.dart';
 /// negative value before delay).
 ///
 /// This example will print the current animation value (which matches the value
-/// of the preceeding fade effect's opacity value):
+/// of the preceding fade effect's opacity value):
 ///
 /// ```
 /// Text("Hello").animate().fadeIn(curve: Curves.easeOutExpo)

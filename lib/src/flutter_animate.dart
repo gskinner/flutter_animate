@@ -12,7 +12,6 @@ mixin AnimateManager<T> {
   }
 }
 
-
 /// Because [Effect] classes are immutable and may be reused between multiple
 /// [Animate] (or [AnimateList]) instances, an [EffectEntry] is created to store
 /// values that may be different between instances. For example, due to an

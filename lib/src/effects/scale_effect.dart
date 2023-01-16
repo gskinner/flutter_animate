@@ -2,8 +2,9 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// Effect that scales the target (via [ScaleTransition]) between the specified begin and end values.
-/// Defaults to `begin=0, end=1`.
+/// An effect that scales the target between the specified [begin] and [end]
+/// offset values (via [ScaleTransition]).
+/// Defaults to `begin=Offset(0,0), end=Offset(1,1)`.
 @immutable
 class ScaleEffect extends Effect<Offset> {
   static const Offset neutralValue = Offset(neutralScale, neutralScale);

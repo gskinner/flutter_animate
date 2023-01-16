@@ -2,11 +2,12 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// An effect that animates the color saturation of the target. The `begin` and
-/// `end` values indicate the saturation level, where 0 is fully desaturated
-/// (ie. grayscale) and 1 is normal saturation. Values over 1 will oversaturate.
+/// An effect that animates the color saturation of the target. The [begin] and
+/// [end] values indicate the saturation level, where `0` is fully desaturated
+/// (ie. grayscale) and `1` is normal saturation. Values `>1` will oversaturate.
+/// Defaults to `begin=0, end=1`.
 ///
-/// For example, this fade from grayscale to full color:
+/// This example would fade from grayscale to full color:
 ///
 /// ```
 /// Image.asset('assets/rainbow.jpg').animate()

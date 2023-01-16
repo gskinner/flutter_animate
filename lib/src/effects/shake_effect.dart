@@ -5,22 +5,22 @@ import 'package:flutter/widgets.dart';
 import '../../flutter_animate.dart';
 
 /// Effect that shakes the target, using translation, rotation, or both.
-/// The `hz` parameter indicates approximately how many times to repeat the shake
-/// per second.
 ///
-/// Defaults to a 5 degree (`pi / 36`) shake, 8 times per second — equivalent to:
+/// The [hz] parameter indicates approximately how many times to repeat the shake
+/// per second. It defaults to `8`.
+///
+/// Specify [rotation], [offset], or both to indicate the type and strength of the
+/// shaking. Defaults to `rotation=pi/36, offset=Offset.zero`, which results in
+/// a light rotational shake.
+///
+/// This example would shake left and right slowly by 10px:
 ///
 /// ```
 /// Text("Hello").animate()
-///   .shake(hz: 8, rotation: pi / 36)
+///   .shake(hz: 3, offset: Offset(10, 0))
 /// ```
 ///
-/// There are also shortcut extensions for applying horizontal / vertical shake.
-/// For example, this would shake 10 pixels horizontally (default is 5):
-///
-/// ```
-/// Text("Hello").animate().shakeX(amount: 10)
-/// ```
+/// There are also `shakeX` and `shakeY` shortcut extension methods.
 @immutable
 class ShakeEffect extends Effect<double> {
   static const int defaultHz = 8;

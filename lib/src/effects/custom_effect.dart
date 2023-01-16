@@ -4,8 +4,8 @@ import '../../flutter_animate.dart';
 
 /// Provide an easy way to add custom animated effects via a [builder] method that
 /// accepts a [BuildContext], target child, and calculated animation value
-/// between [begin] and [end]. 
-/// 
+/// between [begin] and [end].
+///
 /// For example, this would animate custom padding on the target from `0` to `40`.
 ///
 /// ```
@@ -13,7 +13,7 @@ import '../../flutter_animate.dart';
 ///   .custom(
 ///     duration: 1000.ms,
 ///     end: 40,
-///     builder: (_, value, child) => 
+///     builder: (_, value, child) =>
 ///       Padding(padding: EdgeInsets.all(value), child: child)
 ///   )
 /// ```

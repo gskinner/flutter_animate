@@ -4,7 +4,7 @@ import '../../flutter_animate.dart';
 
 /// An empty effect that all other effects extend.
 /// It can be added to [Animate], but has no visual effect.
-/// 
+///
 /// Defines the required interface and helper methods for
 /// all effect classes. Look at the various effects for examples of how
 /// to build new reusable effects. One-off effects can be implemented with
@@ -46,9 +46,7 @@ class Effect<T> {
 
   /// Returns an animation based on the controller, entry, and begin/end values.
   Animation<T> buildAnimation(
-    AnimationController controller,
-    EffectEntry entry
-  ) {
+      AnimationController controller, EffectEntry entry) {
     return entry
         .buildAnimation(controller)
         .drive(Tween<T>(begin: begin, end: end));

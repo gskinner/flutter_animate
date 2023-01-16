@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// Effect that allows you to toggle the behavior of a builder function at a certain
+/// An effect that allows you to toggle the behavior of a [builder] function at a certain
 /// point in time.
 ///
 /// ```

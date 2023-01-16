@@ -4,7 +4,7 @@ import '../../flutter_animate.dart';
 
 /// An effect that animates a [Color] between [begin] and [end], composited with
 /// the target using [blendMode] (via [ColorFiltered]). A color value of `null` for
-/// will be interpreted as a fully transparent version of the other color. 
+/// will be interpreted as a fully transparent version of the other color.
 /// Defaults to `begin=null, end=Color(0x800099FF)`.
 ///
 /// [blendMode] defaults to [BlendMode.color].

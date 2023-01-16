@@ -2,11 +2,12 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// Effect that moves the target based on a fraction of its size (via [SlideTransition])
-/// based on the specified begin and end offsets. Defaults to `begin=Offset(0, -0.5),
-/// end=Offset.zero` (ie. slide down from half its height).
+/// An effect that moves the target based on a fraction of its size
+/// per the specified [begin] and [end] offsets (via [SlideTransition]).
+/// Defaults to `begin=Offset(0, -0.5), end=Offset.zero`
+/// (slide down from half its height).
 ///
-/// To use pixel offsets instead, use [MoveEffect].
+/// See also: [MoveEffect] to use pixel offsets.
 @immutable
 class SlideEffect extends Effect<Offset> {
   static const Offset neutralValue = Offset(neutralSlide, neutralSlide);
