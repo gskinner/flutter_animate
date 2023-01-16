@@ -4,15 +4,15 @@ import '../flutter_animate.dart';
 
 /// An effect that animates between two colors, composited with the target with
 /// the specified [BlendMode].
-/// 
+///
 /// See also: [TintEffect], which provides a simpler interface for single color
 /// tints.
 ///
 /// [blendMode] lets you adjust how the color fill is composited. It defaults to
 /// [BlendMode.color]. Note that most blend modes in Flutter (including `color`)
-/// do not respect the alpha channel correctly. See [BlendMode.srcATop] or 
+/// do not respect the alpha channel correctly. See [BlendMode.srcATop] or
 /// [BlendMode.srcIn] for options that do maintain alpha.
-/// 
+///
 /// For example, this would animate from red to blue with a `multiply` blend:
 ///
 /// ```

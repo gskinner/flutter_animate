@@ -8,8 +8,8 @@ import '../flutter_animate.dart';
 /// If [color] has an opacity less than one, that opacity is multiplied against
 /// the strength. Ex. `Colors.black54` at strength `0.5` would apply a 27%
 /// black tint.
-/// 
-/// See also: [ColorEffect], which animates between two different colors, and 
+///
+/// See also: [ColorEffect], which animates between two different colors, and
 /// supports blend modes.
 ///
 /// For example, this would animate in a 50% blue tint over 2 seconds:

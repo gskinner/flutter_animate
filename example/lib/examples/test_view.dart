@@ -13,7 +13,7 @@ class TestView extends StatelessWidget {
         style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
         child: const Text("Playground 🛝")
             .animate()
-            .slideY(duration: 900.ms, curve: Curves.easeOutCubic,)
+            .slideY(duration: 900.ms, curve: Curves.easeOutCubic)
             .fadeIn(),
       ),
     );
