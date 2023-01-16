@@ -1,4 +1,4 @@
-// This is a sandbox file to make it easy to play around with Flutter Animate.
+// This is a playground view to make it easy to play around with Flutter Animate.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -11,9 +11,9 @@ class TestView extends StatelessWidget {
     return Center(
       child: DefaultTextStyle(
         style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
-        child: const Text("Hello World")
+        child: const Text("Playground 🛝")
             .animate()
-            .slide(curve: Curves.easeOutCubic)
+            .slideY(duration: 900.ms, curve: Curves.easeOutCubic,)
             .fadeIn(),
       ),
     );
