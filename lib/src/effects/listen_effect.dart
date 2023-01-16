@@ -2,14 +2,18 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// Effect that calls a callback function with the current animation value.
+/// An effect that calls a [callback] function with its current animation value
+/// between [begin] and [end].
 ///
 /// By default, the callback will only be called while this effect is "active"
 /// (ie. after delay, and before duration) and will return a value between 0-1
-/// (unless the curve transforms it beyond this range). If `clamp` is set to `false`,
+/// (unless the curve transforms it beyond this range). If [clamp] is set to `false`,
 /// the callback will be called on every tick while the enclosing [Animate] is
-/// running, and may return values outside the 0-1 range (ex. it will return a
+/// running, and may return values outside its nominal range (ex. it will return a
 /// negative value before delay).
+///
+/// This example will print the current animation value (which matches the value
+/// of the preceeding fade effect's opacity value):
 ///
 /// ```
 /// Text("Hello").animate().fadeIn(curve: Curves.easeOutExpo)

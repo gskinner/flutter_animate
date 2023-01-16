@@ -2,9 +2,11 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// An effect to apply an animated rectangular drop shadow (via [DecoratedBox]).
-/// The [begin] and [end] parameters accept [BoxShadow] instances to animate between.
+/// An effect that animates a [BoxShadow] between [begin] and [end] (via [DecoratedBox]).
 /// You can also specify a [borderRadius] that defines rounded corners for the shadow.
+/// A value of `null` will be interpreted as a shadow that matches the other shadow but
+/// with a zero offset and blurRadius.
+/// Defaults to `begin=null, end=BoxShadow(color: Color(0x80000000), blurRadius: 8.0, offset: Offset(0.0, 4.0))`
 ///
 /// See also: [ElevationEffect] for simpler animated shadows based on elevation.
 @immutable
@@ -13,7 +15,7 @@ class BoxShadowEffect extends Effect<BoxShadow> {
   static const BoxShadow defaultValue = BoxShadow(
     color: Color(0x80000000),
     blurRadius: 8.0,
-    offset: Offset(0.0, 4.0),
+    offset: Offset(0.0, 4.0)
   );
 
   const BoxShadowEffect({

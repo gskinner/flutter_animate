@@ -4,8 +4,9 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// Effect that animates a blur on the target (via [ImageFiltered])
-/// between the specified begin and end blur radius values. Defaults to a blur radius of `begin=0, end=4`.
+/// An effect that animates a blur on the target (via [ImageFiltered])
+/// between the specified [begin] and [end] blur radiuses.
+/// Defaults to `begin=0, end=4`.
 @immutable
 class BlurEffect extends Effect<Offset> {
   static const Offset neutralValue = Offset(neutralBlur, neutralBlur);

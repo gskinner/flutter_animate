@@ -2,8 +2,10 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// An effect that applies an animated elevation shadow (via [PhysicalModel])
-/// You can also specify a [color] and [borderRadius] to add rounded corners.
+/// An effect that animates a Material elevation shadow between [begin] and [end] (via [PhysicalModel]).
+/// You can also specify a shadow [color] and [borderRadius] to add rounded corners.
+/// It defaults to `begin=0, end=8`.
+/// 
 /// See [PhysicalModel] for more information.
 ///
 /// See also: [BoxShadowEffect] for more control over animated shadows.

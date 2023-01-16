@@ -9,9 +9,10 @@ import '../../flutter_animate.dart';
 // logic. It also doesn't work super well if the value is updated manually,
 // ex. with an adapter.
 
-/// Effect that calls a callback function at a particular point in the animation.
+/// An effect that calls a [callback] function at a particular point in the animation.
 /// It includes a boolean value indicating if the animation is playing in reverse.
-/// For example:
+/// 
+/// This example would execute the callback halfway through the animation:
 ///
 /// ```
 /// Text("Hello")
@@ -26,6 +27,8 @@ import '../../flutter_animate.dart';
 /// **NOTE:** This should be reliable for time-based animations, but callbacks on
 /// an animation that is driven by an [Adapter] (or manipulated via its controller)
 /// may behave unexpectedly in certain circumstances.
+/// 
+/// See also: [CustomEffect] and [ListenEffect].
 @immutable
 class CallbackEffect extends Effect<void> {
   const CallbackEffect({

@@ -2,13 +2,14 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// Effect that rotates the target (via [RotationTransition]) between the specified begin and end.
+/// Effect that rotates the target between [begin] and [end] (via [RotationTransition]).
 /// Values are specified in "turns", so a `begin=0.25, end=2.25` would start with the child
-/// rotated 90 degrees clockwise (ie. `0.25 * 360`), and rotate two full turns (ie. 720 degrees).
+/// rotated a quarter turn clockwise (90 degrees), and rotate two full turns (ending at 810 degrees).
+/// Defaults to `begin=1.0, end=0`.
 ///
-/// [alignment] lets you set the origin of the rotation (ie. the point around which the rotation
+/// [alignment] lets you set the origin of the rotation (the point around which the rotation
 /// will occur). For example an alignment of [Alignment.topLeft] would rotate around the top left
-/// corner of the child.
+/// corner of the child. Defaults to [Alignment.center].
 @immutable
 class RotateEffect extends Effect<double> {
   static const double neutralValue = 0.0;

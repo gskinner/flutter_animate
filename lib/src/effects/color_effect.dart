@@ -2,23 +2,25 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// An effect that animates between two colors, composited with the target with
-/// the specified [BlendMode].
+/// An effect that animates a [Color] between [begin] and [end], composited with
+/// the target using [blendMode] (via [ColorFiltered]). A color value of `null` for
+/// will be interpreted as a fully transparent version of the other color. 
+/// Defaults to `begin=null, end=Color(0x800099FF)`.
 ///
-/// See also: [TintEffect], which provides a simpler interface for single color
-/// tints.
-///
-/// [blendMode] lets you adjust how the color fill is composited. It defaults to
-/// [BlendMode.color]. Note that most blend modes in Flutter (including `color`)
-/// do not respect the alpha channel correctly. See [BlendMode.srcATop] or
+/// [blendMode] defaults to [BlendMode.color].
+/// Note that most blend modes in Flutter (including `color`)
+/// do not preserve the alpha channel correctly. See [BlendMode.srcATop] or
 /// [BlendMode.srcIn] for options that do maintain alpha.
 ///
-/// For example, this would animate from red to blue with a `multiply` blend:
+/// The following example animates from red to blue with a `multiply` blend:
 ///
 /// ```
 /// Image.asset('assets/rainbow.jpg').animate()
 ///   .color(begin: Colors.red, end: Colors.blue, blendMode: BlendMode.multiply)
 /// ```
+///
+/// See also: [TintEffect], which provides a simpler interface for single color
+/// tints.
 @immutable
 class ColorEffect extends Effect<Color?> {
   static const Color? neutralValue = null;

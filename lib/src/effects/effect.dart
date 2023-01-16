@@ -2,24 +2,25 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import '../../flutter_animate.dart';
 
-/// Class that defines the required interface and helper methods for
+/// An empty effect that all other effects extend.
+/// It can be added to [Animate], but has no visual effect.
+/// 
+/// Defines the required interface and helper methods for
 /// all effect classes. Look at the various effects for examples of how
 /// to build new reusable effects. One-off effects can be implemented with
 /// [CustomEffect].
-///
-/// It can be instantiated and added to Animate, but has no visual effect.
 @immutable
 class Effect<T> {
-  /// The specified delay for the effect. If null, will use the delay from the
-  /// previous effect, or [Duration.zero] if this is the first effect.
+  /// The specified delay for the effect. If null, will inherit the delay from the
+  /// previous effect, or use [Duration.zero] if this is the first effect.
   final Duration? delay;
 
-  /// The specified duration for the effect. If null, will use the duration from the
-  /// previous effect, or [Animate.defaultDuration] if this is the first effect.
+  /// The specified duration for the effect. If null, will inherit the duration from the
+  /// previous effect, or use [Animate.defaultDuration] if this is the first effect.
   final Duration? duration;
 
-  /// The specified curve for the effect. If null, will use the curve from the
-  /// previous effect, or [Animate.defaultCurve] if this is the first effect.
+  /// The specified easing curve for the effect. If null, will inherit the curve from the
+  /// previous effect, or use [Animate.defaultCurve] if this is the first effect.
   final Curve? curve;
 
   /// The begin value for the effect. If null, effects should use a reasonable
@@ -32,8 +33,8 @@ class Effect<T> {
 
   const Effect({this.delay, this.duration, this.curve, this.begin, this.end});
 
-  /// Builds the widgets necessary to implement the effect, based on the
-  /// provided [AnimationController] and [EffectEntry].
+  /// Builds the widgets that implement the effect on the target [child],
+  /// based on the provided [AnimationController] and [EffectEntry].
   Widget build(
     BuildContext context,
     Widget child,
@@ -46,7 +47,7 @@ class Effect<T> {
   /// Returns an animation based on the controller, entry, and begin/end values.
   Animation<T> buildAnimation(
     AnimationController controller,
-    EffectEntry entry,
+    EffectEntry entry
   ) {
     return entry
         .buildAnimation(controller)

@@ -2,7 +2,8 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// Effect that animates the opacity of the target (via [FadeTransition]) between the specified begin and end values.
+/// An effect that animates the opacity of the target between the specified
+/// [begin] and [end] values (via [FadeTransition]).
 /// It defaults to `begin=0, end=1`.
 @immutable
 class FadeEffect extends Effect<double> {

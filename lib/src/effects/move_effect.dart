@@ -2,11 +2,12 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// Effect that moves the target (via [Transform.translate]) between the specified begin and end offsets.
+/// An effect that moves the target between the specified [begin] and [end]
+/// offsets (via [Transform.translate])
 /// Defaults to `begin=Offset(0, -16), end=Offset.zero`.
 /// [transformHitTests] is simply passed on to [Transform.translate].
 ///
-/// To specify offsets relative to the target's size, use [SlideEffect].
+/// See also: [SlideEffect] to specify offsets relative to the target's size.
 @immutable
 class MoveEffect extends Effect<Offset> {
   static const Offset neutralValue = Offset(neutralMove, neutralMove);

@@ -4,12 +4,13 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// Effect that creates a 2.5D card flip rotation effect (via a matrix [Transform]).
+/// An effect that animates a 2.5D card flip rotation effect (via a matrix [Transform]).
 /// The effect can be horizontal or vertical.
 ///
-/// The [begin] / [end] values represent the number of "flips" (ie. half turns,
+/// The [begin] and [end] values specify the number of "flips" (ie. half turns,
 /// 180deg or Pi radians) from nominal. For example, `0.5` would be a 90 degree
 /// rotation (half a "flip").
+/// It defaults to `begin=-0.5, end=0`.
 ///
 /// [alignment] lets you set the origin of the rotation (ie. the point around which the rotation
 /// will occur). For example an alignment of [Alignment.topCenter] would rotate around the top
