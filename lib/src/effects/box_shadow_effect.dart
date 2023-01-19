@@ -7,6 +7,8 @@ import '../../flutter_animate.dart';
 /// A value of `null` will be interpreted as a shadow that matches the other shadow but
 /// with a zero offset and blurRadius.
 /// Defaults to `begin=null, end=BoxShadow(color: Color(0x80000000), blurRadius: 8.0, offset: Offset(0.0, 4.0))`
+/// 
+/// This can also be used for glow effects (by setting a `0` offset, and a color).
 ///
 /// See also: [ElevationEffect] for simpler animated shadows based on elevation.
 @immutable
