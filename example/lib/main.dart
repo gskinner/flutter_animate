@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'examples/adapter_view.dart';
 import 'examples/info_view.dart';
-import 'examples/test_view.dart';
+import 'examples/playground_view.dart';
 import 'examples/visual_view.dart';
 
 void main() {
