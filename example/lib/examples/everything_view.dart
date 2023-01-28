@@ -73,6 +73,7 @@ class EverythingView extends StatelessWidget {
           tile(
             'move+move',
             a
+                .shake(curve: Curves.easeInOut, hz: 0.5)
                 .moveX(curve: Curves.easeOut, begin: -30, end: 30)
                 .moveY(curve: Curves.bounceOut, begin: -30, end: 30),
           ),
