@@ -1,4 +1,5 @@
 // Kitchen sink view of all Effects
+// Note the use of shortcut methods (defined at the bottom) to make these more concise
 
 import 'dart:math';
 
@@ -15,8 +16,92 @@ class EverythingView extends StatelessWidget {
         crossAxisCount: (box.maxWidth / 176).floor(),
         childAspectRatio: 0.85,
         children: [
-          // these are in alphabetic order according to their classes
-          // ex. BlurEffect defines both blur and blurX.
+          /***
+          A few fun / interesting examples
+          ***/
+          tile(
+            'blur+fade+scale+tint',
+            a
+                .fadeIn(curve: Curves.easeOutCirc)
+                .untint(color: Colors.white)
+                .blurXY(begin: 16)
+                .scaleXY(begin: 1.5),
+          ),
+          tile(
+            'blur+move',
+            a
+                .fadeIn(curve: Curves.easeOutCirc)
+                .blurY(begin: 32)
+                .slideY(begin: -0.4, end: 0.4),
+          ),
+          tile(
+            'scale',
+            a.scale(begin: const Offset(2, 0), curve: Curves.elasticOut),
+          ),
+          tile(
+            'scale+move+elevation',
+            a
+                .scaleXY(end: 1.15, curve: Curves.easeOutBack)
+                .moveY(end: -10)
+                .elevation(end: 24),
+          ),
+          tile(
+            'shimmer+rotate',
+            a
+                .shimmer(
+                  blendMode: BlendMode.dstIn,
+                  angle: pi / 4,
+                  size: 3,
+                  curve: Curves.easeInOutCirc,
+                )
+                .rotate(begin: -pi / 12),
+          ),
+          tile(
+            'shimmer+elevation+flip',
+            a
+                .shimmer(angle: -pi / 2, size: 3, curve: Curves.easeOutCubic)
+                .elevation(begin: 24, end: 2)
+                .flip(),
+          ),
+          tile(
+            'shake+scale+tint',
+            a
+                .shake(curve: Curves.easeInOutCubic, hz: 3)
+                .scaleXY(begin: 0.8)
+                .tint(color: Colors.red, end: 0.6),
+          ),
+          tile(
+            'move+move',
+            a
+                .moveX(curve: Curves.easeOut, begin: -30, end: 30)
+                .moveY(curve: Curves.bounceOut, begin: -30, end: 30),
+          ),
+          tile(
+            'scale+boxShadow',
+            a
+                .boxShadow(
+                  end: const BoxShadow(
+                    blurRadius: 4,
+                    color: Colors.white,
+                    spreadRadius: 3,
+                  ),
+                  curve: Curves.easeOutExpo,
+                )
+                .scaleXY(end: 1.1, curve: Curves.easeOutCirc),
+          ),
+          tile(
+            'slide+flip+scale+tint',
+            a
+                .slideX(begin: 1)
+                .flipH(begin: -1, alignment: Alignment.centerRight)
+                .scaleXY(begin: 0.75, curve: Curves.easeInOutQuad)
+                .untint(begin: 0.6),
+          ),
+
+          /***
+          Catalog of minimal examples for all visual effects.
+          In alphabetic order of the effect's class name.
+          ***/
 
           //tile('blur', a.blur()),
           tile('blurX', a.blurX()),
@@ -95,16 +180,6 @@ class EverythingView extends StatelessWidget {
           //tile('visibility', a.visibility()),
           tile('hide', a.hide()),
           tile('show', a.show()),
-
-          // fun simple combos:
-          tile('shimmer+flip', a.shimmer(angle: -pi / 2, size: 3).flip()),
-          tile('slide+shake', a.slide(curve: Curves.easeInOut).shake(hz: 3)),
-          tile(
-            'moveX+moveY',
-            a
-                .moveX(curve: Curves.easeOut, begin: -30, end: 30)
-                .moveY(curve: Curves.bounceOut, begin: -30, end: 30),
-          )
         ],
       ),
     );
