@@ -116,6 +116,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     this.controller,
     this.adapter,
     this.target,
+    this.useRepaintBoundary = false,
   }) : super(key: key) {
     _entries = [];
     if (effects != null) addEffects(effects);
@@ -175,6 +176,9 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   ///   .fade(end: 0.8).scaleXY(end: 1.1)
   /// ```
   final double? target;
+
+  // TODO: add documentation
+  final bool useRepaintBoundary;
 
   late final List<EffectEntry> _entries;
   Duration _duration = Duration.zero;
@@ -320,7 +324,9 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
     for (EffectEntry entry in widget._entries) {
       child = entry.effect.build(context, child, _controller, entry);
     }
-    return reparent?.call(parent, child) ?? child;
+    Widget returnWidget = reparent?.call(parent, child) ?? child;
+    if (widget.useRepaintBoundary) return RepaintBoundary(child: returnWidget);
+    return returnWidget;
   }
 }
 
@@ -336,6 +342,7 @@ extension AnimateWidgetExtensions on Widget {
     AnimationController? controller,
     Adapter? adapter,
     double? target,
+    bool? useRepaintBoundary,
   }) =>
       Animate(
         key: key,
@@ -346,6 +353,7 @@ extension AnimateWidgetExtensions on Widget {
         controller: controller,
         adapter: adapter,
         target: target,
+        useRepaintBoundary: useRepaintBoundary ?? false,
         child: this,
       );
 }
