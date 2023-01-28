@@ -24,12 +24,17 @@ import '../../flutter_animate.dart';
 ///
 /// Note that most blend modes in Flutter do not respect the alpha channel
 /// correctly.
+///
+/// [padding] allows you to expand the area the shimmer applies to. This defaults
+/// to `0.5`, which helps prevent visual issues with [ShaderMask]
+/// and antialiasing.
 @immutable
 class ShimmerEffect extends Effect<double> {
   static const Color defaultColor = Color(0x80FFFFFF);
   static const double defaultSize = 1;
   static const double defaultAngle = pi / 12;
   static const BlendMode defaultBlendMode = BlendMode.srcATop;
+  static const double defaultPadding = 0.5;
 
   const ShimmerEffect({
     Duration? delay,
@@ -41,6 +46,7 @@ class ShimmerEffect extends Effect<double> {
     this.size,
     this.angle,
     this.blendMode,
+    this.padding,
   }) : super(
           delay: delay,
           duration: duration,
@@ -55,6 +61,7 @@ class ShimmerEffect extends Effect<double> {
   final double? size;
   final double? angle;
   final BlendMode? blendMode;
+  final double? padding;
 
   @override
   Widget build(
@@ -63,6 +70,12 @@ class ShimmerEffect extends Effect<double> {
     AnimationController controller,
     EffectEntry entry,
   ) {
+    if (padding != 0) {
+      child = Padding(
+        padding: EdgeInsets.all(padding ?? defaultPadding),
+        child: child,
+      );
+    }
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
@@ -105,6 +118,7 @@ extension ShimmerEffectExtensions<T> on AnimateManager<T> {
     double? size,
     double? angle,
     BlendMode? blendMode,
+    double? padding,
   }) =>
       addEffect(ShimmerEffect(
         delay: delay,
@@ -116,6 +130,7 @@ extension ShimmerEffectExtensions<T> on AnimateManager<T> {
         size: size,
         angle: angle,
         blendMode: blendMode,
+        padding: padding,
       ));
 }
 
