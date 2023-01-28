@@ -23,7 +23,7 @@ import '../../flutter_animate.dart';
 /// There are also `shakeX` and `shakeY` shortcut extension methods.
 @immutable
 class ShakeEffect extends Effect<double> {
-  static const int defaultHz = 8;
+  static const double defaultHz = 8;
   static const double defaultRotation = pi / 36;
   static const double defaultMove = 5;
 
@@ -31,7 +31,7 @@ class ShakeEffect extends Effect<double> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    int? hz,
+    double? hz,
     Offset? offset,
     double? rotation,
   })  : rotation = rotation ?? defaultRotation,
@@ -47,7 +47,7 @@ class ShakeEffect extends Effect<double> {
 
   final Offset offset;
   final double rotation;
-  final int hz;
+  final double hz;
 
   @override
   Widget build(
@@ -86,7 +86,7 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    int? hz,
+    double? hz,
     Offset? offset,
     double? rotation,
   }) =>
@@ -105,7 +105,7 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    int? hz,
+    double? hz,
     double? amount,
   }) =>
       addEffect(ShakeEffect(
@@ -123,7 +123,7 @@ extension ShakeEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
-    int? hz,
+    double? hz,
     double? amount,
   }) =>
       addEffect(ShakeEffect(
