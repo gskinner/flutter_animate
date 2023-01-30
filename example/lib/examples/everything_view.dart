@@ -13,14 +13,14 @@ class EverythingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (_, box) => GridView.count(
-        crossAxisCount: (box.maxWidth / 176).floor(),
+        crossAxisCount: (box.maxWidth / 192).floor(),
         childAspectRatio: 0.85,
         children: [
           /***
           A few fun / interesting examples
           ***/
           tile(
-            'blur+fade+scale+tint',
+            'fade+tint+blur+scale',
             a
                 .fadeIn(curve: Curves.easeOutCirc)
                 .untint(color: Colors.white)
@@ -28,9 +28,9 @@ class EverythingView extends StatelessWidget {
                 .scaleXY(begin: 1.5),
           ),
           tile(
-            'blur+move',
+            'fade+blur+move',
             a
-                .fadeIn(curve: Curves.easeOutCirc)
+                .fadeIn(curve: Curves.easeOutExpo)
                 .blurY(begin: 32)
                 .slideY(begin: -0.4, end: 0.4),
           ),
@@ -71,14 +71,14 @@ class EverythingView extends StatelessWidget {
                 .tint(color: Colors.red, end: 0.6),
           ),
           tile(
-            'move+move',
+            'shake+slide+slide',
             a
                 .shake(curve: Curves.easeInOut, hz: 0.5)
-                .moveX(curve: Curves.easeOut, begin: -30, end: 30)
-                .moveY(curve: Curves.bounceOut, begin: -30, end: 30),
+                .slideX(curve: Curves.easeOut, begin: -0.4, end: 0.4)
+                .slideY(curve: Curves.bounceOut, begin: -0.4, end: 0.4),
           ),
           tile(
-            'scale+boxShadow',
+            'boxShadow+scale',
             a
                 .boxShadow(
                   end: const BoxShadow(

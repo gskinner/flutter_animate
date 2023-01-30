@@ -5,8 +5,8 @@ import '../../flutter_animate.dart';
 /// A special convenience "effect" that makes it easier to sequence effects after
 /// one another. It does this by calculating a new inheritable delay by adding the
 /// previous effect's end time (`delay` + `duration`) and its own optional [delay].
-/// 
-/// You can specify a negative [delay], but if the resultant inheritable delay 
+///
+/// You can specify a negative [delay], but if the resultant inheritable delay
 /// is less than `0` it will cause a runtime error.
 ///
 /// This example shows [ThenEffect] in use:
