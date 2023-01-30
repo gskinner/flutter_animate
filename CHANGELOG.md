@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2023-01-30
+### Added
+- added a few fun examples to the `everything_view`
+
+### Changed
+- changed `ShakeEffect.hz` to a double
+- added padding to `ShimmerEffect` to reduce visual issues with ShaderMask and antialiasing
+- fix an error in the `AnimationController.loop` extension when the target was disposed
+
 ## [3.0.0] - 2023-01-19
 ### Changed
 - reorganize `lib` folder to follow dart guidance
