@@ -66,6 +66,9 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// ```
   static bool restartOnHotReload = false;
 
+  /// Default setting for [useRepaintBoundary].
+  static const bool defaultUseRepaintBoundary = false;
+
   /// Widget types to reparent, mapped to a method that handles that type. This is used
   /// to make it easy to work with widgets that require specific parents. For example,
   /// the [Positioned] widget, which needs its immediate parent to be a [Stack].
@@ -116,7 +119,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     this.controller,
     this.adapter,
     this.target,
-    this.useRepaintBoundary = false,
+    this.useRepaintBoundary,
   }) : super(key: key) {
     _entries = [];
     if (effects != null) addEffects(effects);
@@ -178,7 +181,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   final double? target;
 
   // TODO: add documentation
-  final bool useRepaintBoundary;
+  final bool? useRepaintBoundary;
 
   late final List<EffectEntry> _entries;
   Duration _duration = Duration.zero;
@@ -324,9 +327,11 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
     for (EffectEntry entry in widget._entries) {
       child = entry.effect.build(context, child, _controller, entry);
     }
-    Widget returnWidget = reparent?.call(parent, child) ?? child;
-    if (widget.useRepaintBoundary) return RepaintBoundary(child: returnWidget);
-    return returnWidget;
+    Widget animate = reparent?.call(parent, child) ?? child;
+    if (widget.useRepaintBoundary ?? Animate.defaultUseRepaintBoundary) {
+      animate = RepaintBoundary(child: animate);
+    }
+    return animate;
   }
 }
 
@@ -353,7 +358,7 @@ extension AnimateWidgetExtensions on Widget {
         controller: controller,
         adapter: adapter,
         target: target,
-        useRepaintBoundary: useRepaintBoundary ?? false,
+        useRepaintBoundary: useRepaintBoundary,
         child: this,
       );
 }
