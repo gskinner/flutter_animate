@@ -180,7 +180,28 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// ```
   final double? target;
 
-  // TODO: add documentation
+  /// Wraps the [Animate] widget in a [RepaintBoundary].
+  ///
+  /// **Use this carefully!**
+  ///
+  /// This *can* improve performance when animating a widget on a complex view,
+  /// as it will prevent the entire view from being repainted when the animation
+  /// changes.
+  ///
+  /// However, it also comes with a cost and should **not** be used on all
+  /// animations.
+  ///
+  /// **Example of when to use**: Complex view with lots of widgets and a single
+  /// animation. \
+  /// **Example of when *not* to use**: View with many animations, where most
+  /// of the content needs to be repainted anyway when animating.
+  ///
+  /// Visit the [RepaintBoundary] [documentation](https://api.flutter.dev/flutter/widgets/RepaintBoundary-class.html)
+  /// for more information or watch this [Widget of the Week video](https://www.youtube.com/watch?v=cVAGLDuc2xE).
+  ///
+  /// As described in the linked video, you can set `debugRepaintRainbowEnabled = true`
+  /// before `runApp` to search for places where applying a [RepaintBoundary] would
+  /// be beneficial.
   final bool? useRepaintBoundary;
 
   late final List<EffectEntry> _entries;
