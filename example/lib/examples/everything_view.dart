@@ -12,8 +12,8 @@ class EverythingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (_, box) => GridView.count(
-        crossAxisCount: (box.maxWidth / 192).floor(),
+      builder: (_, constraints) => GridView.count(
+        crossAxisCount: (constraints.maxWidth / 192).floor(),
         childAspectRatio: 0.85,
         children: [
           /***
@@ -113,6 +113,16 @@ class EverythingView extends StatelessWidget {
 
           tile('color', a.color()),
 
+          tile('crossfade', a.crossfade(builder: (_) {
+            return Container(
+              width: _boxSize,
+              height: _boxSize,
+              color: const Color(0xFFDDAA00),
+              alignment: Alignment.center,
+              child: const Text('😎', style: TextStyle(fontSize: 60)),
+            );
+          })),
+
           // callback
 
           tile('custom', a.custom(builder: (_, val, child) {
@@ -203,8 +213,8 @@ class EverythingView extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        width: 96,
-        height: 96,
+        width: _boxSize,
+        height: _boxSize,
       );
 
   // grid tile. Naming should be `buildTile`, but going for brevity.
@@ -224,3 +234,5 @@ class EverythingView extends StatelessWidget {
         ),
       );
 }
+
+double _boxSize = 96;

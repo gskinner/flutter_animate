@@ -5,6 +5,7 @@ export 'blur_effect.dart';
 export 'box_shadow_effect.dart';
 export 'callback_effect.dart';
 export 'color_effect.dart';
+export 'crossfade_effect.dart';
 export 'custom_effect.dart';
 export 'elevation_effect.dart';
 export 'fade_effect.dart';
