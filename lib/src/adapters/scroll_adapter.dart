@@ -24,11 +24,11 @@ import '../../flutter_animate.dart';
 ///   )
 /// ).fadeIn().slide();
 /// ```
-@immutable
 class ScrollAdapter extends ChangeNotifierAdapter {
   ScrollAdapter(ScrollController scrollController,
       {this.begin, this.end, bool? animated})
       : super(scrollController, () {
+          if (!scrollController.hasClients) return 0;
           ScrollPosition pos = scrollController.position;
           double min = pos.minScrollExtent, max = pos.maxScrollExtent;
           double minPx = _getPx(begin, min, max, min);

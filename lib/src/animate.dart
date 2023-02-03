@@ -216,7 +216,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
 class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   bool _isInternalController = false;
-  bool _hasAdapter = false;
+  Adapter? _adapter;
   Future<void>? _delayed;
 
   @override
@@ -278,9 +278,9 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   }
 
   void _initAdapter() {
-    final Adapter? adapter = widget.adapter;
-    _hasAdapter = adapter != null;
-    adapter?.init(_controller);
+    _adapter?.detach();
+    _adapter = widget.adapter;
+    _adapter?.attach(_controller);
   }
 
   void _disposeController() {
@@ -290,6 +290,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 
   @override
   void dispose() {
+    _adapter?.detach();
     _delayed?.ignore();
     _disposeController();
     super.dispose();
@@ -306,7 +307,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
     double? pos = widget.target;
     if (pos != null) {
       _controller.animateTo(pos);
-    } else if (!_hasAdapter) {
+    } else if (_adapter == null) {
       _controller.forward(from: 0);
       widget.onPlay?.call(_controller);
     }

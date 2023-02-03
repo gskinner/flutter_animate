@@ -15,7 +15,6 @@ import '../../flutter_animate.dart';
 /// Text("Hello").animate(adapter: ValueAdapter(_sliderVal))
 ///   .fadeIn().slide();
 /// ```
-@immutable
 class ValueAdapter extends ValueNotifierAdapter {
   ValueAdapter(double value, {bool? animated})
       : super(ValueNotifier<double>(value), animated: animated);
