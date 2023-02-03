@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 /// an animation with a slider input, or progressing an animation based on
 /// the time of day.
 ///
-/// Adapters must expose an `init` method which accepts the
+/// Adapters must expose an `attach` method which accepts the
 /// [AnimationController] used by an [Animate] instance, and adds the logic
 /// to drive it from an external source by updating its `value` (0-1). See the
 /// included adapters for implementation examples.
