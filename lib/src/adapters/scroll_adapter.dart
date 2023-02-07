@@ -49,10 +49,9 @@ class ScrollAdapter extends Adapter {
     config(controller, _value ?? 0);
     scrollController.addListener(() {
       double? old = _value, val = _getValue();
-      if (val == null) return; // no scroll client, so keep the same value.
-
+      if (val == null || old == val) return; // no clients or no change
       if (old == null ||
-          (direction == null && val != old) ||
+          direction == null ||
           (direction == ScrollDirection.forward && val > old) ||
           (direction == ScrollDirection.reverse && val < old)) {
         updateValue(_value = val);
@@ -63,6 +62,7 @@ class ScrollAdapter extends Adapter {
   double? _getValue() {
     if (!scrollController.hasClients) return null;
     ScrollPosition pos = scrollController.position;
+    if (!pos.hasContentDimensions || !pos.hasPixels) return null;
     double min = pos.minScrollExtent, max = pos.maxScrollExtent;
     double minPx = _getPx(begin, min, max, min);
     double maxPx = _getPx(end, min, max, max);
