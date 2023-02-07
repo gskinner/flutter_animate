@@ -110,7 +110,7 @@ class AdapterView extends StatelessWidget {
             .animate(
               adapter: ScrollAdapter(
                 scrollController,
-                animated: true, // smooth the inputs
+                animated: true, // smooth the scroll input
               ),
             )
             .scaleXY(end: 0.5, curve: Curves.easeIn)

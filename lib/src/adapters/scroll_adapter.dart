@@ -28,34 +28,28 @@ import '../../flutter_animate.dart';
 ///   )
 /// ).fadeIn().slide();
 /// ```
+/// 
+/// See [Adapter] for information on [direction] and [animated].
 class ScrollAdapter extends Adapter {
   ScrollAdapter(
     this.scrollController, {
     this.begin,
     this.end,
-    this.direction,
     bool? animated,
-  }) : super(animated: animated);
+    Direction? direction,
+  }) : super(animated: animated, direction: direction);
 
   final ScrollController scrollController;
   final double? begin;
   final double? end;
-  final ScrollDirection? direction;
-  double? _value;
 
   @override
   void attach(AnimationController controller) {
-    _value = _getValue();
-    config(controller, _value ?? 0);
+    config(controller, _getValue() ?? 0);
     scrollController.addListener(() {
-      double? old = _value, val = _getValue();
-      if (val == null || old == val) return; // no clients or no change
-      if (old == null ||
-          direction == null ||
-          (direction == ScrollDirection.forward && val > old) ||
-          (direction == ScrollDirection.reverse && val < old)) {
-        updateValue(_value = val);
-      }
+      double? value = _getValue();
+      if (value == null) return; // no clients
+      updateValue(value);
     });
   }
 
