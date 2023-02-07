@@ -11,7 +11,7 @@ class AdapterView extends StatelessWidget {
     // create the ValueNotifier:
     ValueNotifier<double> notifier = ValueNotifier(0);
 
-    // create an overly elaborate animation using ValueNotifierAdapter,
+    // create an animation driven by ValueNotifierAdapter,
     // and wire up a Slider to update the ValueNotifier
     Widget panel = Container(
       color: const Color(0xFF2A2B2F),
@@ -20,17 +20,15 @@ class AdapterView extends StatelessWidget {
         const Text(
           'Slider Driven Animation',
           style: TextStyle(
-            fontSize: 36,
+            fontSize: 30,
             fontWeight: FontWeight.bold,
             height: 1,
           ),
           textAlign: TextAlign.center,
         )
-            .animate(adapter: ValueNotifierAdapter(notifier))
-            .blurXY(end: 16)
-            .scaleXY(begin: 1, end: 2)
-            .tint(color: const Color(0xFF80DDFF))
-            .fadeOut(curve: Curves.easeInExpo),
+            .animate(adapter: ValueNotifierAdapter(notifier, animated: true))
+            .blurXY(end: 16, duration: 600.ms)
+            .tint(color: const Color(0xFF80DDFF)),
 
         // Slider:
         AnimatedBuilder(
@@ -44,9 +42,9 @@ class AdapterView extends StatelessWidget {
       ]),
     );
 
-    // example driving animations with a ScrollController
+    // example of driving animations with a ScrollController
 
-    // create the scroll controller:
+    // create the ScrollController:
     ScrollController scrollController = ScrollController();
 
     // create some dummy items for the list:
@@ -59,27 +57,31 @@ class AdapterView extends StatelessWidget {
     for (int i = 0; i < 100; i++) {
       items.add(Text('item $i', style: const TextStyle(height: 2.5)));
     }
-    // layer the indicators under the list, and assign the ScrollController to
-    // the list, and both animations (via ScrollAdapter):
+
+    // layer the indicators & rocket behind the list, and assign the
+    // the animations (via ScrollAdapter), and the list:
     Widget list = Stack(
       children: [
+        // background color:
+        Container(color: const Color(0xFF202125)),
+
+        // top indicator:
         Container(
           height: 64,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Color(0x8080DDFF), Colors.transparent]),
+                colors: [Color(0x4080DDFF), Color(0x0080DDFF)]),
           ),
         )
             .animate(
               adapter: ScrollAdapter(
                 scrollController,
                 end: 500, // end 500px into the scroll
-                animated: true, // smooth the animation
               ),
             )
-            .fadeIn(),
+            .scaleY(alignment: Alignment.topCenter),
 
         // bottom indicator:
         Align(
@@ -90,7 +92,7 @@ class AdapterView extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
-                colors: [Color(0x8080DDFF), Colors.transparent],
+                colors: [Color(0x4080DDFF), Color(0x0080DDFF)],
               ),
             ),
           )
@@ -98,11 +100,30 @@ class AdapterView extends StatelessWidget {
                 adapter: ScrollAdapter(
                   scrollController,
                   begin: -500, // begin 500px before the end of the scroll
-                  animated: true, // smooth the animation
                 ),
               )
-              .fadeOut(),
+              .scaleY(alignment: Alignment.bottomCenter, end: 0),
         ),
+
+        // rocket:
+        const Text('🚀', style: TextStyle(fontSize: 96))
+            .animate(
+              adapter: ScrollAdapter(
+                scrollController,
+                animated: true, // smooth the inputs
+              ),
+            )
+            .scaleXY(end: 0.5, curve: Curves.easeIn)
+            .fadeOut()
+            .custom(
+              // custom animation to move it via Align
+              begin: -1,
+              builder: (_, value, child) => Align(
+                alignment: Alignment(value, -value),
+                child: child,
+              ),
+            )
+            .shake(hz: 3.5, rotation: 0.15), // wobble a bit
 
         // the list (with the scrollController assigned):
         ListView(
