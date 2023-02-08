@@ -7,7 +7,7 @@ A performant library that makes it simple to add almost any kind of animated
 effect in Flutter.
 
 1. Pre-built effects, like fade, scale, slide, flip, blur, shake, shimmer, 
-   shadows, and color effects (saturation, color, and tint)
+   shadows, crossfades, and color effects (saturation, color, and tint)
 2. Easy custom effects and simplified animated builders
 3. Synchronize animations to scroll, notifiers, or anything
 4. Integrated events
@@ -125,23 +125,18 @@ Text('Hello').animate().tint(color: Colors.purple)
 
 Sequencing with ThenEffect
 ----------------------------------------
-`ThenEffect` is a special "convenience" effect that simply sets its own
-inheritable delay to the sum of the delay and duration of the previous effect,
-and its own (optional) delay. This makes it easier to sequence effects.
+`ThenEffect` is a special convenience "effect" that makes it easier to sequence
+effects. It does this by establishing a new baseline time equal to the previous
+effect's end time and its own optional [delay]. All subsequent effect delays are
+relative to this new baseline.
 
-In the following example, the slide would run immediately after the fade ended,
-then the blur would run 200ms after the slide ended.
+In the following example, the slide would run 200ms after the fade ended.
 
 ``` dart
 Text("Hello").animate()
-  .fadeIn(delay: 300.ms, duration: 500.ms)
-  .then() // sets own delay to 800ms (300+500)
-  .slide(duration: 400.ms) // inherits the 800ms delay
-  .then(delay: 200.ms) // sets delay to 1400ms (800+400+200)
-  .blur() // inherits the 1400ms delay
-  // Explicitly setting delay overrides the inherited value.
-  // This move effect will run BEFORE the initial fade:
-  .move(delay: 0.ms)
+  .fadeIn(duration: 600.ms)
+  .then(delay: 200.ms) // baseline=800ms
+  .slide()
 ```
 
 Animating lists
