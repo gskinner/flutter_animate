@@ -28,7 +28,7 @@ import '../../flutter_animate.dart';
 ///   )
 /// ).fadeIn().slide();
 /// ```
-/// 
+///
 /// See [Adapter] for information on [direction] and [animated].
 class ScrollAdapter extends Adapter {
   ScrollAdapter(

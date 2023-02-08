@@ -179,6 +179,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   late final List<EffectEntry> _entries;
   Duration _duration = Duration.zero;
   EffectEntry? _lastEntry;
+  Duration _baseDelay = Duration.zero;
 
   /// The total duration for all effects.
   Duration get duration => _duration;
@@ -192,11 +193,16 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   Animate addEffect(Effect effect) {
     EffectEntry? prior = _lastEntry;
 
-    Duration delay = (effect is ThenEffect)
-        ? (effect.delay ?? Duration.zero) +
-            (prior?.delay ?? Duration.zero) +
-            (prior?.duration ?? Duration.zero)
-        : effect.delay ?? prior?.delay ?? Duration.zero;
+    Duration zero = Duration.zero, delay = zero;
+    if (effect is ThenEffect) {
+      delay = _baseDelay = (prior?.end ?? zero) + (effect.delay ?? zero);
+    } else if (effect.delay != null) {
+      delay = _baseDelay + effect.delay!;
+    } else {
+      delay = prior?.delay ?? _baseDelay;
+    }
+
+    assert(delay >= zero, 'Calculated delay cannot be negative.');
 
     EffectEntry entry = EffectEntry(
       effect: effect,

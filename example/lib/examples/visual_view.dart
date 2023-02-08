@@ -37,7 +37,7 @@ class VisualView extends StatelessWidget {
     title = title
         .animate(onPlay: (controller) => controller.repeat(reverse: true))
         .saturate(delay: 1.seconds, duration: 2.seconds)
-        .then() // set delay to when the previous effect ends.
+        .then() // set baseline time to previous effect's end time
         .tint(color: const Color(0xFF80DDFF))
         .then()
         .blurXY(end: 24)

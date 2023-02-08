@@ -12,7 +12,7 @@ import 'package:flutter/widgets.dart';
 /// will jump to the new value, if `true` it will animate to the value using a
 /// duration calculated from the animation's total duration and the value change.
 /// Defaults to `false`.
-/// 
+///
 /// Setting [direction] to [Direction.forward] or [Direction.reverse] will cause
 /// the adapter to only update if the new value is greater than or less than the
 /// current value respectively.
