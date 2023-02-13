@@ -7,7 +7,7 @@ import '../tester_extensions.dart';
 void main() {
   testWidgets('SwapEffect: core', (tester) async {
     final anim = const FlutterLogo().animate().fadeOut(duration: 500.ms).swap(
-          builder: (_, __) => const Placeholder().animate().fadeIn(),
+          builder: (_, __) => const Placeholder(),
         );
 
     await tester.pumpAnimation(anim);
