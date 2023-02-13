@@ -5,17 +5,17 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../tester_extensions.dart';
 
 void main() {
-  testWidgets('update value as animation plays', (tester) async {
+  testWidgets('ListenEffect: core', (tester) async {
     double value = 0;
     final animation = const FlutterLogo()
         .animate()
-        .fadeIn(duration: 1.seconds)
-        .listen(callback: (c) {
-      value = c;
-    });
+        .fadeIn(duration: 1000.ms)
+        .listen(callback: (o) => value = o);
+
     // Check value halfway
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    expect(value, .5);
+    expect(value, 0.5);
+
     // Check at the end
     await tester.pump(500.ms);
     expect(value, 1);

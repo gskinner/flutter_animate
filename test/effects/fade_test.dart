@@ -5,12 +5,15 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../tester_extensions.dart';
 
 void main() {
-  testWidgets('basic fade', (tester) async {
-    final animation = const FlutterLogo().animate().fade(duration: 1.seconds);
+  testWidgets('FadeEffect: core', (tester) async {
+    final animation = const FlutterLogo().animate().fade(duration: 1000.ms);
+
     // check halfway
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    tester.expectWidgetWithDouble<FadeTransition>((ft) {
-      return ft.opacity.value;
-    }, .5, 'opacity');
+    tester.expectWidgetWithDouble<FadeTransition>(
+      (o) => o.opacity.value,
+      0.5,
+      'opacity @ 500ms',
+    );
   });
 }

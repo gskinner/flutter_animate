@@ -5,21 +5,21 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../tester_extensions.dart';
 
 void main() {
-  testWidgets('basic tint', (tester) async {
+  testWidgets('TintEffect: core', (tester) async {
+    Color color = Colors.blue;
     final animation = const FlutterLogo().animate().tint(
-          duration: 1.seconds,
-          color: Colors.blue,
+          duration: 1000.ms,
+          color: color,
           begin: 0,
           end: 1,
         );
+
     // Check halfway
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    // create a colorFilter and compare to the one in the widget tree, they should equal
-    var filter = ColorFilter.matrix(TintEffect.getTintMatrix(.5, Colors.blue));
+    // create a colorFilter to compare to the one in the widget tree
+    var expectedFilter =
+        ColorFilter.matrix(TintEffect.getTintMatrix(0.5, color));
     tester.expectWidgetWithBool<ColorFiltered>(
-      (ft) => ft.colorFilter == filter,
-      true,
-      'color filter matrix',
-    );
+        (o) => o.colorFilter == expectedFilter, true, 'colorFilter @ 500ms');
   });
 }

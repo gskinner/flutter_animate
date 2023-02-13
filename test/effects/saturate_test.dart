@@ -5,20 +5,18 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../tester_extensions.dart';
 
 void main() {
-  testWidgets('saturate test', (tester) async {
+  testWidgets('SaturateEffect: core', (tester) async {
     final animation = const FlutterLogo().animate().saturate(
-          duration: 1.seconds,
+          duration: 1000.ms,
           begin: 0,
           end: 1,
         );
+
     // Check halfway,
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     // Create a colorFilter and compare to the one in the widget tree, they should equal
-    var filter = ColorFilter.matrix(SaturateEffect.getColorMatrix(.5));
+    ColorFilter filter = ColorFilter.matrix(SaturateEffect.getColorMatrix(0.5));
     tester.expectWidgetWithBool<ColorFiltered>(
-      (ft) => ft.colorFilter == filter,
-      true,
-      'color filter matrix',
-    );
+        (o) => o.colorFilter == filter, true, 'colorFilter @ 500ms');
   });
 }

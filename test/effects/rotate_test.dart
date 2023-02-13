@@ -7,14 +7,15 @@ import '../tester_extensions.dart';
 void main() {
   // TODO: Test alignment
 
-  testWidgets('basic rotation', (tester) async {
+  testWidgets('RotateEffect: core', (tester) async {
     final animation = const FlutterLogo().animate().rotate(
-          duration: 1.seconds,
+          duration: 1000.ms,
           end: 2,
         );
+
     // check halfway
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     tester.expectWidgetWithDouble<RotationTransition>(
-        (w) => w.turns.value, 1, 'turns');
+        (o) => o.turns.value, 1, 'turns @ 500ms');
   });
 }

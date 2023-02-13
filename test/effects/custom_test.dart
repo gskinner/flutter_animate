@@ -5,25 +5,22 @@ import 'package:flutter_test/flutter_test.dart';
 import '../tester_extensions.dart';
 
 void main() {
-  testWidgets('custom padding tween', (tester) async {
+  testWidgets('CustomEffect: core', (tester) async {
     final animation = const SizedBox().animate().custom(
-          duration: 1.seconds,
+          duration: 1000.ms,
           end: 40,
-          builder: (_, value, child) {
-            return Padding(padding: EdgeInsets.all(value), child: child);
-          },
+          builder: (_, value, child) =>
+              Padding(padding: EdgeInsets.all(value), child: child),
         );
 
     // check halfway
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    tester.expectWidgetWithDouble<Padding>((ft) {
-      return (ft.padding as EdgeInsets).top;
-    }, 20, 'padding');
+    tester.expectWidgetWithDouble<Padding>(
+        (o) => (o.padding as EdgeInsets).top, 20, 'padding @ 500ms');
 
     // check end
     await tester.pump(500.ms);
-    tester.expectWidgetWithDouble<Padding>((ft) {
-      return (ft.padding as EdgeInsets).top;
-    }, 40, 'padding');
+    tester.expectWidgetWithDouble<Padding>(
+        (o) => (o.padding as EdgeInsets).top, 40, 'padding @ 1000ms');
   });
 }
