@@ -127,7 +127,7 @@ Sequencing with ThenEffect
 ----------------------------------------
 `ThenEffect` is a special convenience "effect" that makes it easier to sequence
 effects. It does this by establishing a new baseline time equal to the previous
-effect's end time and its own optional [delay]. All subsequent effect delays are
+effect's end time and its own optional `delay`. All subsequent effect delays are
 relative to this new baseline.
 
 In the following example, the slide would run 200ms after the fade ended.
