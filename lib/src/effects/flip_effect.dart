@@ -64,26 +64,33 @@ class FlipEffect extends Effect<double> {
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) {
-        double value = animation.value * pi;
-
-        final Matrix4 mtx = Matrix4(
-          1.0, 0.0, 0.0, 0.0, //
-          0.0, 1.0, 0.0, 0.0, //
-          0.0, 0.0, 1.0, 0.002 * perspective, //
-          0.0, 0.0, 0.0, 1.0,
-        );
-        if (value != 0) {
-          if (direction == Axis.vertical) {
-            mtx.rotateX(value);
-          } else {
-            mtx.rotateY(value);
-          }
-        }
-
-        return Transform(alignment: alignment, transform: mtx, child: child);
-      },
+      builder: (_, __) => Transform(
+        alignment: alignment,
+        transform: getTransformMatrix(animation.value, direction, perspective),
+        child: child,
+      ),
     );
+  }
+
+  static Matrix4 getTransformMatrix(
+    double value,
+    Axis direction,
+    double perspective,
+  ) {
+    final Matrix4 mtx = Matrix4(
+      1.0, 0.0, 0.0, 0.0, //
+      0.0, 1.0, 0.0, 0.0, //
+      0.0, 0.0, 1.0, 0.002 * perspective, //
+      0.0, 0.0, 0.0, 1.0,
+    );
+    if (value != 0) {
+      if (direction == Axis.vertical) {
+        mtx.rotateX(value * pi);
+      } else {
+        mtx.rotateY(value * pi);
+      }
+    }
+    return mtx;
   }
 }
 
