@@ -4,7 +4,7 @@ import '../flutter_animate.dart';
 
 /// Applies animated effects to a list of widgets. It does this by wrapping each
 /// widget in [Animate], and then proxying calls to all instances. It can
-/// also offset the timing of each widget's animation via `interval`.
+/// also offset the timing of each widget's animation via [interval].
 ///
 /// For example, this would fade and scale every item in the Column, offsetting
 /// the start of each by 100 milliseconds:
@@ -13,7 +13,7 @@ import '../flutter_animate.dart';
 /// Column(children: [foo, bar, baz].animate(interval: 100.ms).fade().scale())
 /// ```
 ///
-/// If specified, `onPlay` and `onComplete` will also be assigned to every instance
+/// If specified, [onPlay] and [onComplete] will also be assigned to every instance
 /// to enable looping or reversing via the [AnimationController].
 ///
 /// Like [Animate], it can also be used declaratively. The following is
@@ -47,10 +47,13 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
   AnimateList({
     required List<Widget> children,
     List<Effect>? effects,
-    Duration? interval,
+    AnimateCallback? onInit,
     AnimateCallback? onPlay,
     AnimateCallback? onComplete,
+    bool? autoPlay,
+    Duration? delay,
     Adapter? adapter,
+    Duration? interval,
   }) {
     // build new list, wrapping each child in Animate
     for (int i = 0; i < children.length; i++) {
@@ -59,9 +62,11 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
 
       if (!ignoreTypes.contains(type)) {
         child = Animate(
-          delay: (interval ?? Duration.zero) * i,
+          onInit: onInit,
           onPlay: onPlay,
           onComplete: onComplete,
+          autoPlay: autoPlay,
+          delay: (delay ?? Duration.zero) + (interval ?? Duration.zero) * i,
           adapter: adapter,
           child: child,
         );
@@ -108,15 +113,23 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
 extension AnimateListExtensions on List<Widget> {
   AnimateList animate({
     List<Effect>? effects,
-    Duration? interval,
+    AnimateCallback? onInit,
     AnimateCallback? onPlay,
     AnimateCallback? onComplete,
+    bool? autoPlay,
+    Duration? delay,
+    Adapter? adapter,
+    Duration? interval,
   }) =>
       AnimateList(
-        children: this,
         effects: effects,
-        interval: interval,
+        onInit: onInit,
         onPlay: onPlay,
         onComplete: onComplete,
+        autoPlay: autoPlay,
+        delay: delay,
+        adapter: adapter,
+        interval: interval,
+        children: this,
       );
 }

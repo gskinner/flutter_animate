@@ -110,28 +110,57 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     Key? key,
     this.child = const SizedBox.shrink(),
     List<Effect>? effects,
-    this.onComplete,
+    this.onInit,
     this.onPlay,
-    this.delay = Duration.zero,
+    this.onComplete,
+    autoPlay,
+    delay,
     this.controller,
     this.adapter,
     this.target,
-  }) : super(key: key) {
+  })  : autoPlay = autoPlay ?? true,
+        delay = delay ?? Duration.zero,
+        super(key: key) {
+    assert(
+      autoPlay != false || onPlay == null,
+      'Animate.onPlay is never called if Animate.autoPlay=false',
+    );
+    if (this.delay != Duration.zero) {
+      String s = "Animate.delay does not work with";
+      assert(autoPlay != false, '$s Animate.autoPlay=false');
+      assert(controller == null, '$s Animate.controller');
+      assert(adapter == null, '$s Animate.adapter');
+      assert(target == null, '$s Animate.target');
+    }
     _entries = [];
     if (effects != null) addEffects(effects);
   }
 
-  /// The widget to apply effects to.
+  /// The widget to apply animated effects to.
   final Widget child;
 
-  /// Called when all effects complete. Provides an opportunity to
-  /// manipulate the [AnimationController] (ex. to loop, reverse, etc).
-  final AnimateCallback? onComplete;
+  /// Called immediately after controller is fully initialized, before
+  /// the [Animate.delay] or the animation starts playing (see: [onPlay]).
+  /// This is not called if an external [controller] is provided.
+  ///
+  /// For example, this would pause the animation at its halfway point, and
+  /// save a reference to the controller so it can be started later.
+  /// ```
+  /// foo.animate(
+  ///   autoPlay: false,
+  ///   onInit: (controller) {
+  ///     controller.value = 0.5;
+  ///     _myController = controller;
+  ///   }
+  /// ).slideY()
+  /// ```
+  final AnimateCallback? onInit;
 
   /// Called when the animation begins playing (ie. after [Animate.delay],
   /// immediately after [AnimationController.forward] is called).
   /// Provides an opportunity to manipulate the [AnimationController]
-  /// (ex. to loop, reverse, stop, etc).
+  /// (ex. to loop, reverse, stop, etc). This is never called if [autoPlay]
+  /// is `false`.
   ///
   /// For example, this would pause the animation at its start:
   /// ```
@@ -146,6 +175,14 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// ).fadeIn()
   /// ```
   final AnimateCallback? onPlay;
+
+  /// Called when all effects complete. Provides an opportunity to
+  /// manipulate the [AnimationController] (ex. to loop, reverse, etc).
+  final AnimateCallback? onComplete;
+
+  /// Setting [autoPlay] to `false` prevents the animation from automatically
+  /// starting its controller (ie. calling [AnimationController.forward]).
+  final bool autoPlay;
 
   /// Defines a delay before the animation is started. Unlike [Effect.delay],
   /// this is not a part of the overall animation, and only runs once if the
@@ -260,6 +297,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 
   void _initController() {
     AnimationController? controller;
+    bool callback = false;
 
     if (widget.controller != null) {
       // externally provided AnimationController.
@@ -268,7 +306,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
     } else if (!_isInternalController) {
       // create a new internal AnimationController.
       controller = AnimationController(vsync: this);
-      _isInternalController = true;
+      callback = _isInternalController = true;
     } else {
       // pre-existing controller.
     }
@@ -280,7 +318,10 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
     }
 
     _controller.duration = widget._duration;
+
     _initAdapter();
+
+    if (callback) widget.onInit?.call(_controller);
   }
 
   void _initAdapter() {
@@ -313,7 +354,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
     double? pos = widget.target;
     if (pos != null) {
       _controller.animateTo(pos);
-    } else if (_adapter == null) {
+    } else if (widget.autoPlay && _adapter == null) {
       _controller.forward(from: 0);
       widget.onPlay?.call(_controller);
     }
@@ -337,9 +378,11 @@ extension AnimateWidgetExtensions on Widget {
   Animate animate({
     Key? key,
     List<Effect>? effects,
-    AnimateCallback? onComplete,
+    AnimateCallback? onInit,
     AnimateCallback? onPlay,
-    Duration delay = Duration.zero,
+    AnimateCallback? onComplete,
+    bool? autoPlay,
+    Duration? delay,
     AnimationController? controller,
     Adapter? adapter,
     double? target,
@@ -347,8 +390,10 @@ extension AnimateWidgetExtensions on Widget {
       Animate(
         key: key,
         effects: effects,
-        onComplete: onComplete,
+        onInit: onInit,
         onPlay: onPlay,
+        onComplete: onComplete,
+        autoPlay: autoPlay,
         delay: delay,
         controller: controller,
         adapter: adapter,
