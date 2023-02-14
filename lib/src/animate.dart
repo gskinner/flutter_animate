@@ -128,7 +128,6 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     if (this.delay != Duration.zero) {
       String s = "Animate.delay does not work with";
       assert(autoPlay != false, '$s Animate.autoPlay=false');
-      assert(controller == null, '$s Animate.controller');
       assert(adapter == null, '$s Animate.adapter');
       assert(target == null, '$s Animate.target');
     }
