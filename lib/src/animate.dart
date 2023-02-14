@@ -66,6 +66,9 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// ```
   static bool restartOnHotReload = false;
 
+  /// Default setting for [useRepaintBoundary].
+  static const bool defaultUseRepaintBoundary = false;
+
   /// Widget types to reparent, mapped to a method that handles that type. This is used
   /// to make it easy to work with widgets that require specific parents. For example,
   /// the [Positioned] widget, which needs its immediate parent to be a [Stack].
@@ -116,6 +119,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     this.controller,
     this.adapter,
     this.target,
+    this.useRepaintBoundary,
   }) : super(key: key) {
     _entries = [];
     if (effects != null) addEffects(effects);
@@ -175,6 +179,30 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   ///   .fade(end: 0.8).scaleXY(end: 1.1)
   /// ```
   final double? target;
+
+  /// Wraps the [Animate] widget in a [RepaintBoundary].
+  ///
+  /// **Use this carefully!**
+  ///
+  /// This *can* improve performance when animating a widget on a complex view,
+  /// as it will prevent the entire view from being repainted when the animation
+  /// changes.
+  ///
+  /// However, it also comes with a cost and should **not** be used on all
+  /// animations.
+  ///
+  /// **Example of when to use**: Complex view with lots of widgets and a single
+  /// animation. \
+  /// **Example of when *not* to use**: View with many animations, where most
+  /// of the content needs to be repainted anyway when animating.
+  ///
+  /// Visit the [RepaintBoundary] [documentation](https://api.flutter.dev/flutter/widgets/RepaintBoundary-class.html)
+  /// for more information or watch this [Widget of the Week video](https://www.youtube.com/watch?v=cVAGLDuc2xE).
+  ///
+  /// As described in the linked video, you can set `debugRepaintRainbowEnabled = true`
+  /// before `runApp` to search for places where applying a [RepaintBoundary] would
+  /// be beneficial.
+  final bool? useRepaintBoundary;
 
   late final List<EffectEntry> _entries;
   Duration _duration = Duration.zero;
@@ -327,7 +355,11 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
     for (EffectEntry entry in widget._entries) {
       child = entry.effect.build(context, child, _controller, entry);
     }
-    return reparent?.call(parent, child) ?? child;
+    Widget animate = reparent?.call(parent, child) ?? child;
+    if (widget.useRepaintBoundary ?? Animate.defaultUseRepaintBoundary) {
+      animate = RepaintBoundary(child: animate);
+    }
+    return animate;
   }
 }
 
@@ -343,6 +375,7 @@ extension AnimateWidgetExtensions on Widget {
     AnimationController? controller,
     Adapter? adapter,
     double? target,
+    bool? useRepaintBoundary,
   }) =>
       Animate(
         key: key,
@@ -353,6 +386,7 @@ extension AnimateWidgetExtensions on Widget {
         controller: controller,
         adapter: adapter,
         target: target,
+        useRepaintBoundary: useRepaintBoundary,
         child: this,
       );
 }
