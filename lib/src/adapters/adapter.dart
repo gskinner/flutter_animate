@@ -29,6 +29,8 @@ abstract class Adapter {
   final Direction? direction;
 
   AnimationController? _controller;
+  ChangeNotifier? _notifier;
+  VoidCallback? _listener;
   Ticker? _ticker;
   double _value = 0;
   int _prevT = 0;
@@ -40,15 +42,20 @@ abstract class Adapter {
   // disassociates the controller, which also allows the adapter to be re-attached.
   @mustCallSuper
   void detach() {
-    _controller = null;
+    _notifier?.removeListener(_listener!);
+    _notifier = _listener = _controller = null;
     _ticker?.stop();
   }
 
   // called by implementers to attach the controller, and set an initial value.
-  void config(AnimationController controller, double value) {
+  void config(AnimationController controller, double value,
+      {ChangeNotifier? notifier, VoidCallback? listener}) {
     assert(_controller == null, 'An adapter was assigned twice.');
+    assert((notifier == null) == (listener == null));
     _controller = controller;
     _controller?.value = _value = value;
+    _notifier = notifier?..addListener(listener!);
+    _listener = listener;
     _ticker = Ticker(_tick);
   }
 

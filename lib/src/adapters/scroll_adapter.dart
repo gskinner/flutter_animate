@@ -45,12 +45,15 @@ class ScrollAdapter extends Adapter {
 
   @override
   void attach(AnimationController controller) {
-    config(controller, _getValue() ?? 0);
-    scrollController.addListener(() {
-      double? value = _getValue();
-      if (value == null) return; // no clients
-      updateValue(value);
-    });
+    config(
+      controller,
+      _getValue() ?? 0,
+      notifier: scrollController,
+      listener: () {
+        double? value = _getValue();
+        if (value != null) updateValue(value);
+      },
+    );
   }
 
   double? _getValue() {

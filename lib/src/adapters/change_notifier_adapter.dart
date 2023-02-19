@@ -19,7 +19,11 @@ class ChangeNotifierAdapter extends Adapter {
 
   @override
   void attach(AnimationController controller) {
-    config(controller, valueGetter());
-    notifier.addListener(() => updateValue(valueGetter()));
+    config(
+      controller,
+      valueGetter(),
+      notifier: notifier,
+      listener: () => updateValue(valueGetter()),
+    );
   }
 }

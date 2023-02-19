@@ -14,7 +14,11 @@ class ValueNotifierAdapter extends Adapter {
 
   @override
   void attach(AnimationController controller) {
-    config(controller, notifier.value);
-    notifier.addListener(() => updateValue(notifier.value));
+    config(
+      controller,
+      notifier.value,
+      notifier: notifier,
+      listener: () => updateValue(notifier.value),
+    );
   }
 }
