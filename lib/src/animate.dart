@@ -124,7 +124,11 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
         super(key: key) {
     warn(
       autoPlay != false || onPlay == null,
-      'Animate.onPlay is never called when Animate.autoPlay=false',
+      'Animate.onPlay is not called when Animate.autoPlay=false',
+    );
+    warn(
+      controller == null || onInit == null,
+      'Animate.onInit is not called when used with Animate.controller',
     );
     if (this.delay != Duration.zero) {
       String s = "Animate.delay has no effect when used with";
@@ -139,7 +143,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// The widget to apply animated effects to.
   final Widget child;
 
-  /// Called immediately after controller is fully initialized, before
+  /// Called immediately after the controller is fully initialized, before
   /// the [Animate.delay] or the animation starts playing (see: [onPlay]).
   /// This is not called if an external [controller] is provided.
   ///
@@ -160,7 +164,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// immediately after [AnimationController.forward] is called).
   /// Provides an opportunity to manipulate the [AnimationController]
   /// (ex. to loop, reverse, stop, etc). This is never called if [autoPlay]
-  /// is `false`.
+  /// is `false`. See also: [onInit].
   ///
   /// For example, this would pause the animation at its start:
   /// ```
