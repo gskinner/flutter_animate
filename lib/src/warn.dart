@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 warn(bool condition, String message) {
-  if (condition) { return; }
+  if (condition) return;
   debugPrint('${_bg(229)}${_fg(0)}[flutter_animate] $message');
 }
 
