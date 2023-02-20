@@ -78,10 +78,10 @@ abstract class Adapter {
     }
   }
 
+  // The first tick from a Ticker always has a zero duration, which causes
+  // animateTo to lock or stutter when changing values repeatedly so this
+  // uses a custom implementation to animate between values.
   void _tick(_) {
-    // The first tick from a Ticker always has a zero duration, which causes
-    // animateTo to lock or stutter when changing values repeatedly. so this
-    // uses a custom implementation to animate between values.
     AnimationController controller = _controller!;
 
     int t = DateTime.now().microsecondsSinceEpoch;
