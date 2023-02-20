@@ -276,6 +276,7 @@ Events & callbacks
 
 `Animate` includes the following callbacks:
 
+- `onInit`: the internal `AnimationController` has been initialized
 - `onPlay`: the animation has started playing after any `Animate.delay`
 - `onComplete`: the animation has finished
 
@@ -328,7 +329,8 @@ Adapters and Controllers
 
 By default, all animations are driven by an internal `AnimationController`, and
 update based on elapsed time. For more control, you can specify your own
-external `controller`, or use an `adapter`.
+external `controller`, or use an `adapter`. You can also set `autoPlay=false` if
+you want to start the animation manually.
 
 Adapters synchronize the `AnimationController` to an external source. For
 example, the `ScrollAdapter` updates an animation based on a `ScrollController`

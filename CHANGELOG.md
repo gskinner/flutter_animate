@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.1.0] - 2023-02-13
+### Added
+- `Animate.autoPlay` and `AnimateList.autoPlay`
+- `Animate.onInit` and `AnimateList.onInit`
+- `AnimateList.delay`
+- debug warnings for some incompatible parameter combinations
+
+### Changed
+- fixed issues with orphaned adapters causing errors
+
 ## [4.0.0] - 2023-02-13
 ### Added
 - `CrossfadeEffect` - cross fades in a new widget
