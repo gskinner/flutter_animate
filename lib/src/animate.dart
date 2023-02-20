@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_animate/src/warn.dart';
 import '../flutter_animate.dart';
 
 /// The Flutter Animate library makes adding beautiful animated effects to your widgets
@@ -121,15 +122,15 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   })  : autoPlay = autoPlay ?? true,
         delay = delay ?? Duration.zero,
         super(key: key) {
-    assert(
+    warn(
       autoPlay != false || onPlay == null,
-      'Animate.onPlay is never called if Animate.autoPlay=false',
+      'Animate.onPlay is never called when Animate.autoPlay=false',
     );
     if (this.delay != Duration.zero) {
-      String s = "Animate.delay does not work with";
-      assert(autoPlay != false, '$s Animate.autoPlay=false');
-      assert(adapter == null, '$s Animate.adapter');
-      assert(target == null, '$s Animate.target');
+      String s = "Animate.delay has no effect when used with";
+      warn(autoPlay != false, '$s Animate.autoPlay=false');
+      warn(adapter == null, '$s Animate.adapter');
+      warn(target == null, '$s Animate.target');
     }
     _entries = [];
     if (effects != null) addEffects(effects);
