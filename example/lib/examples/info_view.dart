@@ -28,27 +28,26 @@ class InfoView extends StatelessWidget {
         .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
         .slide();
 
-    List<Widget> tabInfoItems = [];
-    for (int i = 0; i < FlutterAnimateExample.tabs.length; i++) {
-      TabInfo o = FlutterAnimateExample.tabs[i];
-      tabInfoItems.add(Container(
-        padding: const EdgeInsets.all(8),
-        color: Colors.transparent,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(o.icon, color: const Color(0xFF80DDFF)),
-            const SizedBox(width: 8),
-            Flexible(
-              child: Text(
-                o.description,
-                style: const TextStyle(color: Colors.white),
+    List<Widget> tabInfoItems = [
+      for (final tab in FlutterAnimateExample.tabs)
+        Container(
+          padding: const EdgeInsets.all(8),
+          color: Colors.transparent,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(tab.icon, color: const Color(0xFF80DDFF)),
+              const SizedBox(width: 8),
+              Flexible(
+                child: Text(
+                  tab.description,
+                  style: const TextStyle(color: Colors.white),
+                ),
               ),
-            ),
-          ],
-        ),
-      ));
-    }
+            ],
+          ),
+        )
+    ];
 
     // Animate all of the info items in the list:
     tabInfoItems = tabInfoItems

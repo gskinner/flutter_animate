@@ -49,19 +49,6 @@ class _FlutterAnimateExampleState extends State<FlutterAnimateExample> {
 
   @override
   Widget build(BuildContext context) {
-    List<BottomNavigationBarItem> barItems = [];
-    for (int i = 0; i < FlutterAnimateExample.tabs.length; i++) {
-      final TabInfo info = FlutterAnimateExample.tabs[i];
-      barItems.add(
-        BottomNavigationBarItem(
-          icon: Icon(info.icon),
-          label: info.label,
-        ),
-      );
-    }
-
-    Widget content = FlutterAnimateExample.tabs[_viewIndex].builder(context);
-
     return Scaffold(
       backgroundColor: const Color(0xFF404349),
       bottomNavigationBar: BottomNavigationBar(
@@ -76,7 +63,13 @@ class _FlutterAnimateExampleState extends State<FlutterAnimateExample> {
         backgroundColor: const Color(0xFF2A2B2F),
         elevation: 0,
         onTap: (index) => setState(() => _viewIndex = index),
-        items: barItems,
+        items: [
+          for (final tab in FlutterAnimateExample.tabs)
+            BottomNavigationBarItem(
+              icon: Icon(tab.icon),
+              label: tab.label,
+            )
+        ],
       ),
       body: DefaultTextStyle(
         style: const TextStyle(
@@ -84,14 +77,17 @@ class _FlutterAnimateExampleState extends State<FlutterAnimateExample> {
           fontSize: 14,
           height: 1.5,
         ),
-        child: SafeArea(bottom: false, child: content),
+        child: SafeArea(
+          bottom: false,
+          child: FlutterAnimateExample.tabs[_viewIndex].builder(context),
+        ),
       ),
     );
   }
 }
 
 class TabInfo {
-  TabInfo(this.icon, this.builder, this.label, this.description);
+  const TabInfo(this.icon, this.builder, this.label, this.description);
 
   final IconData icon;
   final WidgetBuilder builder;
