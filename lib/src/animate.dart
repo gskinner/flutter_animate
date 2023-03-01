@@ -376,9 +376,9 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   }
 }
 
-/// Wraps the target Widget in an Animate instance. Ex. `myWidget.animate()` is equivalent
-/// to `Animate(child: myWidget)`.
 extension AnimateWidgetExtensions on Widget {
+  /// Wraps the target Widget in an Animate instance. Ex. `myWidget.animate()` is equivalent
+  /// to `Animate(child: myWidget)`.
   Animate animate({
     Key? key,
     List<Effect>? effects,
