@@ -1,11 +1,11 @@
 name: flutter_animate
 description: Add beautiful animated effects & builders in Flutter, via an easy, customizable, unified API.
-version: 4.1.0
+version: 4.1.1
 repository: https://github.com/gskinner/flutter_animate
 issue_tracker: https://github.com/gskinner/flutter_animate/issues
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
