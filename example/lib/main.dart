@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:example/examples/everything_view.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +10,17 @@ import 'examples/visual_view.dart';
 
 void main() {
   runApp(const MyApp());
+  _loadShader(); // this is a touch hacky, but works for now.
+}
+
+Future<void> _loadShader() async {
+  return FragmentProgram.fromAsset('assets/shaders/shader.frag').then(
+      (FragmentProgram prgm) {
+    EverythingView.shader = prgm.fragmentShader();
+  }, onError: (Object error, StackTrace stackTrace) {
+    FlutterError.reportError(
+        FlutterErrorDetails(exception: error, stack: stackTrace));
+  });
 }
 
 class MyApp extends StatelessWidget {

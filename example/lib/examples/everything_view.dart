@@ -2,11 +2,15 @@
 // Note the use of shortcut methods (defined at the bottom) to make these more concise
 
 import 'dart:math';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_animate/src/effects/shader_effect.dart'; // temporary
 
 class EverythingView extends StatelessWidget {
+  static ui.FragmentShader? shader;
+
   const EverythingView({Key? key}) : super(key: key);
 
   @override
@@ -163,6 +167,8 @@ class EverythingView extends StatelessWidget {
           tile('shake', a.shake()),
           tile('shakeX', a.shakeX()),
           tile('shakeY', a.shakeY()),
+
+          tile('shader', a.shader(shader: EverythingView.shader)),
 
           tile('shimmer', a.shimmer()),
 
