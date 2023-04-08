@@ -23,3 +23,4 @@ export 'then_effect.dart';
 export 'tint_effect.dart';
 export 'toggle_effect.dart';
 export 'visibility_effect.dart';
+export 'quadratic_bezier_effect.dart';

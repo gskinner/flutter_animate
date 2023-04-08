@@ -197,6 +197,10 @@ class EverythingView extends StatelessWidget {
           //tile('visibility', a.visibility()),
           tile('hide', a.hide()),
           tile('show', a.show()),
+          tile(
+              'bezier',
+              a.quadraticBezier(
+                  point1: const Offset(0, -50), point2: const Offset(40, -50))),
         ],
       ),
     );
