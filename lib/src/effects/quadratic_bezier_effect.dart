@@ -34,7 +34,7 @@ class QuadraticBezierEffect extends Effect<double> {
     final Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
         animation: animation,
-        builder: (_, value) {
+        builder: (_, __) {
           return Transform.translate(
             offset: Offset(
                 _bezierInterpolate(point1.dx, point2.dx, animation.value),
