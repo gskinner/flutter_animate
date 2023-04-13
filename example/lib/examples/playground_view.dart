@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-class TestView extends StatelessWidget {
-  const TestView({Key? key}) : super(key: key);
+class PlaygroundView extends StatelessWidget {
+  const PlaygroundView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

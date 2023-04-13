@@ -49,8 +49,8 @@ class FlutterAnimateExample extends StatefulWidget {
         'Animations driven by scrolling & user input.'),
     TabInfo(Icons.grid_on_outlined, (_) => const EverythingView(),
         'Kitchen Sink', 'Grid view of effects with default settings.'),
-    TabInfo(Icons.science_outlined, (_) => TestView(key: UniqueKey()),
-        'Sandbox', 'A blank canvas for experimenting.'),
+    TabInfo(Icons.science_outlined, (_) => PlaygroundView(key: UniqueKey()),
+        'Playground', 'A blank canvas for experimenting.'),
   ];
 
   @override
