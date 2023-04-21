@@ -148,6 +148,16 @@ class EverythingView extends StatelessWidget {
           tile('flipH', a.flipH()),
           tile('flipV', a.flipV()),
 
+          tile(
+            'followPath',
+            a.followPath(
+              path: Path()
+                ..moveTo(-40, -40)
+                ..quadraticBezierTo(-40, 40, 40, 40),
+              rotate: true,
+            ),
+          ),
+
           // listen
 
           //tile('move', a.move()),

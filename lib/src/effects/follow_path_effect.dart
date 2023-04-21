@@ -21,8 +21,9 @@ class FollowPathEffect extends Effect<double> {
   static const double neutralValue = 0;
   static const double defaultValue = 1;
 
-  static const bool defaultTransformHitTests = true;
   static const bool defaultRotate = false;
+  static const bool defaultTransformHitTests = true;
+  static const double defaultRotationOffset = 0;
 
   const FollowPathEffect({
     Duration? delay,
@@ -36,7 +37,7 @@ class FollowPathEffect extends Effect<double> {
     bool? transformHitTests,
   })  : transformHitTests = transformHitTests ?? defaultTransformHitTests,
         rotate = rotate ?? defaultRotate,
-        rotationOffset = rotationOffset ?? 0,
+        rotationOffset = rotationOffset ?? defaultRotationOffset,
         super(
           delay: delay,
           duration: duration,
