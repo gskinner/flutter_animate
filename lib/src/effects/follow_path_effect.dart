@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// An effect that moves the target following the specified [path]. The path
-/// coordinates are relative to the target's nominal position.
+/// An effect that moves the target following the specified [path] (via [Transform]). 
+/// The path coordinates are relative to the target's nominal position.
 ///
 /// The path can have multiple segments (ex. multiple curves). It can also
 /// have multiple contours (ie. disconnected segments), but only the first
@@ -13,9 +13,11 @@ import '../../flutter_animate.dart';
 ///
 /// [begin] and [end] specify a position along the path (ie. 0 is the start of the path, 1 is the end).
 /// For example, `begin: 0.5, end: 1` will move the target from the middle of the path to the end.
-/// 
+///
 /// If [rotate] is set to `true`, the target will be rotated to match the path's direction.
 /// You can use [rotationOffset] to adjust the rotation (in radians).
+/// 
+/// [transformHitTests] is simply passed on to [Transform].
 @immutable
 class FollowPathEffect extends Effect<double> {
   static const double neutralValue = 0;
@@ -69,18 +71,16 @@ class FollowPathEffect extends Effect<double> {
         Tangent? tangent =
             metric.getTangentForOffset(metric.length * animation.value);
 
-        Widget o = child;
-        if (rotate) {
-          o = Transform.rotate(
-            angle: -(tangent?.angle ?? 0) + rotationOffset,
-            child: child,
-          );
-        }
+        Offset position = tangent?.position ?? Offset.zero;
+        Matrix4 mtx = Matrix4.identity()
+          ..translate(position.dx, position.dy)
+          ..rotateZ(-(tangent?.angle ?? 0) + rotationOffset);
 
-        return Transform.translate(
-          offset: tangent?.position ?? Offset.zero,
+        return Transform(
+          transform: mtx,
           transformHitTests: transformHitTests,
-          child: o,
+          alignment: Alignment.center,
+          child: child,
         );
       },
     );
