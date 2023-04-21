@@ -10,6 +10,7 @@ export 'custom_effect.dart';
 export 'elevation_effect.dart';
 export 'fade_effect.dart';
 export 'flip_effect.dart';
+export 'follow_path_effect.dart';
 export 'listen_effect.dart';
 export 'move_effect.dart';
 export 'rotate_effect.dart';
