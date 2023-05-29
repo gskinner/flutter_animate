@@ -1,7 +1,5 @@
 import 'dart:collection';
-
 import 'package:flutter/widgets.dart';
-
 import '../flutter_animate.dart';
 
 /// Applies animated effects to a list of widgets. It does this by wrapping each
