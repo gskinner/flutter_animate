@@ -52,7 +52,6 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
     AnimateCallback? onComplete,
     bool? autoPlay,
     Duration? delay,
-    Adapter? adapter,
     Duration? interval,
   }) {
     // build new list, wrapping each child in Animate
@@ -67,7 +66,6 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
           onComplete: onComplete,
           autoPlay: autoPlay,
           delay: (delay ?? Duration.zero) + (interval ?? Duration.zero) * i,
-          adapter: adapter,
           child: child,
         );
         _managers.add(child as Animate);
@@ -118,7 +116,6 @@ extension AnimateListExtensions on List<Widget> {
     AnimateCallback? onComplete,
     bool? autoPlay,
     Duration? delay,
-    Adapter? adapter,
     Duration? interval,
   }) =>
       AnimateList(
@@ -128,7 +125,6 @@ extension AnimateListExtensions on List<Widget> {
         onComplete: onComplete,
         autoPlay: autoPlay,
         delay: delay,
-        adapter: adapter,
         interval: interval,
         children: this,
       );
