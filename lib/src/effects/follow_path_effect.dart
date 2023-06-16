@@ -4,19 +4,19 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// An effect that moves the target following the specified [path] (via [Transform]). 
+/// An effect that moves the target following the specified [path] (via [Transform]).
 /// The path coordinates are relative to the target's nominal position.
 ///
 /// The path can have multiple segments (ex. multiple curves). It can also
 /// have multiple contours (ie. disconnected segments), but only the first
-/// contour will be used.
+/// contour will be followed.
 ///
 /// [begin] and [end] specify a position along the path (ie. 0 is the start of the path, 1 is the end).
 /// For example, `begin: 0.5, end: 1` will move the target from the middle of the path to the end.
 ///
 /// If [rotate] is set to `true`, the target will be rotated to match the path's direction.
 /// You can use [rotationOffset] to adjust the rotation (in radians).
-/// 
+///
 /// [transformHitTests] is simply passed on to [Transform].
 @immutable
 class FollowPathEffect extends Effect<double> {

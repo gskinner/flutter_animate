@@ -251,4 +251,4 @@ class EverythingView extends StatelessWidget {
       );
 }
 
-double _boxSize = 96;
+double _boxSize = 80;
