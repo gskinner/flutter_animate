@@ -16,11 +16,11 @@ void main() {
     // check halfway
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     tester.expectWidgetWithDouble<Padding>(
-        (o) => (o.padding as EdgeInsets).top, 20, 'padding @ 500ms');
+        (o) => (o.padding as EdgeInsets).top, 20, 'padding @ 50%');
 
     // check end
     await tester.pump(500.ms);
     tester.expectWidgetWithDouble<Padding>(
-        (o) => (o.padding as EdgeInsets).top, 40, 'padding @ 1000ms');
+        (o) => (o.padding as EdgeInsets).top, 40, 'padding @ 100%');
   });
 }

@@ -7,28 +7,62 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../tester_extensions.dart';
 
 void main() {
-  // SB: Not sure how much sense it makes to test these more specific "stylized" tween variations.
-  // Seems like they quickly become harder to test than the core ones, and will break more frequently as small style tweaks are made.
-  // This is not an exhaustive test, it only tests a single position in the effect.
-  testWidgets('ShakeEffect: core', (tester) async {
+  testWidgets('ShakeEffect: shake', (tester) async {
     final animation = const FlutterLogo().animate().shake(
           duration: 1000.ms,
-          hz: 2,
-          rotation: pi / 36,
-          offset: const Offset(10, 10),
+          hz: _hz,
+          rotation: _rotation,
+          offset: const Offset(_translation, _translation),
         );
 
-    // check 1/8 of the way
-    await tester.pumpAnimation(animation, initialDelay: (1 / 8).seconds);
-    // check translation
-    var matrix = Transform.translate(offset: const Offset(10, 10)).transform;
-    tester.expectWidgetWithBool<Transform>(
-        (o) => o.transform == matrix, true, 'translation @ 1/8s',
-        findFirst: true);
+    // check 1/4 cycle through:
+    await tester.pumpAnimation(animation, initialDelay: 250.ms);
+    _verifyShake(tester, _translation, _translation, _rotation);
+  });
 
-    // check rotation
-    matrix = Transform.rotate(angle: pi / 36).transform;
-    tester.expectWidgetWithBool<Transform>(
-        (o) => o.transform == matrix, true, 'rotation @ 1/8s');
+  testWidgets('ShakeEffect: shakeX', (tester) async {
+    final animation = const FlutterLogo().animate().shakeX(
+          duration: 1000.ms,
+          hz: _hz,
+          amount: _translation,
+        );
+
+    // check 1/4 cycle through:
+    await tester.pumpAnimation(animation, initialDelay: 250.ms);
+    _verifyShake(tester, _translation, 0, 0);
+  });
+
+  testWidgets('ShakeEffect: shakeY', (tester) async {
+    final animation = const FlutterLogo().animate().shakeY(
+          duration: 1000.ms,
+          hz: _hz,
+          amount: _translation,
+        );
+
+    // check 1/4 cycle through:
+    await tester.pumpAnimation(animation, initialDelay: 250.ms);
+    _verifyShake(tester, 0, _translation, 0);
   });
 }
+
+_verifyShake(WidgetTester tester, double x, double y, double rotation) async {
+  // check translation
+  Matrix4 matrix;
+  if (x != 0 || y != 0) {
+    matrix = Transform.translate(offset: Offset(x, y)).transform;
+    tester.expectWidgetWithBool<Transform>((o) {
+      return o.transform == matrix;
+    }, true, 'translation', findFirst: true);
+  }
+
+  // check rotation
+  if (rotation != 0) {
+    matrix = Transform.rotate(angle: rotation).transform;
+    tester.expectWidgetWithBool<Transform>(
+        (o) => o.transform == matrix, true, 'rotation');
+  }
+}
+
+const double _hz = 1;
+const double _rotation = pi / 36;
+const double _translation = 10;

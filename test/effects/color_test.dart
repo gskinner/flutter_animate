@@ -21,7 +21,7 @@ void main() {
     tester.expectWidgetWithBool<ColorFiltered>(
       (o) => o.colorFilter == ColorFilter.mode(begin, blend),
       true,
-      'colorFilter @ 0ms',
+      'colorFilter @ 0%',
     );
 
     // Check end:
@@ -29,7 +29,7 @@ void main() {
     tester.expectWidgetWithBool<ColorFiltered>(
       (o) => o.colorFilter == ColorFilter.mode(end, blend),
       true,
-      'colorFilter @ 1000ms',
+      'colorFilter @ 100%',
     );
   });
 }

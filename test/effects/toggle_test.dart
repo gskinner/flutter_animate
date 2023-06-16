@@ -17,7 +17,7 @@ void main() {
     tester.expectWidgetWithDouble<Opacity>(
       (w) => w.opacity,
       0,
-      'opacity @ 0ms',
+      'opacity @ 0%',
     );
 
     // After 500ms opacity should still be 0
@@ -25,7 +25,7 @@ void main() {
     tester.expectWidgetWithDouble<Opacity>(
       (w) => w.opacity,
       0,
-      'opacity @ 500ms',
+      'opacity @ 50%',
     );
 
     // After another 500ms opacity should be 1
@@ -33,7 +33,7 @@ void main() {
     tester.expectWidgetWithDouble<Opacity>(
       (w) => w.opacity,
       1,
-      'opacity @ 1000ms',
+      'opacity @ 100%',
     );
   });
 }

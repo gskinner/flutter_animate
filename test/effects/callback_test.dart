@@ -10,7 +10,7 @@ void main() {
     int callbackCount = 0;
     final animation = const FlutterLogo()
         .animate()
-        .fadeIn(duration: 1000.ms)
+        .effect(duration: 1000.ms)
         // Register a callback halfway,
         .callback(duration: 500.ms, callback: (_) => callbackCount++)
         // Register another callback at the end

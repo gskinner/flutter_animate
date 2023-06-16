@@ -8,27 +8,16 @@ void main() {
   testWidgets('VisibilityEffect: maintain = true', (tester) async {
     final animation = const FlutterLogo()
         .animate()
-        .visibility(duration: 1000.ms, maintain: true);
+        .visibility(duration: 1000.ms, end: true, maintain: true);
 
     // check halfway
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     tester.expectWidgetWithBool<Visibility>(
-        (o) => o.visible, false, 'visibility @ 500ms');
-    tester.expectWidgetWithBool<Visibility>(
-        (o) => o.maintainAnimation, true, 'maintainSize');
-    tester.expectWidgetWithBool<Visibility>(
-        (o) => o.maintainInteractivity, true, 'maintainInteractivity');
-    tester.expectWidgetWithBool<Visibility>(
-        (o) => o.maintainSemantics, true, 'maintainSemantics');
-    tester.expectWidgetWithBool<Visibility>(
-        (o) => o.maintainSize, true, 'maintainSize');
-    tester.expectWidgetWithBool<Visibility>(
-        (o) => o.maintainState, true, 'maintainState');
+        (o) => o.visible, false, 'visibility @ 50%');
 
     // check end
     await tester.pump(500.ms);
-    tester.expectWidgetWithBool<Visibility>(
-        (o) => o.visible, true, 'visibility @ 1000ms');
+    _verifyVisibility(tester, true, true);
   });
 
   testWidgets('VisibilityEffect: maintain = false', (tester) async {
@@ -37,15 +26,37 @@ void main() {
         .visibility(duration: 1.seconds, maintain: false);
 
     await tester.pumpAnimation(animation);
-    tester.expectWidgetWithBool<Visibility>(
-        (o) => o.maintainSize, false, 'maintainSize');
-    tester.expectWidgetWithBool<Visibility>(
-        (o) => o.maintainInteractivity, false, 'maintainInteractivity');
-    tester.expectWidgetWithBool<Visibility>(
-        (o) => o.maintainSemantics, false, 'maintainSemantics');
-    tester.expectWidgetWithBool<Visibility>(
-        (o) => o.maintainSize, false, 'maintainSize');
-    tester.expectWidgetWithBool<Visibility>(
-        (o) => o.maintainState, false, 'maintainState');
+    _verifyVisibility(tester, false, false);
   });
+
+  testWidgets('VisibilityEffect: hide', (tester) async {
+    final animation = const FlutterLogo().animate().hide(duration: 1000.ms);
+
+    // check halfway
+    await tester.pumpAnimation(animation, initialDelay: 1000.ms);
+    _verifyVisibility(tester, false);
+  });
+
+  testWidgets('VisibilityEffect: show', (tester) async {
+    final animation = const FlutterLogo().animate().show(duration: 1000.ms);
+
+    // check halfway
+    await tester.pumpAnimation(animation, initialDelay: 1000.ms);
+    _verifyVisibility(tester, true);
+  });
+}
+
+_verifyVisibility(WidgetTester tester, bool visible,
+    [bool maintain = VisibilityEffect.defaultMaintain]) async {
+  tester.expectWidgetWithBool<Visibility>((o) => o.visible, visible, 'visible');
+  tester.expectWidgetWithBool<Visibility>(
+      (o) => o.maintainAnimation, maintain, 'maintainSize');
+  tester.expectWidgetWithBool<Visibility>(
+      (o) => o.maintainInteractivity, maintain, 'maintainInteractivity');
+  tester.expectWidgetWithBool<Visibility>(
+      (o) => o.maintainSemantics, maintain, 'maintainSemantics');
+  tester.expectWidgetWithBool<Visibility>(
+      (o) => o.maintainSize, maintain, 'maintainSize');
+  tester.expectWidgetWithBool<Visibility>(
+      (o) => o.maintainState, maintain, 'maintainState');
 }

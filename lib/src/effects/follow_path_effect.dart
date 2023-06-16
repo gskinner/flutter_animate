@@ -72,9 +72,8 @@ class FollowPathEffect extends Effect<double> {
             metric.getTangentForOffset(metric.length * animation.value);
 
         Offset position = tangent?.position ?? Offset.zero;
-        Matrix4 mtx = Matrix4.identity()
-          ..translate(position.dx, position.dy)
-          ..rotateZ(-(tangent?.angle ?? 0) + rotationOffset);
+        double rotation = -(tangent?.angle ?? 0) + rotationOffset;
+        Matrix4 mtx = getMatrix(position.dx, position.dy, rotation);
 
         return Transform(
           transform: mtx,
@@ -84,6 +83,12 @@ class FollowPathEffect extends Effect<double> {
         );
       },
     );
+  }
+
+  static Matrix4 getMatrix(double x, double y, double rotation) {
+    return Matrix4.identity()
+      ..translate(x, y)
+      ..rotateZ(rotation);
   }
 }
 

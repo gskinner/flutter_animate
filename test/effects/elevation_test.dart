@@ -17,11 +17,11 @@ void main() {
     // Check begin:
     await tester.pumpAnimation(animation);
     tester.expectWidgetWithBool<PhysicalModel>(
-        (o) => o.elevation == begin, true, 'elevation @ 0ms');
+        (o) => o.elevation == begin, true, 'elevation @ 0%');
 
     // Check end:
     await tester.pump(1000.ms);
     tester.expectWidgetWithBool<PhysicalModel>(
-        (o) => o.elevation == end, true, 'elevation @ 1000ms');
+        (o) => o.elevation == end, true, 'elevation @ 100%');
   });
 }

@@ -18,13 +18,13 @@ void main() {
     tester.expectWidgetWithDouble<FadeTransition>(
       (o) => o.opacity.value,
       1,
-      'beginChild opacity @ 0ms',
+      'beginChild opacity @ 0%',
       findFirst: true,
     );
     tester.expectWidgetWithDouble<FadeTransition>(
       (o) => o.opacity.value,
       0,
-      'endChild opacity @ 0ms',
+      'endChild opacity @ 0%',
       findFirst: false,
     );
 
@@ -33,13 +33,13 @@ void main() {
     tester.expectWidgetWithDouble<FadeTransition>(
       (o) => o.opacity.value,
       0.5,
-      'beginChild opacity @ 500ms',
+      'beginChild opacity @ 50%',
       findFirst: true,
     );
     tester.expectWidgetWithDouble<FadeTransition>(
       (o) => o.opacity.value,
       0.5,
-      'endChild opacity @ 500ms',
+      'endChild opacity @ 50%',
       findFirst: false,
     );
 
@@ -48,13 +48,13 @@ void main() {
     tester.expectWidgetWithDouble<FadeTransition>(
       (o) => o.opacity.value,
       0,
-      'beginChild opacity @ 1000ms',
+      'beginChild opacity @ 100%',
       findFirst: true,
     );
     tester.expectWidgetWithDouble<FadeTransition>(
       (o) => o.opacity.value,
       1,
-      'endChild opacity @ 1000ms',
+      'endChild opacity @ 100%',
       findFirst: false,
     );
   });

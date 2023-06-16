@@ -24,12 +24,12 @@ void main() {
     tester.expectWidgetWithBool<DecoratedBox>(
       (o) => (o.decoration as BoxDecoration).boxShadow?.first == expected,
       true,
-      'decoration.boxShadow @ 500ms',
+      'boxShadow',
     );
     tester.expectWidgetWithBool<DecoratedBox>(
       (o) => (o.decoration as BoxDecoration).borderRadius == borderRadius,
       true,
-      'decoration.borderRadius @ 500ms',
+      'borderRadius',
     );
   });
 }

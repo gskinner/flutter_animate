@@ -32,18 +32,18 @@ void main() {
 
     // Initially, faded in
     tester.expectWidgetWithDouble<FadeTransition>(
-        (o) => o.opacity.value, 1, 'opacity @ 0ms');
+        (o) => o.opacity.value, 1, 'opacity @ 0%');
 
     // halfway, check fadeOut
     await tester.pump(500.ms);
     await tester.pump(0.ms);
     tester.expectWidgetWithDouble<FadeTransition>(
-        (o) => o.opacity.value, 0, 'opacity @ 500ms');
+        (o) => o.opacity.value, 0, 'opacity @ 50%');
 
     // end, check fadeIn
     await tester.pump(500.ms);
     await tester.pump(0.ms);
     tester.expectWidgetWithDouble<FadeTransition>(
-        (o) => o.opacity.value, 1, 'opacity @ 1000ms');
+        (o) => o.opacity.value, 1, 'opacity @ 100%');
   });
 }

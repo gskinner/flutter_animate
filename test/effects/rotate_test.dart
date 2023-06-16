@@ -16,6 +16,6 @@ void main() {
     // check halfway
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     tester.expectWidgetWithDouble<RotationTransition>(
-        (o) => o.turns.value, 1, 'turns @ 500ms');
+        (o) => o.turns.value, 1, 'turns');
   });
 }
