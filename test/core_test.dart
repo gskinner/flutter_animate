@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/src/warn.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import 'tester_extensions.dart';
 
 void main() {
+  // can really only test if warn throws an error:
+  test('warn', () async {
+    warn(false, 'testing warn()');
+  });
+  
   testWidgets('curved tween w/ 1000s duration', (tester) async {
     const curve = Curves.easeOut;
     final animation = const FlutterLogo()

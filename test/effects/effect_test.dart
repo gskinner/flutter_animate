@@ -12,6 +12,6 @@ void main() {
     // check halfway
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     tester.expectWidgetWithDouble<Transform>(
-        (o) => o.transform.getTranslation().x, 50, 'x @ 500ms');
+        (o) => o.transform.getTranslation().x, 50, 'x @ 50%');
   });
 }
