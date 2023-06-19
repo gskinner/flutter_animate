@@ -281,7 +281,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
     } else if (oldWidget.adapter != widget.adapter) {
       _initAdapter();
     } else if (widget.target != oldWidget.target) {
-      // this doesn't restart when onPlay changes, because anonymous functions
+      // we don't restart when onPlay changes, because anonymous functions
       // can only be compared as strings, which is expensive.
       _play();
     }
