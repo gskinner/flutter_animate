@@ -23,7 +23,7 @@ import '../../flutter_animate.dart';
 
 /// **IMPORTANT:** This is a prerelease shader and may not work properly on all platforms.
 /// It is not included in the default exports, you must import it directly to use it.
-/// 
+///
 ///
 /// Effect that applies an animated fragment shader to a target. See
 /// [Writing and using fragment shaders](https://docs.flutter.dev/development/ui/advanced/shaders)

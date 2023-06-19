@@ -6,7 +6,7 @@ import '../../flutter_animate.dart';
 
 /// An effect that enables gradient overlay effects (via [ShaderMask]), such as the shimmer loading effect
 /// [popularized by facebook](https://facebook.github.io/shimmer-android/).
-/// 
+///
 /// **IMPORTANT:** Due to current limitations in Flutter, this effect may cause
 /// issues on mobile web when using the HTML renderer. More info can be found
 /// [here](https://github.com/gskinner/flutter_animate/issues/78).

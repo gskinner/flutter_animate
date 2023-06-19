@@ -20,6 +20,6 @@ void main() {
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     var mtx = FollowPathEffect.getMatrix(50, 50, pi / 4);
     tester.expectWidgetWithBool<Transform>(
-      (o) => o.transform == mtx, true, 'transform');
+        (o) => o.transform == mtx, true, 'transform');
   });
 }

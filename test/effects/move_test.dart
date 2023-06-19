@@ -13,7 +13,7 @@ void main() {
 
     // check halfway
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    _verifyMove(tester, _moveAmt / 2,  _moveAmt / 2);
+    _verifyMove(tester, _moveAmt / 2, _moveAmt / 2);
   });
 
   testWidgets('MoveEffect: moveX', (tester) async {
@@ -24,7 +24,7 @@ void main() {
 
     // check halfway
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    _verifyMove(tester, _moveAmt / 2,  0);
+    _verifyMove(tester, _moveAmt / 2, 0);
   });
 
   testWidgets('MoveEffect: moveY', (tester) async {
@@ -40,10 +40,10 @@ void main() {
 }
 
 _verifyMove(WidgetTester tester, double x, double y) async {
-    tester.expectWidgetWithDouble<Transform>(
-        (o) => o.transform.getTranslation().x, x, 'x');
-    tester.expectWidgetWithDouble<Transform>(
-        (o) => o.transform.getTranslation().y, y, 'y');
+  tester.expectWidgetWithDouble<Transform>(
+      (o) => o.transform.getTranslation().x, x, 'x');
+  tester.expectWidgetWithDouble<Transform>(
+      (o) => o.transform.getTranslation().y, y, 'y');
 }
 
 const double _moveAmt = 100;

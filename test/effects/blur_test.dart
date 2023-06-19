@@ -54,13 +54,13 @@ void main() {
 _verifyBlur(WidgetTester tester, double x, double y) async {
   expect(
     tester.widget(find.byType(ImageFiltered).last),
-    isA<ImageFiltered>().having(
-        (o) => (o.imageFilter as dynamic).sigmaX, 'sigmaX', x),
+    isA<ImageFiltered>()
+        .having((o) => (o.imageFilter as dynamic).sigmaX, 'sigmaX', x),
   );
   expect(
     tester.widget(find.byType(ImageFiltered).last),
-    isA<ImageFiltered>().having(
-        (o) => (o.imageFilter as dynamic).sigmaY, 'sigmaY', y),
+    isA<ImageFiltered>()
+        .having((o) => (o.imageFilter as dynamic).sigmaY, 'sigmaY', y),
   );
 }
 

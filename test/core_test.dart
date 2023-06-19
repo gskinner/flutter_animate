@@ -10,7 +10,7 @@ void main() {
   test('warn', () async {
     warn(false, 'testing warn()');
   });
-  
+
   testWidgets('curved tween w/ 1000s duration', (tester) async {
     const curve = Curves.easeOut;
     final animation = const FlutterLogo()
