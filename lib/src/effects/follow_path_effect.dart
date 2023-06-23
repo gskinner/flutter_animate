@@ -16,7 +16,7 @@ import '../../flutter_animate.dart';
 ///
 /// If [rotate] is set to `true`, the target will be rotated to match the path's direction.
 /// You can use [rotationOffset] to adjust the rotation (in radians).
-/// **Note:** Rotation may not be smooth on mobile web due to a
+/// **Note:** Rotation may not be smooth on web when using the HTML renderer due to a
 /// [Flutter issue](https://github.com/flutter/flutter/issues/129139).
 ///
 /// [transformHitTests] is simply passed on to [Transform].

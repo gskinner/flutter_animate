@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import '../../flutter_animate.dart';
 
 /// An effect that scales the target between the specified [begin] and [end]
-/// offset values (via [ScaleTransition]).
+/// offset values (via [Transform.scale]).
 /// Defaults to `begin=Offset(0,0), end=Offset(1,1)`.
 @immutable
 class ScaleEffect extends Effect<Offset> {
