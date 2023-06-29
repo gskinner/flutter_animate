@@ -14,12 +14,14 @@ class FadeEffect extends Effect<double> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
   }) : super(
           delay: delay,
           duration: duration,
           curve: curve,
+          reverseCurve: reverseCurve,
           begin: begin ?? (end == null ? defaultValue : neutralValue),
           end: end ?? neutralValue,
         );
@@ -44,6 +46,7 @@ extension FadeEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
   }) =>
@@ -51,6 +54,7 @@ extension FadeEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
+        reverseCurve: reverseCurve,
         begin: begin,
         end: end,
       ));
@@ -61,12 +65,14 @@ extension FadeEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
   }) =>
       addEffect(FadeEffect(
         delay: delay,
         duration: duration,
         curve: curve,
+        reverseCurve: reverseCurve,
         begin: begin ?? FadeEffect.defaultValue,
         end: 1.0,
       ));
@@ -77,12 +83,14 @@ extension FadeEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
   }) =>
       addEffect(FadeEffect(
         delay: delay,
         duration: duration,
         curve: curve,
+        reverseCurve: reverseCurve,
         begin: begin ?? FadeEffect.neutralValue,
         end: 0.0,
       ));

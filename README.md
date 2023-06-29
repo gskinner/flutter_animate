@@ -64,10 +64,10 @@ Text("Hello World!").animate().fade().scale()
 > **NOTE:** The shortform style is used in this README, but all functionality is
 > available in either format.
 
-Delay, duration, curve
+Delay, duration, curve, reverseCurve
 ----------------------------------------
 
-Effects have optional `delay`, `duration`, and `curve` parameters. Effects run
+Effects have optional `delay`, `duration`, `curve`, and `reverseCurve` parameters. Effects run
 in parallel, but you can use a `delay` to run them sequentially:
 
 ``` dart

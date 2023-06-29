@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+
 import '../../flutter_animate.dart';
 
 /// An empty effect that all other effects extend.
@@ -23,6 +24,10 @@ class Effect<T> {
   /// previous effect, or use [Animate.defaultCurve] if this is the first effect.
   final Curve? curve;
 
+  /// The specified easing curve for the effect. If null, will inherit the curve from the
+  /// previous effect, or use [Animate.defaultCurve] if this is the first effect.
+  final Curve? reverseCurve;
+
   /// The begin value for the effect. If null, effects should use a reasonable
   /// default value when appropriate.
   final T? begin;
@@ -31,7 +36,14 @@ class Effect<T> {
   /// default value when appropriate.
   final T? end;
 
-  const Effect({this.delay, this.duration, this.curve, this.begin, this.end});
+  const Effect({
+    this.delay,
+    this.duration,
+    this.curve,
+    this.reverseCurve,
+    this.begin,
+    this.end,
+  });
 
   /// Builds the widgets that implement the effect on the target [child],
   /// based on the provided [AnimationController] and [EffectEntry].

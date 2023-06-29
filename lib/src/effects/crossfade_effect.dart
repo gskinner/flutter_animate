@@ -17,12 +17,14 @@ class CrossfadeEffect extends Effect<double> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     required this.builder,
     this.alignment,
   }) : super(
           delay: delay,
           duration: duration,
           curve: curve,
+          reverseCurve: reverseCurve,
           begin: 0,
           end: 1,
         );
@@ -54,6 +56,7 @@ extension CrossfadeEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     required WidgetBuilder builder,
     Alignment? alignment,
   }) =>
@@ -61,6 +64,7 @@ extension CrossfadeEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
+        reverseCurve: reverseCurve,
         builder: builder,
         alignment: alignment,
       ));

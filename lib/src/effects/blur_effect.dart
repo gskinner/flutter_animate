@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
@@ -20,12 +21,14 @@ class BlurEffect extends Effect<Offset> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     Offset? begin,
     Offset? end,
   }) : super(
           delay: delay,
           duration: duration,
           curve: curve,
+          reverseCurve: reverseCurve,
           begin: begin ?? neutralValue,
           end: end ?? (begin == null ? defaultValue : neutralValue),
         );
@@ -87,6 +90,7 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
   }) {
@@ -96,6 +100,7 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
       delay: delay,
       duration: duration,
       curve: curve,
+      reverseCurve: reverseCurve,
       begin: BlurEffect.neutralValue.copyWith(dx: begin),
       end: BlurEffect.neutralValue.copyWith(dx: end),
     ));
@@ -107,6 +112,7 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
   }) {
@@ -116,6 +122,7 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
       delay: delay,
       duration: duration,
       curve: curve,
+      reverseCurve: reverseCurve,
       begin: BlurEffect.neutralValue.copyWith(dy: begin),
       end: BlurEffect.neutralValue.copyWith(dy: end),
     ));
@@ -127,6 +134,7 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
   }) {
@@ -136,6 +144,7 @@ extension BlurEffectExtensions<T> on AnimateManager<T> {
       delay: delay,
       duration: duration,
       curve: curve,
+      reverseCurve: reverseCurve,
       begin: Offset(begin, begin),
       end: Offset(end, end),
     ));

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/src/warn.dart';
+
 import '../flutter_animate.dart';
 
 /// The Flutter Animate library makes adding beautiful animated effects to your widgets
@@ -250,6 +251,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
       delay: delay,
       duration: effect.duration ?? prior?.duration ?? Animate.defaultDuration,
       curve: effect.curve ?? prior?.curve ?? Animate.defaultCurve,
+      reverseCurve: effect.reverseCurve ?? prior?.reverseCurve,
       owner: this,
     );
 

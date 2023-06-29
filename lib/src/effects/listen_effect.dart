@@ -36,6 +36,7 @@ class ListenEffect extends Effect<double> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
     required this.callback,
@@ -44,7 +45,9 @@ class ListenEffect extends Effect<double> {
           delay: delay,
           duration: duration,
           curve: curve,
-          begin: begin ?? 0.0, // Should this use "smart" defaults?
+          reverseCurve: reverseCurve,
+          begin: begin ?? 0.0,
+          // Should this use "smart" defaults?
           end: end ?? 1.0,
         );
 
@@ -81,6 +84,7 @@ extension ListenEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
     required ValueChanged<double> callback,
@@ -90,6 +94,7 @@ extension ListenEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
+        reverseCurve: reverseCurve,
         begin: begin,
         end: end,
         callback: callback,
