@@ -74,7 +74,7 @@ class FollowPathEffect extends Effect<double> {
             metric.getTangentForOffset(metric.length * animation.value);
 
         Offset position = tangent?.position ?? Offset.zero;
-        double rotation = -(tangent?.angle ?? 0) + rotationOffset;
+        double rotation = rotate ? -(tangent?.angle ?? 0) + rotationOffset : 0;
         Matrix4 mtx = getMatrix(position.dx, position.dy, rotation);
 
         return Transform(

@@ -11,10 +11,9 @@ void main() {
     final Path path = Path() //
       ..lineTo(100, 100);
 
-    final animation = const FlutterLogo().animate().followPath(
-          path: path,
-          duration: 1000.ms,
-        );
+    final animation = const FlutterLogo()
+        .animate()
+        .followPath(path: path, duration: 1000.ms, rotate: true);
 
     // Check halfway:
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
