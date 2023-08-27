@@ -21,6 +21,7 @@ class MoveEffect extends Effect<Offset> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     Offset? begin,
     Offset? end,
     bool? transformHitTests,
@@ -29,6 +30,7 @@ class MoveEffect extends Effect<Offset> {
           delay: delay,
           duration: duration,
           curve: curve,
+          reverseCurve: reverseCurve,
           begin: begin ?? (end == null ? defaultValue : neutralValue),
           end: end ?? neutralValue,
         );
@@ -62,6 +64,7 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     Offset? begin,
     Offset? end,
     bool? transformHitTests,
@@ -70,6 +73,7 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
+        reverseCurve: reverseCurve,
         begin: begin,
         end: end,
         transformHitTests: transformHitTests,
@@ -81,6 +85,7 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
     bool? transformHitTests,
@@ -91,6 +96,7 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
       delay: delay,
       duration: duration,
       curve: curve,
+      reverseCurve: reverseCurve,
       begin: MoveEffect.neutralValue.copyWith(dx: begin),
       end: MoveEffect.neutralValue.copyWith(dx: end),
       transformHitTests: transformHitTests,
@@ -103,6 +109,7 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
     bool? transformHitTests,
@@ -113,11 +120,12 @@ extension MoveEffectExtensions<T> on AnimateManager<T> {
       delay: delay,
       duration: duration,
       curve: curve,
+      reverseCurve: reverseCurve,
       begin: MoveEffect.neutralValue.copyWith(dy: begin),
       end: MoveEffect.neutralValue.copyWith(dy: end),
       transformHitTests: transformHitTests,
     ));
   }
 
-  // Note: there is no moveXY because diagonal movement isn't a significant use case.
+// Note: there is no moveXY because diagonal movement isn't a significant use case.
 }

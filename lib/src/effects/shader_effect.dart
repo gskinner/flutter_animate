@@ -1,7 +1,6 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/rendering.dart';
-
 import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
@@ -9,14 +8,14 @@ import '../../flutter_animate.dart';
 /**
  * This is a prerelease effect for Flutter Animate:
  * https://pub.dev/packages/flutter_animate
- * 
+ *
  * It includes a copy of `AnimatedSampler` from Flutter Shaders:
  * https://github.com/jonahwilliams/flutter_shaders
- * 
+ *
  * Once `AnimatedSampler` (or equivalent) is stable, or included in the core
- * SDK, this effect will be updated, tested, refined, and added to the 
+ * SDK, this effect will be updated, tested, refined, and added to the
  * effects.dart file.
- * 
+ *
  * To use this effect you must import it directly. It is _not_ included
  * in the default exports.
  */
@@ -55,6 +54,7 @@ class ShaderEffect extends Effect<double> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     this.shader,
     this.overflow,
     ShaderLayer? layer,
@@ -64,6 +64,7 @@ class ShaderEffect extends Effect<double> {
           delay: delay,
           duration: duration,
           curve: curve,
+          reverseCurve: reverseCurve,
           begin: 0,
           end: 1,
         );
@@ -129,6 +130,7 @@ extension ShaderEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     ui.FragmentShader? shader,
     EdgeInsets? overflow,
     ShaderLayer? layer,
@@ -138,6 +140,7 @@ extension ShaderEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
+        reverseCurve: reverseCurve,
         shader: shader,
         overflow: overflow,
         layer: layer,
@@ -350,6 +353,7 @@ class _RenderShaderSamplerBuilderWidget extends RenderProxyBox {
   /// The device pixel ratio used to create the child image.
   double get devicePixelRatio => _devicePixelRatio;
   double _devicePixelRatio;
+
   set devicePixelRatio(double value) {
     if (value == devicePixelRatio) {
       return;
@@ -361,6 +365,7 @@ class _RenderShaderSamplerBuilderWidget extends RenderProxyBox {
   /// The painter used to paint the child snapshot or child widgets.
   AnimatedSamplerBuilder get builder => _builder;
   AnimatedSamplerBuilder _builder;
+
   set builder(AnimatedSamplerBuilder value) {
     if (value == builder) {
       return;
@@ -371,6 +376,7 @@ class _RenderShaderSamplerBuilderWidget extends RenderProxyBox {
 
   bool get enabled => _enabled;
   bool _enabled;
+
   set enabled(bool value) {
     if (value == enabled) {
       return;
@@ -403,6 +409,7 @@ class _ShaderSamplerBuilderLayer extends OffsetLayer {
 
   Size get size => _size;
   Size _size = Size.zero;
+
   set size(Size value) {
     if (value == size) {
       return;
@@ -413,6 +420,7 @@ class _ShaderSamplerBuilderLayer extends OffsetLayer {
 
   double get devicePixelRatio => _devicePixelRatio;
   double _devicePixelRatio = 1.0;
+
   set devicePixelRatio(double value) {
     if (value == devicePixelRatio) {
       return;
@@ -423,6 +431,7 @@ class _ShaderSamplerBuilderLayer extends OffsetLayer {
 
   AnimatedSamplerBuilder get callback => _callback;
   AnimatedSamplerBuilder _callback;
+
   set callback(AnimatedSamplerBuilder value) {
     if (value == callback) {
       return;

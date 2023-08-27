@@ -22,12 +22,14 @@ class SaturateEffect extends Effect<double> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
   }) : super(
           delay: delay,
           duration: duration,
           curve: curve,
+          reverseCurve: reverseCurve,
           begin: begin ?? (end == null ? defaultValue : neutralValue),
           end: end ?? neutralValue,
         );
@@ -69,6 +71,7 @@ extension SaturateEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
   }) =>
@@ -76,6 +79,7 @@ extension SaturateEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
+        reverseCurve: reverseCurve,
         begin: begin,
         end: end,
       ));
@@ -86,6 +90,7 @@ extension SaturateEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
   }) =>
@@ -93,6 +98,7 @@ extension SaturateEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
+        reverseCurve: reverseCurve,
         begin: begin ?? SaturateEffect.neutralValue,
         end: end ?? SaturateEffect.defaultValue,
       ));

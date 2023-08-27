@@ -20,12 +20,14 @@ class SlideEffect extends Effect<Offset> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     Offset? begin,
     Offset? end,
   }) : super(
           delay: delay,
           duration: duration,
           curve: curve,
+          reverseCurve: reverseCurve,
           begin: begin ?? (end == null ? defaultValue : neutralValue),
           end: end ?? neutralValue,
         );
@@ -50,6 +52,7 @@ extension SlideEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     Offset? begin,
     Offset? end,
   }) =>
@@ -57,6 +60,7 @@ extension SlideEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
+        reverseCurve: reverseCurve,
         begin: begin,
         end: end,
       ));
@@ -67,6 +71,7 @@ extension SlideEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
   }) {
@@ -76,6 +81,7 @@ extension SlideEffectExtensions<T> on AnimateManager<T> {
       delay: delay,
       duration: duration,
       curve: curve,
+      reverseCurve: reverseCurve,
       begin: SlideEffect.neutralValue.copyWith(dx: begin),
       end: SlideEffect.neutralValue.copyWith(dx: end),
     ));
@@ -87,6 +93,7 @@ extension SlideEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
   }) {
@@ -96,10 +103,11 @@ extension SlideEffectExtensions<T> on AnimateManager<T> {
       delay: delay,
       duration: duration,
       curve: curve,
+      reverseCurve: reverseCurve,
       begin: SlideEffect.neutralValue.copyWith(dy: begin),
       end: SlideEffect.neutralValue.copyWith(dy: end),
     ));
   }
 
-  // Note: there is no slideXY because diagonal movement isn't a significant use case.
+// Note: there is no slideXY because diagonal movement isn't a significant use case.
 }

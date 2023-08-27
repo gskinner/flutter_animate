@@ -23,8 +23,17 @@ import '../../flutter_animate.dart';
 class ThenEffect extends Effect<double> {
   // NOTE: this is just an empty effect, the logic happens in Animate
   // when it recognizes the type.
-  const ThenEffect({Duration? delay, Duration? duration, Curve? curve})
-      : super(delay: delay, duration: duration, curve: curve);
+  const ThenEffect({
+    Duration? delay,
+    Duration? duration,
+    Curve? curve,
+    Curve? reverseCurve,
+  }) : super(
+          delay: delay,
+          duration: duration,
+          curve: curve,
+          reverseCurve: reverseCurve,
+        );
 
   @override
   Widget build(
@@ -38,6 +47,16 @@ class ThenEffect extends Effect<double> {
 
 extension ThenEffectExtensions<T> on AnimateManager<T> {
   /// Adds a [then] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  T then({Duration? delay, Duration? duration, Curve? curve}) =>
-      addEffect(ThenEffect(delay: delay, duration: duration, curve: curve));
+  T then({
+    Duration? delay,
+    Duration? duration,
+    Curve? curve,
+    Curve? reverseCurve,
+  }) =>
+      addEffect(ThenEffect(
+        delay: delay,
+        duration: duration,
+        curve: curve,
+        reverseCurve: reverseCurve,
+      ));
 }

@@ -34,6 +34,7 @@ class FlipEffect extends Effect<double> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
     alignment,
@@ -46,6 +47,7 @@ class FlipEffect extends Effect<double> {
           delay: delay,
           duration: duration,
           curve: curve,
+          reverseCurve: reverseCurve,
           begin: begin ?? (end == null ? defaultValue : neutralValue),
           end: end ?? neutralValue,
         );
@@ -78,10 +80,25 @@ class FlipEffect extends Effect<double> {
     double perspective,
   ) {
     final Matrix4 mtx = Matrix4(
-      1.0, 0.0, 0.0, 0.0, //
-      0.0, 1.0, 0.0, 0.0, //
-      0.0, 0.0, 1.0, 0.002 * perspective, //
-      0.0, 0.0, 0.0, 1.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      //
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      //
+      0.0,
+      0.0,
+      1.0,
+      0.002 * perspective,
+      //
+      0.0,
+      0.0,
+      0.0,
+      1.0,
     );
     if (value != 0) {
       if (direction == Axis.vertical) {
@@ -100,6 +117,7 @@ extension FlipEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
     Alignment? alignment,
@@ -110,6 +128,7 @@ extension FlipEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
+        reverseCurve: reverseCurve,
         begin: begin,
         end: end,
         alignment: alignment,
@@ -123,6 +142,7 @@ extension FlipEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
     Alignment? alignment,
@@ -132,6 +152,7 @@ extension FlipEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
+        reverseCurve: reverseCurve,
         begin: begin,
         end: end,
         alignment: alignment,
@@ -145,6 +166,7 @@ extension FlipEffectExtensions<T> on AnimateManager<T> {
     Duration? delay,
     Duration? duration,
     Curve? curve,
+    Curve? reverseCurve,
     double? begin,
     double? end,
     Alignment? alignment,
@@ -154,6 +176,7 @@ extension FlipEffectExtensions<T> on AnimateManager<T> {
         delay: delay,
         duration: duration,
         curve: curve,
+        reverseCurve: reverseCurve,
         begin: begin,
         end: end,
         alignment: alignment,
