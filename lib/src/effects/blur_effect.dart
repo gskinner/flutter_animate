@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
@@ -14,7 +13,7 @@ class BlurEffect extends Effect<Offset> {
 
   static const double neutralBlur = 0.0;
   static const double defaultBlur = 4.0;
-  static const double minBlur = 0.01; // below this blur is set to 0
+  static const double minBlur = 0.01;
 
   const BlurEffect({
     Duration? delay,
@@ -57,10 +56,10 @@ class BlurEffect extends Effect<Offset> {
   }
 
   double _normalizeSigma(double sigma) {
-    // Addresses a Flutter issue where near-zero blurs throw an error.
-    // TODO: fix is in master, remove this when it hits stable.
+    // Initially added to address a Flutter issue where near-zero blurs caused RTEs.
     // https://github.com/flutter/engine/pull/36575
-    return kIsWeb && sigma < minBlur ? minBlur : sigma;
+    // This has been fixed, but now blurs with a zero value cause visual issues on macOS.
+    return sigma < minBlur ? minBlur : sigma;
   }
 }
 
