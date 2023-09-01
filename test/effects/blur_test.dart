@@ -36,7 +36,7 @@ void main() {
 
     // Check halfway:
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    _verifyBlur(tester, _blurAmt / 2, 0);
+    _verifyBlur(tester, _blurAmt / 2, BlurEffect.minBlur);
   });
 
   testWidgets('BlurEffect: blurY', (tester) async {
@@ -47,7 +47,7 @@ void main() {
 
     // Check halfway:
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
-    _verifyBlur(tester, 0, _blurAmt / 2);
+    _verifyBlur(tester, BlurEffect.minBlur, _blurAmt / 2);
   });
 }
 
