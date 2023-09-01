@@ -10,6 +10,9 @@ import '../../flutter_animate.dart';
 /// **IMPORTANT:** Due to current limitations in Flutter, this effect may cause
 /// issues on mobile web when using the HTML renderer. More info can be found
 /// [here](https://github.com/gskinner/flutter_animate/issues/78).
+/// 
+/// **NOTE:*** By default, this effect adds 0.5px of [padding] to its target to
+/// prevent visual issues, which could effect layout.
 ///
 /// By default it animates a simple 50% white gradient clipped by the child content.
 /// However it provides a large amount of customization, including changing the
