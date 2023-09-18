@@ -1,5 +1,7 @@
 [![tests](https://github.com/gskinner/flutter_animate/actions/workflows/tests.yaml/badge.svg)](https://github.com/gskinner/flutter_animate/actions/workflows/tests.yaml)
 
+<a href='https://docs.flutter.dev/packages-and-plugins/favorites'><img src='https://raw.githubusercontent.com/gskinner/flutter_animate/fc1feabe2528155ef8e11c96a2d119390f11a9a0/flutter_favorite.png' alt='Flutter Animate is a Flutter Favorite' width='80'></img></a>
+
 Flutter Animate
 ================================================================================
 
