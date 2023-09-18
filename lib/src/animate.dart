@@ -407,6 +407,64 @@ extension AnimateWidgetExtensions on Widget {
       );
 }
 
+extension AnimateStateFullWidgetExtensions on Widget {
+  /// Wraps the target Widget in an Animate instance. Ex. `myWidget.animate()` is equivalent
+  Animate animate({
+    Key? key,
+    List<Effect>? effects,
+    AnimateCallback? onInit,
+    AnimateCallback? onPlay,
+    AnimateCallback? onComplete,
+    bool? autoPlay,
+    Duration? delay,
+    AnimationController? controller,
+    Adapter? adapter,
+    double? target,
+  }) =>
+      Animate(
+        key: key,
+        effects: effects,
+        onInit: onInit,
+        onPlay: onPlay,
+        onComplete: onComplete,
+        autoPlay: autoPlay,
+        delay: delay,
+        controller: controller,
+        adapter: adapter,
+        target: target,
+        child: this,
+      );
+}
+
+extension AnimateStateLessWidgetExtensions on Widget {
+  /// Wraps the target Widget in an Animate instance. Ex. `MyStateLessWidget.animate()` is equivalent
+  Animate animate({
+    Key? key,
+    List<Effect>? effects,
+    AnimateCallback? onInit,
+    AnimateCallback? onPlay,
+    AnimateCallback? onComplete,
+    bool? autoPlay,
+    Duration? delay,
+    AnimationController? controller,
+    Adapter? adapter,
+    double? target,
+  }) =>
+      Animate(
+        key: key,
+        effects: effects,
+        onInit: onInit,
+        onPlay: onPlay,
+        onComplete: onComplete,
+        autoPlay: autoPlay,
+        delay: delay,
+        controller: controller,
+        adapter: adapter,
+        target: target,
+        child: this,
+      );
+}
+
 /// The builder type used by [Animate.reparentTypes]. It must accept an existing
 /// parent widget, and rebuild it with the provided child. In effect, it clones
 /// the provided parent widget with the new child.
