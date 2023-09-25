@@ -108,6 +108,8 @@ class EverythingView extends StatelessWidget {
           In alphabetic order of the effect's class name.
           ***/
 
+          tile('align', a.align()),
+
           //tile('blur', a.blur()),
           tile('blurX', a.blurX()),
           tile('blurY', a.blurY()),
