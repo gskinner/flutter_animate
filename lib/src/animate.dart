@@ -119,6 +119,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     this.controller,
     this.adapter,
     this.target,
+    this.isAnimationEnabled = true,
   })  : autoPlay = autoPlay ?? true,
         delay = delay ?? Duration.zero,
         super(key: key) {
@@ -142,6 +143,13 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
 
   /// The widget to apply animated effects to.
   final Widget child;
+
+  /// If you don't want to play the animation and just return the child
+  /// for some reasons and you don't want to create helper widget or function
+  /// or builder that help to achieve that without too duplication
+  /// then please pass false to [isAnimationEnabled] as a value to return the
+  /// child directly
+  final bool isAnimationEnabled;
 
   /// Called immediately after the controller is fully initialized, before
   /// the [Animate.delay] or the animation starts playing (see: [onPlay]).
@@ -368,6 +376,10 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     Widget child = widget.child, parent = child;
+
+    if (!widget.isAnimationEnabled) {
+      return child;
+    }
     ReparentChildBuilder? reparent = Animate.reparentTypes[child.runtimeType];
     if (reparent != null) child = (child as dynamic).child;
     for (EffectEntry entry in widget._entries) {
