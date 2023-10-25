@@ -54,7 +54,7 @@ class CustomEffect extends Effect<double> {
   }
 }
 
-extension CustomEffectExtensions<T> on AnimateManager<T> {
+extension CustomEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [custom] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T custom({
     required CustomEffectBuilder builder,

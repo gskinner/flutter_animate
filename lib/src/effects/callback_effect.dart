@@ -108,7 +108,7 @@ class CallbackEffect extends Effect<void> {
   }
 }
 
-extension CallbackEffectExtensions<T> on AnimateManager<T> {
+extension CallbackEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [callback] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T callback({
     Duration? delay,

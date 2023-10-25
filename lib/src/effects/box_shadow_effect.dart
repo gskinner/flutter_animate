@@ -55,7 +55,7 @@ class BoxShadowEffect extends Effect<BoxShadow> {
   }
 }
 
-extension BoxShadowEffectExtensions<T> on AnimateManager<T> {
+extension BoxShadowEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [boxShadow] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T boxShadow({
     Duration? delay,

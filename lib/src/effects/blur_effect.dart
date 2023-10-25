@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
@@ -63,7 +64,7 @@ class BlurEffect extends Effect<Offset> {
   }
 }
 
-extension BlurEffectExtensions<T> on AnimateManager<T> {
+extension BlurEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [blur] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T blur({
     Duration? delay,

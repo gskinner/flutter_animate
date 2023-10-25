@@ -94,7 +94,7 @@ class FlipEffect extends Effect<double> {
   }
 }
 
-extension FlipEffectExtensions<T> on AnimateManager<T> {
+extension FlipEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [flip] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T flip({
     Duration? delay,

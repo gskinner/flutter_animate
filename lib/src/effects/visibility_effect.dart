@@ -50,7 +50,7 @@ class VisibilityEffect extends Effect<bool> {
   }
 }
 
-extension VisibilityEffectExtensions<T> on AnimateManager<T> {
+extension VisibilityEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [visibility] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T visibility({
     Duration? delay,

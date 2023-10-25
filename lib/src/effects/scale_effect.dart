@@ -52,7 +52,7 @@ class ScaleEffect extends Effect<Offset> {
   }
 }
 
-extension ScaleEffectExtensions<T> on AnimateManager<T> {
+extension ScaleEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [scale] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T scale({
     Duration? delay,

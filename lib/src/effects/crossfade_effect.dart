@@ -48,7 +48,7 @@ class CrossfadeEffect extends Effect<double> {
   }
 }
 
-extension CrossfadeEffectExtensions<T> on AnimateManager<T> {
+extension CrossfadeEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [crossfade] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T crossfade({
     Duration? delay,

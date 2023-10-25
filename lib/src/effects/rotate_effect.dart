@@ -48,7 +48,7 @@ class RotateEffect extends Effect<double> {
   }
 }
 
-extension RotateEffectExtensions<T> on AnimateManager<T> {
+extension RotateEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [rotate] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T rotate({
     Duration? delay,

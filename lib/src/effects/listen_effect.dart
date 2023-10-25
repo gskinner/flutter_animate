@@ -75,7 +75,7 @@ class ListenEffect extends Effect<double> {
   }
 }
 
-extension ListenEffectExtensions<T> on AnimateManager<T> {
+extension ListenEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [listen] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T listen({
     Duration? delay,

@@ -63,7 +63,7 @@ class SaturateEffect extends Effect<double> {
   }
 }
 
-extension SaturateEffectExtensions<T> on AnimateManager<T> {
+extension SaturateEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [saturate] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T saturate({
     Duration? delay,

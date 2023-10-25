@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+
 import '../../flutter_animate.dart';
 
 /// An empty effect that all other effects extend.
@@ -107,7 +108,7 @@ class Effect<T> {
   }
 }
 
-extension EffectExtensions<T> on AnimateManager<T> {
+extension EffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds an [effect] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T effect({
     Duration? delay,

@@ -49,7 +49,7 @@ class ToggleEffect extends Effect<void> {
   }
 }
 
-extension ToggleEffectExtensions<T> on AnimateManager<T> {
+extension ToggleEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [toggle] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T toggle({
     Duration? delay,

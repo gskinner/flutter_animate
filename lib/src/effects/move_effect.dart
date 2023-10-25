@@ -56,7 +56,7 @@ class MoveEffect extends Effect<Offset> {
   }
 }
 
-extension MoveEffectExtensions<T> on AnimateManager<T> {
+extension MoveEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [move] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T move({
     Duration? delay,

@@ -1,7 +1,6 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/rendering.dart';
-
 import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
@@ -123,7 +122,7 @@ class ShaderEffect extends Effect<double> {
   }
 }
 
-extension ShaderEffectExtensions<T> on AnimateManager<T> {
+extension ShaderEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [shader] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T shader({
     Duration? delay,

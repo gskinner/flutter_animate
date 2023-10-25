@@ -45,7 +45,7 @@ class AlignEffect extends Effect<Alignment> {
   }
 }
 
-extension AlignEffectExtensions<T> on AnimateManager<T> {
+extension AlignEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [align] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T align({
     Duration? delay,
