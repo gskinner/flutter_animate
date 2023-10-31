@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [4.2.1] - 2023-10-22
 ### Added
-- A new property which is `isAnimationEnabled` to the `Animate` widget class
+- A new property which is `enabled` to the `Animate` widget class
 
 ## [4.2.0] - 2023-06-19
 ### Added
