@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
@@ -15,6 +13,7 @@ class ScaleEffect extends Effect<Offset> {
   static const double neutralScale = 1.0;
   static const double defaultScale = 0;
   static const double minScale = 0.000001;
+  static const bool defaultTransformHitTests = true;
 
   const ScaleEffect({
     Duration? delay,
@@ -23,7 +22,9 @@ class ScaleEffect extends Effect<Offset> {
     Offset? begin,
     Offset? end,
     this.alignment,
-  }) : super(
+    bool? transformHitTests,
+  })  : transformHitTests = transformHitTests ?? defaultTransformHitTests,
+        super(
           delay: delay,
           duration: duration,
           curve: curve,
@@ -32,6 +33,7 @@ class ScaleEffect extends Effect<Offset> {
         );
 
   final Alignment? alignment;
+  final bool transformHitTests;
 
   @override
   Widget build(
@@ -48,6 +50,7 @@ class ScaleEffect extends Effect<Offset> {
           scaleX: _normalizeScale(animation.value.dx),
           scaleY: _normalizeScale(animation.value.dy),
           alignment: alignment ?? Alignment.center,
+          transformHitTests: transformHitTests,
           child: child,
         );
       },
@@ -70,6 +73,7 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
     Offset? begin,
     Offset? end,
     Alignment? alignment,
+    bool? transformHitTests,
   }) =>
       addEffect(ScaleEffect(
         delay: delay,
@@ -78,6 +82,7 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
         begin: begin,
         end: end,
         alignment: alignment,
+        transformHitTests: transformHitTests,
       ));
 
   /// Adds a [scaleX] extension to [AnimateManager] ([Animate] and [AnimateList]).
@@ -89,6 +94,7 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
     double? begin,
     double? end,
     Alignment? alignment,
+    bool? transformHitTests,
   }) {
     begin ??=
         (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
@@ -100,6 +106,7 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
       begin: ScaleEffect.neutralValue.copyWith(dx: begin),
       end: ScaleEffect.neutralValue.copyWith(dx: end),
       alignment: alignment,
+      transformHitTests: transformHitTests,
     ));
   }
 
@@ -112,6 +119,7 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
     double? begin,
     double? end,
     Alignment? alignment,
+    bool? transformHitTests,
   }) {
     begin ??=
         (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
@@ -123,6 +131,7 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
       begin: ScaleEffect.neutralValue.copyWith(dy: begin),
       end: ScaleEffect.neutralValue.copyWith(dy: end),
       alignment: alignment,
+      transformHitTests: transformHitTests,
     ));
   }
 
@@ -135,6 +144,7 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
     double? begin,
     double? end,
     Alignment? alignment,
+    bool? transformHitTests,
   }) {
     begin ??=
         (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
@@ -146,6 +156,7 @@ extension ScaleEffectExtensions<T> on AnimateManager<T> {
       begin: Offset(begin, begin),
       end: Offset(end, end),
       alignment: alignment,
+      transformHitTests: transformHitTests,
     ));
   }
 }

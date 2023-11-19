@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
@@ -14,6 +16,7 @@ import '../../flutter_animate.dart';
 class RotateEffect extends Effect<double> {
   static const double neutralValue = 0.0;
   static const double defaultValue = -1.0;
+  static const bool defaultTransformHitTests = true;
 
   const RotateEffect({
     Duration? delay,
@@ -22,7 +25,9 @@ class RotateEffect extends Effect<double> {
     double? begin,
     double? end,
     this.alignment,
-  }) : super(
+    bool? transformHitTests,
+  })  : transformHitTests = transformHitTests ?? defaultTransformHitTests,
+        super(
           delay: delay,
           duration: duration,
           curve: curve,
@@ -31,6 +36,7 @@ class RotateEffect extends Effect<double> {
         );
 
   final Alignment? alignment;
+  final bool transformHitTests;
 
   @override
   Widget build(
@@ -40,10 +46,16 @@ class RotateEffect extends Effect<double> {
     EffectEntry entry,
   ) {
     Animation<double> animation = buildAnimation(controller, entry);
-    return RotationTransition(
-      turns: animation,
-      alignment: alignment ?? Alignment.center,
-      child: child,
+    return getOptimizedBuilder<double>(
+      animation: animation,
+      builder: (_, __) {
+        return Transform.rotate(
+          angle: animation.value * 2 * math.pi,
+          alignment: alignment ?? Alignment.center,
+          transformHitTests: transformHitTests,
+          child: child,
+        );
+      },
     );
   }
 }
@@ -57,6 +69,7 @@ extension RotateEffectExtensions<T> on AnimateManager<T> {
     double? begin,
     double? end,
     Alignment? alignment,
+    bool? transformHitTests,
   }) =>
       addEffect(RotateEffect(
         delay: delay,
@@ -65,5 +78,6 @@ extension RotateEffectExtensions<T> on AnimateManager<T> {
         begin: begin,
         end: end,
         alignment: alignment,
+        transformHitTests: transformHitTests,
       ));
 }
