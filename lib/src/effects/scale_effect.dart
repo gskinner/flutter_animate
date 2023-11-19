@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
@@ -11,7 +13,8 @@ class ScaleEffect extends Effect<Offset> {
   static const Offset defaultValue = Offset(defaultScale, defaultScale);
 
   static const double neutralScale = 1.0;
-  static const double defaultScale = 0.0;
+  static const double defaultScale = 0;
+  static const double minScale = 0.000001;
 
   const ScaleEffect({
     Duration? delay,
@@ -42,13 +45,19 @@ class ScaleEffect extends Effect<Offset> {
       animation: animation,
       builder: (_, __) {
         return Transform.scale(
-          scaleX: animation.value.dx,
-          scaleY: animation.value.dy,
+          scaleX: _normalizeScale(animation.value.dx),
+          scaleY: _normalizeScale(animation.value.dy),
           alignment: alignment ?? Alignment.center,
           child: child,
         );
       },
     );
+  }
+
+  double _normalizeScale(double scale) {
+    // addresses an issue with zero value scales:
+    // https://github.com/gskinner/flutter_animate/issues/79
+    return scale < minScale ? minScale : scale;
   }
 }
 
