@@ -254,7 +254,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
 
     _entries.add(entry);
     _lastEntry = entry;
-    if (entry.end > _duration) _duration = entry.end;
+    if (entry.end > _duration && effect is! ThenEffect) _duration = entry.end;
     return this;
   }
 }
