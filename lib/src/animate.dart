@@ -119,7 +119,6 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     this.controller,
     this.adapter,
     this.target,
-    this.enabled = true,
   })  : autoPlay = autoPlay ?? true,
         delay = delay ?? Duration.zero {
     warn(
@@ -142,10 +141,6 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
 
   /// The widget to apply animated effects to.
   final Widget child;
-
-  /// Setting [enabled] to `false` will bypass the animation entirely and
-  /// simply return the unaltered child.
-  final bool enabled;
 
   /// Called immediately after the controller is fully initialized, before
   /// the [Animate.delay] or the animation starts playing (see: [onPlay]).
@@ -372,10 +367,6 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     Widget child = widget.child, parent = child;
-
-    if (!widget.enabled) {
-      return child;
-    }
     ReparentChildBuilder? reparent = Animate.reparentTypes[child.runtimeType];
     if (reparent != null) child = (child as dynamic).child;
     for (EffectEntry entry in widget._entries) {
@@ -399,7 +390,6 @@ extension AnimateWidgetExtensions on Widget {
     AnimationController? controller,
     Adapter? adapter,
     double? target,
-    bool enabled = true,
   }) =>
       Animate(
         key: key,
@@ -412,7 +402,6 @@ extension AnimateWidgetExtensions on Widget {
         controller: controller,
         adapter: adapter,
         target: target,
-        enabled: enabled,
         child: this,
       );
 }
