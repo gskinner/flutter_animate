@@ -108,7 +108,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// Creates an Animate instance that will manage a list of effects and apply
   /// them to the specified child.
   Animate({
-    Key? key,
+    super.key,
     this.child = const SizedBox.shrink(),
     List<Effect>? effects,
     this.onInit,
@@ -119,9 +119,9 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     this.controller,
     this.adapter,
     this.target,
+    this.enabled = true,
   })  : autoPlay = autoPlay ?? true,
-        delay = delay ?? Duration.zero,
-        super(key: key) {
+        delay = delay ?? Duration.zero {
     warn(
       autoPlay != false || onPlay == null,
       'Animate.onPlay is not called when Animate.autoPlay=false',
@@ -142,6 +142,13 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
 
   /// The widget to apply animated effects to.
   final Widget child;
+
+  /// If you don't want to play the animation and just return the child
+  /// for some reasons and you don't want to create helper widget or function
+  /// or builder that help to achieve that without too duplication
+  /// then please pass false to [enabled] as a value to return the
+  /// child directly
+  final bool enabled;
 
   /// Called immediately after the controller is fully initialized, before
   /// the [Animate.delay] or the animation starts playing (see: [onPlay]).
@@ -368,6 +375,10 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     Widget child = widget.child, parent = child;
+
+    if (!widget.enabled) {
+      return child;
+    }
     ReparentChildBuilder? reparent = Animate.reparentTypes[child.runtimeType];
     if (reparent != null) child = (child as dynamic).child;
     for (EffectEntry entry in widget._entries) {
@@ -391,6 +402,7 @@ extension AnimateWidgetExtensions on Widget {
     AnimationController? controller,
     Adapter? adapter,
     double? target,
+    bool enabled = true,
   }) =>
       Animate(
         key: key,
@@ -403,6 +415,7 @@ extension AnimateWidgetExtensions on Widget {
         controller: controller,
         adapter: adapter,
         target: target,
+        enabled: enabled,
         child: this,
       );
 }
