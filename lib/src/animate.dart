@@ -143,11 +143,8 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// The widget to apply animated effects to.
   final Widget child;
 
-  /// If you don't want to play the animation and just return the child
-  /// for some reasons and you don't want to create helper widget or function
-  /// or builder that help to achieve that without too duplication
-  /// then please pass false to [enabled] as a value to return the
-  /// child directly
+  /// Setting [enabled] to `false` will bypass the animation entirely and
+  /// simply return the unaltered child.
   final bool enabled;
 
   /// Called immediately after the controller is fully initialized, before
