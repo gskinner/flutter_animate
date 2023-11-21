@@ -80,7 +80,7 @@ class ShakeEffect extends Effect<double> {
   }
 }
 
-extension ShakeEffectExtensions<T> on AnimateManager<T> {
+extension ShakeEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [shake] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T shake({
     Duration? delay,

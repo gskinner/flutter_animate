@@ -94,7 +94,7 @@ class FollowPathEffect extends Effect<double> {
   }
 }
 
-extension FollowPathEffectExtensions<T> on AnimateManager<T> {
+extension FollowPathEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [path] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T followPath({
     Duration? delay,

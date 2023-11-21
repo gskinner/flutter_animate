@@ -55,7 +55,7 @@ class ElevationEffect extends Effect<double> {
   }
 }
 
-extension ElevationEffectExtensions<T> on AnimateManager<T> {
+extension ElevationEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds an [elevation] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T elevation({
     Duration? delay,

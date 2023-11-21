@@ -66,7 +66,7 @@ class ColorEffect extends Effect<Color?> {
   }
 }
 
-extension ColorEffectExtension<T> on AnimateManager<T> {
+extension ColorEffectExtension<T extends AnimateManager<T>> on T {
   /// Adds a [color] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T color({
     Duration? delay,

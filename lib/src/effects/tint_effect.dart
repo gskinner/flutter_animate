@@ -72,7 +72,7 @@ class TintEffect extends Effect<double> {
   }
 }
 
-extension TintEffectExtensions<T> on AnimateManager<T> {
+extension TintEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [tint] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T tint({
     Duration? delay,

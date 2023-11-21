@@ -44,7 +44,7 @@ class SlideEffect extends Effect<Offset> {
   }
 }
 
-extension SlideEffectExtensions<T> on AnimateManager<T> {
+extension SlideEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [slide] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T slide({
     Duration? delay,

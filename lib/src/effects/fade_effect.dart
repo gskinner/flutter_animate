@@ -38,7 +38,7 @@ class FadeEffect extends Effect<double> {
   }
 }
 
-extension FadeEffectExtensions<T> on AnimateManager<T> {
+extension FadeEffectExtensions<T extends AnimateManager<T>> on T {
   /// Adds a [fade] extension to [AnimateManager] ([Animate] and [AnimateList]).
   T fade({
     Duration? delay,
