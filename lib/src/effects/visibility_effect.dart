@@ -15,14 +15,13 @@ class VisibilityEffect extends Effect<bool> {
   static const bool defaultMaintain = true;
 
   const VisibilityEffect({
-    Duration? delay,
-    Duration? duration,
+    super.delay,
+    super.duration,
+    super.curve,
     bool? end,
     bool? maintain,
   })  : maintain = maintain ?? defaultMaintain,
         super(
-          delay: delay,
-          duration: duration,
           begin: !(end ?? neutralValue),
           end: end ?? neutralValue,
         );

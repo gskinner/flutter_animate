@@ -22,13 +22,11 @@ import '../../flutter_animate.dart';
 @immutable
 class ToggleEffect extends Effect<void> {
   const ToggleEffect({
-    Duration? delay,
-    Duration? duration,
+    super.delay,
+    super.duration,
+    super.curve,
     required this.builder,
-  }) : super(
-          delay: delay,
-          duration: duration,
-        );
+  });
 
   final ToggleEffectBuilder builder;
 

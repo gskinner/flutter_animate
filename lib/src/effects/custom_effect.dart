@@ -23,12 +23,12 @@ import '../../flutter_animate.dart';
 @immutable
 class CustomEffect extends Effect<double> {
   const CustomEffect({
-    required this.builder,
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     double? begin,
     double? end,
+    required this.builder,
   }) : super(
           begin: begin ?? 0.0, // Should this use "smart" defaults?
           end: end ?? 1.0,
