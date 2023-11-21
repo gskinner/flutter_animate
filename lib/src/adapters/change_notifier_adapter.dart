@@ -6,13 +6,13 @@ import '../../flutter_animate.dart';
 /// should provide a value in the range `0-1` when a change occurs.
 ///
 /// See [Adapter] for information on [direction] and [animated].
-/// 
+///
 /// This example creates a `ChangeNotifierAdapter` that fades in the `myIcon`
 /// widget based on the progress of the `myProgressNotifier` [ChangeNotifier].
 /// The `valueGetter` is called whenever `myProgressNotifier` changes, and
 /// returns a position value between `0-1`, calculated from the `loaded` and
 /// `total` properties of `myProgressNotifier`.
-/// 
+///
 /// ```dart
 /// myIcon.animate(
 ///   adapter: ChangeNotifierAdapter(

@@ -16,8 +16,7 @@ class AlignEffect extends Effect<Alignment> {
     super.curve,
     Alignment? begin,
     Alignment? end,
-  })  : 
-        super(
+  }) : super(
           begin: begin ?? (end == null ? defaultValue : neutralValue),
           end: end ?? neutralValue,
         );

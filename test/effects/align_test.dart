@@ -15,9 +15,9 @@ void main() {
     // check halfway
     await tester.pumpAnimation(animation, initialDelay: 500.ms);
     tester.expectWidgetWithDouble<Align>(
-      (o) => (o.alignment as Alignment).x, 0.0, 'x');
+        (o) => (o.alignment as Alignment).x, 0.0, 'x');
     tester.expectWidgetWithDouble<Align>(
-      (o) => (o.alignment as Alignment).y, 0.0, 'y');
+        (o) => (o.alignment as Alignment).y, 0.0, 'y');
   });
 }
 

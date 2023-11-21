@@ -6,8 +6,11 @@ import '../tester_extensions.dart';
 
 void main() {
   testWidgets('ThenEffect: core', (tester) async {
-    final animation =
-        const FlutterLogo().animate().fadeIn(duration: 500.ms).then().scaleXY(begin: 0.50);
+    final animation = const FlutterLogo()
+        .animate()
+        .fadeIn(duration: 500.ms)
+        .then()
+        .scaleXY(begin: 0.50);
 
     // Wait 500ms, check that opacity has started, but scale has not
     await tester.pumpAnimation(animation, initialDelay: 250.ms);
