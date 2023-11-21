@@ -32,13 +32,11 @@ import '../../flutter_animate.dart';
 @immutable
 class CallbackEffect extends Effect<void> {
   const CallbackEffect({
-    Duration? delay,
-    Duration? duration,
+    super.delay,
+    super.duration,
+    super.curve,
     required this.callback,
-  }) : super(
-          delay: delay,
-          duration: duration,
-        );
+  });
 
   final ValueChanged<bool> callback;
 

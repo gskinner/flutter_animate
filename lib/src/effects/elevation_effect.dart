@@ -15,18 +15,15 @@ class ElevationEffect extends Effect<double> {
   static const double defaultValue = 8.0;
 
   const ElevationEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     double? begin,
     double? end,
     Color? color,
     this.borderRadius,
   })  : color = color ?? const Color(0xFF000000),
         super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: begin ?? neutralValue,
           end: end ?? (begin == null ? defaultValue : neutralValue),
         );

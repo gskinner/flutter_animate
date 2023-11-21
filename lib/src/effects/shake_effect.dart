@@ -28,9 +28,9 @@ class ShakeEffect extends Effect<double> {
   static const double defaultMove = 5;
 
   const ShakeEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     double? hz,
     Offset? offset,
     double? rotation,
@@ -38,9 +38,6 @@ class ShakeEffect extends Effect<double> {
         hz = hz ?? defaultHz,
         offset = offset ?? Offset.zero,
         super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: 0,
           end: 1,
         );

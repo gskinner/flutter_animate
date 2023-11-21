@@ -18,16 +18,13 @@ class BoxShadowEffect extends Effect<BoxShadow> {
       color: Color(0x80000000), blurRadius: 8.0, offset: Offset(0.0, 4.0));
 
   const BoxShadowEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     BoxShadow? begin,
     BoxShadow? end,
     this.borderRadius,
   }) : super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: begin ?? neutralValue,
           end: end ?? (begin == null ? defaultValue : neutralValue),
         );

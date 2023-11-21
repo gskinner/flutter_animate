@@ -30,9 +30,9 @@ class FollowPathEffect extends Effect<double> {
   static const double defaultRotationOffset = 0;
 
   const FollowPathEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     double? begin,
     double? end,
     required this.path,
@@ -43,9 +43,6 @@ class FollowPathEffect extends Effect<double> {
         rotate = rotate ?? defaultRotate,
         rotationOffset = rotationOffset ?? defaultRotationOffset,
         super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: begin ?? neutralValue,
           end: end ?? defaultValue,
         );

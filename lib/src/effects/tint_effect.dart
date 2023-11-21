@@ -26,17 +26,14 @@ class TintEffect extends Effect<double> {
   static const double defaultValue = 1.0;
 
   const TintEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     double? begin,
     double? end,
     Color? color,
   })  : color = color ?? const Color(0xFF000000),
         super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: begin ?? neutralValue,
           end: end ?? (begin == null ? defaultValue : neutralValue),
         );

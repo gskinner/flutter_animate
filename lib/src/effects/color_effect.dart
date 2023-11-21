@@ -28,16 +28,13 @@ class ColorEffect extends Effect<Color?> {
   static const BlendMode defaultBlendMode = BlendMode.color;
 
   const ColorEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     Color? begin,
     Color? end,
     this.blendMode,
   }) : super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: begin ?? neutralValue,
           end: end ?? (begin == null ? defaultValue : neutralValue),
         );

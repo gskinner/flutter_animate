@@ -18,17 +18,14 @@ class MoveEffect extends Effect<Offset> {
   static const bool defaultTransformHitTests = true;
 
   const MoveEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     Offset? begin,
     Offset? end,
     bool? transformHitTests,
   })  : transformHitTests = transformHitTests ?? defaultTransformHitTests,
         super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: begin ?? (end == null ? defaultValue : neutralValue),
           end: end ?? neutralValue,
         );

@@ -17,15 +17,12 @@ class SlideEffect extends Effect<Offset> {
   static const double defaultSlide = -0.5;
 
   const SlideEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     Offset? begin,
     Offset? end,
   }) : super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: begin ?? (end == null ? defaultValue : neutralValue),
           end: end ?? neutralValue,
         );

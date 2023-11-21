@@ -19,15 +19,12 @@ class SaturateEffect extends Effect<double> {
   static const double defaultValue = 0.0;
 
   const SaturateEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     double? begin,
     double? end,
   }) : super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: begin ?? (end == null ? defaultValue : neutralValue),
           end: end ?? neutralValue,
         );

@@ -30,9 +30,6 @@ class CustomEffect extends Effect<double> {
     double? begin,
     double? end,
   }) : super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: begin ?? 0.0, // Should this use "smart" defaults?
           end: end ?? 1.0,
         );

@@ -38,13 +38,11 @@ import '../../flutter_animate.dart';
 @immutable
 class SwapEffect extends Effect<void> {
   const SwapEffect({
-    Duration? delay,
-    Duration? duration,
+    super.delay,
+    super.duration,
+    super.curve,
     required this.builder,
-  }) : super(
-          delay: delay,
-          duration: duration,
-        );
+  });
 
   final Widget Function(BuildContext, Widget) builder;
 

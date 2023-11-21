@@ -11,16 +11,13 @@ class AlignEffect extends Effect<Alignment> {
   static const Alignment defaultValue = Alignment.topCenter;
 
   const AlignEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     Alignment? begin,
     Alignment? end,
   })  : 
         super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: begin ?? (end == null ? defaultValue : neutralValue),
           end: end ?? neutralValue,
         );

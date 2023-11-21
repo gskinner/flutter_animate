@@ -17,15 +17,12 @@ class BlurEffect extends Effect<Offset> {
   static const double minBlur = 0.01;
 
   const BlurEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     Offset? begin,
     Offset? end,
   }) : super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: begin ?? neutralValue,
           end: end ?? (begin == null ? defaultValue : neutralValue),
         );

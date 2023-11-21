@@ -51,18 +51,15 @@ import '../../flutter_animate.dart';
 @immutable
 class ShaderEffect extends Effect<double> {
   const ShaderEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     this.shader,
     this.overflow,
     ShaderLayer? layer,
     this.update,
   })  : layer = layer ?? ShaderLayer.replace,
         super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: 0,
           end: 1,
         );

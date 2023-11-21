@@ -19,18 +19,15 @@ class RotateEffect extends Effect<double> {
   static const bool defaultTransformHitTests = true;
 
   const RotateEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     double? begin,
     double? end,
     this.alignment,
     bool? transformHitTests,
   })  : transformHitTests = transformHitTests ?? defaultTransformHitTests,
         super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: begin ?? (end == null ? defaultValue : neutralValue),
           end: end ?? neutralValue,
         );

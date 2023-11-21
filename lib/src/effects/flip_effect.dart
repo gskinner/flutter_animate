@@ -31,9 +31,9 @@ class FlipEffect extends Effect<double> {
   static const double defaultPerspective = 1.0;
 
   const FlipEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     double? begin,
     double? end,
     alignment,
@@ -43,9 +43,6 @@ class FlipEffect extends Effect<double> {
         perspective = perspective ?? defaultPerspective,
         direction = direction ?? defaultAxis,
         super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: begin ?? (end == null ? defaultValue : neutralValue),
           end: end ?? neutralValue,
         );

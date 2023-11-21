@@ -33,17 +33,14 @@ import '../../flutter_animate.dart';
 @immutable
 class ListenEffect extends Effect<double> {
   const ListenEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     double? begin,
     double? end,
     required this.callback,
     this.clamp = true,
   }) : super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: begin ?? 0.0, // Should this use "smart" defaults?
           end: end ?? 1.0,
         );

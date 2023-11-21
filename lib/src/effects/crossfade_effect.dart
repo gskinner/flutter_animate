@@ -14,15 +14,12 @@ class CrossfadeEffect extends Effect<double> {
   static const Alignment defaultAlignment = Alignment.center;
 
   const CrossfadeEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     required this.builder,
     this.alignment,
   }) : super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: 0,
           end: 1,
         );

@@ -44,9 +44,9 @@ class ShimmerEffect extends Effect<double> {
   static const double defaultPadding = 0.5;
 
   const ShimmerEffect({
-    Duration? delay,
-    Duration? duration,
-    Curve? curve,
+    super.delay,
+    super.duration,
+    super.curve,
     this.color,
     this.colors,
     this.stops,
@@ -55,9 +55,6 @@ class ShimmerEffect extends Effect<double> {
     this.blendMode,
     this.padding,
   }) : super(
-          delay: delay,
-          duration: duration,
-          curve: curve,
           begin: 0,
           end: 1,
         );
