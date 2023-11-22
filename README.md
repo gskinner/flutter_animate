@@ -8,7 +8,7 @@ Flutter Animate
 A performant library that makes it simple to add almost any kind of animated 
 effect in Flutter.
 
-1. Pre-built effects, like fade, scale, slide, align, flip, blur, shake,
+1. Pre-built effects like fade, scale, slide, align, flip, blur, shake,
    shimmer, shadows, crossfades, follow path, and color effects (saturation,
    color, and tint)
 2. Easy custom effects and simplified animated builders

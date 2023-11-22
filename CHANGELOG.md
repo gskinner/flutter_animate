@@ -6,8 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [4.3.0] - 2023-09-21
 ### Added
-- `AlignEffect`
+- `AlignEffect` - animated alignment
 - `transformHitTests` on `ScaleEffect` and `RotateEffect`
+- `EffectList` - build lists of effects with the chained API
 
 ### Changed
 - fix to properly support `FollowPathEffect.rotate`
