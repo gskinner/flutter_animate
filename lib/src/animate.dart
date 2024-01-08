@@ -118,6 +118,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     Duration? delay,
     this.controller,
     this.adapter,
+    this.value,
     this.target,
   })  : autoPlay = autoPlay ?? true,
         delay = delay ?? Duration.zero {
@@ -134,6 +135,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
       warn(autoPlay != false, '$s Animate.autoPlay=false');
       warn(adapter == null, '$s Animate.adapter');
       warn(target == null, '$s Animate.target');
+      warn(value == null, '$s Animate.value');
     }
     _entries = [];
     if (effects != null) addEffects(effects);
@@ -193,7 +195,8 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   final Duration delay;
 
   /// An external [AnimationController] can optionally be specified. By default
-  /// Animate creates its own controller internally.
+  /// Animate creates its own controller internally, which can be accessed via
+  /// [onInit] or [onPlay].
   final AnimationController? controller;
 
   /// An [Adapter] can drive the animation from an external source (ex. a [ScrollController],
@@ -215,6 +218,18 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   ///   .fade(end: 0.8).scaleXY(end: 1.1)
   /// ```
   final double? target;
+
+  /// Sets an initial position for the animation between 0 (start) and 1 (end).
+  /// This corresponds to the `value` of the animation's [controller].
+  /// When [value] is changed, it will jump to the new position.
+  ///
+  /// For example, this can be used with [autoPlay]`=false` to display an animation
+  /// at a specific point (half way through a fade in this case):
+  ///
+  /// ```
+  /// foo.animate(value: 0.5, autoPlay: false).fadeIn()
+  /// ```
+  final double? value;
 
   late final List<EffectEntry> _entries;
   Duration _duration = Duration.zero;
@@ -279,9 +294,8 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
       _play();
     } else if (oldWidget.adapter != widget.adapter) {
       _initAdapter();
-    } else if (widget.target != oldWidget.target) {
-      // we don't restart when onPlay changes, because anonymous functions
-      // can only be compared as strings, which is expensive.
+    } else if (widget.target != oldWidget.target ||
+        widget.value != oldWidget.value) {
       _play();
     }
     super.didUpdateWidget(oldWidget);
@@ -296,6 +310,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   void _restart() {
     _delayed?.ignore();
     _initController();
+    _updateValue();
     _delayed = Future.delayed(widget.delay, () => _play());
   }
 
@@ -305,8 +320,8 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 
     if (widget.controller != null) {
       // externally provided AnimationController.
+      _disposeController();
       controller = widget.controller!;
-      _isInternalController = false;
     } else if (!_isInternalController) {
       // create a new internal AnimationController.
       controller = AnimationController(vsync: this);
@@ -355,13 +370,19 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 
   void _play() {
     _delayed?.ignore(); // for poorly timed hot reloads.
+    _updateValue();
     double? pos = widget.target;
     if (pos != null) {
       _controller.animateTo(pos);
     } else if (widget.autoPlay && _adapter == null) {
-      _controller.forward(from: 0);
+      _controller.forward(from: widget.value ?? 0);
       widget.onPlay?.call(_controller);
     }
+  }
+
+  void _updateValue() {
+    if (widget.value == null) return;
+    _controller.value = widget.value!;
   }
 
   @override
@@ -390,6 +411,7 @@ extension AnimateWidgetExtensions on Widget {
     AnimationController? controller,
     Adapter? adapter,
     double? target,
+    double? value,
   }) =>
       Animate(
         key: key,
@@ -402,6 +424,7 @@ extension AnimateWidgetExtensions on Widget {
         controller: controller,
         adapter: adapter,
         target: target,
+        value: value,
         child: this,
       );
 }

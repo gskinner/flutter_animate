@@ -361,6 +361,7 @@ MyButton().animate(target: _over ? 1 : 0)
   .fade(end: 0.8).scaleXY(end: 1.1)
 ```
 
+You can also update the `value` property to jump to that position.
 
 Testing Animations
 ================================================================================
