@@ -106,9 +106,11 @@ class AnimateList<T extends Widget> extends ListBase<Widget>
   }
 }
 
-/// Wraps the target `List<Widget>` in a [AnimateList] instance.
-/// Ex. `[foo, bar].animate()` is equivalent to `AnimateList(children: [foo, bar])`.
+/// Adds [AnimateList] related extensions to `List<Widget>`.
 extension AnimateListExtensions on List<Widget> {
+  /// Wraps the target `List<Widget>` in an [AnimateList] instance, and returns
+  /// the instance for chaining calls.
+  /// Ex. `[foo, bar].animate()` is equivalent to `AnimateList(children: [foo, bar])`.
   AnimateList animate({
     List<Effect>? effects,
     AnimateCallback? onInit,
