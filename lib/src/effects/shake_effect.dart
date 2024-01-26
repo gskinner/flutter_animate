@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// Effect that shakes the target, using translation, rotation, or both.
+/// Effect that shakes the target, using translation, rotation, or both (via [Transform]).
 ///
 /// The [hz] parameter indicates approximately how many times to repeat the shake
 /// per second. It defaults to `8`.
@@ -77,8 +77,10 @@ class ShakeEffect extends Effect<double> {
   }
 }
 
+/// Adds [ShakeEffect] related extensions to [AnimateManager].
 extension ShakeEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [shake] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [ShakeEffect] that shakes the target, using translation, rotation,
+  /// or both (via [Transform]).
   T shake({
     Duration? delay,
     Duration? duration,
@@ -96,8 +98,7 @@ extension ShakeEffectExtensions<T extends AnimateManager<T>> on T {
         rotation: rotation,
       ));
 
-  /// Adds a [shakeX] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This sets `rotation=0` and `offset=Offset(amount, 0)`.
+  /// Adds a [ShakeEffect] that shakes the target horizontally (via [Transform]).
   T shakeX({
     Duration? delay,
     Duration? duration,
@@ -114,8 +115,7 @@ extension ShakeEffectExtensions<T extends AnimateManager<T>> on T {
         rotation: 0,
       ));
 
-  /// Adds a [shakeY] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This sets `rotation=0` and `offset=Offset(0, amount)`.
+  /// Adds a [ShakeEffect] that shakes the target vertically (via [Transform]).
   T shakeY({
     Duration? delay,
     Duration? duration,

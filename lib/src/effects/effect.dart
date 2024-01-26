@@ -108,8 +108,10 @@ class Effect<T> {
   }
 }
 
+/// Adds [Effect] related extensions to [AnimateManager].
 extension EffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds an [effect] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds an [Effect] which has no visual effect. Occasionally useful for
+  /// setting inheritable `delay`, `duration`, and `curve` values.
   T effect({
     Duration? delay,
     Duration? duration,

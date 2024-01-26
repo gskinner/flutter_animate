@@ -52,8 +52,10 @@ class ElevationEffect extends Effect<double> {
   }
 }
 
+/// Adds [ElevationEffect] related extensions to [AnimateManager].
 extension ElevationEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds an [elevation] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds an [ElevationEffect] that animates a Material elevation shadow between [begin] and [end] (via [PhysicalModel]).
+  /// You can also specify a shadow [color] and [borderRadius] to add rounded corners.
   T elevation({
     Duration? delay,
     Duration? duration,

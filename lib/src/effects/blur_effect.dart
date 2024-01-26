@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// An effect that animates a blur on the target (via [ImageFiltered])
-/// between the specified [begin] and [end] blur radiuses.
+/// An effect that animates a blur on the target between the
+/// specified [begin] and [end] blur radiuses (via [ImageFiltered]).
 /// Defaults to `begin=0, end=4`.
 @immutable
 class BlurEffect extends Effect<Offset> {
@@ -61,8 +61,10 @@ class BlurEffect extends Effect<Offset> {
   }
 }
 
+/// Adds [BlurEffect] related extensions to [AnimateManager].
 extension BlurEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [blur] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [BlurEffect] that animates a blur on the target between
+  /// the specified [begin] and [end] blur radiuses (via [ImageFiltered]).
   T blur({
     Duration? delay,
     Duration? duration,
@@ -78,8 +80,8 @@ extension BlurEffectExtensions<T extends AnimateManager<T>> on T {
         end: end,
       ));
 
-  /// Adds a [blurX] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This blurs only on the x-axis according to the `double` begin/end values.
+  /// Adds a [BlurEffect] that animates a horizontal blur on the target between
+  /// the specified [begin] and [end] blur radiuses (via [ImageFiltered]).
   T blurX({
     Duration? delay,
     Duration? duration,
@@ -98,8 +100,8 @@ extension BlurEffectExtensions<T extends AnimateManager<T>> on T {
     ));
   }
 
-  /// Adds a [blurY] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This blurs only on the y-axis according to the `double` begin/end values.
+  /// Adds a [BlurEffect] that animates a vertical blur on the target between
+  /// the specified [begin] and [end] blur radiuses (via [ImageFiltered]).
   T blurY({
     Duration? delay,
     Duration? duration,
@@ -118,8 +120,8 @@ extension BlurEffectExtensions<T extends AnimateManager<T>> on T {
     ));
   }
 
-  /// Adds a [blurXY] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This blurs uniformly according to the `double` begin/end values.
+  /// Adds a [BlurEffect] that animates a uniform blur on the target between
+  /// the specified [begin] and [end] blur radiuses (via [ImageFiltered]).
   T blurXY({
     Duration? delay,
     Duration? duration,

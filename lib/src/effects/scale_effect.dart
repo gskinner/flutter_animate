@@ -61,8 +61,10 @@ class ScaleEffect extends Effect<Offset> {
   }
 }
 
+/// Adds [ScaleEffect] related extensions to [AnimateManager].
 extension ScaleEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [scale] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [ScaleEffect] that scales the target between
+  /// the specified [begin] and [end] offset values (via [Transform.scale]).
   T scale({
     Duration? delay,
     Duration? duration,
@@ -82,8 +84,8 @@ extension ScaleEffectExtensions<T extends AnimateManager<T>> on T {
         transformHitTests: transformHitTests,
       ));
 
-  /// Adds a [scaleX] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This scales only on the x-axis according to the `double` begin/end values.
+  /// Adds a [ScaleEffect] that scales the target horizontally between
+  /// the specified [begin] and [end] values (via [Transform.scale]).
   T scaleX({
     Duration? delay,
     Duration? duration,
@@ -107,8 +109,8 @@ extension ScaleEffectExtensions<T extends AnimateManager<T>> on T {
     ));
   }
 
-  /// Adds a [scaleY] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This scales only on the y-axis according to the `double` begin/end values.
+  /// Adds a [ScaleEffect] that scales the target vertically between
+  /// the specified [begin] and [end] values (via [Transform.scale]).
   T scaleY({
     Duration? delay,
     Duration? duration,
@@ -132,8 +134,8 @@ extension ScaleEffectExtensions<T extends AnimateManager<T>> on T {
     ));
   }
 
-  /// Adds a [scaleXY] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This scales uniformly according to the `double` begin/end values.
+  /// Adds a [ScaleEffect] that scales the target uniformly between
+  /// the specified [begin] and [end] values (via [Transform.scale]).
   T scaleXY({
     Duration? delay,
     Duration? duration,

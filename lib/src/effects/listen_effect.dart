@@ -72,8 +72,10 @@ class ListenEffect extends Effect<double> {
   }
 }
 
+/// Adds [ListenEffect] related extensions to [AnimateManager].
 extension ListenEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [listen] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [ListenEffect] that calls a [callback] function with its current animation value
+  /// between [begin] and [end].
   T listen({
     Duration? delay,
     Duration? duration,

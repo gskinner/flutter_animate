@@ -49,8 +49,9 @@ class VisibilityEffect extends Effect<bool> {
   }
 }
 
+/// Adds [VisibilityEffect] related extensions to [AnimateManager].
 extension VisibilityEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [visibility] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [VisibilityEffect] that toggles the visibility of the target (via [Visibility]).
   T visibility({
     Duration? delay,
     Duration? duration,
@@ -64,8 +65,7 @@ extension VisibilityEffectExtensions<T extends AnimateManager<T>> on T {
         maintain: maintain,
       ));
 
-  /// Adds a [show] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This creates a [VisibilityEffect] with `end=true`
+  /// Adds a [VisibilityEffect] that toggles the visibility of the target to `true` (via [Visibility]).
   T show({
     Duration? delay,
     Duration? duration,
@@ -78,8 +78,7 @@ extension VisibilityEffectExtensions<T extends AnimateManager<T>> on T {
         maintain: maintain,
       ));
 
-  /// Adds a [hide] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This creates a [VisibilityEffect] with `end=false`
+  /// Adds a [VisibilityEffect] that toggles the visibility of the target to `false` (via [Visibility]).
   T hide({
     Duration? delay,
     Duration? duration,

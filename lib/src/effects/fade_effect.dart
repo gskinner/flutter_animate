@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// An effect that animates the opacity of the target between the specified
+/// Animates the opacity of the target between the specified
 /// [begin] and [end] values (via [FadeTransition]).
 /// It defaults to `begin=0, end=1`.
 @immutable
@@ -35,8 +35,10 @@ class FadeEffect extends Effect<double> {
   }
 }
 
+/// Adds [FadeEffect] related extensions to [AnimateManager].
 extension FadeEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [fade] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [FadeEffect] that animates the opacity of the target between the
+  /// specified [begin] and [end] values (via [FadeTransition]).
   T fade({
     Duration? delay,
     Duration? duration,
@@ -52,8 +54,8 @@ extension FadeEffectExtensions<T extends AnimateManager<T>> on T {
         end: end,
       ));
 
-  /// Adds a [fadeIn] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This is identical to the [fade] extension, except it always uses `end=1.0`.
+  /// Adds a [FadeEffect] that animates the opacity of the target between the
+  /// specified [begin] value and `1.0` (via [FadeTransition]).
   T fadeIn({
     Duration? delay,
     Duration? duration,
@@ -68,8 +70,8 @@ extension FadeEffectExtensions<T extends AnimateManager<T>> on T {
         end: 1.0,
       ));
 
-  /// Adds a [fadeOut] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This is identical to the [fade] extension, except it always uses `end=0.0`.
+  /// Adds a [FadeEffect] that animates the opacity of the target between `0.0`
+  /// and the specified [end] value (via [FadeTransition]).
   T fadeOut({
     Duration? delay,
     Duration? duration,

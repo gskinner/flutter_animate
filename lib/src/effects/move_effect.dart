@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import '../../flutter_animate.dart';
 
 /// An effect that moves the target between the specified [begin] and [end]
-/// offsets (via [Transform.translate])
+/// offsets (via [Transform.translate]).
 /// Defaults to `begin=Offset(0, -16), end=Offset.zero`.
 /// [transformHitTests] is simply passed on to [Transform.translate].
 ///
@@ -53,8 +53,10 @@ class MoveEffect extends Effect<Offset> {
   }
 }
 
+/// Adds [MoveEffect] related extensions to [AnimateManager].
 extension MoveEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [move] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [MoveEffect] that moves the target between the specified [begin] and [end]
+  /// offsets (via [Transform.translate]).
   T move({
     Duration? delay,
     Duration? duration,
@@ -72,8 +74,8 @@ extension MoveEffectExtensions<T extends AnimateManager<T>> on T {
         transformHitTests: transformHitTests,
       ));
 
-  /// Adds a [moveX] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This moves only on the x-axis according to the `double` begin/end values.
+  /// Adds a [MoveEffect] that moves the target horizontally between the specified [begin] and [end]
+  /// pixel amounts (via [Transform.translate]).
   T moveX({
     Duration? delay,
     Duration? duration,
@@ -94,8 +96,8 @@ extension MoveEffectExtensions<T extends AnimateManager<T>> on T {
     ));
   }
 
-  /// Adds a [moveY] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This moves only on the y-axis according to the `double` begin/end values.
+  /// Adds a [MoveEffect] that moves the target vertically between the specified [begin] and [end]
+  /// pixel amounts (via [Transform.translate]).
   T moveY({
     Duration? delay,
     Duration? duration,

@@ -106,8 +106,10 @@ class CallbackEffect extends Effect<void> {
   }
 }
 
+/// Adds [CallbackEffect] related extensions to [AnimateManager].
 extension CallbackEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [callback] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [CallbackEffect] that calls a [callback] function at a particular point in the animation.
+  /// It includes a boolean value indicating if the animation is playing in reverse.
   T callback({
     Duration? delay,
     Duration? duration,

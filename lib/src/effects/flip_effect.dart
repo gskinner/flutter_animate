@@ -4,11 +4,11 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// An effect that animates a 2.5D card flip rotation effect (via a matrix [Transform]).
+/// An effect that animates a 2.5D card flip rotation effect (via [Transform]).
 /// The effect can be horizontal or vertical.
 ///
 /// The [begin] and [end] values specify the number of "flips" (ie. half turns,
-/// 180deg or Pi radians) from nominal. For example, `0.5` would be a 90 degree
+/// 180° or 𝝅 radians) from nominal. For example, `0.5` would be a 90 degree
 /// rotation (half a "flip").
 /// It defaults to `begin=-0.5, end=0`.
 ///
@@ -91,8 +91,12 @@ class FlipEffect extends Effect<double> {
   }
 }
 
+/// Adds [FlipEffect] related extensions to [AnimateManager].
 extension FlipEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [flip] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [FlipEffect] that animates a 2.5D card flip rotation effect (via [Transform]).
+  /// The effect can be horizontal or vertical.
+  /// The [begin] and [end] values specify the number of "flips" (ie. half turns,
+  /// 180° or 𝝅 radians) from nominal.
   T flip({
     Duration? delay,
     Duration? duration,
@@ -114,8 +118,9 @@ extension FlipEffectExtensions<T extends AnimateManager<T>> on T {
         direction: direction,
       ));
 
-  /// Adds a [flipH] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This is identical to the [flip] extension, except it always uses `direction = Axis.horizontal`.
+  /// Adds a [FlipEffect] that animates a horizontal 2.5D card flip rotation effect (via [Transform]).
+  /// The [begin] and [end] values specify the number of "flips" (ie. half turns,
+  /// 180° or 𝝅 radians) from nominal.
   T flipH({
     Duration? delay,
     Duration? duration,
@@ -136,8 +141,9 @@ extension FlipEffectExtensions<T extends AnimateManager<T>> on T {
         direction: Axis.horizontal,
       ));
 
-  /// Adds a [flipV] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This is identical to the [flip] extension, except it always uses `direction = Axis.vertical`.
+  /// Adds a [FlipEffect] that animates a vertical 2.5D card flip rotation effect (via [Transform]).
+  /// The [begin] and [end] values specify the number of "flips" (ie. half turns,
+  /// 180° or 𝝅 radians) from nominal.
   T flipV({
     Duration? delay,
     Duration? duration,

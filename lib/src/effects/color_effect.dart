@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import '../../flutter_animate.dart';
 
 /// An effect that animates a [Color] between [begin] and [end], composited with
-/// the target using [blendMode] (via [ColorFiltered]). A color value of `null` for
+/// the target using [blendMode] (via [ColorFiltered]). A color value of `null`
 /// will be interpreted as a fully transparent version of the other color.
 /// Defaults to `begin=null, end=Color(0x800099FF)`.
 ///
@@ -63,8 +63,11 @@ class ColorEffect extends Effect<Color?> {
   }
 }
 
+/// Adds [ColorEffect] related extensions to [AnimateManager].
 extension ColorEffectExtension<T extends AnimateManager<T>> on T {
-  /// Adds a [color] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [ColorEffect] that animates a [Color] between [begin] and [end], composited with
+  /// the target using [blendMode] (via [ColorFiltered]). A color value of `null`
+  /// will be interpreted as a fully transparent version of the other color.
   T color({
     Duration? delay,
     Duration? duration,

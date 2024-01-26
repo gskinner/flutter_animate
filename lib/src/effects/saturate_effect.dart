@@ -60,8 +60,11 @@ class SaturateEffect extends Effect<double> {
   }
 }
 
+/// Adds [SaturateEffect] related extensions to [AnimateManager].
 extension SaturateEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [saturate] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [SaturateEffect] that animates the color saturation of the target.
+  /// Defaults to a begin value of `0` (fully desaturated / grayscale) and
+  /// an end value of `1` (normal saturation).
   T saturate({
     Duration? delay,
     Duration? duration,
@@ -77,8 +80,9 @@ extension SaturateEffectExtensions<T extends AnimateManager<T>> on T {
         end: end,
       ));
 
-  /// Adds a [desaturate] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This is identical to the [saturate] extension, except it defaults to `begin=1, end=0`.
+  /// Adds a [SaturateEffect] that animates the color saturation of the target.
+  /// Defaults to a begin value of `1` (normal saturation) and
+  /// an end value of `0` (fully desaturated / grayscale).
   T desaturate({
     Duration? delay,
     Duration? duration,

@@ -47,8 +47,10 @@ class ToggleEffect extends Effect<void> {
   }
 }
 
+/// Adds [ToggleEffect] related extensions to [AnimateManager].
 extension ToggleEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [toggle] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [ToggleEffect] that allows you to toggle the behavior of a [builder] function at a certain
+  /// point in time.
   T toggle({
     Duration? delay,
     Duration? duration,

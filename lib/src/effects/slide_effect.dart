@@ -41,8 +41,10 @@ class SlideEffect extends Effect<Offset> {
   }
 }
 
+/// Adds [SlideEffect] related extensions to [AnimateManager].
 extension SlideEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [slide] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [SlideEffect] that moves the target based on a fraction of its size
+  /// per the specified [begin] and [end] offsets (via [SlideTransition]).
   T slide({
     Duration? delay,
     Duration? duration,
@@ -58,8 +60,8 @@ extension SlideEffectExtensions<T extends AnimateManager<T>> on T {
         end: end,
       ));
 
-  /// Adds a [slideX] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This slides only on the x-axis according to the `double` begin/end values.
+  /// Adds a [SlideEffect] that moves the target horizontally based on a fraction of its size
+  /// per the specified [begin] and [end] values (via [SlideTransition]).
   T slideX({
     Duration? delay,
     Duration? duration,
@@ -78,8 +80,8 @@ extension SlideEffectExtensions<T extends AnimateManager<T>> on T {
     ));
   }
 
-  /// Adds a [slideY] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This slides only on the y-axis according to the `double` begin/end values.
+  /// Adds a [SlideEffect] that moves the target vertically based on a fraction of its size
+  /// per the specified [begin] and [end] values (via [SlideTransition]).
   T slideY({
     Duration? delay,
     Duration? duration,

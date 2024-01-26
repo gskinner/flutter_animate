@@ -119,8 +119,9 @@ class ShaderEffect extends Effect<double> {
   }
 }
 
+/// Adds [ShaderEffect] related extensions to [AnimateManager].
 extension ShaderEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [shader] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [ShaderEffect] that applies an animated fragment shader to a target.
   T shader({
     Duration? delay,
     Duration? duration,

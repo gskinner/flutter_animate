@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../flutter_animate.dart';
 
-/// An effect that enables gradient overlay effects (via [ShaderMask]), such as the shimmer loading effect
+/// An effect that animates gradient overlay effects (via [ShaderMask]), such as the shimmer loading effect
 /// [popularized by facebook](https://facebook.github.io/shimmer-android/).
 ///
 /// **IMPORTANT:** Due to current limitations in Flutter, this effect may cause
@@ -110,8 +110,10 @@ class ShimmerEffect extends Effect<double> {
   }
 }
 
+/// Adds [ShimmerEffect] related extensions to [AnimateManager].
 extension ShimmerEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [shimmer] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [ShimmerEffect] that animates gradient overlay effects
+  /// (via [ShaderMask]), such as the shimmer loading effect.
   T shimmer({
     Duration? delay,
     Duration? duration,

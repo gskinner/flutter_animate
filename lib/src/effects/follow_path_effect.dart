@@ -91,8 +91,10 @@ class FollowPathEffect extends Effect<double> {
   }
 }
 
+/// Adds [FollowPathEffect] related extensions to [AnimateManager].
 extension FollowPathEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [path] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [FollowPathEffect] that moves the target following the specified [path] (via [Transform]).
+  /// The path coordinates are relative to the target's nominal position.
   T followPath({
     Duration? delay,
     Duration? duration,

@@ -51,8 +51,11 @@ class CustomEffect extends Effect<double> {
   }
 }
 
+/// Adds [CustomEffect] related extensions to [AnimateManager].
 extension CustomEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [custom] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [CustomEffect] that animates effects via a [builder] method that
+  /// accepts a [BuildContext], target child, and calculated animation value
+  /// between [begin] and [end].
   T custom({
     required CustomEffectBuilder builder,
     Duration? delay,

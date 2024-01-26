@@ -69,8 +69,10 @@ class TintEffect extends Effect<double> {
   }
 }
 
+/// Adds [TintEffect] related extensions to [AnimateManager].
 extension TintEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [tint] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [TintEffect] that applies an animated [color] tint to the target (via [ColorFiltered]).
+  /// Defaults to a begin value of `0` (0% tint) and an end value of `1` (100% tint).
   T tint({
     Duration? delay,
     Duration? duration,
@@ -88,8 +90,8 @@ extension TintEffectExtensions<T extends AnimateManager<T>> on T {
         color: color,
       ));
 
-  /// Adds a [untint] extension to [AnimateManager] ([Animate] and [AnimateList]).
-  /// This is identical to the [tint] extension, except it defaults to `begin=1, end=0`.
+  /// Adds a [TintEffect] that applies an animated [color] tint to the target (via [ColorFiltered]).
+  /// Defaults to a begin value of `1` (100% tint) and an end value of `0` (0% tint).
   T untint({
     Duration? delay,
     Duration? duration,

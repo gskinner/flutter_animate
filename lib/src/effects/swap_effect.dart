@@ -65,8 +65,10 @@ class SwapEffect extends Effect<void> {
   }
 }
 
+/// Adds [SwapEffect] related extensions to [AnimateManager].
 extension SwapEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [swap] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [SwapEffect] that swaps out the incoming child for a new child at a particular
+  /// point in time. This includes all preceding effects.
   T swap({
     Duration? delay,
     Duration? duration,

@@ -26,8 +26,12 @@ class ThenEffect extends Effect<double> {
   const ThenEffect({super.delay, super.duration, super.curve});
 }
 
+/// Adds [ThenEffect] related extensions to [AnimateManager].
 extension ThenEffectExtensions<T extends AnimateManager<T>> on T {
-  /// Adds a [then] extension to [AnimateManager] ([Animate] and [AnimateList]).
+  /// Adds a [ThenEffect] that makes it easier to sequence effects after
+  /// one another. It does this by establishing a new baseline time equal to the
+  /// previous effect's end time and its own optional [delay].
+  /// All subsequent effect delays are relative to this new baseline.
   T then({Duration? delay, Duration? duration, Curve? curve}) =>
       addEffect(ThenEffect(delay: delay, duration: duration, curve: curve));
 }
