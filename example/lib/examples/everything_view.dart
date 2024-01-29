@@ -6,7 +6,6 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_animate/src/effects/shader_effect.dart'; // temporary
 
 class EverythingView extends StatelessWidget {
   static ui.FragmentShader? shader;
@@ -129,7 +128,7 @@ class EverythingView extends StatelessWidget {
             );
           })),
 
-          // callback
+          // .callback
 
           tile('custom', a.custom(builder: (_, val, child) {
             val = val * pi * 2 - pi / 2;
@@ -139,7 +138,7 @@ class EverythingView extends StatelessWidget {
             );
           })),
 
-          // effect
+          // .effect
 
           tile('elevation', a.elevation()),
 
@@ -160,7 +159,7 @@ class EverythingView extends StatelessWidget {
             ),
           ),
 
-          // listen
+          // .listen
 
           //tile('move', a.move()),
           tile('moveX', a.moveX()),
@@ -193,7 +192,7 @@ class EverythingView extends StatelessWidget {
             return Opacity(opacity: 0.5, child: child!);
           })),
 
-          // then
+          // .then
 
           tile('tint', a.tint()),
           tile('untint', a.untint()),

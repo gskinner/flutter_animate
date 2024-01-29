@@ -17,6 +17,7 @@ export 'move_effect.dart';
 export 'rotate_effect.dart';
 export 'saturate_effect.dart';
 export 'scale_effect.dart';
+export 'shader_effect.dart';
 export 'shake_effect.dart';
 export 'shimmer_effect.dart';
 export 'slide_effect.dart';
