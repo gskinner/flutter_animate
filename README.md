@@ -11,9 +11,10 @@ effect in Flutter.
 1. Pre-built effects like fade, scale, slide, align, flip, blur, shake,
    shimmer, shadows, crossfades, follow path, and color effects (saturation,
    color, and tint)
-2. Easy custom effects and simplified animated builders
-3. Synchronize animations to scroll, notifiers, or anything
-4. Integrated events
+2. Apply animated GLSL fragment shaders to widgets
+3. Easy custom effects and simplified animated builders
+4. Synchronize animations to scroll, notifiers, or anything
+5. Integrated events
 
 All via a simple, unified API without fussing with AnimationController and
 StatefulWidget.
@@ -271,6 +272,17 @@ widget back in, effectively wiping all previous effects:
 text.animate().fadeOut(300.ms) // fade out & then...
   // swap in original widget & fade back in via a new Animate:
   .swap(builder: (_, child) => child.animate().fadeIn())
+```
+
+ShaderEffect
+----------------------------------------
+`ShaderEffect` makes it easy to apply animated GLSL fragment shaders to widgets.
+See the docs for details.
+
+``` dart
+myWidget.animate()
+  .shader(duration: 2.seconds, shader: myShader)
+  .fadeIn(duration: 300.ms) // shader can be combined with other effects
 ```
 
 
