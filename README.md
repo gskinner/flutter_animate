@@ -274,6 +274,8 @@ text.animate().fadeOut(300.ms) // fade out & then...
   .swap(builder: (_, child) => child.animate().fadeIn())
 ```
 
+See also SwitchEffect() for an alternative implementation of animations which switches between two or more childs. 
+
 ShaderEffect
 ----------------------------------------
 `ShaderEffect` makes it easy to apply animated GLSL fragment shaders to widgets.
