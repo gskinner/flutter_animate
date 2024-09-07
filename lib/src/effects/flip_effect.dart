@@ -36,9 +36,9 @@ class FlipEffect extends Effect<double> {
     super.curve,
     double? begin,
     double? end,
-    alignment,
-    perspective,
-    direction,
+    Alignment? alignment,
+    double? perspective,
+    Axis? direction,
   })  : alignment = alignment ?? Alignment.center,
         perspective = perspective ?? defaultPerspective,
         direction = direction ?? defaultAxis,
@@ -113,8 +113,8 @@ extension FlipEffectExtensions<T extends AnimateManager<T>> on T {
         curve: curve,
         begin: begin,
         end: end,
-        alignment: alignment,
-        perspective: perspective,
+        alignment: alignment ?? Alignment.center,
+        perspective: perspective ?? FlipEffect.defaultPerspective,
         direction: direction,
       ));
 
@@ -136,8 +136,8 @@ extension FlipEffectExtensions<T extends AnimateManager<T>> on T {
         curve: curve,
         begin: begin,
         end: end,
-        alignment: alignment,
-        perspective: perspective,
+        alignment: alignment ?? Alignment.center,
+        perspective: perspective ?? FlipEffect.defaultPerspective,
         direction: Axis.horizontal,
       ));
 
@@ -159,8 +159,8 @@ extension FlipEffectExtensions<T extends AnimateManager<T>> on T {
         curve: curve,
         begin: begin,
         end: end,
-        alignment: alignment,
-        perspective: perspective,
+        alignment: alignment ?? Alignment.center,
+        perspective: perspective ?? FlipEffect.defaultPerspective,
         direction: Axis.vertical,
       ));
 }
