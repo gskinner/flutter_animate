@@ -1,12 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [4.5.0] - 2023-01-31
+## [4.5.1] - 2024-11-21
+### Changed
+- fix console formatting reset for warn prints
+
+## [4.5.0] - 2024-01-31
 ### Changed
 - include `ShaderEffect` in export by default
 - use `AnimatedSampler` from `flutter_shaders` package (versus copying it in)
 
-## [4.4.1] - 2023-01-26
+## [4.4.1] - 2024-01-26
 ### Changed
 - improved documentation for extension methods
 

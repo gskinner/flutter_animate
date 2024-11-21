@@ -197,8 +197,8 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
   /// An external [AnimationController] can optionally be specified. By default
   /// Animate creates its own controller internally, which can be accessed via
   /// [onInit] or [onPlay].
-  /// 
-  /// While a controller can be shared between multiple Animate instances, 
+  ///
+  /// While a controller can be shared between multiple Animate instances,
   /// unexpected behaviors and errors will occur if the animations do not have
   /// identical total durations.
   final AnimationController? controller;
