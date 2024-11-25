@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [4.5.2] - 2024-11-25
+### Changed
+- remove unnecessary visibility_detector dependency
+
 ## [4.5.1] - 2024-11-21
 ### Changed
 - fix console formatting reset for warn prints
